@@ -60,11 +60,17 @@ WalkYSpeed = 0;
 // © 2017 - Jon Harvey
 
 var Turn,Walk;
-Turn = (keyboard_check(ord("A"))||keyboard_check(vk_left))
-      -(keyboard_check(ord("D"))||keyboard_check(vk_right));
+Turn = (keyboard_check(ord("Q"))||keyboard_check(vk_left))
+      -(keyboard_check(ord("E"))||keyboard_check(vk_right));
       
 Walk = (keyboard_check(ord("W"))||keyboard_check(vk_up))
       -(keyboard_check(ord("S"))||keyboard_check(vk_down));
+      
+//Reece Warren, Horizontal walking:
+//---
+HWalk = (keyboard_check(ord("A"))||keyboard_check(vk_up))
+      -(keyboard_check(ord("D"))||keyboard_check(vk_down));     
+//---
 
 TurnSpeed = TurnSpeed*0.9 + 0.1*Turn;
 
@@ -75,6 +81,12 @@ WalkDirection += 2*TurnSpeed*FRAME_DELTA;
 
 WalkXSpeed = WalkXSpeed*0.98+0.1*Walk*FRAME_DELTA*dcos(WalkDirection);
 WalkYSpeed = WalkYSpeed*0.98-0.1*Walk*FRAME_DELTA*dsin(WalkDirection);
+
+//Reece Warren, Horizontal walking:
+//---
+WalkXSpeed = WalkXSpeed*0.98+0.1*HWalk*FRAME_DELTA*dcos(WalkDirection+90);
+WalkYSpeed = WalkYSpeed*0.98-0.1*HWalk*FRAME_DELTA*dsin(WalkDirection+90);
+//---
 
 x += WalkXSpeed;
 y += WalkYSpeed;
