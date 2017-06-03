@@ -1,0 +1,4 @@
+xor5
+-1
+Jonnerboy5^5
+True
