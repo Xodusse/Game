@@ -1,0 +1,3 @@
+This is the base project for Xodusse version 1.0.
+
+Property of Reece (Warrenaterz) and Jon (Xor5).
