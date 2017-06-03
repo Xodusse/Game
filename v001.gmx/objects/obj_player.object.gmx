@@ -79,13 +79,13 @@ Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection = clamp(GunDirection+0.1*Turn*FRAME_DELTA-WalkDirection,-100,100)+WalkDirection;
 WalkDirection += 2*TurnSpeed*FRAME_DELTA;
 
-WalkXSpeed = WalkXSpeed*0.98+0.1*Walk*FRAME_DELTA*dcos(WalkDirection);
-WalkYSpeed = WalkYSpeed*0.98-0.1*Walk*FRAME_DELTA*dsin(WalkDirection);
+WalkXSpeed = WalkXSpeed*0.96+0.2*Walk*FRAME_DELTA*dcos(WalkDirection);
+WalkYSpeed = WalkYSpeed*0.96-0.2*Walk*FRAME_DELTA*dsin(WalkDirection);
 
 //Reece Warren, Horizontal walking:
 //---
-WalkXSpeed = WalkXSpeed*0.98+0.1*HWalk*FRAME_DELTA*dcos(WalkDirection+90);
-WalkYSpeed = WalkYSpeed*0.98-0.1*HWalk*FRAME_DELTA*dsin(WalkDirection+90);
+WalkXSpeed = WalkXSpeed*0.99+0.1*HWalk*FRAME_DELTA*dcos(WalkDirection+90);
+WalkYSpeed = WalkYSpeed*0.99-0.1*HWalk*FRAME_DELTA*dsin(WalkDirection+90);
 //---
 
 x += WalkXSpeed;
@@ -94,6 +94,11 @@ y += WalkYSpeed;
 view_angle[0] = view_angle[0]*0.998+0.002*(90-WalkDirection);
 view_xview[0] = view_xview[0]*0.9+0.1*(x-view_wview[0]/2);
 view_yview[0] = view_yview[0]*0.9+0.1*(y-view_hview[0]/2);
+
+//Updated 4th June 2017 by Reece:
+// * Changed rotation controls to Q and E.
+// * Added left and right movement controls with A and D.
+// * Adjusted the movement speeds of horizontal walking and clamp values.
 </string>
           </argument>
         </arguments>
