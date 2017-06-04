@@ -44,6 +44,8 @@ image_angle = direction;
 
 speed = irandom_range(0,360);
 
+instance = id;
+
 </string>
           </argument>
         </arguments>
@@ -69,21 +71,104 @@ speed = irandom_range(0,360);
             <string>//AI Update code:
 // © 2017 - Reece Warren, All rights reserved.
 
-speed = 3 * FRAME_DELTA;
+/*
+x1 = x-lengthdir_x(22.627,image_angle-45);
+x2 = x+lengthdir_x(22.627,image_angle-45);
+x3 = x-lengthdir_x(22.627,image_angle+45);
+x4 = x+lengthdir_x(22.627,image_angle+45);
 
-if (IsTargeting == false){
+y1 = y-lengthdir_y(22.627,image_angle-45);
+y2 = y+lengthdir_y(22.627,image_angle-45);
+y3 = y-lengthdir_y(22.627,image_angle+45);*/
 
-    DirectionTimer -= (1/60) * FRAME_DELTA;
+//var inst = (collision_circle(x,y,22.627,obj_Enemy_Parent,true,false));
+
+if (instance_exists(obj_player)){
+
+    var Player = instance_nearest(x,y,obj_player);
+    var PDir = point_direction(x,y,Player.x,Player.y);  
+      
+    image_angle = PDir;
+
+
+//!(collision_line(x,y, x+lengthdir_x(16,direction), y+lengthdir_y(16,direction), obj_Enemy_Parent, true, false))
+    if !(collision_point(x+lengthdir_x(32,image_angle),y+lengthdir_y(32,image_angle),obj_Enemy_Parent,false,true)){
     
-    if (DirectionTimer &lt;= 0){
-        Direction = irandom_range(0,360);
-        direction = Direction;
+        if !(collision_point(x+lengthdir_x(24,image_angle+90),y+lengthdir_y(24,image_angle+90),obj_Enemy_Parent,false,true)){
         
-        image_angle = direction;
+            if !(collision_point(x+lengthdir_x(24,image_angle-90),y+lengthdir_y(24,image_angle-90),obj_Enemy_Parent,false,true)){
         
-        DirectionTimer = random_range(1,5);
+                speed = 3 * FRAME_DELTA;
+                
+                var PDist = point_distance(x,y,Player.x,Player.y);
+                
+                if (PDist &lt;= 256){
+                    IsTargeting = true;
+                    
+                    direction = PDir;
+                    
+                }
+                
+                else {
+                    IsTargeting = false;
+                    
+                    DirectionTimer -= (1/60) * FRAME_DELTA;
+                    
+                    if (DirectionTimer &lt;= 0){
+                        Direction = irandom_range(0,360);
+                        direction = Direction;
+                        
+                        image_angle = direction;
+                        
+                        DirectionTimer = random_range(1,5);
+                    }             
+                }
+            }
+        }
+    }
+    
+    
+    else {
+    
+        speed = 0;
+        x = xprevious;
+        y = yprevious;
     }
 }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//© 2017 - Reece Warren, All rights reserved.
+//Draw event code.
+
+draw_self();
+
+/*
+draw_circle(x+lengthdir_x(32,image_angle),y+lengthdir_y(32,image_angle),5, false);
+draw_circle(x+lengthdir_x(24,image_angle+90),y+lengthdir_y(24,image_angle+90),5, false);
+draw_circle(x+lengthdir_x(24,image_angle-90),y+lengthdir_y(24,image_angle-90),5, false);
+
+
 </string>
           </argument>
         </arguments>
