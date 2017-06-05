@@ -52,6 +52,17 @@ image_speed = 0;
 
 Rotate = true;
 
+x1 = 0;
+x2 = 0;
+x3 = 0;
+x4 = 0;
+
+y1 = 0;
+y2 = 0;
+y3 = 0;
+y4 = 0;
+
+
 </string>
           </argument>
         </arguments>
@@ -77,32 +88,17 @@ Rotate = true;
             <string>//AI Update code:
 // © 2017 - Reece Warren, All rights reserved.
 
-/*
-x1 = x-lengthdir_x(22.627,image_angle-45);
+x1 = x+lengthdir_x(22.627,image_angle+45);
+y1 = y+lengthdir_y(22.627,image_angle+45);
+
 x2 = x+lengthdir_x(22.627,image_angle-45);
-x3 = x-lengthdir_x(22.627,image_angle+45);
-x4 = x+lengthdir_x(22.627,image_angle+45);
-
-y1 = y-lengthdir_y(22.627,image_angle-45);
 y2 = y+lengthdir_y(22.627,image_angle-45);
-y3 = y-lengthdir_y(22.627,image_angle+45);*/
 
-//var inst = (collision_circle(x,y,22.627,obj_Enemy_Parent,true,false));
+x3 = x-lengthdir_x(22.627,image_angle-45);
+y3 = y-lengthdir_y(22.627,image_angle-45);
 
-//AI Update code:
-// © 2017 - Reece Warren, All rights reserved.
-
-/*
-x1 = x-lengthdir_x(22.627,image_angle-45);
-x2 = x+lengthdir_x(22.627,image_angle-45);
-x3 = x-lengthdir_x(22.627,image_angle+45);
-x4 = x+lengthdir_x(22.627,image_angle+45);
-
-y1 = y-lengthdir_y(22.627,image_angle-45);
-y2 = y+lengthdir_y(22.627,image_angle-45);
-y3 = y-lengthdir_y(22.627,image_angle+45);*/
-
-//var inst = (collision_circle(x,y,22.627,obj_Enemy_Parent,true,false));
+x4 = x-lengthdir_x(22.627,image_angle+45);
+y4 = y-lengthdir_y(22.627,image_angle+45);
 
 if (instance_exists(obj_player)){
 
@@ -245,9 +241,20 @@ if (instance_exists(obj_player)){
 draw_self();
 
 
-draw_circle(x+lengthdir_x(32,image_angle),y+lengthdir_y(32,image_angle),5, false);
-draw_circle(x+lengthdir_x(24,image_angle+90),y+lengthdir_y(24,image_angle+90),5, false);
-draw_circle(x+lengthdir_x(24,image_angle-90),y+lengthdir_y(24,image_angle-90),5, false);
+//draw_circle(x+lengthdir_x(32,image_angle),y+lengthdir_y(32,image_angle),5, false);
+//draw_circle(x+lengthdir_x(24,image_angle+90),y+lengthdir_y(24,image_angle+90),5, false);
+//draw_circle(x+lengthdir_x(24,image_angle-90),y+lengthdir_y(24,image_angle-90),5, false);
+
+draw_circle(x1,y1,5,false);
+draw_circle(x2,y2,5,false);
+draw_circle(x3,y3,5,false);
+draw_circle(x4,y4,5,false);
+
+draw_line(x1,y1,x2,y2);
+draw_line(x2,y2,x4,y4);
+draw_line(x4,y4,x3,y3);
+draw_line(x3,y3,x1,y1);
+
 
 
 </string>
