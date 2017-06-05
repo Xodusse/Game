@@ -32,8 +32,8 @@ GunDirection = 90;
 WalkDirection = 90;
 
 TurnSpeed = 0;
-WalkXSpeed = 0;
-WalkYSpeed = 0;
+WalkSpeedX = 0;
+WalkSpeedY = 0;
 </string>
           </argument>
         </arguments>
@@ -107,10 +107,10 @@ GunDirection = clamp(GunDirection+0.1*Turn*FRAME_DELTA-WalkDirection,-100,100)+W
 WalkDirection += 2*TurnSpeed*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
-WalkXSpeed = WalkXSpeed*0.96+FRAME_DELTA*(0.1*Hor*dcos(WalkDirection+90)+0.2*Vert*dcos(WalkDirection));
-WalkYSpeed = WalkYSpeed*0.96-FRAME_DELTA*(0.1*Hor*dsin(WalkDirection+90)+0.2*Vert*dsin(WalkDirection));
-x += WalkXSpeed;
-y += WalkYSpeed;
+WalkSpeedX = WalkSpeedX*0.96+FRAME_DELTA*(0.1*Hor*dcos(WalkDirection+90)+0.2*Vert*dcos(WalkDirection));
+WalkSpeedY = WalkSpeedY*0.96-FRAME_DELTA*(0.1*Hor*dsin(WalkDirection+90)+0.2*Vert*dsin(WalkDirection));
+x += WalkSpeedX;
+y += WalkSpeedY;
 
 //Smoothly rotate and translate view with player.
 view_angle[0] = view_angle[0]*0.998+0.002*(90-WalkDirection);
@@ -217,6 +217,30 @@ draw_rectangle(8,56,72-64*min(Rate*GunRate,1),72,0);
 // © 2017 - Jon Harvey
 draw_sprite_ext(spr_player,0,x,y,1,1,WalkDirection,$FFFFFF,1);
 draw_sprite_ext(spr_player,0,x,y,.4,.4,GunDirection,$DDDDDD,1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///
+instance_create(x,y,obj_enemy);
 </string>
           </argument>
         </arguments>

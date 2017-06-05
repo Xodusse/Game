@@ -36,7 +36,7 @@ if image_index &amp;&amp; mouse_check_button_released(mb_left)
 {
     //show_message("No game yet!");
     
-    room_goto(roomtest);
+    room_goto(rm_test1);
 }
 </string>
           </argument>

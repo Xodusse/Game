@@ -29,7 +29,10 @@
 // © 2017 - Jon Harvey
 
 WalkDirection = 0;
-Radius = 16;;
+
+WalkSpeedX = 0;
+WalkSpeedY = 0;
+Radius = 16;
 </string>
           </argument>
         </arguments>
@@ -56,6 +59,8 @@ Radius = 16;;
 // © 2017 - Jon Harvey
 
 WalkDirection = point_direction(x,y,obj_player.x,obj_player.y);
+image_angle = WalkDirection;
+
 var SumX,SumY;
 SumX = 0;
 SumY = 0;
@@ -65,18 +70,25 @@ for(var i = instance_number(obj_enemy);i&gt;0;i--){
     
     if Inst!=id{
     
-        var Distance = distance_to_point(Inst.x,Inst.y);
+        var Distance = distance_to_point(Inst.x,Inst.y)+.1;
         if (Distance&lt;Radius){
         
-            var NormX = -(Inst.x-x)/Distance;
-            var NormY = -(Inst.y-y)/Distance;
+            var NormX = (x-Inst.x)/Distance;
+            var NormY = (y-Inst.y)/Distance;
             SumX += NormX*(Radius-Distance);
             SumY += NormY*(Radius-Distance);
         }
     }
 }
-x += SumX+dcos(WalkDirection)*FRAME_DELTA;
-y += SumY-dsin(WalkDirection)*FRAME_DELTA;
+var Distance = sqrt(SumX*SumX+SumY*SumY+.01);
+SumX = SumX/max(Distance,Radius);
+SumY = SumY/max(Distance,Radius);
+
+WalkSpeedX = WalkSpeedX*0.9+0.1*(SumX+dcos(WalkDirection)*FRAME_DELTA);
+WalkSpeedY = WalkSpeedY*0.9+0.1*(SumY-dsin(WalkDirection)*FRAME_DELTA);
+
+x += WalkSpeedX;
+y += WalkSpeedY;
 </string>
           </argument>
         </arguments>
