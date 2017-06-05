@@ -57,13 +57,15 @@ WalkYSpeed = 0;
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
+GunAuto = 1;//0 = semi-automatic, 1 = fully-automatic
+
 GunRate = 10;//Rounds per second.
 Rate = GunRate;
 
-GunClip = 20;
+GunClip = 20;//Gun clip size.
 Clip = GunClip;
 
-GunReload = 2;
+GunReload = 2;//Reload time in seconds.
 Reload = GunReload;
 </string>
           </argument>
@@ -90,37 +92,30 @@ Reload = GunReload;
             <string>///Player movement
 // © 2017 - Jon Harvey
 
+//Set controls for movement.
 var Turn,Vert,Hor;
 Turn = Kturnleft-Kturnright;
 Vert = Kup-Kdown;
 Hor = Kleft-Kright;
 
+//Smooth turn speed for turning motion.
 TurnSpeed = TurnSpeed*0.9 + 0.1*Turn;
 
+//Handle player turning gun and player direction.
 Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection = clamp(GunDirection+0.1*Turn*FRAME_DELTA-WalkDirection,-100,100)+WalkDirection;
 WalkDirection += 2*TurnSpeed*FRAME_DELTA;
 
-WalkXSpeed = WalkXSpeed*0.96+0.2*Vert*FRAME_DELTA*dcos(WalkDirection);
-WalkYSpeed = WalkYSpeed*0.96-0.2*Vert*FRAME_DELTA*dsin(WalkDirection);
-
-//Reece Warren, Horizontal walking:
-//---
-WalkXSpeed = WalkXSpeed*0.99+0.1*Hor*FRAME_DELTA*dcos(WalkDirection+90);
-WalkYSpeed = WalkYSpeed*0.99-0.1*Hor*FRAME_DELTA*dsin(WalkDirection+90);
-//---
-
+//Smooth walk using controls defined above.
+WalkXSpeed = WalkXSpeed*0.96+FRAME_DELTA*(0.1*Hor*dcos(WalkDirection+90)+0.2*Vert*dcos(WalkDirection));
+WalkYSpeed = WalkYSpeed*0.96-FRAME_DELTA*(0.1*Hor*dsin(WalkDirection+90)+0.2*Vert*dsin(WalkDirection));
 x += WalkXSpeed;
 y += WalkYSpeed;
 
+//Smoothly rotate and translate view with player.
 view_angle[0] = view_angle[0]*0.998+0.002*(90-WalkDirection);
 view_xview[0] = view_xview[0]*0.9+0.1*(x-view_wview[0]/2);
 view_yview[0] = view_yview[0]*0.9+0.1*(y-view_hview[0]/2);
-
-//Updated 4th June 2017 by Reece:
-// * Changed rotation controls to Q and E.
-// * Added left and right movement controls with A and D.
-// * Adjusted the movement speeds of horizontal walking and clamp values.
 </string>
           </argument>
         </arguments>
@@ -146,7 +141,8 @@ view_yview[0] = view_yview[0]*0.9+0.1*(y-view_hview[0]/2);
 
 Rate += DELTA;
 Reload += DELTA;
-if mouse_check_button(mb_left)
+
+if mouse_check_button(mb_left)*GunAuto || mouse_check_button_pressed(mb_left)*!GunAuto
 {
     if (Rate&gt;1/GunRate &amp;&amp; Reload&gt;GunReload)
     {
@@ -194,7 +190,7 @@ draw_rectangle(8,32,72,48,1);
 draw_rectangle(8,32,72-64*min(Reload/GunReload,1),48,0);
 
 draw_rectangle(8,56,72,72,1);
-draw_rectangle(8,56,72-64*min(Rate/GunRate,1),72,0);
+draw_rectangle(8,56,72-64*min(Rate*GunRate,1),72,0);
 </string>
           </argument>
         </arguments>
