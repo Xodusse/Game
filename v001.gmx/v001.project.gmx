@@ -27,6 +27,7 @@
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_initialize</object>
+    <object>objects\obj_controller_keys</object>
     <objects name="Buttons">
       <object>objects\obj_button_alone</object>
       <object>objects\obj_button_coop</object>

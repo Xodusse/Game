@@ -59,18 +59,10 @@ WalkYSpeed = 0;
             <string>///Player movement
 // © 2017 - Jon Harvey
 
-var Turn,Walk;
-Turn = (keyboard_check(ord("Q"))||keyboard_check(vk_left))
-      -(keyboard_check(ord("E"))||keyboard_check(vk_right));
-      
-Walk = (keyboard_check(ord("W"))||keyboard_check(vk_up))
-      -(keyboard_check(ord("S"))||keyboard_check(vk_down));
-      
-//Reece Warren, Horizontal walking:
-//---
-HWalk = (keyboard_check(ord("A"))||keyboard_check(vk_up))
-      -(keyboard_check(ord("D"))||keyboard_check(vk_down));     
-//---
+var Turn,Vert,Hor;
+Turn = Kturnleft-Kturnright;
+Vert = Kup-Kdown;
+Hor = Kleft-Kright;
 
 TurnSpeed = TurnSpeed*0.9 + 0.1*Turn;
 
@@ -79,13 +71,13 @@ Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection = clamp(GunDirection+0.1*Turn*FRAME_DELTA-WalkDirection,-100,100)+WalkDirection;
 WalkDirection += 2*TurnSpeed*FRAME_DELTA;
 
-WalkXSpeed = WalkXSpeed*0.96+0.2*Walk*FRAME_DELTA*dcos(WalkDirection);
-WalkYSpeed = WalkYSpeed*0.96-0.2*Walk*FRAME_DELTA*dsin(WalkDirection);
+WalkXSpeed = WalkXSpeed*0.96+0.2*Vert*FRAME_DELTA*dcos(WalkDirection);
+WalkYSpeed = WalkYSpeed*0.96-0.2*Vert*FRAME_DELTA*dsin(WalkDirection);
 
 //Reece Warren, Horizontal walking:
 //---
-WalkXSpeed = WalkXSpeed*0.99+0.1*HWalk*FRAME_DELTA*dcos(WalkDirection+90);
-WalkYSpeed = WalkYSpeed*0.99-0.1*HWalk*FRAME_DELTA*dsin(WalkDirection+90);
+WalkXSpeed = WalkXSpeed*0.99+0.1*Hor*FRAME_DELTA*dcos(WalkDirection+90);
+WalkYSpeed = WalkYSpeed*0.99-0.1*Hor*FRAME_DELTA*dsin(WalkDirection+90);
 //---
 
 x += WalkXSpeed;

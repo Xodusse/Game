@@ -2,8 +2,8 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
-  <depth>-32768</depth>
+  <visible>0</visible>
+  <depth>0</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,60 +25,30 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize the game.
+            <string>///Set key defaults
+// © 2017 - Jon Harvey
 
-/*
-    © 2017 - Reece Warren
-    All rights reserved.
+//Set up key ids
+KIleft = ord("A");
+KIright = ord("D");
+KIup = ord("W");
+KIdown = ord("S");
+KIturnleft = ord("Q");
+KIturnright = ord("E");
 
-    Game initialization event.
-
-    obj_initialize is a persistent object that contains variables required
-    for the game to run. This object is only created once through the creation code
-    of rm_initialize.
-*/
-
-//DELTA TIMING:
-
-globalvar DESIRED_FPS, FRAME_DELTA;
-DESIRED_FPS = 60;
-FRAME_DELTA = DESIRED_FPS / 1000000 * delta_time;
-
-//GAME CONFIGURATION:
-
-DISPLAY_HRESOLUTION = display_get_width();
-DISPLAY_VRESOLUTION = display_get_height();
-DISPLAY_ASPECT = DISPLAY_HRESOLUTION / DISPLAY_VRESOLUTION;
-
- //VSync - Boolean;
- SETTING_VSYNC = true;
- //Texture interpolation - Boolean;
- SETTING_INTERPOLATION = true;
- //Anti-aliasing max - Real (Can return: [0 for unsupported], [2 for 2xAA], [6 for 2xAA &amp; 4xAA], [12 for 4xAA &amp; 8xAA] and [16 for 2xAA,4xAA &amp; 8xAA]);
- SETTING_FXAA_MAX = display_aa;
- //Anti-aliasing current - Real;
- SETTING_FXAA = 0;
- //Fullscreen - Boolean;
- SETTING_FULLSCREEN = false;
- //Resolution current - Real (Can return: [0 for 960x540], [1 for 1280x720], [2 for 1366x768], [3 for 1600x900], [4 for 1920x1080], [5 for 2560x1440], [6 for 3840x2160], [7 for DISPLAY_HRESOLUTIONxDISPLAY_VRESOLUTION]);
- SETTING_RESOLUTION = 0;
-
-//Seed:
-
-//Fixed seed setting to real random - Jon
-randomize();
-SEED = random_get_seed();
-
-//Add key controlller - Jon
-instance_create(0,0,obj_controller_keys);
-
-
+globalvar Kleft,Kright,Kup,Kdown,Kturnleft,Kturnright;
+Kleft = 0;
+Kright = 0;
+Kup = 0;
+Kdown = 0;
+Kturnleft = 0;
+Kturnright = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="1">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -95,7 +65,15 @@ instance_create(0,0,obj_controller_keys);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>FRAME_DELTA = DESIRED_FPS / 1000000 * delta_time;
+            <string>///Update keypresses
+// © 2017 - Jon Harvey
+
+Kleft = keyboard_check(KIleft);
+Kright = keyboard_check(KIright);
+Kup = keyboard_check(KIup);
+Kdown = keyboard_check(KIdown);
+Kturnleft = keyboard_check(KIturnleft);
+Kturnright = keyboard_check(KIturnright);
 </string>
           </argument>
         </arguments>
