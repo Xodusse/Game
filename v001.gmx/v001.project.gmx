@@ -6,7 +6,6 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_player</sprite>
     <sprites name="Buttons">
       <sprite>sprites\spr_button_alone</sprite>
       <sprite>sprites\spr_button_coop</sprite>
@@ -16,7 +15,9 @@
       <sprite>sprites\spr_button_start</sprite>
       <sprite>sprites\spr_button_set</sprite>
     </sprites>
+    <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_enemy</sprite>
+    <sprite>sprites\spr_bullet</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_main</background>
@@ -28,6 +29,9 @@
   <objects name="objects">
     <object>objects\obj_initialize</object>
     <object>objects\obj_controller_keys</object>
+    <object>objects\obj_Enemy_Parent</object>
+    <object>objects\obj_player</object>
+    <object>objects\obj_bullet</object>
     <objects name="Buttons">
       <object>objects\obj_button_alone</object>
       <object>objects\obj_button_coop</object>
@@ -37,8 +41,6 @@
       <object>objects\obj_button_start</object>
       <object>objects\obj_button_set</object>
     </objects>
-    <object>objects\obj_Enemy_Parent</object>
-    <object>objects\obj_player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_initialize</room>

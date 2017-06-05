@@ -38,6 +38,37 @@ WalkYSpeed = 0;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Gun variables
+// © 2017 - Jon Harvey
+
+GunRate = 10;//Rounds per second.
+Rate = GunRate;
+
+GunClip = 20;
+Clip = GunClip;
+
+GunReload = 2;
+Reload = GunReload;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -90,6 +121,80 @@ view_yview[0] = view_yview[0]*0.9+0.1*(y-view_hview[0]/2);
 // * Changed rotation controls to Q and E.
 // * Added left and right movement controls with A and D.
 // * Adjusted the movement speeds of horizontal walking and clamp values.
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Gun controller
+// © 2017 - Jon Harvey
+
+Rate += DELTA;
+Reload += DELTA;
+if mouse_check_button(mb_left)
+{
+    if (Rate&gt;1/GunRate &amp;&amp; Reload&gt;GunReload)
+    {
+        Rate = 0;
+        var Bullet = instance_create(x,y,obj_bullet);
+        Bullet.direction = GunDirection;
+        Bullet.image_angle = GunDirection;
+        Clip--;
+        if (Clip&lt;=0)
+        {
+            Clip = GunClip;
+            Reload = 0;
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw gun info
+// © 2017 - Jon Harvey
+
+draw_rectangle(8,8,72,24,1);
+draw_rectangle(8,8,72-64*min(Clip/GunClip,1),24,0);
+
+draw_rectangle(8,32,72,48,1);
+draw_rectangle(8,32,72-64*min(Reload/GunReload,1),48,0);
+
+draw_rectangle(8,56,72,72,1);
+draw_rectangle(8,56,72-64*min(Rate/GunRate,1),72,0);
 </string>
           </argument>
         </arguments>
