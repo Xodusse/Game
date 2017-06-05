@@ -46,6 +46,12 @@ speed = irandom_range(0,360);
 
 instance = id;
 
+AngleDifference = 0;
+
+image_speed = 0;
+
+Rotate = true;
+
 </string>
           </argument>
         </arguments>
@@ -83,59 +89,134 @@ y3 = y-lengthdir_y(22.627,image_angle+45);*/
 
 //var inst = (collision_circle(x,y,22.627,obj_Enemy_Parent,true,false));
 
+//AI Update code:
+// © 2017 - Reece Warren, All rights reserved.
+
+/*
+x1 = x-lengthdir_x(22.627,image_angle-45);
+x2 = x+lengthdir_x(22.627,image_angle-45);
+x3 = x-lengthdir_x(22.627,image_angle+45);
+x4 = x+lengthdir_x(22.627,image_angle+45);
+
+y1 = y-lengthdir_y(22.627,image_angle-45);
+y2 = y+lengthdir_y(22.627,image_angle-45);
+y3 = y-lengthdir_y(22.627,image_angle+45);*/
+
+//var inst = (collision_circle(x,y,22.627,obj_Enemy_Parent,true,false));
+
 if (instance_exists(obj_player)){
 
-    var Player = instance_nearest(x,y,obj_player);
-    var PDir = point_direction(x,y,Player.x,Player.y);  
-      
-    image_angle = PDir;
-
-
-//!(collision_line(x,y, x+lengthdir_x(16,direction), y+lengthdir_y(16,direction), obj_Enemy_Parent, true, false))
-    if !(collision_point(x+lengthdir_x(32,image_angle),y+lengthdir_y(32,image_angle),obj_Enemy_Parent,false,true)){
+    //!(collision_line(x,y, x+lengthdir_x(16,direction), y+lengthdir_y(16,direction), obj_Enemy_Parent, true, false))
     
-        if !(collision_point(x+lengthdir_x(24,image_angle+90),y+lengthdir_y(24,image_angle+90),obj_Enemy_Parent,false,true)){
-        
-            if !(collision_point(x+lengthdir_x(24,image_angle-90),y+lengthdir_y(24,image_angle-90),obj_Enemy_Parent,false,true)){
-        
-                speed = 3 * FRAME_DELTA;
-                
-                var PDist = point_distance(x,y,Player.x,Player.y);
-                
-                if (PDist &lt;= 256){
-                    IsTargeting = true;
-                    
-                    direction = PDir;
-                    
-                }
-                
-                else {
-                    IsTargeting = false;
-                    
-                    DirectionTimer -= (1/60) * FRAME_DELTA;
-                    
-                    if (DirectionTimer &lt;= 0){
-                        Direction = irandom_range(0,360);
-                        direction = Direction;
+    /*if (collision_point(x+lengthdir_x(32,image_angle),y+lengthdir_y(32,image_angle),obj_Enemy_Parent,false,true)){
+        x = xprevious;
+        y = yprevious;
+    }  
+      
+    if (collision_point(x+lengthdir_x(24,image_angle+90),y+lengthdir_y(24,image_angle+90),obj_Enemy_Parent,false,true)){
+        x = xprevious;
+        y = yprevious;
+    }          
+            
+    if (collision_point(x+lengthdir_x(24,image_angle-90),y+lengthdir_y(24,image_angle-90),obj_Enemy_Parent,false,true)){
+        x = xprevious;
+        y = yprevious;
+    }*/
+    
+    //with(obj_Enemy_Parent){
+    
+    
+    
+        var Collide = collision_circle(x,y,24,obj_Enemy_Parent,true,false);
+            
+        if (Collide == !noone){
+            speed = 0;
                         
-                        image_angle = direction;
+            x = xprevious;
+            y = yprevious;    
+        }                                                         
+    
+        else {
+            speed = 3 * FRAME_DELTA;
+            
+            var Player = instance_nearest(x,y,obj_player);
+            var PDist = point_distance(x,y,Player.x,Player.y);
+            
+            //Target the player while moving:                
+            if (IsTargeting == true) &amp;&amp; (Rotate == false){
+            
+                var PDir = point_direction(x,y,Player.x,Player.y);
+                direction = PDir;
+                image_angle = PDir;                      
+            }  
+            
+            //Untriggers targeting for player if they are not in range:
+            //Causes unagressed AI behaviour:
+            else if (PDist &gt; 256){
+                IsTargeting = false;
+                Rotate = true;
+                
+                DirectionTimer -= (1/60) * FRAME_DELTA;
+                
+                if (DirectionTimer &lt;= 0){
+                    Direction = irandom_range(0,360);
+                    direction = Direction;
+                    
+                    image_angle = direction;
+                    
+                    DirectionTimer = random_range(1,5);
+                } 
+            }                  
+            
+            //Trigger the turn AI for the enemy:                
+            else if (PDist &lt;= 256) &amp;&amp; (IsTargeting == false){
+                
+                var CurrentDir = direction;
+                
+                var Player = instance_nearest(x,y,obj_player);                                    
+                var TargetDir = point_direction(x,y,Player.x,Player.y);
+                
+                AngleDifference = angle_difference(CurrentDir,TargetDir);
+                
+                if (Rotate == true){
+                
+                    if (sign(AngleDifference) == 1){
                         
-                        DirectionTimer = random_range(1,5);
-                    }             
-                }
+                        if (AngleDifference &gt; 0){                                
+                            AngleDifference -= 0.25 * FRAME_DELTA;
+                            image_angle -= 0.25 * FRAME_DELTA;
+                            direction = image_angle;                                                                                                                                                                                                                        
+                        }
+                        
+                        else {                                
+                            Rotate = false; 
+                            IsTargeting = true;                                                           
+                        }                                                                          
+                    }
+                    
+                    else if (sign(AngleDifference) == -1){
+                        
+                        if (AngleDifference &gt; 0){                                
+                            AngleDifference += 0.25 * FRAME_DELTA;
+                            image_angle += 0.25 * FRAME_DELTA;
+                            direction = image_angle;                                                                                                                                                                                                                        
+                        }
+                        
+                        else {                                
+                            Rotate = false;
+                            IsTargeting = true;                                                              
+                        }                                                                          
+                    }
+                    
+                    else if (sign(AngleDifference) == 0){                                                         
+                        Rotate = false;
+                        IsTargeting = true;                                                                                                                                   
+                    }                                                                        
+                }                                                  
             }
         }
     }
-    
-    
-    else {
-    
-        speed = 0;
-        x = xprevious;
-        y = yprevious;
-    }
-}
-
+//}
 </string>
           </argument>
         </arguments>
@@ -163,7 +244,7 @@ if (instance_exists(obj_player)){
 
 draw_self();
 
-/*
+
 draw_circle(x+lengthdir_x(32,image_angle),y+lengthdir_y(32,image_angle),5, false);
 draw_circle(x+lengthdir_x(24,image_angle+90),y+lengthdir_y(24,image_angle+90),5, false);
 draw_circle(x+lengthdir_x(24,image_angle-90),y+lengthdir_y(24,image_angle-90),5, false);
