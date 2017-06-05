@@ -41,7 +41,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_initialize</room>
-    <room>rooms\rm_test</room>
+    <room>rooms\rm_test1</room>
     <room>rooms\rm_game</room>
     <room>rooms\rm_main</room>
     <room>rooms\rm_options</room>
