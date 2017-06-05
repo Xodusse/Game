@@ -66,7 +66,6 @@ Hor = Kleft-Kright;
 
 TurnSpeed = TurnSpeed*0.9 + 0.1*Turn;
 
-//Messy turn code
 Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection = clamp(GunDirection+0.1*Turn*FRAME_DELTA-WalkDirection,-100,100)+WalkDirection;
 WalkDirection += 2*TurnSpeed*FRAME_DELTA;
