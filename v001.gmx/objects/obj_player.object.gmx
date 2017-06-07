@@ -130,8 +130,9 @@ Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection += 0.1*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
-WalkSpeedX = WalkSpeedX*S90+3*(1-S90)*(-Hor*sqr(dcos(GunDirection)*-sign(Hor)*0.2+0.8));
-WalkSpeedY = WalkSpeedY*S90-3*(1-S90)*(Vert*sqr(dsin(GunDirection)*sign(Vert)*0.2+0.8));
+var Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
+WalkSpeedX = WalkSpeedX*S90+3*(1-S90)*(-Hor*(dcos(GunDirection)*-sign(Hor)*0.2+0.8))/Speed;
+WalkSpeedY = WalkSpeedY*S90-3*(1-S90)*(Vert*(dsin(GunDirection)*sign(Vert)*0.2+0.8))/Speed;
 x += FRAME_DELTA*WalkSpeedX;
 y += FRAME_DELTA*WalkSpeedY;
 
@@ -175,6 +176,7 @@ if mouse_check_button(mb_left)*GunAuto[Gun] || mouse_check_button_pressed(mb_lef
 {
     if (Rate[Gun]&gt;1/GunRate[Gun] &amp;&amp; Reload[Gun]&gt;GunReload[Gun])
     {
+        audio_play_sound(snd_gun,0,0);
         Rate[Gun] = 0;
         var Bullet = instance_create(x,y,obj_bullet);
         Bullet.direction = GunDirection;
