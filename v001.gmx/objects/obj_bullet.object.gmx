@@ -28,7 +28,7 @@
             <string>///Speed
 // © 2017 - Jon Harvey
 
-speed = 8*FRAME_DELTA;
+speed = 12*FRAME_DELTA;
 if distance_to_object(obj_player)&gt;1000
 {
     instance_destroy();
