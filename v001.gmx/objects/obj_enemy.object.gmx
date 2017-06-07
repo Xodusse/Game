@@ -61,31 +61,32 @@ Radius = 16;
 WalkDirection = point_direction(x,y,obj_player.x,obj_player.y);
 image_angle = WalkDirection;
 
+var S90;
+S90 = power(0.90,FRAME_DELTA);
+
 var SumX,SumY;
-SumX = 0;
-SumY = 0;
-for(var i = instance_number(obj_enemy);i&gt;0;i--){
+SumX =  dcos(WalkDirection)*FRAME_DELTA;
+SumY = -dsin(WalkDirection)*FRAME_DELTA;
+
+for(var i = instance_number(obj_enemy);i&gt;=0;i--){
 
     var Inst = instance_find(obj_enemy,i);
     
     if Inst!=id{
     
-        var Distance = distance_to_point(Inst.x,Inst.y)+.1;
-        if (Distance&lt;Radius){
+        var Distance = point_distance(x+WalkSpeedX,y+WalkSpeedY,Inst.x+Inst.WalkSpeedX,Inst.y+Inst.WalkSpeedY);
+        if (Distance&lt;Radius*2){
         
-            var NormX = (x-Inst.x)/Distance;
-            var NormY = (y-Inst.y)/Distance;
-            SumX += NormX*(Radius-Distance);
-            SumY += NormY*(Radius-Distance);
+            var NormX = (x+WalkSpeedX-(Inst.x+Inst.WalkSpeedX))/Distance;
+            var NormY = (y+WalkSpeedY-(Inst.y+Inst.WalkSpeedY))/Distance;
+            SumX += NormX*(Radius*2-Distance);
+            SumY += NormY*(Radius*2-Distance);
         }
     }
 }
-var Distance = sqrt(SumX*SumX+SumY*SumY+.01);
-SumX = SumX/max(Distance,Radius);
-SumY = SumY/max(Distance,Radius);
 
-WalkSpeedX = WalkSpeedX*0.9+0.1*(SumX+dcos(WalkDirection)*FRAME_DELTA);
-WalkSpeedY = WalkSpeedY*0.9+0.1*(SumY-dsin(WalkDirection)*FRAME_DELTA);
+WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SumX);
+WalkSpeedY = WalkSpeedY*S90+(1-S90)*(SumY);
 
 x += WalkSpeedX;
 y += WalkSpeedY;

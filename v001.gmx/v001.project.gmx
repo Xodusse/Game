@@ -22,6 +22,7 @@
     </sprites>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_enemy2</sprite>
+    <sprite>sprites\spr_gun</sprite>
     <sprite>sprites\spr_bullet</sprite>
   </sprites>
   <backgrounds name="background">

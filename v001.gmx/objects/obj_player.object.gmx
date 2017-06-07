@@ -58,16 +58,33 @@ WalkFrame = 0;
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
-GunAuto = 1;//0 = semi-automatic, 1 = fully-automatic
+Gun = 0;//Gun selection
+GunCount = 3;
 
-GunRate = 10;//Rounds per second.
-Rate = GunRate;
+GunAuto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
+GunAuto[1] = 0;
+GunAuto[2] = 1;
 
-GunClip = 20;//Gun clip size.
-Clip = GunClip;
+GunRate[0] = 10;//Rounds per second.
+GunRate[1] = 4;
+GunRate[2] = 35;
+Rate[0] = GunRate[0];
+Rate[1] = GunRate[1];
+Rate[2] = GunRate[2];
 
-GunReload = 2;//Reload time in seconds.
-Reload = GunReload;
+GunClip[0] = 20;//Gun clip size.
+GunClip[1] = 5;
+GunClip[2] = 100;
+Clip[0] = GunClip[0];
+Clip[1] = GunClip[1];
+Clip[2] = GunClip[2];
+
+GunReload[0] = 2;//Reload time in seconds.
+GunReload[1] = 1;
+GunReload[2] = 3;
+Reload[0] = GunReload[0];
+Reload[1] = GunReload[1];
+Reload[2] = GunReload[2];
 </string>
           </argument>
         </arguments>
@@ -149,60 +166,30 @@ view_yview[0] = view_yview[0]*S90+(1-S90)*(y-view_hview[0]/2);
             <string>///Gun controller
 // © 2017 - Jon Harvey
 
-Rate += DELTA;
-Reload += DELTA;
+Gun = ((Gun+keyboard_check_pressed(vk_enter)) mod GunCount);
 
-if mouse_check_button(mb_left)*GunAuto || mouse_check_button_pressed(mb_left)*!GunAuto
+Rate[Gun] += DELTA;
+Reload[Gun] += DELTA;
+
+if mouse_check_button(mb_left)*GunAuto[Gun] || mouse_check_button_pressed(mb_left)*!GunAuto[Gun]
 {
-    if (Rate&gt;1/GunRate &amp;&amp; Reload&gt;GunReload)
+    if (Rate[Gun]&gt;1/GunRate[Gun] &amp;&amp; Reload[Gun]&gt;GunReload[Gun])
     {
-        Rate = 0;
+        Rate[Gun] = 0;
         var Bullet = instance_create(x,y,obj_bullet);
         Bullet.direction = GunDirection;
         Bullet.image_angle = GunDirection;
-        Clip--;
-        if (Clip&lt;=0)
+        Clip[Gun]--;
+        if (Clip[Gun]&lt;=0)
         {
-            Clip = GunClip;
-            Reload = 0;
+            Clip[Gun] = GunClip[Gun];
+            Reload[Gun] = 0;
         }
     }
 }
 </string>
           </argument>
         </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_enemy">
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_Enemy_Parent">
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="8" enumb="64">
@@ -225,14 +212,16 @@ if mouse_check_button(mb_left)*GunAuto || mouse_check_button_pressed(mb_left)*!G
             <string>///Draw gun info
 // © 2017 - Jon Harvey
 
+draw_sprite(spr_gun,Gun,896,0);
+
 draw_rectangle(8,8,72,24,1);
-draw_rectangle(8,8,72-64*min(Clip/GunClip,1),24,0);
+draw_rectangle(8,8,72-64*min(Clip[Gun]/GunClip[Gun],1),24,0);
 
 draw_rectangle(8,32,72,48,1);
-draw_rectangle(8,32,72-64*min(Reload/GunReload,1),48,0);
+draw_rectangle(8,32,72-64*min(Reload[Gun]/GunReload[Gun],1),48,0);
 
 draw_rectangle(8,56,72,72,1);
-draw_rectangle(8,56,72-64*min(Rate*GunRate,1),72,0);
+draw_rectangle(8,56,72-64*min(Rate[Gun]*GunRate[Gun],1),72,0);
 </string>
           </argument>
         </arguments>
