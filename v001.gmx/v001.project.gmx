@@ -37,32 +37,48 @@
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
-    <objects name="Buttons">
-      <object>objects\obj_button_alone</object>
-      <object>objects\obj_button_coop</object>
-      <object>objects\obj_button_options</object>
-      <object>objects\obj_button_quit</object>
-      <object>objects\obj_button_back</object>
-      <object>objects\obj_button_start</object>
-      <object>objects\obj_button_set</object>
+    <objects name="Initialization">
+      <object>objects\obj_initialize</object>
     </objects>
-    <object>objects\obj_initialize</object>
-    <object>objects\obj_Enemy_Parent</object>
-    <object>objects\obj_enemy</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_bullet</object>
+    <objects name="Game_Objects">
+      <objects name="Player">
+        <object>objects\obj_player</object>
+        <object>objects\obj_bullet</object>
+      </objects>
+      <objects name="Enemy">
+        <object>objects\obj_enemy</object>
+        <object>objects\obj_Enemy_Parent</object>
+      </objects>
+    </objects>
     <objects name="Controllers">
       <object>objects\obj_controller_keys</object>
       <object>objects\obj_controller_level_selector</object>
       <object>objects\obj_controller_debugger</object>
     </objects>
+    <objects name="GUI">
+      <objects name="Buttons">
+        <object>objects\obj_button_alone</object>
+        <object>objects\obj_button_coop</object>
+        <object>objects\obj_button_options</object>
+        <object>objects\obj_button_quit</object>
+        <object>objects\obj_button_back</object>
+        <object>objects\obj_button_start</object>
+        <object>objects\obj_button_set</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_initialize</room>
-    <room>rooms\rm_test1</room>
-    <room>rooms\rm_game</room>
-    <room>rooms\rm_main</room>
-    <room>rooms\rm_options</room>
+    <rooms name="Initialization">
+      <room>rooms\rm_initialize</room>
+    </rooms>
+    <rooms name="Menu">
+      <room>rooms\rm_main</room>
+      <room>rooms\rm_game</room>
+      <room>rooms\rm_options</room>
+    </rooms>
+    <rooms name="Levels">
+      <room>rooms\rm_test1</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

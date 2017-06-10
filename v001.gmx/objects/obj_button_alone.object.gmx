@@ -34,7 +34,7 @@ image_index = point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_hei
 
 if image_index &amp;&amp; mouse_check_button_released(mb_left)
 {
-    room_goto(rm_game);
+    room_goto(rm_test1);
 }
 </string>
           </argument>
