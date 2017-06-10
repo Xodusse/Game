@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>0</depth>
+  <depth>-32768</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -36,14 +36,22 @@ KIdown = ord("S");
 KIturnleft = ord("Q");
 KIturnright = ord("E");
 
+//© 2017 - Reece Warren
+//Function Keys:
+KIreset = vk_f5;
+KIdebug = vk_f3;
+//-
+
 //Keyboard press variables.
-globalvar Kleft,Kright,Kup,Kdown,Kturnleft,Kturnright;
+globalvar Kleft,Kright,Kup,Kdown,Kturnleft,Kturnright,Kreset,Kdebug;
 Kleft = 0;
 Kright = 0;
 Kup = 0;
 Kdown = 0;
 Kturnleft = 0;
 Kturnright = 0;
+Kreset = 0;
+Kdebug = 0;
 
 //Variable for key being mapped.
 Kmap = 0;
@@ -102,6 +110,15 @@ if Kassign &amp;&amp; keyboard_key
         case KIturnright:
         KIturnright = keyboard_key;
         break;
+        //© 2017 - Reece Warren
+        //Function Keys:
+        case KIreset:
+        KIreset = keyboard_key;
+        break;
+        case KIdebug:
+        KIdebug = keyboard_key;
+        break;
+        //
     }
     Kassign = 0;
     Kmap = 0;
@@ -114,6 +131,12 @@ Kup = keyboard_check(KIup);
 Kdown = keyboard_check(KIdown);
 Kturnleft = keyboard_check(KIturnleft);
 Kturnright = keyboard_check(KIturnright);
+
+//© 2017 - Reece Warren
+//Function Keys:
+Kreset = keyboard_check_released(KIreset);
+Kdebug = keyboard_check_released(KIdebug);
+//
 </string>
           </argument>
         </arguments>

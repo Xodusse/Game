@@ -32,6 +32,8 @@
     <background>background\bac_game</background>
     <background>background\bac_options</background>
     <background>background\bac_tile</background>
+    <background>background\bac_sheet</background>
+    <background>background\bac_dirt</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
@@ -45,11 +47,15 @@
       <object>objects\obj_button_set</object>
     </objects>
     <object>objects\obj_initialize</object>
-    <object>objects\obj_controller_keys</object>
     <object>objects\obj_Enemy_Parent</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_player</object>
     <object>objects\obj_bullet</object>
+    <objects name="Controllers">
+      <object>objects\obj_controller_keys</object>
+      <object>objects\obj_controller_level_selector</object>
+      <object>objects\obj_controller_debugger</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_initialize</room>

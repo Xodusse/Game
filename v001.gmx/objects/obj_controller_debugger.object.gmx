@@ -25,77 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize the game.
+            <string>//© 2017 - Reece Warren, All rights reserved.
+//Debug screen object.
 
-/*
-    © 2017 - Reece Warren
-    All rights reserved.
+player_x = 0;
+player_y = 0;
 
-    Game initialization event.
-
-    obj_initialize is a persistent object that contains variables required
-    for the game to run. This object is only created once through the creation code
-    of rm_initialize.
-*/
-
-//DELTA TIMING:
-
-globalvar DESIRED_FPS, DELTA, FRAME_DELTA;
-DESIRED_FPS = 60;
-DELTA = 1;
-FRAME_DELTA = 1;
-
-//GAME CONFIGURATION:
-
-DISPLAY_HRESOLUTION = display_get_width();
-DISPLAY_VRESOLUTION = display_get_height();
-DISPLAY_ASPECT = DISPLAY_HRESOLUTION / DISPLAY_VRESOLUTION;
-
- //VSync - Boolean;
- SETTING_VSYNC = true;
- //Texture interpolation - Boolean;
- SETTING_INTERPOLATION = true;
- //Anti-aliasing max - Real (Can return: [0 for unsupported], [2 for 2xAA], [6 for 2xAA &amp; 4xAA], [12 for 4xAA &amp; 8xAA] and [16 for 2xAA,4xAA &amp; 8xAA]);
- SETTING_FXAA_MAX = display_aa;
- //Anti-aliasing current - Real;
- SETTING_FXAA = 0;
- //Fullscreen - Boolean;
- SETTING_FULLSCREEN = false;
- //Resolution current - Real (Can return: [0 for 960x540], [1 for 1280x720], [2 for 1366x768], [3 for 1600x900], [4 for 1920x1080], [5 for 2560x1440], [6 for 3840x2160], [7 for DISPLAY_HRESOLUTIONxDISPLAY_VRESOLUTION]);
- SETTING_RESOLUTION = 0;
-
-//Seed:
-
-//Fixed seed setting to real random - Jon
-randomize();
-SEED = random_get_seed();
-
-
-/*
-    -- Create Controller Objects:
- */
-
-//Add key controlller - Jon
-instance_create(0,0,obj_controller_keys);
-
-//Add level controller - Reece
-instance_create(0,0,obj_controller_level_selector);
-
-//Add debug profiler - Reece
-instance_create(0,0,obj_controller_debugger);
-
-//GAME SETTINGS:
-globalvar DEBUG_VISIBLE;
-
-DEBUG_VISIBLE = false;
-
-
+FPS_Counter = 0.5;
+FPS = floor(fps_real);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="1">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -112,8 +55,80 @@ DEBUG_VISIBLE = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>DELTA = delta_time / 1000000;
-FRAME_DELTA = DESIRED_FPS * DELTA;
+            <string>//© 2017 - Reece Warren, All rights reserved.
+//Debugger visibility.
+
+//CHECK IF DEBUGGER IS TOGGLED:
+if (Kdebug){
+    DEBUG_VISIBLE = !DEBUG_VISIBLE;
+}
+
+//UPDATE PLAYER X/Y:
+if (instance_exists(obj_player)){
+    player_x = round(obj_player.x);
+    player_y = round(obj_player.y);
+}
+
+//UPDATE VIEW ROTATION VARIABLE:
+view_a = round(view_angle[0]);
+
+//UPDATE FPS COUNTER:
+FPS_Counter -= (1/60) * FRAME_DELTA;
+if (FPS_Counter &lt;= 0){
+    FPS_Counter = 0.5;
+    FPS = floor(fps_real);
+}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//© 2017 - Reece Warren, All rights reserved.
+//Draw debug screen.
+
+if (DEBUG_VISIBLE == true){
+
+    draw_set_colour(c_white);
+
+    //Version number:
+    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 8,
+        "Xodusse v001");
+    
+    //Copyright:
+    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 24,
+        "(C) 2017 - Reece Warren, Jon Harvey. All rights reserved.");
+        
+    //X &amp; Y &amp; R:
+    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 56,
+        "X = " + string(player_x) + "  Y = " + string(player_y) + "  R = " + string(view_a));
+        
+    //FPS:
+    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 72,
+        "FPS = " + string(FPS));
+        
+    draw_set_colour(c_black);        
+
+}
+   
 </string>
           </argument>
         </arguments>

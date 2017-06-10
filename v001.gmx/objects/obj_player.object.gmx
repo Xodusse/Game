@@ -302,16 +302,20 @@ Shake = 1;
             <string>///Draw gun info
 // © 2017 - Jon Harvey
 
-draw_sprite_ext(spr_gun,Gun,960,0,1,1,-10*max(1-Rate[Gun]*GunRate[Gun],0),-1,1);
+// Only draw if the debugger is not visible - Reece:
+if (DEBUG_VISIBLE == false){
 
-draw_rectangle(8,8,72,24,1);
-draw_rectangle(8,8,72-64*min(Clip[Gun]/GunClip[Gun],1),24,0);
-
-draw_rectangle(8,32,72,48,1);
-draw_rectangle(8,32,72-64*min(Reload[Gun]/GunReload[Gun],1),48,0);
-
-draw_rectangle(8,56,72,72,1);
-draw_rectangle(8,56,72-64*min(Rate[Gun]*GunRate[Gun],1),72,0);
+    draw_sprite_ext(spr_gun,Gun,960,0,1,1,-10*max(1-Rate[Gun]*GunRate[Gun],0),-1,1);
+    
+    draw_rectangle(8,8,72,24,1);
+    draw_rectangle(8,8,72-64*min(Clip[Gun]/GunClip[Gun],1),24,0);
+    
+    draw_rectangle(8,32,72,48,1);
+    draw_rectangle(8,32,72-64*min(Reload[Gun]/GunReload[Gun],1),48,0);
+    
+    draw_rectangle(8,56,72,72,1);
+    draw_rectangle(8,56,72-64*min(Rate[Gun]*GunRate[Gun],1),72,0);
+}
 </string>
           </argument>
         </arguments>
