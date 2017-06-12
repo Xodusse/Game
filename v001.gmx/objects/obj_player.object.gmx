@@ -39,7 +39,7 @@ GunAuto[3] = 0;
 GunRate[0] = 10;//Rounds per second.
 GunRate[1] = 4;
 GunRate[2] = 35;
-GunRate[3] = 20;
+GunRate[3] = 8;
 Rate[0] = GunRate[0];
 Rate[1] = GunRate[1];
 Rate[2] = GunRate[2];
@@ -160,7 +160,7 @@ ShakeAngle = 0;
             <string>///Gun controller
 // © 2017 - Jon Harvey
 
-Gun = ((Gun+keyboard_check_pressed(vk_space)) mod GunCount);
+Gun = ((Gun-mouse_wheel_down()+mouse_wheel_up()+GunCount) mod GunCount);
 
 Rate[Gun] += DELTA;
 Reload[Gun] += DELTA;
@@ -191,8 +191,8 @@ if mouse_check_button(mb_left)*GunAuto[Gun] || mouse_check_button_pressed(mb_lef
             Reload[Gun] = 0;
         }
 
-        SpeedX = -GunRecoil[Gun]*FRAME_DELTA*dcos(GunDirection);
-        SpeedY = -GunRecoil[Gun]*FRAME_DELTA*dsin(GunDirection);
+        SpeedX = -0.1*GunRecoil[Gun]*dcos(GunDirection)/FRAME_DELTA;
+        SpeedY = -0.1*GunRecoil[Gun]*dsin(GunDirection)/FRAME_DELTA;
     }
 }
 </string>
@@ -240,11 +240,11 @@ GunDirection += 0.1*Turn*FRAME_DELTA;
 //Smooth walk using controls defined above.
 var Speed;
 Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
-SpeedX += Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]);
-SpeedY += Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]);
+SpeedX += 4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
+SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 
-WalkSpeedX = WalkSpeedX*S90+4*(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7))/Speed;
-WalkSpeedY = WalkSpeedY*S90-4*(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7))/Speed;
+WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
+WalkSpeedY = WalkSpeedY*S90-(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));
 x += FRAME_DELTA*WalkSpeedX;
 y += FRAME_DELTA*WalkSpeedY;
 
