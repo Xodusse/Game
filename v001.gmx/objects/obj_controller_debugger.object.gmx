@@ -77,6 +77,7 @@ FPS_Counter -= (1/60) * FRAME_DELTA;
 if (FPS_Counter &lt;= 0){
     FPS_Counter = 0.5;
     FPS = floor(fps_real);
+    dF = FRAME_DELTA;
 }
 
 
@@ -123,7 +124,7 @@ if (DEBUG_VISIBLE == true){
         
     //FPS:
     draw_text(view_xview[view_current] + 8, view_yview[view_current] + 72,
-        "FPS = " + string(FPS));
+        "FPS = " + string(FPS) + " dF = " + string(dF));
         
     draw_set_colour(c_black);        
 
