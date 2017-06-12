@@ -29,37 +29,55 @@
 // © 2017 - Jon Harvey
 
 Gun = 0;//Gun selection
-GunCount = 3;
+GunCount = 4;
 
 GunAuto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
 GunAuto[1] = 0;
 GunAuto[2] = 1;
+GunAuto[3] = 0;
 
 GunRate[0] = 10;//Rounds per second.
 GunRate[1] = 4;
 GunRate[2] = 35;
+GunRate[3] = 20;
 Rate[0] = GunRate[0];
 Rate[1] = GunRate[1];
 Rate[2] = GunRate[2];
+Rate[3] = GunRate[3];
 
 GunClip[0] = 20;//Gun clip size.
 GunClip[1] = 5;
 GunClip[2] = 100;
+GunClip[3] = 12;
 Clip[0] = GunClip[0];
 Clip[1] = GunClip[1];
 Clip[2] = GunClip[2];
+Clip[3] = GunClip[3];
 
 GunReload[0] = 2;//Reload time in seconds.
 GunReload[1] = 1;
 GunReload[2] = 3;
+GunReload[3] = 4;
 Reload[0] = GunReload[0];
 Reload[1] = GunReload[1];
 Reload[2] = GunReload[2];
+Reload[3] = GunReload[3];
 
 
-GunArc[0] = 15;//Gun arc in degrees
+GunArc[0] = 15;//Gun arc in degrees.
 GunArc[1] = 8;
 GunArc[2] = 2;
+GunArc[3] = 15;
+
+GunRecoil[0] = 40;//Gun recoil
+GunRecoil[1] = 10;
+GunRecoil[2] = 60;
+GunRecoil[3] = 120;
+
+GunBullets[0] = 1;//Number of bullets per shot.
+GunBullets[1] = 1;
+GunBullets[2] = 1;
+GunBullets[3] = 10;
 </string>
           </argument>
         </arguments>
@@ -147,22 +165,34 @@ Gun = ((Gun+keyboard_check_pressed(vk_space)) mod GunCount);
 Rate[Gun] += DELTA;
 Reload[Gun] += DELTA;
 
-if mouse_check_button(mb_left)*GunAuto[Gun] || mouse_check_button_pressed(mb_left)*!GunAuto[Gun]
-{
-    if (Rate[Gun]&gt;1/GunRate[Gun] &amp;&amp; Reload[Gun]&gt;GunReload[Gun])
-    {
+var SpeedX,SpeedY;
+SpeedX = 0;
+SpeedY = 0;
+
+if mouse_check_button(mb_left)*GunAuto[Gun] || mouse_check_button_pressed(mb_left)*!GunAuto[Gun]{
+
+    if (Rate[Gun]&gt;1/GunRate[Gun] &amp;&amp; Reload[Gun]&gt;GunReload[Gun]){
+    
         audio_play_sound(snd_gun,0,0);
         Rate[Gun] = 0;
-        var Bullet = instance_create(x,y,obj_bullet);
-        var Direction = GunDirection+(random(2)-1)*GunArc[Gun];
-        Bullet.direction = Direction;
-        Bullet.image_angle = Direction;
+        
+        for(var S = 0;S&lt;GunBullets[Gun];S++){
+            
+            var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),obj_bullet);
+            var Direction = GunDirection+(random(2)-1)*GunArc[Gun];
+            Bullet.Speed = 10+random(2);
+            Bullet.direction = Direction;
+            Bullet.image_angle = Direction;
+        }
         Clip[Gun]--;
-        if (Clip[Gun]&lt;=0)
-        {
+        if (Clip[Gun]&lt;=0){
+        
             Clip[Gun] = GunClip[Gun];
             Reload[Gun] = 0;
         }
+
+        SpeedX = -GunRecoil[Gun]*FRAME_DELTA*dcos(GunDirection);
+        SpeedY = -GunRecoil[Gun]*FRAME_DELTA*dsin(GunDirection);
     }
 }
 </string>
@@ -208,10 +238,10 @@ Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection += 0.1*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
-var Speed,SpeedX,SpeedY;
+var Speed;
 Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
-SpeedX = Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]);
-SpeedY = Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]);
+SpeedX += Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]);
+SpeedY += Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]);
 
 WalkSpeedX = WalkSpeedX*S90+4*(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7))/Speed;
 WalkSpeedY = WalkSpeedY*S90-4*(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7))/Speed;
@@ -276,7 +306,7 @@ view_angle[0] = view_angle[0]*S98+(1-S98)*(90-WalkDirection+ShakeAngle);
           <argument>
             <kind>1</kind>
             <string>///Shake Screen
-Shake = 1;
+Shake = 3;
 </string>
           </argument>
         </arguments>
@@ -305,7 +335,8 @@ Shake = 1;
 // Only draw if the debugger is not visible - Reece:
 if (DEBUG_VISIBLE == false){
 
-    draw_sprite_ext(spr_gun,Gun,960,0,1,1,-10*max(1-Rate[Gun]*GunRate[Gun],0),-1,1);
+    var Angle = -90*min(Reload[Gun]/GunReload[Gun],1)*max(1-Reload[Gun]/GunReload[Gun],0)-0.2*GunRecoil[Gun]*max(1-Rate[Gun]*GunRate[Gun],0);
+    draw_sprite_ext(spr_gun,Gun,960,32,1,1,Angle,-1,1);
     
     draw_rectangle(8,8,72,24,1);
     draw_rectangle(8,8,72-64*min(Clip[Gun]/GunClip[Gun],1),24,0);

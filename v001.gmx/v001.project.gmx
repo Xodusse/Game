@@ -31,7 +31,6 @@
     <background>background\bac_main</background>
     <background>background\bac_game</background>
     <background>background\bac_options</background>
-    <background>background\bac_tile</background>
     <background>background\bac_sheet</background>
     <background>background\bac_dirt</background>
   </backgrounds>
@@ -57,8 +56,8 @@
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
-        <object>objects\obj_button_alone</object>
         <object>objects\obj_button_coop</object>
+        <object>objects\obj_button_alone</object>
         <object>objects\obj_button_options</object>
         <object>objects\obj_button_quit</object>
         <object>objects\obj_button_back</object>

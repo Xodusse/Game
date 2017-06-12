@@ -25,6 +25,34 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///AI variables
+// © 2017 - Jon Harvey
+
+AITarget = 0;
+AIVision = 0;
+
+AIFear = 0;
+AIEnergy = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Enemy variables
 // © 2017 - Jon Harvey
 
@@ -55,10 +83,41 @@ Radius = 16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Move enemy
+            <string>///AI control
 // © 2017 - Jon Harvey
 
-WalkDirection = point_direction(x,y,obj_player.x,obj_player.y);
+AITarget = distance_to_object(obj_player)&lt;256;
+if AITarget
+{
+    WalkDirection += FRAME_DELTA*0.1*angle_difference(point_direction(x,y,obj_player.x,obj_player.y),WalkDirection);
+}
+else
+{
+    WalkDirection += FRAME_DELTA*0.01*angle_difference(point_direction(x,y,500,500),WalkDirection);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Enemy movement
+// © 2017 - Jon Harvey
+
 image_angle = WalkDirection;
 
 var S90;

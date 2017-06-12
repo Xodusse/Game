@@ -8,6 +8,32 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Speed variable
+// © 2017 - Jon Harvey
+
+Speed = 12;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,10 +51,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Speed
+            <string>///Speed update
 // © 2017 - Jon Harvey
 
-speed = 12*FRAME_DELTA;
+speed = Speed*FRAME_DELTA;
 if distance_to_object(obj_player)&gt;1000
 {
     instance_destroy();
@@ -38,7 +64,7 @@ if distance_to_object(obj_player)&gt;1000
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_enemy">
+    <event eventtype="4" ename="obj_Enemy_Parent">
       <action>
         <libid>1</libid>
         <id>203</id>
@@ -68,7 +94,7 @@ if distance_to_object(obj_player)&gt;1000
         <isnot>0</isnot>
       </action>
     </event>
-    <event eventtype="4" ename="obj_Enemy_Parent">
+    <event eventtype="4" ename="obj_enemy">
       <action>
         <libid>1</libid>
         <id>203</id>
