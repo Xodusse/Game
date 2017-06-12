@@ -29,55 +29,82 @@
 // © 2017 - Jon Harvey
 
 Gun = 0;//Gun selection
-GunCount = 4;
+GunCount = 6;
 
 GunAuto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
 GunAuto[1] = 0;
 GunAuto[2] = 1;
 GunAuto[3] = 0;
+GunAuto[4] = 0;
+GunAuto[5] = 1;
 
 GunRate[0] = 10;//Rounds per second.
 GunRate[1] = 4;
 GunRate[2] = 35;
 GunRate[3] = 8;
+GunRate[4] = 15;
+GunRate[5] = 1;
 Rate[0] = GunRate[0];
 Rate[1] = GunRate[1];
 Rate[2] = GunRate[2];
 Rate[3] = GunRate[3];
+Rate[4] = GunRate[4];
+Rate[5] = GunRate[5];
 
 GunClip[0] = 20;//Gun clip size.
 GunClip[1] = 5;
 GunClip[2] = 100;
 GunClip[3] = 12;
+GunClip[4] = 8;
+GunClip[5] = 1;
 Clip[0] = GunClip[0];
 Clip[1] = GunClip[1];
 Clip[2] = GunClip[2];
 Clip[3] = GunClip[3];
+Clip[4] = GunClip[4];
+Clip[5] = GunClip[5];
 
 GunReload[0] = 2;//Reload time in seconds.
 GunReload[1] = 1;
 GunReload[2] = 3;
 GunReload[3] = 4;
+GunReload[4] = 2;
+GunReload[5] = 2;
 Reload[0] = GunReload[0];
 Reload[1] = GunReload[1];
 Reload[2] = GunReload[2];
 Reload[3] = GunReload[3];
+Reload[4] = GunReload[4];
+Reload[5] = GunReload[5];
 
 
 GunArc[0] = 15;//Gun arc in degrees.
 GunArc[1] = 8;
-GunArc[2] = 2;
+GunArc[2] = 5;
 GunArc[3] = 15;
+GunArc[4] = 0.5;
+GunArc[5] = 8;
 
-GunRecoil[0] = 40;//Gun recoil
+GunRecoil[0] = 40;//Gun recoil.
 GunRecoil[1] = 10;
 GunRecoil[2] = 60;
 GunRecoil[3] = 120;
+GunRecoil[4] = 10;
+GunRecoil[5] = 100;
 
 GunBullets[0] = 1;//Number of bullets per shot.
 GunBullets[1] = 1;
 GunBullets[2] = 1;
-GunBullets[3] = 10;
+GunBullets[3] = 18;
+GunBullets[4] = 1;
+GunBullets[5] = 1;
+
+GunType[0] = obj_bullet_medium;//Type of bullet.
+GunType[1] = obj_bullet_medium;
+GunType[2] = obj_bullet_light;
+GunType[3] = obj_bullet_pellet;
+GunType[4] = obj_bullet_light;
+GunType[5] = obj_bullet_heavy;
 </string>
           </argument>
         </arguments>
@@ -178,9 +205,8 @@ if mouse_check_button(mb_left)*GunAuto[Gun] || mouse_check_button_pressed(mb_lef
         
         for(var S = 0;S&lt;GunBullets[Gun];S++){
             
-            var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),obj_bullet);
-            var Direction = GunDirection+(random(2)-1)*GunArc[Gun];
-            Bullet.Speed = 10+random(2);
+            var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),GunType[Gun]);
+            var Direction = GunDirection+sqr(random(1))*choose(1,-1)*GunArc[Gun];
             Bullet.direction = Direction;
             Bullet.image_angle = Direction;
         }
