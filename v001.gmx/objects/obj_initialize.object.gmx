@@ -78,6 +78,9 @@ SEED = random_get_seed();
 //Add key controlller - Jon
 instance_create(0,0,obj_controller_keys);
 
+//Add key controlller - Jon
+instance_create(0,0,obj_controller_guns);
+
 //Add level controller - Reece
 instance_create(0,0,obj_controller_level_selector);
 

@@ -25,86 +25,40 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Gun variables
+            <string>///Gun inventory variables
 // © 2017 - Jon Harvey
 
-Gun = 0;//Gun selection
 GunCount = 6;
+GunCurrent = 0;
+GunSwap = 0;
 
-GunAuto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
-GunAuto[1] = 0;
-GunAuto[2] = 1;
-GunAuto[3] = 0;
-GunAuto[4] = 0;
-GunAuto[5] = 1;
+Gun[0] = 0;
+Gun[1] = 1;
+Gun[2] = 2;
+Gun[3] = 3;
+Gun[4] = 4;
+Gun[5] = 5;
 
-GunRate[0] = 10;//Rounds per second.
-GunRate[1] = 4;
-GunRate[2] = 35;
-GunRate[3] = 8;
-GunRate[4] = 15;
-GunRate[5] = 1;
-Rate[0] = GunRate[0];
-Rate[1] = GunRate[1];
-Rate[2] = GunRate[2];
-Rate[3] = GunRate[3];
-Rate[4] = GunRate[4];
-Rate[5] = GunRate[5];
+Rate[0] = GunRate[Gun[0]];
+Rate[1] = GunRate[Gun[1]];
+Rate[2] = GunRate[Gun[2]];
+Rate[3] = GunRate[Gun[3]];
+Rate[4] = GunRate[Gun[4]];
+Rate[5] = GunRate[Gun[5]];
 
-GunClip[0] = 20;//Gun clip size.
-GunClip[1] = 5;
-GunClip[2] = 100;
-GunClip[3] = 12;
-GunClip[4] = 8;
-GunClip[5] = 1;
-Clip[0] = GunClip[0];
-Clip[1] = GunClip[1];
-Clip[2] = GunClip[2];
-Clip[3] = GunClip[3];
-Clip[4] = GunClip[4];
-Clip[5] = GunClip[5];
+Reload[0] = GunReload[Gun[0]];
+Reload[1] = GunReload[Gun[1]];
+Reload[2] = GunReload[Gun[2]];
+Reload[3] = GunReload[Gun[3]];
+Reload[4] = GunReload[Gun[4]];
+Reload[5] = GunReload[Gun[5]];
 
-GunReload[0] = 2;//Reload time in seconds.
-GunReload[1] = 1;
-GunReload[2] = 3;
-GunReload[3] = 4;
-GunReload[4] = 2;
-GunReload[5] = 2;
-Reload[0] = GunReload[0];
-Reload[1] = GunReload[1];
-Reload[2] = GunReload[2];
-Reload[3] = GunReload[3];
-Reload[4] = GunReload[4];
-Reload[5] = GunReload[5];
-
-
-GunArc[0] = 15;//Gun arc in degrees.
-GunArc[1] = 8;
-GunArc[2] = 5;
-GunArc[3] = 15;
-GunArc[4] = 0.5;
-GunArc[5] = 8;
-
-GunRecoil[0] = 40;//Gun recoil.
-GunRecoil[1] = 10;
-GunRecoil[2] = 60;
-GunRecoil[3] = 120;
-GunRecoil[4] = 10;
-GunRecoil[5] = 100;
-
-GunBullets[0] = 1;//Number of bullets per shot.
-GunBullets[1] = 1;
-GunBullets[2] = 1;
-GunBullets[3] = 18;
-GunBullets[4] = 1;
-GunBullets[5] = 1;
-
-GunType[0] = obj_bullet_medium;//Type of bullet.
-GunType[1] = obj_bullet_medium;
-GunType[2] = obj_bullet_light;
-GunType[3] = obj_bullet_pellet;
-GunType[4] = obj_bullet_light;
-GunType[5] = obj_bullet_heavy;
+Clip[0] = GunClip[Gun[0]];
+Clip[1] = GunClip[Gun[1]];
+Clip[2] = GunClip[Gun[2]];
+Clip[3] = GunClip[Gun[3]];
+Clip[4] = GunClip[Gun[4]];
+Clip[5] = GunClip[Gun[5]];
 </string>
           </argument>
         </arguments>
@@ -187,38 +141,38 @@ ShakeAngle = 0;
             <string>///Gun controller
 // © 2017 - Jon Harvey
 
-Gun = ((Gun-mouse_wheel_down()+mouse_wheel_up()+GunCount) mod GunCount);
+GunCurrent = ((GunCurrent-mouse_wheel_down()+mouse_wheel_up()+GunCount) mod GunCount);
 
-Rate[Gun] += DELTA;
-Reload[Gun] += DELTA;
+Rate[GunCurrent] += DELTA;
+Reload[GunCurrent] += DELTA;
 
 var SpeedX,SpeedY;
 SpeedX = 0;
 SpeedY = 0;
 
-if mouse_check_button(mb_left)*GunAuto[Gun] || mouse_check_button_pressed(mb_left)*!GunAuto[Gun]{
+if mouse_check_button(mb_left)*GunAuto[GunCurrent] || mouse_check_button_pressed(mb_left)*!GunAuto[GunCurrent]{
 
-    if (Rate[Gun]&gt;1/GunRate[Gun] &amp;&amp; Reload[Gun]&gt;GunReload[Gun]){
+    if (Rate[GunCurrent]&gt;1/GunRate[GunCurrent] &amp;&amp; Reload[GunCurrent]&gt;GunReload[GunCurrent]){
     
         audio_play_sound(snd_gun,0,0);
-        Rate[Gun] = 0;
+        Rate[GunCurrent] = 0;
         
-        for(var S = 0;S&lt;GunBullets[Gun];S++){
+        for(var S = 0;S&lt;GunBullets[GunCurrent];S++){
             
-            var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),GunType[Gun]);
-            var Direction = GunDirection+sqr(random(1))*choose(1,-1)*GunArc[Gun];
+            var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),GunType[GunCurrent]);
+            var Direction = GunDirection+sqr(random(1))*choose(1,-1)*GunArc[GunCurrent];
             Bullet.direction = Direction;
             Bullet.image_angle = Direction;
         }
-        Clip[Gun]--;
-        if (Clip[Gun]&lt;=0){
+        Clip[GunCurrent]--;
+        if (Clip[GunCurrent]&lt;=0){
         
-            Clip[Gun] = GunClip[Gun];
-            Reload[Gun] = 0;
+            Clip[GunCurrent] = GunClip[GunCurrent];
+            Reload[GunCurrent] = 0;
         }
 
-        SpeedX = -0.1*GunRecoil[Gun]*dcos(GunDirection)/FRAME_DELTA;
-        SpeedY = -0.1*GunRecoil[Gun]*dsin(GunDirection)/FRAME_DELTA;
+        SpeedX = -GunRecoil[GunCurrent]*dcos(GunDirection)/FRAME_DELTA;
+        SpeedY = -GunRecoil[GunCurrent]*dsin(GunDirection)/FRAME_DELTA;
     }
 }
 </string>
@@ -261,7 +215,7 @@ TurnSpeed = TurnSpeed*S90+(1-S90)*Turn;
 //Handle player turning gun and player direction.
 WalkDirection += 2*TurnSpeed*FRAME_DELTA;
 Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
-GunDirection += 0.1*Turn*FRAME_DELTA;
+GunDirection += 0.3*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
 var Speed;
@@ -361,17 +315,15 @@ Shake = 3;
 // Only draw if the debugger is not visible - Reece:
 if (DEBUG_VISIBLE == false){
 
-    var Angle = -90*min(Reload[Gun]/GunReload[Gun],1)*max(1-Reload[Gun]/GunReload[Gun],0)-0.2*GunRecoil[Gun]*max(1-Rate[Gun]*GunRate[Gun],0);
-    draw_sprite_ext(spr_gun,Gun,960,32,1,1,Angle,-1,1);
+    draw_set_colour($FFFFFF);
+    draw_set_alpha(.5);
+    draw_circle(0,540,150,0);
+    draw_set_colour($0);
+    draw_set_alpha(1);
     
-    draw_rectangle(8,8,72,24,1);
-    draw_rectangle(8,8,72-64*min(Clip[Gun]/GunClip[Gun],1),24,0);
-    
-    draw_rectangle(8,32,72,48,1);
-    draw_rectangle(8,32,72-64*min(Reload[Gun]/GunReload[Gun],1),48,0);
-    
-    draw_rectangle(8,56,72,72,1);
-    draw_rectangle(8,56,72-64*min(Rate[Gun]*GunRate[Gun],1),72,0);
+    var Angle;
+    Angle = GunCurrent/GunCount*360;
+    draw_sprite_ext(spr_gun,GunCurrent,dcos(-45)*150,540+dsin(-45)*150,1,1,45,-1,1);
 }
 </string>
           </argument>

@@ -61,6 +61,7 @@
       <object>objects\obj_bullet_pellet</object>
     </objects>
     <objects name="Controllers">
+      <object>objects\obj_controller_guns</object>
       <object>objects\obj_controller_keys</object>
       <object>objects\obj_controller_level_selector</object>
       <object>objects\obj_controller_debugger</object>
