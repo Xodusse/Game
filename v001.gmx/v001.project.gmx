@@ -40,7 +40,6 @@
     <background>background\bac_dirt</background>
   </backgrounds>
   <paths name="paths"/>
-  <fonts name="fonts"/>
   <objects name="objects">
     <objects name="Initialization">
       <object>objects\obj_initialize</object>
@@ -65,6 +64,7 @@
       <object>objects\obj_controller_keys</object>
       <object>objects\obj_controller_level_selector</object>
       <object>objects\obj_controller_debugger</object>
+      <object>objects\obj_controller_level_wave</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
