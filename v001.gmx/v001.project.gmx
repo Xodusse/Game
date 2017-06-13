@@ -95,7 +95,6 @@
       <room>rooms\rm_options</room>
     </rooms>
     <rooms name="Levels">
-      <room>rooms\roomtest</room>
       <room>rooms\rm_test1</room>
     </rooms>
   </rooms>
