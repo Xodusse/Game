@@ -353,6 +353,8 @@ if (DEBUG_VISIBLE == false){
     draw_sprite_ext(spr_gun,GunCurrent,dcos(Angle)*140,540+dsin(Angle)*140,1,1,-Angle,-1,1);
     draw_sprite_ext(spr_gun,(GunCurrent+1 mod GunCount),dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+GunSwap);
     draw_sprite_ext(spr_gun,(GunCurrent+GunCount-1 mod GunCount),dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-GunSwap);
+    
+    draw_text(8,520,string(Clip[GunCurrent]*(Reload[GunCurrent]&gt;=1))+"/"+string(GunClip[GunCurrent]));
 }
 </string>
           </argument>
