@@ -10,23 +10,23 @@
   </sounds>
   <sprites name="sprites">
     <sprites name="Buttons">
-      <sprite>sprites\spr_button_alone</sprite>
-      <sprite>sprites\spr_button_coop</sprite>
-      <sprite>sprites\spr_button_options</sprite>
-      <sprite>sprites\spr_button_quit</sprite>
-      <sprite>sprites\spr_button_back</sprite>
       <sprite>sprites\spr_button_start</sprite>
+      <sprite>sprites\spr_button_alone</sprite>
+      <sprite>sprites\spr_button_back</sprite>
+      <sprite>sprites\spr_button_coop</sprite>
+      <sprite>sprites\spr_button_quit</sprite>
+      <sprite>sprites\spr_button_options</sprite>
       <sprite>sprites\spr_button_set</sprite>
     </sprites>
     <sprites name="Player">
+      <sprite>sprites\spr_player_head</sprite>
       <sprite>sprites\spr_player_legs</sprite>
       <sprite>sprites\spr_player_torso</sprite>
-      <sprite>sprites\spr_player_head</sprite>
     </sprites>
     <sprites name="Projectiles">
       <sprite>sprites\spr_bullet_heavy</sprite>
-      <sprite>sprites\spr_bullet_medium</sprite>
       <sprite>sprites\spr_bullet_light</sprite>
+      <sprite>sprites\spr_bullet_medium</sprite>
       <sprite>sprites\spr_bullet_pellet</sprite>
     </sprites>
     <sprite>sprites\spr_enemy</sprite>
@@ -35,11 +35,11 @@
     <sprite>sprites\spr_obstacle</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bac_main</background>
+    <background>background\bac_dirt</background>
     <background>background\bac_game</background>
+    <background>background\bac_main</background>
     <background>background\bac_options</background>
     <background>background\bac_sheet</background>
-    <background>background\bac_dirt</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
@@ -54,30 +54,32 @@
         <object>objects\obj_enemy</object>
         <object>objects\obj_Enemy_Parent</object>
       </objects>
-      <object>objects\obj_obstacle</object>
+      <objects name="Props">
+        <object>objects\obj_obstacle</object>
+      </objects>
     </objects>
     <objects name="Projectiles">
-      <object>objects\obj_projectile</object>
       <object>objects\obj_bullet_heavy</object>
       <object>objects\obj_bullet_medium</object>
       <object>objects\obj_bullet_light</object>
       <object>objects\obj_bullet_pellet</object>
+      <object>objects\obj_projectile</object>
     </objects>
     <objects name="Controllers">
-      <object>objects\obj_controller_guns</object>
       <object>objects\obj_controller_keys</object>
-      <object>objects\obj_controller_level_selector</object>
       <object>objects\obj_controller_debugger</object>
-      <object>objects\obj_controller_level_wave</object>
       <object>objects\obj_controller_console</object>
+      <object>objects\obj_controller_level_selector</object>
+      <object>objects\obj_controller_level_wave</object>
+      <object>objects\obj_controller_guns</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
-        <object>objects\obj_button_coop</object>
         <object>objects\obj_button_alone</object>
+        <object>objects\obj_button_back</object>
+        <object>objects\obj_button_coop</object>
         <object>objects\obj_button_options</object>
         <object>objects\obj_button_quit</object>
-        <object>objects\obj_button_back</object>
         <object>objects\obj_button_start</object>
         <object>objects\obj_button_set</object>
       </objects>
@@ -93,6 +95,7 @@
       <room>rooms\rm_options</room>
     </rooms>
     <rooms name="Levels">
+      <room>rooms\roomtest</room>
       <room>rooms\rm_test1</room>
     </rooms>
   </rooms>

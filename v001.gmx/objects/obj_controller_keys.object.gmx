@@ -153,10 +153,9 @@ if (CONSOLE_ENABLED == false){
     //Function Keys:
     Kreset = keyboard_check_released(KIreset);
     Kdebug = keyboard_check_released(KIdebug);
-    Kconsole = keyboard_check_released(KIconsole);
 }
 
-
+Kconsole = keyboard_check_released(KIconsole);
 Kescape = keyboard_check_released(KIescape);
     
 </string>
