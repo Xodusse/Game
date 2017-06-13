@@ -36,6 +36,8 @@ enum Difficulty {
     Extreme = 3
 }
 
+Difficulty = Difficulty.Easy;
+
 //Starting wave:
 Wave = 1;
 
@@ -90,7 +92,7 @@ else {
     Wave ++;
     
     //Check difficulty to determine maximum new alien count:
-    if (Difficulty == Difficulty.Easy){
+    if (Difficulty == 0){
     
         Alien_Count = ceil( Alien_Count );
         Current_Alien_Count = Alien_Count;
