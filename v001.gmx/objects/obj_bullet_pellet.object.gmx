@@ -28,8 +28,12 @@
             <string>///Speed variable
 // © 2017 - Jon Harvey
 
-Range = 500;
-Speed = 14+random(2);
+Prange = 500;
+Pspeed = 14+random(2);
+Ppower  = 1;
+Pdamage = 0.1;
+
+Hit = -1;
 </string>
           </argument>
         </arguments>

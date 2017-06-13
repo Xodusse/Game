@@ -25,11 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Speed variable
+            <string>///Projectile variables
 // © 2017 - Jon Harvey
 
-Range = 2000;
-Speed = 12;
+Prange = 2000;
+Pspeed = 12;
+Ppower  = 1;
+Pdamage = 0.5;
+
+Hit = noone;
 </string>
           </argument>
         </arguments>
@@ -52,11 +56,43 @@ Speed = 12;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Speed update
+            <string>///Collision with enemy
 // © 2017 - Jon Harvey
 
-speed = Speed*FRAME_DELTA;
-image_alpha -= Speed*FRAME_DELTA/Range;
+var Enemy = collision_line(x,y,xprevious,yprevious,obj_enemy,1,1);
+
+if Enemy != Hit &amp;&amp; instance_exists(Enemy){
+
+    Hit = Enemy;
+    Hit.Health -= Pdamage;
+    image_alpha -= Ppower;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Speed and fade update
+// © 2017 - Jon Harvey
+
+speed = Pspeed*FRAME_DELTA;
+image_alpha -= Pspeed*FRAME_DELTA/Prange;
+
 if image_alpha&lt;0.01{
 
     instance_destroy();
@@ -64,66 +100,6 @@ if image_alpha&lt;0.01{
 </string>
           </argument>
         </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_Enemy_Parent">
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_enemy">
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
   </events>

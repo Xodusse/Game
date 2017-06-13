@@ -6,6 +6,7 @@
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_gun</sound>
+    <sound>sound\snd_empty</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Buttons">
@@ -31,6 +32,7 @@
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_enemy2</sprite>
     <sprite>sprites\spr_gun</sprite>
+    <sprite>sprites\spr_obstacle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_main</background>
@@ -52,6 +54,7 @@
         <object>objects\obj_enemy</object>
         <object>objects\obj_Enemy_Parent</object>
       </objects>
+      <object>objects\obj_obstacle</object>
     </objects>
     <objects name="Projectiles">
       <object>objects\obj_projectile</object>

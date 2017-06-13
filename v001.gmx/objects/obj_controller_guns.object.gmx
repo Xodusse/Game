@@ -28,63 +28,63 @@
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
-globalvar GunAuto,GunRate,GunClip,GunReload,GunArc,GunRecoil,GunBullets,GunType;
-GunAuto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
-GunAuto[1] = 0;
-GunAuto[2] = 1;
-GunAuto[3] = 0;
-GunAuto[4] = 0;
-GunAuto[5] = 1;
+globalvar Gauto,Grate,Gclip,Greload,Garc,Grecoil,Gbullets,Gtype;
+Gauto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
+Gauto[1] = 0;
+Gauto[2] = 1;
+Gauto[3] = 0;
+Gauto[4] = 0;
+Gauto[5] = 1;
 
-GunRate[0] = 10;//Rounds per second.
-GunRate[1] = 4;
-GunRate[2] = 35;
-GunRate[3] = 8;
-GunRate[4] = 15;
-GunRate[5] = 1;
+Grate[0] = 10;//Rounds per second.
+Grate[1] = 4;
+Grate[2] = 35;
+Grate[3] = 8;
+Grate[4] = 15;
+Grate[5] = 1;
 
-GunClip[0] = 20;//Gun clip size.
-GunClip[1] = 5;
-GunClip[2] = 100;
-GunClip[3] = 12;
-GunClip[4] = 8;
-GunClip[5] = 1;
+Gclip[0] = 20;//Gun clip size.
+Gclip[1] = 5;
+Gclip[2] = 100;
+Gclip[3] = 12;
+Gclip[4] = 8;
+Gclip[5] = 1;
 
-GunReload[0] = 2;//Reload time in seconds.
-GunReload[1] = 1;
-GunReload[2] = 3;
-GunReload[3] = 4;
-GunReload[4] = 2;
-GunReload[5] = 2;
+Greload[0] = 2;//Reload time in seconds.
+Greload[1] = 1;
+Greload[2] = 3;
+Greload[3] = 4;
+Greload[4] = 2;
+Greload[5] = 2;
 
 
-GunArc[0] = 15;//Gun arc in degrees.
-GunArc[1] = 8;
-GunArc[2] = 5;
-GunArc[3] = 15;
-GunArc[4] = 0.5;
-GunArc[5] = 8;
+Garc[0] = 15;//Gun arc in degrees.
+Garc[1] = 8;
+Garc[2] = 5;
+Garc[3] = 15;
+Garc[4] = 0.5;
+Garc[5] = 8;
 
-GunRecoil[0] = 4;//Gun recoil.
-GunRecoil[1] = 1;
-GunRecoil[2] = 6;
-GunRecoil[3] = 12;
-GunRecoil[4] = 1;
-GunRecoil[5] = 10;
+Grecoil[0] = 4;//Gun recoil.
+Grecoil[1] = 1;
+Grecoil[2] = 6;
+Grecoil[3] = 12;
+Grecoil[4] = 1;
+Grecoil[5] = 10;
 
-GunBullets[0] = 1;//Number of bullets/projectiles per shot.
-GunBullets[1] = 1;
-GunBullets[2] = 1;
-GunBullets[3] = 18;
-GunBullets[4] = 1;
-GunBullets[5] = 1;
+Gbullets[0] = 1;//Number of bullets/projectiles per shot.
+Gbullets[1] = 1;
+Gbullets[2] = 1;
+Gbullets[3] = 18;
+Gbullets[4] = 1;
+Gbullets[5] = 1;
 
-GunType[0] = obj_bullet_medium;//Type of projectile.
-GunType[1] = obj_bullet_medium;
-GunType[2] = obj_bullet_light;
-GunType[3] = obj_bullet_pellet;
-GunType[4] = obj_bullet_light;
-GunType[5] = obj_bullet_heavy;
+Gtype[0] = obj_bullet_medium;//Type of projectile.
+Gtype[1] = obj_bullet_medium;
+Gtype[2] = obj_bullet_medium;
+Gtype[3] = obj_bullet_pellet;
+Gtype[4] = obj_bullet_light;
+Gtype[5] = obj_bullet_heavy;
 </string>
           </argument>
         </arguments>

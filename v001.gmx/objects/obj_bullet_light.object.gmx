@@ -28,8 +28,12 @@
             <string>///Speed variable
 // © 2017 - Jon Harvey
 
-Range = 10000;
-Speed = 24;
+Prange = 6000;
+Pspeed = 24;
+Ppower  = 0.2;
+Pdamage = 0.8;
+
+Hit = -1;
 </string>
           </argument>
         </arguments>

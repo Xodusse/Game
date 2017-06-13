@@ -28,37 +28,41 @@
             <string>///Gun inventory variables
 // © 2017 - Jon Harvey
 
-GunCount = 6;
-GunCurrent = 0;
-GunSwap = 0;
+Gcount = 6;
+Gcurrent = 0;
+Gswap = 0;
 
-Gun[0] = 0;
-Gun[1] = 1;
-Gun[2] = 2;
-Gun[3] = 3;
-Gun[4] = 4;
-Gun[5] = 5;
+//Guns (ids) in inventory.
+G[0] = 0;
+G[1] = 1;
+G[2] = 2;
+G[3] = 3;
+G[4] = 4;
+G[5] = 5;
 
-Rate[0] = GunRate[Gun[0]];
-Rate[1] = GunRate[Gun[1]];
-Rate[2] = GunRate[Gun[2]];
-Rate[3] = GunRate[Gun[3]];
-Rate[4] = GunRate[Gun[4]];
-Rate[5] = GunRate[Gun[5]];
+//Gun shooting timeline.
+Rate[0] = Grate[G[0]];
+Rate[1] = Grate[G[1]];
+Rate[2] = Grate[G[2]];
+Rate[3] = Grate[G[3]];
+Rate[4] = Grate[G[4]];
+Rate[5] = Grate[G[5]];
 
-Reload[0] = GunReload[Gun[0]];
-Reload[1] = GunReload[Gun[1]];
-Reload[2] = GunReload[Gun[2]];
-Reload[3] = GunReload[Gun[3]];
-Reload[4] = GunReload[Gun[4]];
-Reload[5] = GunReload[Gun[5]];
+//Gun reloading timeline.
+Reload[0] = Greload[G[0]];
+Reload[1] = Greload[G[1]];
+Reload[2] = Greload[G[2]];
+Reload[3] = Greload[G[3]];
+Reload[4] = Greload[G[4]];
+Reload[5] = Greload[G[5]];
 
-Clip[0] = GunClip[Gun[0]];
-Clip[1] = GunClip[Gun[1]];
-Clip[2] = GunClip[Gun[2]];
-Clip[3] = GunClip[Gun[3]];
-Clip[4] = GunClip[Gun[4]];
-Clip[5] = GunClip[Gun[5]];
+//Gun clip ammo.
+Clip[0] = Gclip[G[0]];
+Clip[1] = Gclip[G[1]];
+Clip[2] = Gclip[G[2]];
+Clip[3] = Gclip[G[3]];
+Clip[4] = Gclip[G[4]];
+Clip[5] = Gclip[G[5]];
 </string>
           </argument>
         </arguments>
@@ -167,45 +171,58 @@ S98 = power(0.98,FRAME_DELTA);
             <string>///Gun controller
 // © 2017 - Jon Harvey
 
+//Temporary speed variables for recoil.
 var SpeedX,SpeedY;
 SpeedX = 0;
 SpeedY = 0;
 
-GunSwap *= S90;
-if abs(GunSwap)&lt;0.1 {
+//Reduce swap animation to 0.
+Gswap *= S90;
+
+//Fire or swap guns when not swapping.
+if abs(Gswap)&lt;0.1 {
     
-    GunSwap = mouse_wheel_up()-mouse_wheel_down();
-    if GunSwap != 0{
+    //Control gun swap.
+    Gswap = mouse_wheel_down()-mouse_wheel_up();
+    if Gswap != 0{
         
-        GunCurrent = ((GunCurrent-GunSwap+GunCount) mod GunCount);
+        Gcurrent = ((Gcurrent-Gswap+Gcount) mod Gcount);
     }
     
-    Rate[GunCurrent] += DELTA;
-    Reload[GunCurrent] += DELTA;
+    //Add to gun timelines.
+    Rate[Gcurrent] += DELTA;
+    Reload[Gcurrent] += DELTA;
     
-    if mouse_check_button(mb_left)*GunAuto[GunCurrent] || mouse_check_button_pressed(mb_left)*!GunAuto[GunCurrent]{
-    
-        if (Rate[GunCurrent]&gt;1/GunRate[GunCurrent] &amp;&amp; Reload[GunCurrent]&gt;GunReload[GunCurrent]){
+    //Shoot fully-automatic or semi-automatic with left click.
+    if mouse_check_button(mb_left)*Gauto[G[Gcurrent]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Gcurrent]]{
+        
+        //Check gun timelines.
+        if (Rate[Gcurrent]&gt;1/Grate[G[Gcurrent]] &amp;&amp; Reload[Gcurrent]&gt;Greload[G[Gcurrent]]){
         
             audio_play_sound(snd_gun,0,0);
-            Rate[GunCurrent] = 0;
+            Rate[Gcurrent] = 0;
             
-            for(var S = 0;S&lt;GunBullets[GunCurrent];S++){
+            //Shoot all bullets.
+            for(var S = 0;S&lt;Gbullets[G[Gcurrent]];S++){
                 
-                var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),GunType[GunCurrent]);
-                var Direction = GunDirection+sqr(random(1))*choose(1,-1)*GunArc[GunCurrent];
+                var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),Gtype[G[Gcurrent]]);
+                var Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Gcurrent]];
                 Bullet.direction = Direction;
                 Bullet.image_angle = Direction;
             }
-            Clip[GunCurrent]--;
-            if (Clip[GunCurrent]&lt;=0){
             
-                Clip[GunCurrent] = GunClip[GunCurrent];
-                Reload[GunCurrent] = 0;
+            //Update or reload clip.
+            Clip[Gcurrent]--;
+            if (Clip[Gcurrent]&lt;=0){
+            
+                audio_play_sound(snd_empty,0,0);
+                Clip[Gcurrent] = Gclip[G[Gcurrent]];
+                Reload[Gcurrent] = 0;
             }
-    
-            SpeedX = -GunRecoil[GunCurrent]*dcos(GunDirection)/FRAME_DELTA;
-            SpeedY = -GunRecoil[GunCurrent]*dsin(GunDirection)/FRAME_DELTA;
+            
+            //Add gun recoil or kick to player speed.
+            SpeedX = -Grecoil[G[Gcurrent]]*dcos(GunDirection)/FRAME_DELTA;
+            SpeedY = -Grecoil[G[Gcurrent]]*dsin(GunDirection)/FRAME_DELTA;
         }
     }
 }
@@ -349,12 +366,12 @@ if (DEBUG_VISIBLE == false){
     draw_set_alpha(1);
     
     var Angle;
-    Angle = 30*GunSwap-45;
-    draw_sprite_ext(spr_gun,GunCurrent,dcos(Angle)*140,540+dsin(Angle)*140,1,1,-Angle,-1,1);
-    draw_sprite_ext(spr_gun,(GunCurrent+1 mod GunCount),dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+GunSwap);
-    draw_sprite_ext(spr_gun,(GunCurrent+GunCount-1 mod GunCount),dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-GunSwap);
+    Angle = 30*Gswap-45;
+    draw_sprite_ext(spr_gun,G[Gcurrent],dcos(Angle)*140,540+dsin(Angle)*140,1,1,-Angle,-1,1);
+    draw_sprite_ext(spr_gun,G[(Gcurrent+1)%Gcount],dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Gswap);
+    draw_sprite_ext(spr_gun,G[(Gcurrent+Gcount-1)%Gcount],dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Gswap);
     
-    draw_text(8,520,string(Clip[GunCurrent]*(Reload[GunCurrent]&gt;=1))+"/"+string(GunClip[GunCurrent]));
+    draw_text(8,520,string(Clip[Gcurrent]*(Reload[Gcurrent]&gt;=1))+"/"+string(Gclip[G[Gcurrent]]));
 }
 </string>
           </argument>
