@@ -87,11 +87,15 @@ instance_create(0,0,obj_controller_level_selector);
 //Add debug profiler - Reece
 instance_create(0,0,obj_controller_debugger);
 
+//Create the console controller - Reece:
+instance_create(0,0,obj_controller_console);
+
 //GAME SETTINGS:
-globalvar DEBUG_VISIBLE;
+globalvar DEBUG_VISIBLE,CONSOLE_ENABLED;
 
 DEBUG_VISIBLE = false;
 
+CONSOLE_ENABLED = false;
 
 </string>
           </argument>
@@ -117,6 +121,14 @@ DEBUG_VISIBLE = false;
             <kind>1</kind>
             <string>DELTA = delta_time / 1000000;
 FRAME_DELTA = DESIRED_FPS * DELTA;
+
+if (keyboard_check_released(ord("P"))){
+    
+}
+
+if (Kescape == true){
+    CONSOLE_ENABLED = false;
+}
 </string>
           </argument>
         </arguments>

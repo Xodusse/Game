@@ -111,19 +111,19 @@ if (DEBUG_VISIBLE == true){
     draw_set_colour(c_white);
 
     //Version number:
-    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 8,
+    draw_text(8, 8,
         "Xodusse v001");
     
     //Copyright:
-    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 24,
+    draw_text(8, 24,
         "(C) 2017 - Reece Warren, Jon Harvey. All rights reserved.");
         
     //X &amp; Y &amp; R:
-    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 56,
+    draw_text(8, 56,
         "X = " + string(player_x) + "  Y = " + string(player_y) + "  R = " + string(view_a));
         
     //FPS:
-    draw_text(view_xview[view_current] + 8, view_yview[view_current] + 72,
+    draw_text(8, 72,
         "FPS = " + string(FPS) + " dF = " + string(dF));
         
     draw_set_colour(c_black);        
