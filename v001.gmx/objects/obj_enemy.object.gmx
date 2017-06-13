@@ -129,7 +129,7 @@ var Visible = point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIs
 Visible *= (collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone) ||
            (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone);
 
-if Visible
+//if Visible
 {
     AIfocus = AIfocus*S90+(1-S90);
     WalkSpeed = WalkSpeed*S90+(1-S90);
@@ -171,8 +171,8 @@ if Health&lt;0.01
 image_angle = WalkDirection;
 
 var SumX,SumY;
-SumX =  WalkSpeed*dcos(WalkDirection)*FRAME_DELTA;
-SumY = -WalkSpeed*dsin(WalkDirection)*FRAME_DELTA;
+SumX =  WalkSpeed*dcos(WalkDirection);
+SumY = -WalkSpeed*dsin(WalkDirection);
 
 for(var i = instance_number(obj_enemy);i&gt;=0;i--){
 
@@ -199,8 +199,8 @@ if Inst != noone{
     WalkDirection += FRAME_DELTA*0.2*angle_difference(point_direction(Inst.x,Inst.y,x,y),WalkDirection);
 }
 
-x += WalkSpeedX;
-y += WalkSpeedY;
+x += WalkSpeedX*FRAME_DELTA;
+y += WalkSpeedY*FRAME_DELTA;
 </string>
           </argument>
         </arguments>
