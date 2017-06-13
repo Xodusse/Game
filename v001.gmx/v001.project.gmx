@@ -69,6 +69,7 @@
       <object>objects\obj_controller_level_selector</object>
       <object>objects\obj_controller_debugger</object>
       <object>objects\obj_controller_level_wave</object>
+      <object>objects\obj_controller_console</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
