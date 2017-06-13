@@ -142,32 +142,6 @@ ShakeAngle = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Delta time variables.
-// © 2017 - Jon Harvey
-
-var S90,S98;
-S90 = power(0.90,FRAME_DELTA);
-S98 = power(0.98,FRAME_DELTA);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Gun controller
 // © 2017 - Jon Harvey
 

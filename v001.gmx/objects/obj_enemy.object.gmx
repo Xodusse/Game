@@ -28,11 +28,15 @@
             <string>///AI variables
 // © 2017 - Jon Harvey
 
-AITarget = 0;
-AIVision = 0;
+AItargetx = 0;
+AItargety = 0;
+AItargetspeedx = 0;
+AItargetspeedy = 0;
 
-AIFear = 0;
-AIEnergy = 0;
+AIsight = 512;
+AIeye = 12;
+
+AIfocus = 0;
 </string>
           </argument>
         </arguments>
@@ -58,8 +62,10 @@ AIEnergy = 0;
 
 WalkDirection = 0;
 
+WalkSpeed = 1;
 WalkSpeedX = 0;
 WalkSpeedY = 0;
+
 Radius = 16;
 
 Health = 1;
@@ -114,15 +120,26 @@ instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
             <string>///AI control
 // © 2017 - Jon Harvey
 
-AITarget = distance_to_object(obj_player)&lt;256;
-if AITarget
+AItargetspeedx *= S98;
+AItargetspeedy *= S98;
+AItargetx += FRAME_DELTA*AItargetspeedx;
+AItargety += FRAME_DELTA*AItargetspeedy;
+
+var Visible = point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight)&lt;AIsight;
+Visible *= (collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone) ||
+           (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone);
+
+if Visible
 {
-    WalkDirection += FRAME_DELTA*0.1*angle_difference(point_direction(x,y,obj_player.x,obj_player.y),WalkDirection);
+    AIfocus = AIfocus*S90+(1-S90);
+    WalkSpeed = WalkSpeed*S90+(1-S90);
+    AItargetspeedx = obj_player.WalkSpeedX;
+    AItargetspeedy = obj_player.WalkSpeedY;
+    AItargetx = obj_player.x;
+    AItargety = obj_player.y;
 }
-else
-{
-    WalkDirection += FRAME_DELTA*0.01*angle_difference(point_direction(x,y,500,500),WalkDirection);
-}
+
+WalkDirection += FRAME_DELTA*0.1*AIfocus*angle_difference(point_direction(x,y,AItargetx,AItargety),WalkDirection);
 
 if Health&lt;0.01
 {
@@ -153,32 +170,34 @@ if Health&lt;0.01
 
 image_angle = WalkDirection;
 
-var S90;
-S90 = power(0.90,FRAME_DELTA);
-
 var SumX,SumY;
-SumX =  dcos(WalkDirection)*FRAME_DELTA;
-SumY = -dsin(WalkDirection)*FRAME_DELTA;
+SumX =  WalkSpeed*dcos(WalkDirection)*FRAME_DELTA;
+SumY = -WalkSpeed*dsin(WalkDirection)*FRAME_DELTA;
 
 for(var i = instance_number(obj_enemy);i&gt;=0;i--){
 
     var Inst = instance_find(obj_enemy,i);
-    
     if Inst!=id{
     
         var Distance = point_distance(x+WalkSpeedX,y+WalkSpeedY,Inst.x+Inst.WalkSpeedX,Inst.y+Inst.WalkSpeedY);
-        if (Distance&lt;Radius*2){
+        if (Distance&lt;Radius+Inst.Radius){
         
             var NormX = (x+WalkSpeedX-(Inst.x+Inst.WalkSpeedX))/Distance;
             var NormY = (y+WalkSpeedY-(Inst.y+Inst.WalkSpeedY))/Distance;
-            SumX += NormX*(Radius*2-Distance);
-            SumY += NormY*(Radius*2-Distance);
+            SumX += NormX*(Radius+Inst.Radius-Distance);
+            SumY += NormY*(Radius+Inst.Radius-Distance);
         }
     }
 }
 
 WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SumX);
 WalkSpeedY = WalkSpeedY*S90+(1-S90)*(SumY);
+
+var Inst = instance_place(x+WalkSpeedX*10,y+WalkSpeedY*10,obj_obstacle);
+if Inst != noone{
+
+    WalkDirection += FRAME_DELTA*0.2*angle_difference(point_direction(Inst.x,Inst.y,x,y),WalkDirection);
+}
 
 x += WalkSpeedX;
 y += WalkSpeedY;
@@ -208,6 +227,14 @@ y += WalkSpeedY;
 // © 2017 - Jon Harvey
 
 draw_self();
+
+if DEBUG_VISIBLE{
+
+    draw_line(x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_player.x,obj_player.y);
+    draw_line(x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_player.x,obj_player.y);
+    
+    draw_circle(x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight,AIsight,1);
+}
 </string>
           </argument>
         </arguments>
