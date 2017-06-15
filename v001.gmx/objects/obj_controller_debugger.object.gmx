@@ -30,6 +30,7 @@
 
 player_x = 0;
 player_y = 0;
+player_dir = 0;
 
 FPS_Counter = 0.5;
 FPS = floor(fps_real);
@@ -67,6 +68,8 @@ if (Kdebug){
 if (instance_exists(obj_player)){
     player_x = round(obj_player.x);
     player_y = round(obj_player.y);
+    
+    player_dir = obj_player.WalkDirection;
 }
 
 //UPDATE VIEW ROTATION VARIABLE:
@@ -122,8 +125,12 @@ if (DEBUG_VISIBLE == true){
     draw_text(8, 56,
         "X = " + string(player_x) + "  Y = " + string(player_y) + "  R = " + string(view_a));
         
-    //FPS:
+    //X &amp; Y &amp; R:
     draw_text(8, 72,
+        "P_Dir = " + string(player_dir) + " P_Speed = " + string(obj_player.SmoothSpeed));
+        
+    //FPS:
+    draw_text(8, 88,
         "FPS = " + string(FPS) + " dF = " + string(dF));
         
     draw_set_colour(c_black);        

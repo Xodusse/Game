@@ -93,8 +93,6 @@ TurnSpeed = 0;
 WalkSpeedX = 0;
 WalkSpeedY = 0;
 WalkFrame = 0;
-
-SmoothSpeed = 0;
 </string>
           </argument>
         </arguments>
@@ -247,21 +245,12 @@ SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 
 WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
 WalkSpeedY = WalkSpeedY*S90-(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));
-
-//Reece - Store the previous x and y values as var's for collision purposes:
-var prev_x = x;
 x += FRAME_DELTA*WalkSpeedX;
-
-var prev_y = y;
 y += FRAME_DELTA*WalkSpeedY;
 
 //Update walk frame
 var Speed = sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
 WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
-
-//Reece - Draw the current smoothed speed variable:
-//Used in obj_controller_debugger:
-SmoothSpeed = Speed;
 
 //© 2017 - Reece Warren
 //Collision code:
@@ -271,14 +260,13 @@ if (WalkSpeedX != 0){
     if (!place_free(x + WalkSpeedX, y)){
     
         if (WalkSpeedX &gt; 0){
-            move_outside_solid(0,WalkSpeedX);
+            move_contact_solid(0,WalkSpeedX);
         }
         else if (WalkSpeedX &lt; 0){
-            move_outside_solid(180,WalkSpeedX);
+            move_contact_solid(180,-WalkSpeedX);
         }
         
         WalkSpeedX = 0;
-        x = prev_x;
     }
 }
 
@@ -287,16 +275,18 @@ if (WalkSpeedY != 0){
     if (!place_free(x, y + WalkSpeedY)){
     
         if (WalkSpeedY &gt; 0){
-            move_outside_solid(270,WalkSpeedX);
+            move_contact_solid(270,WalkSpeedX);
         }
         else if (WalkSpeedY &lt; 0){
-            move_outside_solid(90,WalkSpeedX);
+            move_contact_solid(90,-WalkSpeedX);
         }
         
         WalkSpeedY = 0;
-        y = prev_y;
     }
 }
+
+
+        
 </string>
           </argument>
         </arguments>

@@ -33,6 +33,7 @@
     <sprite>sprites\spr_enemy2</sprite>
     <sprite>sprites\spr_gun</sprite>
     <sprite>sprites\spr_obstacle</sprite>
+    <sprite>sprites\spr_wall</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -49,6 +50,7 @@
     <objects name="Game_Objects">
       <objects name="Player">
         <object>objects\obj_player</object>
+        <object>objects\obj_player_test</object>
       </objects>
       <objects name="Enemy">
         <object>objects\obj_enemy</object>
@@ -56,6 +58,7 @@
       </objects>
       <objects name="Props">
         <object>objects\obj_obstacle</object>
+        <object>objects\obj_wall</object>
       </objects>
     </objects>
     <objects name="Projectiles">

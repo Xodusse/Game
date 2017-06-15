@@ -93,8 +93,10 @@ Health = 1;
             <kind>1</kind>
             <string>///Quick respawn
 
-var A = random(360);
-instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
+if instance_exists(obj_player){
+    var A = random(360);
+    instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
+}
 </string>
           </argument>
         </arguments>
@@ -125,21 +127,26 @@ AItargetspeedy *= S98;
 AItargetx += FRAME_DELTA*AItargetspeedx;
 AItargety += FRAME_DELTA*AItargetspeedy;
 
-var Visible = point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight)&lt;AIsight;
-Visible *= (collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone) ||
-           (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone);
+if instance_exists(obj_player){
+    var Visible = point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight)&lt;AIsight;
+    Visible *= (collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone) ||
+            (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone);
+            
+    
 
-//if Visible
-{
-    AIfocus = AIfocus*S90+(1-S90);
-    WalkSpeed = WalkSpeed*S90+(1-S90);
-    AItargetspeedx = obj_player.WalkSpeedX;
-    AItargetspeedy = obj_player.WalkSpeedY;
-    AItargetx = obj_player.x;
-    AItargety = obj_player.y;
+    //if Visible
+    {
+        AIfocus = AIfocus*S90+(1-S90);
+        WalkSpeed = WalkSpeed*S90+(1-S90);
+        AItargetspeedx = obj_player.WalkSpeedX;
+        AItargetspeedy = obj_player.WalkSpeedY;
+        AItargetx = obj_player.x;
+        AItargety = obj_player.y;
+    }
+
+    WalkDirection += FRAME_DELTA*0.1*AIfocus*angle_difference(point_direction(x,y,AItargetx,AItargety),WalkDirection);
+
 }
-
-WalkDirection += FRAME_DELTA*0.1*AIfocus*angle_difference(point_direction(x,y,AItargetx,AItargety),WalkDirection);
 
 if Health&lt;0.01
 {
@@ -201,6 +208,8 @@ if Inst != noone{
 
 x += WalkSpeedX*FRAME_DELTA;
 y += WalkSpeedY*FRAME_DELTA;
+
+
 </string>
           </argument>
         </arguments>
