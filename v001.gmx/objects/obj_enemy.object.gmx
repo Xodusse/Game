@@ -28,15 +28,15 @@
             <string>///AI variables
 // © 2017 - Jon Harvey
 
-AItargetx = 0;
-AItargety = 0;
+AItargetx = 200;
+AItargety = 200;
 AItargetspeedx = 0;
 AItargetspeedy = 0;
 
-AIsight = 512;
+AIsight = 32;
 AIeye = 12;
 
-AIfocus = 0;
+AIfocus = 1;
 </string>
           </argument>
         </arguments>
@@ -130,11 +130,9 @@ AItargety += FRAME_DELTA*AItargetspeedy;
 if instance_exists(obj_player){
     var Visible = point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight)&lt;AIsight;
     Visible *= (collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone) ||
-            (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone);
+               (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone);
             
-    
-
-    //if Visible
+    if Visible
     {
         AIfocus = AIfocus*S90+(1-S90);
         WalkSpeed = WalkSpeed*S90+(1-S90);
@@ -145,7 +143,6 @@ if instance_exists(obj_player){
     }
 
     WalkDirection += FRAME_DELTA*0.1*AIfocus*angle_difference(point_direction(x,y,AItargetx,AItargety),WalkDirection);
-
 }
 
 if Health&lt;0.01
