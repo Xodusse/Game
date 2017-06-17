@@ -28,6 +28,7 @@
             <string>///Projectile variables
 // © 2017 - Jon Harvey
 
+Pexplode = 0;
 Prange = 2000;
 Pspeed = 12;
 Ppower  = 1;
@@ -63,9 +64,20 @@ var Enemy = collision_line(x,y,xprevious,yprevious,obj_enemy,1,1);
 
 if Enemy != Hit &amp;&amp; instance_exists(Enemy){
 
-    Hit = Enemy;
-    Hit.Health -= Pdamage;
-    image_alpha -= Ppower;
+    if (Pexplode&gt;0){
+        
+        var Explosion = instance_create(x,y,obj_explosion);
+        Explosion.image_xscale = Pexplode;
+        Explosion.image_yscale = Pexplode;  
+        Explosion.Damage = Pdamage;
+        instance_destroy();
+    }
+    else{
+    
+        Hit = Enemy;
+        Hit.Health -= Pdamage;
+        image_alpha -= Ppower;
+    }
 }
 </string>
           </argument>

@@ -25,9 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Speed variable
+            <string>///Bullet variables
 // © 2017 - Jon Harvey
 
+Pexplode = 0;
 Prange = 500;
 Pspeed = 14+random(2);
 Ppower  = 1;

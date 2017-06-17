@@ -28,12 +28,14 @@
       <sprite>sprites\spr_bullet_light</sprite>
       <sprite>sprites\spr_bullet_medium</sprite>
       <sprite>sprites\spr_bullet_pellet</sprite>
+      <sprite>sprites\spr_bullet_grenade</sprite>
     </sprites>
+    <sprite>sprites\spr_gun</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_enemy2</sprite>
-    <sprite>sprites\spr_gun</sprite>
     <sprite>sprites\spr_obstacle</sprite>
     <sprite>sprites\spr_wall</sprite>
+    <sprite>sprites\spr_explosion</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -62,11 +64,13 @@
       </objects>
     </objects>
     <objects name="Projectiles">
+      <object>objects\obj_projectile</object>
       <object>objects\obj_bullet_heavy</object>
       <object>objects\obj_bullet_medium</object>
       <object>objects\obj_bullet_light</object>
       <object>objects\obj_bullet_pellet</object>
-      <object>objects\obj_projectile</object>
+      <object>objects\obj_bullet_grenade</object>
+      <object>objects\obj_explosion</object>
     </objects>
     <objects name="Controllers">
       <object>objects\obj_controller_keys</object>

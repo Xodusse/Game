@@ -25,12 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Speed variable
+            <string>///Bullet variables
 // © 2017 - Jon Harvey
 
+Pexplode = 1;
 Prange = 2000;
 Pspeed = 8;
-Ppower  = 0.2;
+Ppower  = 1;
 Pdamage = 1;
 
 Hit = -1;

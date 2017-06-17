@@ -3,7 +3,7 @@
   <spriteName>spr_player_torso</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -28,7 +28,7 @@
             <string>///Gun inventory variables
 // © 2017 - Jon Harvey
 
-Gcount = 6;
+Gcount = 7;
 Gcurrent = 0;
 Gswap = 0;
 
@@ -39,6 +39,7 @@ G[2] = 2;
 G[3] = 3;
 G[4] = 4;
 G[5] = 5;
+G[6] = 6;
 
 //Gun shooting timeline.
 Rate[0] = Grate[G[0]];
@@ -47,6 +48,7 @@ Rate[2] = Grate[G[2]];
 Rate[3] = Grate[G[3]];
 Rate[4] = Grate[G[4]];
 Rate[5] = Grate[G[5]];
+Rate[6] = Grate[G[6]];
 
 //Gun reloading timeline.
 Reload[0] = Greload[G[0]];
@@ -55,6 +57,7 @@ Reload[2] = Greload[G[2]];
 Reload[3] = Greload[G[3]];
 Reload[4] = Greload[G[4]];
 Reload[5] = Greload[G[5]];
+Reload[6] = Greload[G[6]];
 
 //Gun clip ammo.
 Clip[0] = Gclip[G[0]];
@@ -63,6 +66,7 @@ Clip[2] = Gclip[G[2]];
 Clip[3] = Gclip[G[3]];
 Clip[4] = Gclip[G[4]];
 Clip[5] = Gclip[G[5]];
+Clip[6] = Gclip[G[6]];
 </string>
           </argument>
         </arguments>
@@ -116,6 +120,7 @@ WalkFrame = 0;
             <string>///Screenshake variables
 // © 2017 - Jon Harvey
 
+globalvar Shake;
 Shake = 0;
 ShakeX = 0;
 ShakeY = 0;
@@ -310,7 +315,7 @@ if (WalkSpeedY != 0){
             <string>///View and screenshake controller
 // © 2017 - Jon Harvey
 
-Shake = Shake*S98;
+Shake = Shake*S90;
 ShakeX = ShakeX*(1-S90)+S90*50*Shake*(random(2)-1);
 ShakeY = ShakeY*(1-S90)+S90*50*Shake*(random(2)-1);
 ShakeAngle = ShakeAngle*(1-S90)+S90*20*Shake*(random(2)-1);
