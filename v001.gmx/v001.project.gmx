@@ -52,7 +52,6 @@
     <objects name="Game_Objects">
       <objects name="Player">
         <object>objects\obj_player</object>
-        <object>objects\obj_player_test</object>
       </objects>
       <objects name="Enemy">
         <object>objects\obj_enemy</object>

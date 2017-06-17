@@ -97,8 +97,6 @@ TurnSpeed = 0;
 WalkSpeedX = 0;
 WalkSpeedY = 0;
 WalkFrame = 0;
-
-SmoothSpeed = 0;
 </string>
           </argument>
         </arguments>
@@ -252,21 +250,12 @@ SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 
 WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
 WalkSpeedY = WalkSpeedY*S90-(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));
-
-//Reece - Store the previous x and y values as var's for collision purposes:
-var prev_x = x;
 x += FRAME_DELTA*WalkSpeedX;
-
-var prev_y = y;
 y += FRAME_DELTA*WalkSpeedY;
 
 //Update walk frame
 var Speed = sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
 WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
-
-//Reece - Draw the current smoothed speed variable:
-//Used in obj_controller_debugger:
-SmoothSpeed = Speed;
 
 //© 2017 - Reece Warren
 //Collision code:
@@ -276,14 +265,13 @@ if (WalkSpeedX != 0){
     if (!place_free(x + WalkSpeedX, y)){
     
         if (WalkSpeedX &gt; 0){
-            move_outside_solid(0,WalkSpeedX);
+            move_contact_solid(0,WalkSpeedX);
         }
         else if (WalkSpeedX &lt; 0){
-            move_outside_solid(180,WalkSpeedX);
+            move_contact_solid(180,-WalkSpeedX);
         }
         
         WalkSpeedX = 0;
-        x = prev_x;
     }
 }
 
@@ -292,16 +280,18 @@ if (WalkSpeedY != 0){
     if (!place_free(x, y + WalkSpeedY)){
     
         if (WalkSpeedY &gt; 0){
-            move_outside_solid(270,WalkSpeedX);
+            move_contact_solid(270,WalkSpeedX);
         }
         else if (WalkSpeedY &lt; 0){
-            move_outside_solid(90,WalkSpeedX);
+            move_contact_solid(90,-WalkSpeedX);
         }
         
         WalkSpeedY = 0;
-        y = prev_y;
     }
 }
+
+
+        
 </string>
           </argument>
         </arguments>
@@ -386,9 +376,18 @@ Shake = 3;
 // Only draw if the debugger is not visible - Reece:
 if (DEBUG_VISIBLE == false){
 
-    draw_set_alpha(.2);
-    draw_circle_colour(0,540,150,$0,$FFFFFF,0);
+    draw_set_alpha(0.2);
+    draw_circle_colour(0,540,60,$AAAAAA,$FFFFFF,0);
     draw_set_alpha(1);
+    
+    draw_primitive_begin(pr_trianglestrip);
+    for(var i = 0;i&lt;=45;i++){
+        
+        var Angle = i*2*min(Reload[Gcurrent]/Greload[G[Gcurrent]],1);
+        draw_vertex_colour(dcos(Angle)*150,540-dsin(Angle)*150,$444499,0.6);
+        draw_vertex_colour(dcos(Angle)*60,540-dsin(Angle)*60,$333333,0.6);
+    }
+    draw_primitive_end();
     
     var Angle;
     Angle = 30*Gswap-45;
@@ -396,7 +395,7 @@ if (DEBUG_VISIBLE == false){
     draw_sprite_ext(spr_gun,G[(Gcurrent+1)%Gcount],dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Gswap);
     draw_sprite_ext(spr_gun,G[(Gcurrent+Gcount-1)%Gcount],dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Gswap);
     
-    draw_text(8,520,string(Clip[Gcurrent]*(Reload[Gcurrent]&gt;=1))+"/"+string(Gclip[G[Gcurrent]]));
+    draw_text(4,516,string(Clip[Gcurrent])+"/"+string(Gclip[G[Gcurrent]]));
 }
 </string>
           </argument>

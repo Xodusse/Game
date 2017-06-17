@@ -65,7 +65,7 @@
     <instance objName="obj_obstacle" x="640" y="96" name="inst_4129A7BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="47"/>
     <instance objName="obj_obstacle" x="544" y="32" name="inst_8E9D5F6A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="4"/>
     <instance objName="obj_obstacle" x="448" y="128" name="inst_CB5454A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="167"/>
-    <instance objName="obj_player" x="384" y="288" name="inst_9EE3B381" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="&lt;undefined&gt;" x="384" y="288" name="inst_9EE3B381" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="896" y="192" name="inst_3B726C85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="896" y="320" name="inst_A1296D3A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="896" y="384" name="inst_810DCB91" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -83,6 +83,7 @@
     <instance objName="obj_wall" x="960" y="64" name="inst_FBF3B4F3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="896" y="64" name="inst_42846DDF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="896" y="128" name="inst_9772EE3A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="352" y="320" name="inst_43550642" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bac_sheet" x="384" y="224" w="32" h="32" xo="416" yo="32" id="10000001" name="inst_74D5304A" depth="100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
