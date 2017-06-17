@@ -204,6 +204,11 @@ if abs(Gswap)&lt;0.1 {
             SpeedY = -Grecoil[G[Gcurrent]]*dsin(GunDirection)/FRAME_DELTA;
         }
     }
+    if Kreload &amp;&amp; (Clip[Gcurrent]&lt;Gclip[G[Gcurrent]]){
+    
+        Clip[Gcurrent] = Gclip[G[Gcurrent]];
+        Reload[Gcurrent] = 0;
+    }
 }
 </string>
           </argument>
