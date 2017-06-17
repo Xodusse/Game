@@ -31,6 +31,7 @@
 player_x = 0;
 player_y = 0;
 player_dir = 0;
+player_speed = 0;
 
 FPS_Counter = 0.5;
 FPS = floor(fps_real);
@@ -70,6 +71,8 @@ if (instance_exists(obj_player)){
     player_y = round(obj_player.y);
     
     player_dir = obj_player.WalkDirection;
+    //Added player speed variable - Jon.
+    player_speed = round(sqrt(sqr(obj_player.WalkSpeedX)+sqr(obj_player.WalkSpeedX)));
 }
 
 //UPDATE VIEW ROTATION VARIABLE:
@@ -127,7 +130,7 @@ if (DEBUG_VISIBLE == true){
         
     //X &amp; Y &amp; R:
     draw_text(8, 72,
-        "P_Dir = " + string(player_dir) + " P_Speed = " + string(obj_player.SmoothSpeed));
+        "P_Dir = " + string(player_dir) + " P_Speed = " + string(player_speed));
         
     //FPS:
     draw_text(8, 88,

@@ -28,7 +28,7 @@
             <string>///Bullet variables
 // © 2017 - Jon Harvey
 
-Pexplode = 0.4;
+Pexplode = 0.5;
 Prange = 1000;
 Pspeed = 10;
 Ppower  = 0.5;

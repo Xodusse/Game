@@ -28,7 +28,7 @@
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
-globalvar Gauto,Grate,Gclip,Greload,Garc,Grecoil,Gbullets,Gtype;
+globalvar Gauto,Grate,Gclip,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype;
 Gauto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
 Gauto[1] = 0;
 Gauto[2] = 1;
@@ -51,7 +51,7 @@ Gclip[2] = 100;
 Gclip[3] = 12;
 Gclip[4] = 8;
 Gclip[5] = 1;
-Gclip[6] = 6;
+Gclip[6] = 9;
 
 Greload[0] = 2;//Reload time in seconds.
 Greload[1] = 1;
@@ -84,6 +84,14 @@ Gbullets[3] = 18;
 Gbullets[4] = 1;
 Gbullets[5] = 1;
 Gbullets[6] = 1;
+
+Gweight[0] = 1;//Speed multiplier.
+Gweight[1] = 1;
+Gweight[2] = 0.5;
+Gweight[3] = 0.7;
+Gweight[4] = 0.8;
+Gweight[5] = 0.4;
+Gweight[6] = 0.8;
 
 Gtype[0] = obj_bullet_medium;//Type of projectile.
 Gtype[1] = obj_bullet_medium;

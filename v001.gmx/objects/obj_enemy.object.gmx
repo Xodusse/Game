@@ -28,13 +28,13 @@
             <string>///AI variables
 // © 2017 - Jon Harvey
 
-AItargetx = 200;
-AItargety = 200;
+AItargetx = 0;
+AItargety = 0;
 AItargetspeedx = 0;
 AItargetspeedy = 0;
 
 AIsight = 512;
-AIeye = 12;
+AIeye = 8;
 
 AIfocus = 1;
 </string>
@@ -127,13 +127,15 @@ AItargetspeedy *= S98;
 AItargetx += FRAME_DELTA*AItargetspeedx;
 AItargety += FRAME_DELTA*AItargetspeedy;
 
+
 if instance_exists(obj_player){
-    var Visible = point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight)&lt;AIsight;
-    Visible *= (collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone) ||
-               (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,1,1) == noone);
+    var Visible = (point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight)&lt;AIsight) &amp;&amp;
+    ((collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,0,1) == noone) ||
+    (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,0,1) == noone));
             
-    if Visible
-    {
+    if Visible{
+    
+        image_blend = merge_colour($2288FF,image_blend,S90);
         AIfocus = AIfocus*S90+(1-S90);
         WalkSpeed = WalkSpeed*S90+(1-S90);
         AItargetspeedx = obj_player.WalkSpeedX;
@@ -141,12 +143,16 @@ if instance_exists(obj_player){
         AItargetx = obj_player.x;
         AItargety = obj_player.y;
     }
+    else{
+    
+        image_blend = merge_colour($FFFFFF,image_blend,S90);
+    }
 
     WalkDirection += FRAME_DELTA*0.1*AIfocus*angle_difference(point_direction(x,y,AItargetx,AItargety),WalkDirection);
 }
 
-if Health&lt;0.01
-{
+if Health&lt;0.01{
+    
     instance_destroy();
 }
 </string>
@@ -207,40 +213,6 @@ x += WalkSpeedX*FRAME_DELTA;
 y += WalkSpeedY*FRAME_DELTA;
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw enemy
-// © 2017 - Jon Harvey
-
-draw_self();
-
-if DEBUG_VISIBLE{
-
-    draw_line(x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_player.x,obj_player.y);
-    draw_line(x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_player.x,obj_player.y);
-    
-    draw_circle(x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight,AIsight,1);
-}
 </string>
           </argument>
         </arguments>

@@ -244,7 +244,7 @@ GunDirection += 0.3*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
 var Speed;
-Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
+Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/Gweight[G[Gcurrent]];
 SpeedX += 4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
 SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 
@@ -288,10 +288,7 @@ if (WalkSpeedY != 0){
         
         WalkSpeedY = 0;
     }
-}
-
-
-        
+}        
 </string>
           </argument>
         </arguments>
@@ -374,7 +371,7 @@ Shake = 3;
 // © 2017 - Jon Harvey
 
 // Only draw if the debugger is not visible - Reece:
-if (DEBUG_VISIBLE == false){
+//if (DEBUG_VISIBLE == false){
 
     draw_set_alpha(0.2);
     draw_circle_colour(0,540,60,$AAAAAA,$FFFFFF,0);
@@ -396,7 +393,7 @@ if (DEBUG_VISIBLE == false){
     draw_sprite_ext(spr_gun,G[(Gcurrent+Gcount-1)%Gcount],dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Gswap);
     
     draw_text(4,516,string(Clip[Gcurrent])+"/"+string(Gclip[G[Gcurrent]]));
-}
+
 </string>
           </argument>
         </arguments>
