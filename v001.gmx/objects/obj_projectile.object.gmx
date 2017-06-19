@@ -35,6 +35,10 @@ Ppower  = 1;
 Pdamage = 0.5;
 
 Hit = noone;
+if instance_exists(obj_player){
+
+    Hit = obj_player.id;
+}
 </string>
           </argument>
         </arguments>
@@ -79,7 +83,8 @@ if Enemy != Hit &amp;&amp; instance_exists(Enemy){
         image_alpha -= Ppower;
     }
 }
-else{
+else
+if Enemy == noone{
 
     Hit = noone;
 }

@@ -34,7 +34,11 @@ Pspeed = 24;
 Ppower  = 0.2;
 Pdamage = 0.8;
 
-Hit = -1;
+Hit = noone;
+if instance_exists(obj_player){
+
+    Hit = obj_player.id;
+}
 </string>
           </argument>
         </arguments>

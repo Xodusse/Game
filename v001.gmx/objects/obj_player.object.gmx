@@ -193,7 +193,7 @@ if abs(Gswap)&lt;0.1 {
             //Shoot all bullets.
             for(var S = 0;S&lt;Gbullets[G[Gcurrent]];S++){
                 
-                var Bullet = instance_create(x+WalkSpeedX*2+20*dcos(GunDirection),y+WalkSpeedY*2-20*dsin(GunDirection),Gtype[G[Gcurrent]]);
+                var Bullet = instance_create(x+16*dcos(GunDirection),y-16*dsin(GunDirection),Gtype[G[Gcurrent]]);
                 var Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Gcurrent]];
                 Bullet.direction = Direction;
                 Bullet.image_angle = Direction;
