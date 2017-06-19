@@ -388,31 +388,27 @@ Shake = 3;
             <string>///Draw gun info
 // © 2017 - Jon Harvey
 
-// Only draw if the debugger is not visible - Reece:
-if (DEBUG_VISIBLE == false){
+draw_set_alpha(0.2);
+draw_circle_colour(0,540,60,$AAAAAA,$FFFFFF,0);
+draw_set_alpha(1);
 
-    draw_set_alpha(0.2);
-    draw_circle_colour(0,540,60,$AAAAAA,$FFFFFF,0);
-    draw_set_alpha(1);
+draw_primitive_begin(pr_trianglestrip);
+for(var i = 0;i&lt;=45;i++){
     
-    draw_primitive_begin(pr_trianglestrip);
-    for(var i = 0;i&lt;=45;i++){
-        
-        var Angle = i*2*min(Reload[Gcurrent]/Greload[G[Gcurrent]],1);
-        draw_vertex_colour(dcos(Angle)*150,540-dsin(Angle)*150,$444499,0.6);
-        draw_vertex_colour(dcos(Angle)*60,540-dsin(Angle)*60,$333333,0.6);
-    }
-    draw_primitive_end();
-    
-    var Angle;
-    Angle = 30*Gswap-45;
-    draw_sprite_ext(spr_gun,G[Gcurrent],dcos(Angle)*140,540+dsin(Angle)*140,1,1,-Angle,-1,1);
-    draw_sprite_ext(spr_gun,G[(Gcurrent+1)%Gcount],dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Gswap);
-    draw_sprite_ext(spr_gun,G[(Gcurrent+Gcount-1)%Gcount],dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Gswap);
-    
-    draw_text(2,500,string(Clips[Gcurrent]));
-    draw_text(4,516,string(Clip[Gcurrent])+"/"+string(Gclip[G[Gcurrent]]));
+    var Angle = i*2*min(Reload[Gcurrent]/Greload[G[Gcurrent]],1);
+    draw_vertex_colour(dcos(Angle)*150,540-dsin(Angle)*150,$444499,0.6);
+    draw_vertex_colour(dcos(Angle)*60,540-dsin(Angle)*60,$333333,0.6);
 }
+draw_primitive_end();
+
+var Angle;
+Angle = 30*Gswap-45;
+draw_sprite_ext(spr_gun,G[Gcurrent],dcos(Angle)*140,540+dsin(Angle)*140,1,1,-Angle,-1,1);
+draw_sprite_ext(spr_gun,G[(Gcurrent+1)%Gcount],dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Gswap);
+draw_sprite_ext(spr_gun,G[(Gcurrent+Gcount-1)%Gcount],dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Gswap);
+
+draw_text(2,500,string(Clips[Gcurrent]));
+draw_text(4,516,string(Clip[Gcurrent])+"/"+string(Gclip[G[Gcurrent]]));
 </string>
           </argument>
         </arguments>

@@ -101,7 +101,11 @@ CONSOLE_ENABLED = false;
 
 DEBUG_VISIBLE = false;
 
+//GAME MEMORY USAGE:
+globalvar GM_MEMORY_USAGE_VIRTUAL, GM_MEMORY_USAGE_PHYSICAL, GM_CPU_USAGE;
 
+GM_MEMORY_USAGE_VIRTUAL = external_define("GM_Memory_Usage_Virtual.dll", "dll_get_memory_virtual", dll_cdecl, ty_real, 0);
+GM_MEMORY_USAGE_PHYSICAL = external_define("GM_Memory_Usage_Physical.dll", "dll_get_memory_physical", dll_cdecl, ty_real, 0); 
 </string>
           </argument>
         </arguments>

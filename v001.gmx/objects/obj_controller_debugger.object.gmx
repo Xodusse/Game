@@ -35,6 +35,9 @@ player_speed = 0;
 
 FPS_Counter = 0.5;
 FPS = floor(fps_real);
+
+memory_v = -1;
+memory_p = -1;
 </string>
           </argument>
         </arguments>
@@ -72,7 +75,12 @@ if (instance_exists(obj_player)){
     
     player_dir = obj_player.WalkDirection;
     //Added player speed variable - Jon.
+
     player_speed = round(sqrt(sqr(obj_player.WalkSpeedX)+sqr(obj_player.WalkSpeedY)));
+    
+    //Get the current game memory usage in Kilobytes:
+    memory_v = ((scr_get_memory_virtual()/8)/1024);    
+    memory_p = ((scr_get_memory_physical()/8)/1024); 
 }
 
 //UPDATE VIEW ROTATION VARIABLE:
@@ -118,7 +126,7 @@ if (DEBUG_VISIBLE == true){
 
     //Version number:
     draw_text(8, 8,
-        "Xodusse v031");
+        "Xodusse v040");
     
     //Copyright:
     draw_text(8, 24,
@@ -136,8 +144,16 @@ if (DEBUG_VISIBLE == true){
     draw_text(8, 88,
         "FPS = " + string(FPS) + " dF = " + string(dF));
         
-    draw_set_colour(c_black);        
-
+    //Virtual Memory:
+    draw_text(8, 120,
+        "Memory_Vir = " + string(memory_v) + "kB");
+        
+    //Physical Memory:
+    draw_text(8, 136,
+         "Memory_Phy = " + string(memory_p) + "kB");
+        
+    draw_set_colour(c_black); 
+    
 }
    
 </string>
