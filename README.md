@@ -6,7 +6,7 @@ Xodusse is currently in co-development and the games ownership rights are shared
 
 ###### Contributors are as follows:
 - [x] - Jon Harvey @xor5 (http://xorshaders.weebly.com/)
-- [ ] - Reece Warren @warrenaterz (http://www.warrenaterz.co.uk/) 
+- [x] - Reece Warren @warrenaterz (http://www.warrenaterz.co.uk/) 
 
 ## License
 Xodusse is officially open-source for everyone and has an MIT License. This decision was taken to promote the games overall popularity and allow modding communities to create extra content for the game. (If you want to make any feature requests for the game, please contact either @xor5 or @warrenaterz directly.) 
