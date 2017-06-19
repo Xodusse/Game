@@ -1,4 +1,4 @@
- Xodusse Game
+# Xodusse Game
 This is the official repository for Xodusse, a 2D top-down alien shooter game, which is currently being developed using GameMaker: Studio. Official development of the game began on April 28th, 2017 and is due to continue for upto two years as of this date. Target platforms for Xodusse include Windows (confirmed) with the possibly of Mac OSX and Linux.
 
 ## Contributors
