@@ -58,8 +58,8 @@ image_angle = random(360);
 
 if image_index == 0{
     
-    Shake = Shake*0.9+2*image_xscale;
-    with(obj_enemy){
+    Shake = Shake*0.9+2*sqr(image_xscale);
+    with(obj_game_object){
     
         var Explosion = instance_nearest(x,y,obj_explosion);
         var Distance = point_distance(x,y,Explosion.x,Explosion.y)/Explosion.image_xscale/96;

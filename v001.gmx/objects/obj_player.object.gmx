@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_game_object</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -94,7 +94,7 @@ Clip[5] = Gclip[G[5]];
 Clip[6] = Gclip[G[6]];
 
 //Gun clip count (number of clips).
-Clips[0] = 4;
+Clips[0] = 40;
 Clips[1] = 4;
 Clips[2] = 2;
 Clips[3] = 3;
@@ -123,6 +123,8 @@ Clips[6] = 3;
             <kind>1</kind>
             <string>///Player variables
 // © 2017 - Jon Harvey
+
+Health = 10;
 
 GunDirection = 90;
 WalkDirection = 90;
@@ -191,7 +193,7 @@ if abs(Gswap)&lt;0.1 {
             //Shoot all bullets.
             for(var S = 0;S&lt;Gbullets[G[Gcurrent]];S++){
                 
-                var Bullet = instance_create(x+12*dcos(GunDirection),y-12*dsin(GunDirection),Gtype[G[Gcurrent]]);
+                var Bullet = instance_create(x+WalkSpeedX*2+20*dcos(GunDirection),y+WalkSpeedY*2-20*dsin(GunDirection),Gtype[G[Gcurrent]]);
                 var Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Gcurrent]];
                 Bullet.direction = Direction;
                 Bullet.image_angle = Direction;
@@ -215,6 +217,7 @@ if abs(Gswap)&lt;0.1 {
     //Reload with the reload key.
     if Kreload &amp;&amp; (Clip[Gcurrent]&lt;Gclip[G[Gcurrent]] &amp;&amp; --Clips[Gcurrent]&gt;=0){
     
+        Clips[Gcurrent] = max(Clips[Gcurrent],-1);
         Clip[Gcurrent] = Gclip[G[Gcurrent]];
         Reload[Gcurrent] = 0;
     }

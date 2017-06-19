@@ -68,7 +68,6 @@
     </sprites>
     <sprite>sprites\spr_gun</sprite>
     <sprite>sprites\spr_enemy</sprite>
-    <sprite>sprites\spr_enemy2</sprite>
     <sprite>sprites\spr_obstacle</sprite>
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_explosion</sprite>
@@ -95,12 +94,12 @@
       </objects>
       <objects name="Enemy">
         <object>objects\obj_enemy</object>
-        <object>objects\obj_Enemy_Parent</object>
       </objects>
       <objects name="Props">
         <object>objects\obj_obstacle</object>
         <object>objects\obj_wall</object>
       </objects>
+      <object>objects\obj_game_object</object>
     </objects>
     <objects name="Projectiles">
       <object>objects\obj_projectile</object>

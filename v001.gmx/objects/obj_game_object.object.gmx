@@ -25,16 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Projectile variables
+            <string>///Initialize variables
 // © 2017 - Jon Harvey
 
-Pexplode = 0;
-Prange = 2000;
-Pspeed = 12;
-Ppower  = 1;
-Pdamage = 0.5;
-
-Hit = noone;
+Health = 100;
 </string>
           </argument>
         </arguments>
@@ -57,60 +51,11 @@ Hit = noone;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Collision with enemy
+            <string>///Destroy when damaged
 // © 2017 - Jon Harvey
 
-var Enemy = collision_line(x,y,xprevious,yprevious,obj_game_object,1,1);
-
-if Enemy != Hit &amp;&amp; instance_exists(Enemy){
-
-    if (Pexplode&gt;0){
-        
-        var Explosion = instance_create(x,y,obj_explosion);
-        Explosion.image_xscale = Pexplode;
-        Explosion.image_yscale = Pexplode;  
-        Explosion.Damage = Pdamage;
-        instance_destroy();
-    }
-    else{
-    
-        Hit = Enemy;
-        Hit.Health -= Pdamage;
-        image_alpha -= Ppower;
-    }
-}
-else{
-
-    Hit = noone;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Speed and fade update
-// © 2017 - Jon Harvey
-
-speed = Pspeed*FRAME_DELTA;
-image_alpha -= Pspeed*FRAME_DELTA/Prange;
-
-if image_alpha&lt;0.01{
-
+if Health&lt;=0
+{
     instance_destroy();
 }
 </string>
