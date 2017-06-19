@@ -69,9 +69,9 @@ Garc[4] = 0.5;
 Garc[5] = 8;
 Garc[6] = 10;
 
-Grecoil[0] = 4;//Gun recoil.
+Grecoil[0] = 4;//Gun recoil per shot.
 Grecoil[1] = 1;
-Grecoil[2] = 6;
+Grecoil[2] = 4;
 Grecoil[3] = 12;
 Grecoil[4] = 1;
 Grecoil[5] = 10;
@@ -87,11 +87,11 @@ Gbullets[6] = 1;
 
 Gweight[0] = 1;//Speed multiplier.
 Gweight[1] = 1;
-Gweight[2] = 0.5;
-Gweight[3] = 0.7;
-Gweight[4] = 0.8;
-Gweight[5] = 0.4;
-Gweight[6] = 0.8;
+Gweight[2] = 0.7;
+Gweight[3] = 0.8;
+Gweight[4] = 0.9;
+Gweight[5] = 0.6;
+Gweight[6] = 0.9;
 
 Gtype[0] = obj_bullet_medium;//Type of projectile.
 Gtype[1] = obj_bullet_medium;
