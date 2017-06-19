@@ -25,6 +25,30 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Add gui object
+// © 2017 - Jon Harvey
+
+instance_create(0,0,obj_controller_gui);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Gun inventory variables
 // © 2017 - Jon Harvey
 
@@ -107,34 +131,6 @@ TurnSpeed = 0;
 WalkSpeedX = 0;
 WalkSpeedY = 0;
 WalkFrame = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Screenshake variables
-// © 2017 - Jon Harvey
-
-globalvar Shake;
-Shake = 0;
-ShakeX = 0;
-ShakeY = 0;
-ShakeAngle = 0;
 </string>
           </argument>
         </arguments>
@@ -311,38 +307,6 @@ if (WalkSpeedY != 0){
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///View and screenshake controller
-// © 2017 - Jon Harvey
-
-Shake = Shake*S90;
-ShakeX = ShakeX*(1-S90)+S90*50*Shake*(random(2)-1);
-ShakeY = ShakeY*(1-S90)+S90*50*Shake*(random(2)-1);
-ShakeAngle = ShakeAngle*(1-S90)+S90*20*Shake*(random(2)-1);
-
-//Smoothly translate and rotate view with player.
-view_xview[0] = view_xview[0]*S90+(1-S90)*(x-view_wview[0]/2+ShakeX);
-view_yview[0] = view_yview[0]*S90+(1-S90)*(y-view_hview[0]/2+ShakeY);
-view_angle[0] = view_angle[0]*S98+(1-S98)*(90-WalkDirection+ShakeAngle);
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="5" enumb="13">
       <action>
@@ -363,52 +327,6 @@ view_angle[0] = view_angle[0]*S98+(1-S98)*(90-WalkDirection+ShakeAngle);
             <kind>1</kind>
             <string>///Shake Screen
 Shake = 3;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw gun info
-// © 2017 - Jon Harvey
-
-draw_set_alpha(0.2);
-draw_circle_colour(0,540,60,$AAAAAA,$FFFFFF,0);
-draw_set_alpha(1);
-
-draw_primitive_begin(pr_trianglestrip);
-for(var i = 0;i&lt;=45;i++){
-    
-    var Angle = i*2*min(Reload[Gcurrent]/Greload[G[Gcurrent]],1);
-    draw_vertex_colour(dcos(Angle)*150,540-dsin(Angle)*150,$444499,0.6);
-    draw_vertex_colour(dcos(Angle)*60,540-dsin(Angle)*60,$333333,0.6);
-}
-draw_primitive_end();
-
-var Angle;
-Angle = 30*Gswap-45;
-draw_sprite_ext(spr_gun,G[Gcurrent],dcos(Angle)*140,540+dsin(Angle)*140,1,1,-Angle,-1,1);
-draw_sprite_ext(spr_gun,G[(Gcurrent+1)%Gcount],dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Gswap);
-draw_sprite_ext(spr_gun,G[(Gcurrent+Gcount-1)%Gcount],dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Gswap);
-
-draw_text(2,500,string(Clips[Gcurrent]));
-draw_text(4,516,string(Clip[Gcurrent])+"/"+string(Gclip[G[Gcurrent]]));
 </string>
           </argument>
         </arguments>

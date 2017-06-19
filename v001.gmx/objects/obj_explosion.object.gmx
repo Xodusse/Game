@@ -58,7 +58,7 @@ image_angle = random(360);
 
 if image_index == 0{
     
-    Shake = image_xscale;
+    Shake = Shake*0.9+2*image_xscale;
     with(obj_enemy){
     
         var Explosion = instance_nearest(x,y,obj_explosion);

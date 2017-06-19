@@ -118,6 +118,7 @@
       <object>objects\obj_controller_level_selector</object>
       <object>objects\obj_controller_level_wave</object>
       <object>objects\obj_controller_guns</object>
+      <object>objects\obj_controller_gui</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">

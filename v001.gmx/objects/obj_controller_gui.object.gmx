@@ -3,8 +3,8 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-32768</depth>
-  <persistent>-1</persistent>
+  <depth>0</depth>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,19 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//© 2017 - Reece Warren, All rights reserved.
-//Debug screen object.
+            <string>///Screenshake variables
+// © 2017 - Jon Harvey
 
-player_x = 0;
-player_y = 0;
-player_dir = 0;
-player_speed = 0;
-
-FPS_Counter = 0.5;
-FPS = floor(fps_real);
-
-memory_v = -1;
-memory_p = -1;
+globalvar Shake;
+Shake = 0;
+ShakeX = 0;
+ShakeY = 0;
+ShakeAngle = 0;
 </string>
           </argument>
         </arguments>
@@ -60,41 +55,21 @@ memory_p = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//© 2017 - Reece Warren, All rights reserved.
-//Debugger visibility.
+            <string>///View and screenshake controller
+// © 2017 - Jon Harvey
 
-//CHECK IF DEBUGGER IS TOGGLED:
-if (Kdebug){
-    DEBUG_VISIBLE = !DEBUG_VISIBLE;
-}
+Shake = Shake*S90;
+ShakeX = ShakeX*(1-S90)+S90*50*Shake*(random(2)-1);
+ShakeY = ShakeY*(1-S90)+S90*50*Shake*(random(2)-1);
+ShakeAngle = ShakeAngle*(1-S90)+S90*20*Shake*(random(2)-1);
 
-//UPDATE PLAYER X/Y:
-if (instance_exists(obj_player)){
-
-    player_x = round(obj_player.x);
-    player_y = round(obj_player.y);
+if instance_exists(obj_player){
     
-    player_dir = (round(obj_player.WalkDirection)+360) mod 360;
-    //Added player speed variable - Jon.
-
-    player_speed = round(sqrt(sqr(obj_player.WalkSpeedX)+sqr(obj_player.WalkSpeedY)));
+    //Smoothly translate and rotate view with the player.
+    view_xview[0] = view_xview[0]*S90+(1-S90)*(obj_player.x-view_wview[0]/2+ShakeX);
+    view_yview[0] = view_yview[0]*S90+(1-S90)*(obj_player.y-view_hview[0]/2+ShakeY);
+    view_angle[0] = view_angle[0]*S98+(1-S98)*(90-obj_player.WalkDirection+ShakeAngle);
 }
-//Get the current game memory usage in Kilobytes:
-memory_v = ((scr_get_memory_virtual()/8)/1024);    
-memory_p = ((scr_get_memory_physical()/8)/1024); 
-
-//UPDATE VIEW ROTATION VARIABLE:
-view_a =(round(view_angle[0])+360) mod 360;
-
-//UPDATE FPS COUNTER:
-FPS_Counter -= (1/60) * FRAME_DELTA;
-if (FPS_Counter &lt;= 0){
-    FPS_Counter = 0.5;
-    FPS = floor(fps_real);
-    dF = FRAME_DELTA;
-}
-
-
 </string>
           </argument>
         </arguments>
@@ -117,45 +92,36 @@ if (FPS_Counter &lt;= 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//© 2017 - Reece Warren, All rights reserved.
-//Draw debug screen.
+            <string>///Draw gun info
+// © 2017 - Jon Harvey
 
-if (DEBUG_VISIBLE == true){
+if instance_exists(obj_player){
 
-    draw_set_colour(c_white);
-
-    //Version number:
-    draw_text(8, 8,
-        "Xodusse v042");
+    with(obj_player){
     
-    //Copyright:
-    draw_text(8, 24,
-        "(C) 2017 - Reece Warren, Jon Harvey. All rights reserved.");
+        draw_set_alpha(0.2);
+        draw_circle_colour(0,540,60,$AAAAAA,$FFFFFF,0);
+        draw_set_alpha(1);
         
-    //X &amp; Y &amp; R:
-    draw_text(8, 56,
-        "X = " + string(player_x) + "  Y = " + string(player_y) + "  R = " + string(view_a));
+        draw_primitive_begin(pr_trianglestrip);
+        for(var i = 0;i&lt;=45;i++){
+            
+            var Angle = i*2*min(Reload[Gcurrent]/Greload[G[Gcurrent]],1);
+            draw_vertex_colour(dcos(Angle)*150,540-dsin(Angle)*150,$444499,0.6);
+            draw_vertex_colour(dcos(Angle)*60,540-dsin(Angle)*60,$333333,0.6);
+        }
+        draw_primitive_end();
         
-    //X &amp; Y &amp; R:
-    draw_text(8, 72,
-        "P_Dir = " + string(player_dir) + " P_Speed = " + string(player_speed));
+        var Angle;
+        Angle = 30*Gswap-45;
+        draw_sprite_ext(spr_gun,G[Gcurrent],dcos(Angle)*140,540+dsin(Angle)*140,1,1,-Angle,-1,1);
+        draw_sprite_ext(spr_gun,G[(Gcurrent+1)%Gcount],dcos(Angle-30)*140,540+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Gswap);
+        draw_sprite_ext(spr_gun,G[(Gcurrent+Gcount-1)%Gcount],dcos(Angle+30)*140,540+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Gswap);
         
-    //FPS:
-    draw_text(8, 88,
-        "FPS = " + string(FPS) + " dF = " + string(dF));
-        
-    //Virtual Memory:
-    draw_text(8, 120,
-        "Memory_Vir = " + string(memory_v) + "kB");
-        
-    //Physical Memory:
-    draw_text(8, 136,
-         "Memory_Phy = " + string(memory_p) + "kB");
-        
-    draw_set_colour(c_black); 
-    
+        draw_text(2,500,string(Clips[Gcurrent]));
+        draw_text(4,516,string(Clip[Gcurrent])+"/"+string(Gclip[G[Gcurrent]]));
+    }
 }
-   
 </string>
           </argument>
         </arguments>
