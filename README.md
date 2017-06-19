@@ -1,11 +1,11 @@
-# Xodusse Game
+ Xodusse Game
 This is the official repository for Xodusse, a 2D top-down alien shooter game, which is currently being developed using GameMaker: Studio. Official development of the game began on April 28th, 2017 and is due to continue for upto two years as of this date. Target platforms for Xodusse include Windows (confirmed) with the possibly of Mac OSX and Linux.
 
 ## Contributors
 Xodusse is currently in co-development and the games ownership rights are shared equally between each official contributor. This has been agreed as of 19th June, 2017. This agreement is confirmed in writing below by the contribution of a tick mark beside each contributors name (which is commited by the contributor in question).
 
 ###### Contributors are as follows:
-- [ ] - Jon Harvey @xor5 (http://xorshaders.weebly.com/)
+- [x] - Jon Harvey @xor5 (http://xorshaders.weebly.com/)
 - [ ] - Reece Warren @warrenaterz (http://www.warrenaterz.co.uk/) 
 
 ## License
