@@ -29,6 +29,8 @@
 // © 2017 - Jon Harvey
 
 Damage = 1;
+
+index = 0;
 image_speed = 0;
 image_angle = random(360);
 </string>
@@ -70,10 +72,11 @@ if image_index == 0{
     }
 }
 else
-if image_index &gt;= image_number-1{
+if index-image_index &gt;= image_number-1{
 
     instance_destroy();
 }
+index = image_index;
 image_index += 0.25*FRAME_DELTA;
 </string>
           </argument>

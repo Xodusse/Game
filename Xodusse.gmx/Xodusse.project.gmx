@@ -115,7 +115,7 @@
       <object>objects\obj_controller_debugger</object>
       <object>objects\obj_controller_console</object>
       <object>objects\obj_controller_level_selector</object>
-      <object>objects\obj_controller_level_wave</object>
+      <object>objects\obj_controller_wave</object>
       <object>objects\obj_controller_guns</object>
       <object>objects\obj_controller_gui</object>
     </objects>

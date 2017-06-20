@@ -91,9 +91,10 @@ Health = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Quick respawn
+            <string>///Respawn in possible
 
-if instance_exists(obj_player){
+if instance_exists(obj_player) &amp;&amp; --AlienCount&gt;=AlienMax{
+
     var A = random(360);
     instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
 }
@@ -181,9 +182,9 @@ SumX =  WalkSpeed*dcos(WalkDirection);
 SumY = -WalkSpeed*dsin(WalkDirection);
 
 //Get pushed by enemies.
-for(var i = instance_number(obj_enemy);i&gt;=0;i--){
+for(var i = instance_number(obj_game_object);i&gt;=0;i--){
 
-    var Inst = instance_find(obj_enemy,i);
+    var Inst = instance_find(obj_game_object,i);
     if Inst!=id{
     
         var Distance = point_distance(x+WalkSpeedX,y+WalkSpeedY,Inst.x+Inst.WalkSpeedX,Inst.y+Inst.WalkSpeedY);

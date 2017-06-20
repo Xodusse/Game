@@ -25,34 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//© 2017 - Reece Warren, All rights reserved.
-//Wave controller object.
+            <string>///Wave variables
+// © 2017 - Jon Harvey
 
-//Define difficulties:
-enum Difficulty { 
-    Easy = 0,
-    Intemediate = 1,
-    Hard = 2,
-    Extreme = 3
+Wave = 0;
+
+globalvar AlienCount,AlienMax;
+AlienCount = 20;
+AlienMax = 10;
+
+if instance_exists(obj_player){
+    
+    repeat(AlienMax){
+    
+        var A = random(360);
+        instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
+    }
 }
-
-Difficulty = Difficulty.Easy;
-
-//Starting wave:
-Wave = 1;
-
-//Selected difficulty:
-Current_Difficulty = Difficulty.Easy;
-
-//Initial Alien Count at the start of each round:
-Alien_Count = 8;
-
-//Used in-game:
-Current_Alien_Count = Alien_Count;
-
-//Maximum memory allocation for Aliens:
-Alien_Mem_Limit = 65;
-
 </string>
           </argument>
         </arguments>
@@ -75,31 +64,10 @@ Alien_Mem_Limit = 65;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//© 2017 - Reece Warren, All rights reserved.
-//Wave controller object.
-
-if (instance_exists(obj_enemy)){
-    
-    Current_Alien_Count = instance_number(obj_enemy);
+            <string>///Wave control
+// © 2017 - Jon Harvey
 
 
-}
-
-//End of the wave:
-else {
-
-    Current_Alien_Count = 0;    
-    Wave ++;
-    
-    //Check difficulty to determine maximum new alien count:
-    if (Difficulty == 0){
-    
-        Alien_Count = ceil( Alien_Count );
-        Current_Alien_Count = Alien_Count;
-    }
-    
-    
-}
 </string>
           </argument>
         </arguments>

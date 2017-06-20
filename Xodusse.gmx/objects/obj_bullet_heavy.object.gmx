@@ -32,7 +32,7 @@ Pexplode = 1;
 Prange = 2000;
 Pspeed = 8;
 Ppower  = 1;
-Pdamage = 1;
+Pdamage = 5;
 
 Hit = noone;
 if instance_exists(obj_player){
