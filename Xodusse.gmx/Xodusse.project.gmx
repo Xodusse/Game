@@ -71,6 +71,8 @@
     <sprite>sprites\spr_obstacle</sprite>
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_explosion</sprite>
+    <sprite>sprites\spr_crate</sprite>
+    <sprite>sprites\spr_crate_parent</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -100,6 +102,10 @@
         <object>objects\obj_wall</object>
       </objects>
       <object>objects\obj_game_object</object>
+      <objects name="Crates">
+        <object>objects\obj_crate</object>
+        <object>objects\obj_crate_spawner</object>
+      </objects>
     </objects>
     <objects name="Projectiles">
       <object>objects\obj_projectile</object>
