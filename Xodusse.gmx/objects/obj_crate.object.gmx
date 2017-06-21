@@ -52,9 +52,7 @@ WalkSpeedY = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (CreateMagazine == true){
-    instance_create(x,y,obj_magazine);
-}
+            <string>instance_create(x,y,obj_magazine);
 </string>
           </argument>
         </arguments>
