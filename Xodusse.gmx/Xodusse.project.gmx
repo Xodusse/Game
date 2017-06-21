@@ -71,8 +71,11 @@
     <sprite>sprites\spr_obstacle</sprite>
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_explosion</sprite>
-    <sprite>sprites\spr_crate</sprite>
-    <sprite>sprites\spr_crate_parent</sprite>
+    <sprites name="Crates">
+      <sprite>sprites\spr_crate_parent</sprite>
+      <sprite>sprites\spr_crate</sprite>
+    </sprites>
+    <sprite>sprites\spr_gun_magazine</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -91,6 +94,7 @@
       <object>objects\obj_initialize</object>
     </objects>
     <objects name="Game_Objects">
+      <object>objects\obj_game_object</object>
       <objects name="Player">
         <object>objects\obj_player</object>
       </objects>
@@ -104,6 +108,7 @@
       <objects name="Crates">
         <object>objects\obj_crate</object>
         <object>objects\obj_crate_spawner</object>
+        <object>objects\obj_magazine</object>
       </objects>
       <object>objects\obj_game_object</object>
     </objects>
