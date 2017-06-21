@@ -35,19 +35,11 @@ repeat(SPAWN_AMOUNT){
     var distance_x = irandom_range(32,96);
     var distance_y = irandom_range(32,96);
     
-    var crate = instance_create(x + (dcos(angle) * distance_x), y + (dsin(angle) * distance_y), obj_crate);
-    crate.image_angle = irandom(360);
+    if !collision_circle(x+(dcos(angle)*distance_x),y+(dsin(angle)*distance_y),16,obj_crate,0,0){
     
-    //Destroy the crate if it overlaps another:
-    with (crate){
-        if (collision_circle(x,y,24,obj_crate,false,true)){
-            instance_destroy();
-        }
-        else {
-            CreateMagazine = true;
-        }
+        var crate = instance_create(x+(dcos(angle)*distance_x),y+(dsin(angle)*distance_y),obj_crate);
+        crate.image_angle = irandom(360);
     }
-
 }
 
 //Destroy the parent instance:

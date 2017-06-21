@@ -94,7 +94,6 @@
       <object>objects\obj_initialize</object>
     </objects>
     <objects name="Game_Objects">
-      <object>objects\obj_game_object</object>
       <objects name="Player">
         <object>objects\obj_player</object>
       </objects>

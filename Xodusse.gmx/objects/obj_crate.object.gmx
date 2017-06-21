@@ -30,9 +30,6 @@ Radius = 20;
 
 WalkSpeedX = 0;
 WalkSpeedY = 0;
-
-CreateMagazine = false;
-
 </string>
           </argument>
         </arguments>
