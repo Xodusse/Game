@@ -32,7 +32,6 @@ WalkSpeedX = 0;
 WalkSpeedY = 0;
 Radius = 36;
 
-
 Health = 100;
 </string>
           </argument>

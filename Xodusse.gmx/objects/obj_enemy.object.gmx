@@ -28,15 +28,19 @@
             <string>///AI variables
 // © 2017 - Jon Harvey
 
-AItargetx = 0;
-AItargety = 0;
-AItargetspeedx = 0;
-AItargetspeedy = 0;
+//Variables for estimating player position.
+AiTargetX = 0;
+AiTargetY = 0;
+AiTargetSpeedX = 0;
+AiTargetSpeedY = 0;
 
-AIsight = 512;
-AIeye = 8;
+//Enemy sight range (radius).
+AiSight = 512;
+//Enemy eye displacement.
+AiEye = 8;
 
-AIfocus = 1;
+//Enemy focus variable.
+AiFocus = 1;
 </string>
           </argument>
         </arguments>
@@ -121,35 +125,39 @@ if instance_exists(obj_player) &amp;&amp; --AlienCount&gt;=AlienMax{
           <argument>
             <kind>1</kind>
             <string>///AI control
-// © 2017 - Jon Harvey
+// © 2017 - Jon HarveY
 
-AItargetspeedx *= S98;
-AItargetspeedy *= S98;
-AItargetx += FRAME_DELTA*AItargetspeedx;
-AItargety += FRAME_DELTA*AItargetspeedy;
+AiTargetSpeedX *= S98;
+AiTargetSpeedY *= S98;
+AiTargetX += FRAME_DELTA*AiTargetSpeedX;
+AiTargetY += FRAME_DELTA*AiTargetSpeedY;
 
 
 if instance_exists(obj_player){
-    var Visible = (point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AIsight,y-dsin(WalkDirection)*AIsight)&lt;AIsight) &amp;&amp;
-    ((collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AIeye,y+dcos(WalkDirection)*AIeye,obj_obstacle,0,1) == noone) ||
-    (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AIeye,y-dcos(WalkDirection)*AIeye,obj_obstacle,0,1) == noone));
+    var Visible = (point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AiSight,y-dsin(WalkDirection)*AiSight)&lt;AiSight) &amp;&amp;
+    ((collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AiEye,y+dcos(WalkDirection)*AiEye,obj_obstacle,0,1) == noone) ||
+    (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AiEye,y-dcos(WalkDirection)*AiEye,obj_obstacle,0,1) == noone));
             
     if Visible{
     
         image_blend = merge_colour($2288FF,image_blend,S90);
-        AIfocus = AIfocus*S90+(1-S90);
+        AiFocus = AiFocus*S90+(1-S90);
         WalkSpeed = WalkSpeed*S90+(1-S90);
-        AItargetspeedx = obj_player.WalkSpeedX;
-        AItargetspeedy = obj_player.WalkSpeedY;
-        AItargetx = obj_player.x;
-        AItargety = obj_player.y;
+        AiTargetSpeedX = obj_player.WalkSpeedX;
+        AiTargetSpeedY = obj_player.WalkSpeedY;
+        AiTargetX = obj_player.x;
+        AiTargetY = obj_player.y;
     }
     else{
     
         image_blend = merge_colour($FFFFFF,image_blend,S90);
+        AiFocus *= 1-(1-S90)*(point_distance(x,y,AiTargetX,AiTargetY)&lt;100);
     }
 
-    WalkDirection += FRAME_DELTA*0.1*AIfocus*angle_difference(point_direction(x,y,AItargetx,AItargety),WalkDirection);
+    WalkDirection += FRAME_DELTA*0.1*AiFocus*angle_difference(point_direction(x,y,AiTargetX,AiTargetY),WalkDirection);
+    
+    var Return = point_distance(x,y,AiTargetX,AiTargetY)/2000*angle_difference(point_direction(x,y,AiTargetX,AiTargetY),WalkDirection);
+    WalkDirection += FRAME_DELTA*0.1*(1-AiFocus)*(random(60)-30+Return);
 }
 </string>
           </argument>
