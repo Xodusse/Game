@@ -106,6 +106,12 @@ globalvar GM_MEMORY_USAGE_VIRTUAL, GM_MEMORY_USAGE_PHYSICAL, GM_CPU_USAGE;
 
 GM_MEMORY_USAGE_VIRTUAL = external_define("GM_Memory_Usage_Virtual.dll", "dll_get_memory_virtual", dll_cdecl, ty_real, 0);
 GM_MEMORY_USAGE_PHYSICAL = external_define("GM_Memory_Usage_Physical.dll", "dll_get_memory_physical", dll_cdecl, ty_real, 0); 
+
+//DEFINE FONTS:
+globalvar FNT_EXUDATION_LARGE, FNT_EXUDATION;
+
+FNT_EXUDATION_LARGE = fnt_Exudation_Large;
+FNT_EXUDATION = fnt_Exudation;
 </string>
           </argument>
         </arguments>

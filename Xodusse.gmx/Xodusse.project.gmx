@@ -89,6 +89,10 @@
     <script>scripts\scr_get_memory_virtual.gml</script>
     <script>scripts\scr_get_memory_physical.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_Exudation_Large</font>
+    <font>fonts\fnt_Exudation</font>
+  </fonts>
   <objects name="objects">
     <objects name="Initialization">
       <object>objects\obj_initialize</object>

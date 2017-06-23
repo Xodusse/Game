@@ -123,36 +123,50 @@ if (FPS_Counter &lt;= 0){
 if (DEBUG_VISIBLE == true){
 
     draw_set_colour(c_white);
+    
+    draw_set_font(FNT_EXUDATION_LARGE);
 
+    
+    // -- LEFT --
+    
     //Version number:
-    draw_text(8, 8,
-        "Xodusse v042");
+    draw_text(8, 10,
+        "Xodusse V.054");
     
     //Copyright:
-    draw_text(8, 24,
-        "(C) 2017 - Reece Warren, Jon Harvey. All rights reserved.");
+    draw_text(8, 35,
+        "© 2017 - Reece Warren, Jon Harvey. All rights reserved.");
         
     //X &amp; Y &amp; R:
-    draw_text(8, 56,
+    draw_text(8, 85,
         "X = " + string(player_x) + "  Y = " + string(player_y) + "  R = " + string(view_a));
         
-    //X &amp; Y &amp; R:
-    draw_text(8, 72,
+    //Speed and Direction:
+    draw_text(8, 110,
         "P_Dir = " + string(player_dir) + " P_Speed = " + string(player_speed));
-        
+    
+    // -- RIGHT --    
+            
+    draw_set_halign(fa_right);
+    
     //FPS:
-    draw_text(8, 88,
+    draw_text(view_wview[0] - 8, 10,
         "FPS = " + string(FPS) + " dF = " + string(dF));
         
     //Virtual Memory:
-    draw_text(8, 120,
+    draw_text(view_wview[0] - 8, 35,
         "Memory_Vir = " + string(memory_v) + "kB");
         
     //Physical Memory:
-    draw_text(8, 136,
+    draw_text(view_wview[0] - 8, 60,
          "Memory_Phy = " + string(memory_p) + "kB");
+         
+    // -- RESET --
+    draw_set_halign(fa_left);
         
     draw_set_colour(c_black); 
+    
+    draw_set_font(-1);
     
 }
    
