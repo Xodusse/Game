@@ -34,7 +34,7 @@ Gauto[1] = 0;
 Gauto[2] = 1;
 Gauto[3] = 0;
 Gauto[4] = 0;
-Gauto[5] = 1;
+Gauto[5] = 0;
 Gauto[6] = 1;
 
 Grate[0] = 10;//Rounds per second.
