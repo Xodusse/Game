@@ -25,10 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var gun = (irandom(Gcount - 1));
+            <string>var gun = (irandom(obj_player.Gcount - 1));
 var gunclips = (irandom(5));
 
-Clips[gun] += gunclips;
+obj_player.Clips[gun] += gunclips;
 
 instance_destroy();
 

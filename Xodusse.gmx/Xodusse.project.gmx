@@ -66,17 +66,16 @@
       <sprite>sprites\spr_bullet_pellet</sprite>
       <sprite>sprites\spr_bullet_grenade</sprite>
     </sprites>
-    <sprites name="Crates">
-      <sprite>sprites\spr_crate_parent</sprite>
-      <sprite>sprites\spr_crate</sprite>
-    </sprites>
     <sprite>sprites\spr_gun</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_obstacle</sprite>
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_explosion</sprite>
+    <sprites name="Crates">
+      <sprite>sprites\spr_crate_parent</sprite>
+      <sprite>sprites\spr_crate</sprite>
+    </sprites>
     <sprite>sprites\spr_gun_magazine</sprite>
-    <sprite>sprites\spr_items</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -132,7 +131,6 @@
       <object>objects\obj_controller_level_selector</object>
       <object>objects\obj_controller_wave</object>
       <object>objects\obj_controller_guns</object>
-      <object>objects\obj_controller_inventory</object>
       <object>objects\obj_controller_gui</object>
     </objects>
     <objects name="GUI">
