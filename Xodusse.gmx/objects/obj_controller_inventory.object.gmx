@@ -28,6 +28,7 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
+globalvar Inventory;
 Inventory = 0;
 I[11] = 0;
 Q[11] = 0;

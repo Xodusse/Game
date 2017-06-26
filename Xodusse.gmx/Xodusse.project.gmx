@@ -113,7 +113,6 @@
         <object>objects\obj_crate</object>
         <object>objects\obj_crate_spawner</object>
         <object>objects\obj_magazine</object>
-        <object>objects\obj_magazine_new</object>
       </objects>
       <object>objects\obj_game_object</object>
     </objects>
