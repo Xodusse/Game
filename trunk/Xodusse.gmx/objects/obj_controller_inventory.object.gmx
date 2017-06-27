@@ -28,30 +28,29 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
-globalvar Inventory;
-Inventory = 0;
-I[0] = 1;
-I[1] = 3;
-I[2] = 5;
-I[3] = 2;
-I[4] = 4;
-I[5] = 6;
+globalvar Ienable,I,Q;
+Ienable = 0;//Toggle inventory (0 is off).
 
 I[11] = 0;
 Q[11] = 0;
 
 I[0] = 1;
-I[1] = 3;
-I[2] = 5;
-I[3] = 2;
-I[4] = 4;
+Q[0] = 0;
+I[1] = 2;
+Q[1] = Gclip[2];
+I[2] = 3;
+Q[2] = Gclip[0];
+I[3] = 4;
+Q[3] = Gclip[1];
+I[4] = 5;
+Q[4] = Gclip[0];
 I[5] = 6;
+Q[5] = Gclip[1];
 
-globalvar Gkick,Gcount,Gcurrent,Gswap,G,Reload,Clip,Clips;
-Gkick = 0;
-Gcount = 7;
-Gcurrent = 0;
-Gswap = 0;
+globalvar Gcount,G,Reload,Clip,Clips;
+
+Gcount = 3;
+
 
 //Guns (ids) in inventory.
 G[0] = 0;
@@ -66,28 +65,16 @@ G[6] = 6;
 Reload[0] = Greload[G[0]];
 Reload[1] = Greload[G[1]];
 Reload[2] = Greload[G[2]];
-Reload[3] = Greload[G[3]];
-Reload[4] = Greload[G[4]];
-Reload[5] = Greload[G[5]];
-Reload[6] = Greload[G[6]];
 
 //Gun clip ammo (number of shots).
 Clip[0] = Gclip[G[0]];
 Clip[1] = Gclip[G[1]];
 Clip[2] = Gclip[G[2]];
-Clip[3] = Gclip[G[3]];
-Clip[4] = Gclip[G[4]];
-Clip[5] = Gclip[G[5]];
-Clip[6] = Gclip[G[6]];
 
 //Gun clip count (number of clips).
 Clips[0] = 40;
 Clips[1] = 4;
 Clips[2] = 2;
-Clips[3] = 3;
-Clips[4] = 5;
-Clips[5] = 3;
-Clips[6] = 3;
 </string>
           </argument>
         </arguments>
@@ -113,7 +100,7 @@ Clips[6] = 3;
             <string>///Pop up inventory
 // © 2017 - Jon Harvey
 
-Inventory = !Inventory;
+Ienable = !Ienable;
 </string>
           </argument>
         </arguments>

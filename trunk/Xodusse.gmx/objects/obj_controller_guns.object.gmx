@@ -28,78 +28,47 @@
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
+globalvar Gheavies,Glights,Gammo;
+Gheavies = 1;//Number of two-handed weapons.
+Glights = 2;//Number of one-handed weapons.
+Gammo = 3;//Number of ammo (clips or rounds).
+
 globalvar Gauto,Grate,Gclip,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype;
 Gauto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
-Gauto[1] = 0;
-Gauto[2] = 1;
-Gauto[3] = 0;
-Gauto[4] = 0;
-Gauto[5] = 1;
-Gauto[6] = 1;
+Gauto[1] = 1;
+Gauto[2] = 0;
 
-Grate[0] = 10;//Rounds per second.
-Grate[1] = 4;
-Grate[2] = 35;
-Grate[3] = 8;
-Grate[4] = 15;
-Grate[5] = 1;
-Grate[6] = 3;
+Grate[0] = 35;//Rounds per second.
+Grate[1] = 10;
+Grate[2] = 6;
 
-Gclip[0] = 20;//Gun clip size.
-Gclip[1] = 5;
-Gclip[2] = 100;
-Gclip[3] = 12;
-Gclip[4] = 8;
-Gclip[5] = 1;
-Gclip[6] = 9;
+Gclip[0] = 100;//Gun clip size.
+Gclip[1] = 20;
+Gclip[2] = 10;
 
-Greload[0] = 2;//Reload time in seconds.
-Greload[1] = 1;
-Greload[2] = 3;
-Greload[3] = 4;
-Greload[4] = 2;
-Greload[5] = 2;
-Greload[6] = 2;
+Greload[0] = 3;//Reload time in seconds.
+Greload[1] = 2;
+Greload[2] = 1;
 
-Garc[0] = 15;//Gun arc in degrees.
-Garc[1] = 8;
-Garc[2] = 5;
-Garc[3] = 15;
-Garc[4] = 0.5;
-Garc[5] = 8;
-Garc[6] = 10;
+Garc[0] = 5;//Gun arc in degrees.
+Garc[1] = 15;
+Garc[2] = 8;
 
 Grecoil[0] = 4;//Gun recoil per shot.
-Grecoil[1] = 1;
-Grecoil[2] = 4;
-Grecoil[3] = 12;
-Grecoil[4] = 1;
-Grecoil[5] = 10;
-Grecoil[6] = 5;
+Grecoil[1] = 4;
+Grecoil[2] = 1;
 
 Gbullets[0] = 1;//Number of bullets/projectiles per shot.
 Gbullets[1] = 1;
 Gbullets[2] = 1;
-Gbullets[3] = 18;
-Gbullets[4] = 1;
-Gbullets[5] = 1;
-Gbullets[6] = 1;
 
-Gweight[0] = 1;//Speed multiplier.
+Gweight[0] = 0.7;//Speed multiplier.
 Gweight[1] = 1;
-Gweight[2] = 0.7;
-Gweight[3] = 0.8;
-Gweight[4] = 0.9;
-Gweight[5] = 0.6;
-Gweight[6] = 0.9;
+Gweight[2] = 1;
 
 Gtype[0] = obj_bullet_medium;//Type of projectile.
 Gtype[1] = obj_bullet_medium;
 Gtype[2] = obj_bullet_medium;
-Gtype[3] = obj_bullet_pellet;
-Gtype[4] = obj_bullet_light;
-Gtype[5] = obj_bullet_heavy;
-Gtype[6] = obj_bullet_grenade;
 </string>
           </argument>
         </arguments>
