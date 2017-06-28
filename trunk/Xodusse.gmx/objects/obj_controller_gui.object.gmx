@@ -113,7 +113,7 @@ if instance_exists(obj_player){
         draw_primitive_begin(pr_trianglestrip);
         for(var i = 0;i&lt;=30;i++){
             
-            var Angle = i*3*min(Reload[Current]/Greload[G[Current]],1);
+            var Angle = i*3*min(Reload/Greload[G[Current]],1);
             draw_vertex_colour(dcos(Angle)*150,H-dsin(Angle)*150,$444499,0.6);
             draw_vertex_colour(dcos(Angle)*60,H-dsin(Angle)*60,$333333,0.6);
         }
@@ -122,12 +122,12 @@ if instance_exists(obj_player){
         var Angle;
         Angle = 30*Swap-45;
         draw_sprite_ext(spr_gun,G[Current],dcos(Angle)*140,H+dsin(Angle)*140,1,1,-Angle,-1,1);
-        draw_sprite_ext(spr_gun,G[(Current+1)%Gcount],dcos(Angle-30)*140,H+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Swap);
-        draw_sprite_ext(spr_gun,G[(Current+Gcount-1)%Gcount],dcos(Angle+30)*140,H+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Swap);
+        draw_sprite_ext(spr_gun,G[(Current+1)%Count],dcos(Angle-30)*140,H+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Swap);
+        draw_sprite_ext(spr_gun,G[(Current+Count-1)%Count],dcos(Angle+30)*140,H+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Swap);
         
         draw_set_colour($FFFFFF);
         draw_text(2,H-40,string(max(Clips[Current],0)));
-        draw_text(4,H-24,string(Clip[Current])+"/"+string(Gclip[G[Current]]));
+        draw_text(4,H-24,string(Q[P[Current]])+"/"+string(Gclip[G[Current]]));
         draw_set_colour(0);
 
         draw_rectangle(W-100,H-40,W-20,H-20,1);        
@@ -166,7 +166,6 @@ if instance_exists(obj_player){
                 }
             }
         }
-        
         draw_set_colour(0);
         draw_set_halign(fa_left);
         draw_set_valign(fa_top);

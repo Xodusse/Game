@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var gun = (irandom(Gcount - 1));
+            <string>var gun = (irandom(obj_player.Count - 1));
 var gunclips = (irandom(5));
 
 Clips[gun] += gunclips;

@@ -53,11 +53,18 @@ instance_create(0,0,obj_controller_inventory);
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
-Kick = 0;
 Current = 0;
+Kick = 0;
 Swap = 0;
 
 Rate = 0;
+Reload = 10;
+
+Count = 1;
+
+//Guns (ids) in inventory.
+G[0] = 0;
+P[0] = 0;
 </string>
           </argument>
         </arguments>
@@ -113,6 +120,41 @@ Radius = 16;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Inventory controller
+// © 2017 - Jon Harvey
+
+//This doesn't have to be calculated every step!
+
+Count = 0;
+for(var X = 0;X&lt;6;X++){
+    
+    var Item = I[X];
+    if (Item&lt;=Gheavies*2+Glights) ^^ (Item&lt;=Gheavies*2 &amp;&amp; ((Item+1)%2)){
+        
+        P[Count] = X+(Item&lt;Gheavies*2);
+        G[Count++] = floor(Item/2-1/2)+(Item&gt;Gheavies*2)*floor(Item/2-1);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Gun controller
 // © 2017 - Jon Harvey
 
@@ -127,24 +169,25 @@ Swap *= S90;
 
 //Fire or swap guns when not swapping.
 if abs(Swap)&lt;0.1 {
-    
+       
     //Add to gun timelines.
     Rate += DELTA;
-    Reload[Current] += DELTA;
+    Reload += DELTA;
     
-    //Control gun swap.
+    //Control gun swapping.
     Swap = mouse_wheel_down()-mouse_wheel_up();
     if Swap != 0{
         
-        Current = ((Current-Swap+Gcount) mod Gcount);
+        Current = ((Current-Swap+Count) mod Count);
         Rate = 0;
+        Reload = Greload[G[Current]]*(Q[P[Current]]&gt;0);
     }
     
     //Shoot fully-automatic or semi-automatic with left click.
     if mouse_check_button(mb_left)*Gauto[G[Current]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Current]]{
         
         //Check gun timelines.
-        if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload[Current]&gt;Greload[G[Current]] &amp;&amp; Clips[Current]&gt;=0){
+        if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Clips[Current]&gt;=0){
             
             audio_play_sound(snd_gun,0,0);
             Rate = 0;
@@ -159,11 +202,11 @@ if abs(Swap)&lt;0.1 {
             }
             
             //Update or reload clip.
-            if (--Clip[Current]&lt;1 &amp;&amp; --Clips[Current]&gt;=0){
+            if (--Q[P[Current]]&lt;1 &amp;&amp; --Clips[Current]&gt;=0){
             
                 audio_play_sound(snd_empty,0,0);
-                Clip[Current] = Gclip[G[Current]];
-                Reload[Current] = 0;
+                Q[P[Current]] = 0;
+                Reload = 0;
             }
             
             //Add gun recoil to player speed and kick.
@@ -174,11 +217,17 @@ if abs(Swap)&lt;0.1 {
     }
     
     //Reload with the reload key.
-    if Kreload &amp;&amp; (Clip[Current]&lt;Gclip[G[Current]] &amp;&amp; --Clips[Current]&gt;=0){
+    if Kreload &amp;&amp; (Q[P[Current]]&lt;Gclip[G[Current]] &amp;&amp; --Clips[Current]&gt;=0){
     
         Clips[Current] = max(Clips[Current],-1);
-        Clip[Current] = Gclip[G[Current]];
-        Reload[Current] = 0;
+        Q[P[Current]] = 0;
+        Reload = 0;
+    }
+    
+    //Fill clip when finished reloading.
+    if Q[P[Current]]&lt;1 &amp;&amp; Reload&gt;Greload[G[Current]]{
+    
+        Q[P[Current]] = Gclip[G[Current]];
     }
 }
 </string>
@@ -265,30 +314,6 @@ if (WalkSpeedY != 0){
         WalkSpeedY = 0;
     }
 }        
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="13">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Shake Screen
-Shake = 3;
 </string>
           </argument>
         </arguments>
