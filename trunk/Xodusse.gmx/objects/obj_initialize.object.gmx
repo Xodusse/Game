@@ -49,33 +49,6 @@ FRAME_DELTA = 1;
 S90 = power(0.90,FRAME_DELTA);
 S98 = power(0.98,FRAME_DELTA);
 
-//GAME CONFIGURATION:
-
-DISPLAY_HRESOLUTION = display_get_width();
-DISPLAY_VRESOLUTION = display_get_height();
-DISPLAY_ASPECT = DISPLAY_HRESOLUTION / DISPLAY_VRESOLUTION;
-
- //VSync - Boolean;
- SETTING_VSYNC = false;
- //Texture interpolation - Boolean;
- SETTING_INTERPOLATION = true;
- //Anti-aliasing max - Real (Can return: [0 for unsupported], [2 for 2xAA], [6 for 2xAA &amp; 4xAA], [12 for 4xAA &amp; 8xAA] and [16 for 2xAA,4xAA &amp; 8xAA]);
- SETTING_FXAA_MAX = display_aa;
- //Anti-aliasing current - Real;
- if (SETTING_FXAA_MAX == 16){ 
-    SETTING_FXAA = 8;
- }
- else {
-    SETTING_FXAA = 0;
- }
- //Fullscreen - Boolean;
- SETTING_FULLSCREEN = false;
- //Resolution current - Real (Can return: [0 for 960x540], [1 for 1280x720], [2 for 1366x768], [3 for 1600x900], [4 for 1920x1080], [5 for 2560x1440], [6 for 3840x2160], [7 for DISPLAY_HRESOLUTIONxDISPLAY_VRESOLUTION]);
- SETTING_RESOLUTION = 0;
- 
- //Reset the display:
- display_reset(SETTING_FXAA, SETTING_VSYNC);
-
 //Seed:
 
 //Fixed seed setting to real random - Jon
@@ -120,6 +93,138 @@ globalvar FNT_EXUDATION_LARGE, FNT_EXUDATION;
 
 FNT_EXUDATION_LARGE = fnt_Exudation_Large;
 FNT_EXUDATION = fnt_Exudation;
+
+
+//GAME CONFIGURATION:
+
+//LOADS VARIABLES FROM CONFIG:
+//DEFINES VARIABLES IF CONFIG DOESN'T EXIST OR CANNOT BE READ:
+
+if (file_exists("Config.Xodusse")){
+
+    // -----
+    
+    DISPLAY_HRESOLUTION = display_get_width();
+    DISPLAY_VRESOLUTION = display_get_height();
+    DISPLAY_ASPECT = DISPLAY_HRESOLUTION / DISPLAY_VRESOLUTION;
+    
+    //LOAD VSYNC:
+    scr_cread_vsync();  
+  
+    //LOAD INTERPOLATION:
+    scr_cread_interpolation();
+    
+    //LOAD FXAA:
+    scr_cread_fxaa();
+    
+    //LOAD FULLSCREEN
+    scr_cread_fullscreen();
+    
+    //LOAD RESOLUTION:
+    scr_cread_resolution();
+    
+    
+}
+
+
+
+//CREATE CONFIG FILE:
+else {
+
+    //DEFINE SETTINGS:
+    // -----    
+    
+    DISPLAY_HRESOLUTION = display_get_width();
+    DISPLAY_VRESOLUTION = display_get_height();
+    DISPLAY_ASPECT = DISPLAY_HRESOLUTION / DISPLAY_VRESOLUTION;
+    
+    //VSync - Boolean;
+    SETTING_VSYNC = false;
+      
+    //Texture interpolation - Boolean;
+    SETTING_INTERPOLATION = true;
+    
+    //Anti-aliasing max - Real (Can return: [0 for unsupported], [2 for 2xAA], [6 for 2xAA &amp; 4xAA], [12 for 4xAA &amp; 8xAA] and [14 for 2xAA,4xAA &amp; 8xAA]);
+    SETTING_FXAA_MAX = display_aa;
+    
+    //Anti-aliasing current - Real;
+    if (SETTING_FXAA_MAX == 14){ 
+        SETTING_FXAA = 0;
+    }
+    else {
+        SETTING_FXAA = 0;
+    }
+    
+    //Fullscreen - Boolean;
+    SETTING_FULLSCREEN = false;
+    
+    //Resolution current - Real (Can return: [0 for 960x540], [1 for 1280x720], [2 for 1366x768], [3 for 1600x900], [4 for 1920x1080], [5 for 2560x1440], [6 for 3840x2160], [7 for DISPLAY_HRESOLUTIONxDISPLAY_VRESOLUTION]);
+    SETTING_RESOLUTION = 0;     
+        
+    // -----
+
+    //WRITE SETTINGS TO CONFIG:
+    
+    var Config_File = file_text_open_write(working_directory + "Config.Xodusse");
+    
+    //Assign Settings:
+    var C_Vsync = SETTING_VSYNC;
+    var C_Interpolation = SETTING_INTERPOLATION;
+    var C_FXAA = SETTING_FXAA;
+    var C_Fullscreen = SETTING_FULLSCREEN;
+    var C_Resolution = SETTING_RESOLUTION;
+    
+    //Write Settings:
+    file_text_write_string(Config_File, "[ XODUSSE CONFIGURATION ]");
+    file_text_writeln(Config_File);
+    file_text_writeln(Config_File);
+    
+    file_text_write_string(Config_File, "VSYNC: ");
+    file_text_write_real(Config_File, C_Vsync);
+    file_text_writeln(Config_File);
+    
+    file_text_write_string(Config_File, "INTERPOLATION: ");    
+    file_text_write_real(Config_File, C_Interpolation);
+    file_text_writeln(Config_File);
+    
+    file_text_write_string(Config_File, "FXAA: ");
+    file_text_write_real(Config_File, C_FXAA);
+    file_text_writeln(Config_File);
+    
+    file_text_write_string(Config_File, "FULLSCREEN: ");
+    file_text_write_real(Config_File, C_Fullscreen);
+    file_text_writeln(Config_File);
+    
+    file_text_write_string(Config_File, "RESOLUTION: ");
+    file_text_write_real(Config_File, C_Resolution);
+    file_text_writeln(Config_File);
+    
+    
+    file_text_close(Config_File);
+}
+
+ 
+//Reset the display:
+display_reset(SETTING_FXAA, SETTING_VSYNC);
+ 
+//Turn off texture interpolation:
+texture_set_interpolation(SETTING_INTERPOLATION);
+
+//Set fullscreen mode:
+window_set_fullscreen(SETTING_FULLSCREEN);
+
+//Set window width:
+if (SETTING_RESOLUTION == 0){
+    window_set_size(960,540);
+}
+
+else if (SETTING_RESOLUTION == 1){
+    window_set_size(1280,720);
+}
+
+else {
+    window_set_size(960,540);
+}
 </string>
           </argument>
         </arguments>
@@ -150,6 +255,54 @@ FRAME_DELTA = DESIRED_FPS * DELTA;
 
 S90 = power(0.90,FRAME_DELTA);
 S98 = power(0.98,FRAME_DELTA);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Set the resolution of the window and view:
+//© 2017 - Reece Warren
+
+//Set window width:
+if (SETTING_RESOLUTION == 0){
+    window_set_size(960,540);
+    view_wport[0] = 960;
+    view_hport[0] = 540; 
+}
+
+else if (SETTING_RESOLUTION == 1){
+    window_set_size(1280,720);
+    view_wport[0] = 1280;
+    view_hport[0] = 720;
+}
+
+else {
+
+    ///TODO:
+        //Add resolutions 2 to 7.
+        //Detect the maximum resolution and determine if config value is lower:
+        
+    window_set_size(960,540);
+    view_wport[0] = 960;
+    view_hport[0] = 540; 
+}
 </string>
           </argument>
         </arguments>
