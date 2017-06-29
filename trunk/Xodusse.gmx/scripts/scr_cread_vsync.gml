@@ -4,7 +4,6 @@ Config_File = file_text_open_read("Config.Xodusse");
 //LOAD OTHER CONFIG VARIABLES:    
 file_text_readln(Config_File);
 file_text_readln(Config_File);
-file_text_readln(Config_File); 
 
 //LOAD VSYNC VARIABLE:
 var str_vsync = file_text_read_string(Config_File);   

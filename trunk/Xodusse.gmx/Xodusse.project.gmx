@@ -89,8 +89,8 @@
   <scripts name="scripts">
     <script>scripts\scr_get_memory_virtual.gml</script>
     <script>scripts\scr_get_memory_physical.gml</script>
-    <script>scripts\scr_cread_interpolation.gml</script>
     <script>scripts\scr_cread_vsync.gml</script>
+    <script>scripts\scr_cread_interpolation.gml</script>
     <script>scripts\scr_cread_fxaa.gml</script>
     <script>scripts\scr_cread_fullscreen.gml</script>
     <script>scripts\scr_cread_resolution.gml</script>
