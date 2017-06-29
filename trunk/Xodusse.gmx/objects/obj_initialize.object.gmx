@@ -94,6 +94,11 @@ globalvar FNT_EXUDATION_LARGE, FNT_EXUDATION;
 FNT_EXUDATION_LARGE = fnt_Exudation_Large;
 FNT_EXUDATION = fnt_Exudation;
 
+//DEFINE OTHER GAME VARIABLES:
+globalvar PAUSED;
+
+PAUSED = false;
+
 
 //GAME CONFIGURATION:
 

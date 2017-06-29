@@ -46,13 +46,8 @@
   </sounds>
   <sprites name="sprites">
     <sprites name="Buttons">
-      <sprite>sprites\spr_button_start</sprite>
-      <sprite>sprites\spr_button_alone</sprite>
-      <sprite>sprites\spr_button_back</sprite>
-      <sprite>sprites\spr_button_coop</sprite>
-      <sprite>sprites\spr_button_quit</sprite>
-      <sprite>sprites\spr_button_options</sprite>
-      <sprite>sprites\spr_button_set</sprite>
+      <sprite>sprites\spr_button_large</sprite>
+      <sprite>sprites\spr_button_medium</sprite>
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_player_head</sprite>
@@ -87,13 +82,18 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_get_memory_virtual.gml</script>
-    <script>scripts\scr_get_memory_physical.gml</script>
-    <script>scripts\scr_cread_vsync.gml</script>
-    <script>scripts\scr_cread_interpolation.gml</script>
-    <script>scripts\scr_cread_fxaa.gml</script>
-    <script>scripts\scr_cread_fullscreen.gml</script>
-    <script>scripts\scr_cread_resolution.gml</script>
+    <scripts name="Externals">
+      <script>scripts\scr_get_memory_virtual.gml</script>
+      <script>scripts\scr_get_memory_physical.gml</script>
+    </scripts>
+    <scripts name="Config">
+      <script>scripts\scr_cread_vsync.gml</script>
+      <script>scripts\scr_cread_interpolation.gml</script>
+      <script>scripts\scr_cread_fxaa.gml</script>
+      <script>scripts\scr_cread_fullscreen.gml</script>
+      <script>scripts\scr_cread_resolution.gml</script>
+      <script>scripts\scr_cwrite.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>
@@ -142,13 +142,8 @@
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
-        <object>objects\obj_button_alone</object>
-        <object>objects\obj_button_back</object>
-        <object>objects\obj_button_coop</object>
-        <object>objects\obj_button_options</object>
-        <object>objects\obj_button_quit</object>
-        <object>objects\obj_button_start</object>
-        <object>objects\obj_button_set</object>
+        <object>objects\obj_button_large</object>
+        <object>objects\obj_button_medium</object>
       </objects>
     </objects>
   </objects>
