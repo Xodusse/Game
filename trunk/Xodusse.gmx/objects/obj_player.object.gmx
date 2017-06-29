@@ -266,8 +266,7 @@ if abs(Swap)&lt;0.1 {
         
         //Reload with the reload key.
         if Kreload &amp;&amp; (Q[P[Current]]&lt;Gclip[G[Current]] &amp;&amp; Magazine&gt;-1){
-        
-            Clips[Current] = max(Clips[Current],-1);
+            
             Q[P[Current]] = 0;
             Reload = 0;
         }
