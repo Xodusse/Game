@@ -131,11 +131,11 @@ if (DEBUG_VISIBLE == true){
     
     //Version number:
     draw_text(8, 10,
-        "Xodusse V.071");
+        "Xodusse V.073");
     
     //Copyright:
     draw_text(8, 35,
-        "© 2017 - Reece Warren, Jon Harvey. All rights reserved.");
+        "© 2017 - Reece Warren, Jon Harvey. MIT License.");
         
     //X &amp; Y &amp; R:
     draw_text(8, 85,
