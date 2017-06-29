@@ -149,7 +149,7 @@ else {
     
     //Anti-aliasing current - Real;
     if (SETTING_FXAA_MAX == 14){ 
-        SETTING_FXAA = 0;
+        SETTING_FXAA = 8;
     }
     else {
         SETTING_FXAA = 0;

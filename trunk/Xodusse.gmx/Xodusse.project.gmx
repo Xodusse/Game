@@ -84,6 +84,7 @@
     <background>background\bac_main</background>
     <background>background\bac_options</background>
     <background>background\bac_sheet</background>
+    <background>background\bac_grass</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
