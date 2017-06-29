@@ -97,8 +97,8 @@ if instance_exists(obj_player){
 
 //Variables for view port width and height.
 var W,H;
-W = 960;
-H = 540;
+W = view_wport[0];
+H = view_hport[0];
 
 if instance_exists(obj_player){
 
@@ -106,10 +106,12 @@ if instance_exists(obj_player){
 
     with(obj_player){
     
+        //Inner circle.
         draw_set_alpha(0.6);
         draw_circle_colour(0,H,60,$222222,$333333,0);
         draw_set_alpha(1);
         
+        //Outer reload circle.
         draw_primitive_begin(pr_trianglestrip);
         for(var i = 0;i&lt;=30;i++){
             
@@ -119,70 +121,75 @@ if instance_exists(obj_player){
         }
         draw_primitive_end();
         
+        //Info text such as number of shots and number of magazines.
+        draw_set_colour($FFFFFF);
+        draw_text(2,H-40,string(max(Magazines,0)));
+        draw_text(4,H-24,string(Q[P[Current]])+"/"+string(Gclip[G[Current]]));
+        draw_set_colour(0);
+        
+        //Center gun on outer circle.
         var Item,Angle,Alpha;
         Item = I[P[Current]];
         Angle = 30*Swap-45;
         Alpha = 1;
-        
         draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,1);
         if (Item&lt;=Gheavies*2)
         {
             draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,1);
         }
         
+        //Top gun on outer circle.
         Item = I[P[(Current+1)%Count]];
         Angle = 30*Swap-75;
         Alpha = 0.5+Swap;
-        
         draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,Alpha);
         if (Item&lt;=Gheavies*2)
         {
             draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,Alpha);
         }
         
+        //Bottom gun on outer circle.
         Item = I[P[(Current-1+Count)%Count]];
         Angle = 30*Swap-15;
         Alpha = 0.5-Swap;
-        
         draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,Alpha);
         if (Item&lt;=Gheavies*2)
         {
             draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,Alpha);
         }
-        
-        //draw_sprite_ext(spr_gun,G[(Current+1)%Count],dcos(Angle-30)*140,H+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Swap);
-        //draw_sprite_ext(spr_gun,G[(Current+Count-1)%Count],dcos(Angle+30)*140,H+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Swap);
-        
-        draw_set_colour($FFFFFF);
-        draw_text(2,H-40,string(max(Clips[Current],0)));
-        draw_text(4,H-24,string(Q[P[Current]])+"/"+string(Gclip[G[Current]]));
-        draw_set_colour(0);
 
+        //Health bar.
         draw_rectangle(W-100,H-40,W-20,H-20,1);        
         draw_rectangle(W-100,H-40,W-100+clamp(Health,0,10)*8,H-20,0);
     }
+    
+    //Inventory system.
     if Ienable{
         
+        //Inventory base.
         draw_set_alpha(0.4);
         draw_rectangle(200,160,W-200,H-160,0);
-        draw_set_alpha(1);
+        draw_set_alpha(1);    
         
-        
+        //Cycle through inventory items.
         draw_set_halign(fa_right);
         draw_set_valign(fa_bottom);
-        
-        for(var X = 0;X&lt;6;X++)
-        for(var Y = 0;Y&lt;2;Y++){
+        for(var Y = 0;Y&lt;2;Y++)
+        for(var X = 0;X&lt;6;X++){
             
             var Item = I[X+Y*6];
             var Quantity = Q[X+Y*6];
             
+            //Slot square.
             draw_set_colour($0);
             draw_rectangle(W/2-239+X*80,H/2+1-Y*80,W/2-161+X*80,H/2+79-Y*80,1);
             
             if Item{
                 
+                //Item sprite.
                 draw_sprite(spr_items,Item-1,W/2-200+X*80,H/2+40-Y*80);
+                
+                //Number for quantity.
                 if Quantity{
                     
                     draw_set_colour($FFFFFF);

@@ -3,7 +3,7 @@
   <spriteName>spr_gun_magazine</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>2</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,14 +25,32 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var gun = (irandom(obj_player.Count - 1));
-var gunclips = (irandom(5));
+            <string>///Add magazine to inventory
+// © 2017 - Jon Harvey
 
-Clips[gun] += gunclips;
+var Gun,Count;
+//Pick random gun id.
+Gun = irandom(2);
+//Pick random amount of magazines.
+Count = 0;
 
-instance_destroy();
-
-
+for(var Y = 1;Y&gt;=0;Y--)
+for(var X = 0;X&lt;6;X++){
+    
+    var Item = I[X+Y*6];
+    //Check if item slot is free.
+    if (Item == 0){
+        
+        //Add magazine and ammo.
+        I[X+Y*6] = Gheavies*2+Glights+Gun+1;
+        Q[X+Y*6] = ceil(power(random(1),0.25)*Gclip[Gun]);
+        if ++Count&lt;(1+irandom(3)) break;
+    }
+}
+if Count
+{
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

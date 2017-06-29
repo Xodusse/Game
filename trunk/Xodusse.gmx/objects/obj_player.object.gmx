@@ -50,17 +50,27 @@ instance_create(0,0,obj_controller_inventory);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Gun variables
+            <string>///Set gun variables
 // © 2017 - Jon Harvey
 
+//Number of guns.
+Count = 1;
+//Gun in hand (between 0 and Count).
 Current = 0;
+//Inventory position of the next magazine.
+Magazine = -1;
+//Number of extra magazines for the current gun.
+Magazines = 0;
+
+//Gun kick animation.
 Kick = 0;
+//Gun swap animation.
 Swap = 0;
 
+//Gun shooting timeline.
 Rate = 0;
+//Gun reload timeline.
 Reload = 10;
-
-Count = 1;
 
 //Guns (ids) in inventory.
 G[0] = 0;
@@ -85,7 +95,7 @@ P[0] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Player variables
+            <string>///Set player variables
 // © 2017 - Jon Harvey
 
 Health = 10;
@@ -120,19 +130,47 @@ Radius = 16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Handle inventory
+            <string>///Sort inventory for guns
 // © 2017 - Jon Harvey
 
-//This doesn't have to be calculated every step!
+//This doesn't have to be calculated every step! Only when there's an inventory change.
 
+//Variable for number of guns.
 Count = 0;
+//Cycle through primary inventory slots.
 for(var X = 0;X&lt;6;X++){
     
     var Item = I[X];
+    //Check if item is gun.
     if (Item&lt;=Gheavies*2+Glights) ^^ (Item&lt;=Gheavies*2 &amp;&amp; ((Item+1)%2)){
         
+        //Set gun position in inventory.
         P[Count] = X+(Item&lt;Gheavies*2);
+        //Set gun id (same as in gun controller object).
         G[Count++] = floor(Item/2-1/2)+(Item&gt;Gheavies*2)*floor(Item/2-1);
+    }
+}
+
+//Variables for magazine position and count.
+Magazine = -1;
+Magazines = 0;
+//Cycle through all inventory slots.
+for(var Y = 1;Y&gt;=0;Y--)
+for(var X = 0;X&lt;6;X++){
+    
+    var Item = I[X+Y*6];
+    //Check if item is the right ammo.
+    if (Item-(Gheavies*2+Glights) == G[Current]+1){
+        
+        if Q[X+Y*6]{
+            
+            Magazines++;
+            if (Magazine = -1){
+            
+                Magazine = X+Y*6;
+            }
+        }
+        
     }
 }
 </string>
@@ -155,7 +193,7 @@ for(var X = 0;X&lt;6;X++){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Handle guns
+            <string>///Handle gun firing and reloading
 // © 2017 - Jon Harvey
 
 //Temporary speed variables for recoil.
@@ -183,10 +221,13 @@ if abs(Swap)&lt;0.1 {
         Reload = Greload[G[Current]]*(Q[P[Current]]&gt;0);
     }
     
-    //Fill clip when finished reloading.
-    if Q[P[Current]]&lt;1 &amp;&amp; Reload&gt;Greload[G[Current]]{
+    //Fill gun when finished reloading.
+    if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1 &amp;&amp; Magazine&gt;-1{
     
-        Q[P[Current]] = Gclip[G[Current]];
+        Q[P[Current]] = Q[Magazine];
+        //Remove magazine
+        I[Magazine] = 0;
+        Q[Magazine] = 0;
     }
     else{
         
@@ -194,7 +235,7 @@ if abs(Swap)&lt;0.1 {
         if mouse_check_button(mb_left)*Gauto[G[Current]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Current]]{
             
             //Check gun timelines.
-            if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Clips[Current]&gt;=0){
+            if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]){
                 
                 audio_play_sound(snd_gun,0,0);
                 Rate = 0;
@@ -209,7 +250,7 @@ if abs(Swap)&lt;0.1 {
                 }
                 
                 //Update or reload clip.
-                if (--Q[P[Current]]&lt;1 &amp;&amp; --Clips[Current]&gt;=0){
+                if (--Q[P[Current]]&lt;1 &amp;&amp; Magazine&gt;-1){
                 
                     audio_play_sound(snd_empty,0,0);
                     Q[P[Current]] = 0;
@@ -224,7 +265,7 @@ if abs(Swap)&lt;0.1 {
         }
         
         //Reload with the reload key.
-        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gclip[G[Current]] &amp;&amp; --Clips[Current]&gt;=0){
+        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gclip[G[Current]] &amp;&amp; Magazine&gt;-1){
         
             Clips[Current] = max(Clips[Current],-1);
             Q[P[Current]] = 0;
@@ -338,7 +379,7 @@ if (WalkSpeedY != 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw player
+            <string>///Draw player sprites
 // © 2017 - Jon Harvey
 
 var Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);

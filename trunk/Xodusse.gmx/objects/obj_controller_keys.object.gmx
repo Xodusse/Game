@@ -137,7 +137,7 @@ if Kassign &amp;&amp; keyboard_key
         KIconsole = keyboard_key;
         break;
         case KIinventory:
-        KIconsole = keyboard_key;
+        KIinventory = keyboard_key;
         break;
     }
     Kassign = 0;
@@ -149,25 +149,28 @@ if Kassign &amp;&amp; keyboard_key
 //© 2017 - Reece Warren
 //Check console:
 
+Kleft = keyboard_check(KIleft)*                   !CONSOLE_ENABLED;
+Kright = keyboard_check(KIright)*                 !CONSOLE_ENABLED;
+Kup = keyboard_check(KIup)*                       !CONSOLE_ENABLED;
+Kdown = keyboard_check(KIdown)*                   !CONSOLE_ENABLED;
+Kturnleft = keyboard_check(KIturnleft)*           !CONSOLE_ENABLED;
+Kturnright = keyboard_check(KIturnright)*         !CONSOLE_ENABLED;
+Kreload = keyboard_check_released(KIreload)*      !CONSOLE_ENABLED;
+Kinventory = keyboard_check_released(KIinventory)*!CONSOLE_ENABLED;
 
-if (CONSOLE_ENABLED == false){
-    Kleft = keyboard_check(KIleft);
-    Kright = keyboard_check(KIright);
-    Kup = keyboard_check(KIup);
-    Kdown = keyboard_check(KIdown);
-    Kturnleft = keyboard_check(KIturnleft);
-    Kturnright = keyboard_check(KIturnright);
-    Kreload = keyboard_check(KIreload);
-    Kinventory = keyboard_check_released(KIinventory);
-    
-    //© 2017 - Reece Warren
-    //Function Keys:
-    Kreset = keyboard_check_released(KIreset);
-    Kdebug = keyboard_check_released(KIdebug);
-}
+//© 2017 - Reece Warren
+//Function Keys:
+Kreset = keyboard_check_released(KIreset)*!CONSOLE_ENABLED;
+Kdebug = keyboard_check_released(KIdebug)*!CONSOLE_ENABLED;
 
 Kconsole = keyboard_check_released(KIconsole);
 Kescape = keyboard_check_released(KIescape);
+
+//Quit game
+if !CONSOLE_ENABLED &amp;&amp; Kescape
+{
+    room_goto(rm_main);
+}
 </string>
           </argument>
         </arguments>

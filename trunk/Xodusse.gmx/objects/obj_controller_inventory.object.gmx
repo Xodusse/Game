@@ -29,10 +29,15 @@
 // © 2017 - Jon Harvey
 
 globalvar Ienable,I,Q;
-Ienable = 0;//Toggle inventory (0 is off).
+
+//Toggle inventory (0 is off).
+Ienable = 0;
+
+//Item and quantity arrays (ordered from left to right, bottom to top).
 I[11] = 0;
 Q[11] = 0;
 
+//Add default items (ids correspond to spr_items image index+1).
 I[0] = 1;
 Q[0] = 0;
 I[1] = 2;
@@ -41,25 +46,23 @@ I[2] = 3;
 Q[2] = Gclip[1];
 I[3] = 4;
 Q[3] = Gclip[2];
-I[4] = 1;
-Q[4] = 0;
-I[5] = 2;
-Q[5] = Gclip[0];
-I[6] = 5;
-Q[6] = Gclip[0];
-I[7] = 6;
-Q[7] = Gclip[1]-9;
-I[8] = 7;
-Q[8] = Gclip[2]-4;
+I[4] = 6;
+Q[4] = Gclip[1];
+/*I[5] = 7;
+Q[5] = Gclip[2];
 
-//Gun clip count (number of clips).
-globalvar Clips;
-Clips[0] = 40;
-Clips[1] = 40;
-Clips[2] = 40;
-Clips[3] = 40;
-Clips[4] = 40;
-Clips[5] = 40;
+I[6] = 5;
+Q[6] = Gclip[0]-4;
+I[7] = 5;
+Q[7] = Gclip[0]-9;
+I[8] = 6;
+Q[8] = Gclip[1];
+I[9] = 5;
+Q[9] = Gclip[0]-52;
+I[10] = 5;
+Q[10] = Gclip[0]-25;
+I[11] = 7;
+Q[11] = Gclip[2];
 </string>
           </argument>
         </arguments>
@@ -82,9 +85,10 @@ Clips[5] = 40;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Pop up inventory
+            <string>///Control inventory
 // © 2017 - Jon Harvey
 
+//Pop up on key press.
 if Kinventory{
     
     Ienable = !Ienable;
