@@ -119,11 +119,39 @@ if instance_exists(obj_player){
         }
         draw_primitive_end();
         
-        var Angle;
+        var Item,Angle,Alpha;
+        Item = I[P[Current]];
         Angle = 30*Swap-45;
-        draw_sprite_ext(spr_gun,G[Current],dcos(Angle)*140,H+dsin(Angle)*140,1,1,-Angle,-1,1);
-        draw_sprite_ext(spr_gun,G[(Current+1)%Count],dcos(Angle-30)*140,H+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Swap);
-        draw_sprite_ext(spr_gun,G[(Current+Count-1)%Count],dcos(Angle+30)*140,H+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Swap);
+        Alpha = 1;
+        
+        draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,1);
+        if (Item&lt;=Gheavies*2)
+        {
+            draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,1);
+        }
+        
+        Item = I[P[(Current+1)%Count]];
+        Angle = 30*Swap-75;
+        Alpha = 0.5+Swap;
+        
+        draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,Alpha);
+        if (Item&lt;=Gheavies*2)
+        {
+            draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,Alpha);
+        }
+        
+        Item = I[P[(Current-1+Count)%Count]];
+        Angle = 30*Swap-15;
+        Alpha = 0.5-Swap;
+        
+        draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,Alpha);
+        if (Item&lt;=Gheavies*2)
+        {
+            draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,Alpha);
+        }
+        
+        //draw_sprite_ext(spr_gun,G[(Current+1)%Count],dcos(Angle-30)*140,H+dsin(Angle-30)*140,1,1,30-Angle,-1,0.5+Swap);
+        //draw_sprite_ext(spr_gun,G[(Current+Count-1)%Count],dcos(Angle+30)*140,H+dsin(Angle+30)*140,1,1,-30-Angle,-1,0.5-Swap);
         
         draw_set_colour($FFFFFF);
         draw_text(2,H-40,string(max(Clips[Current],0)));
@@ -136,33 +164,29 @@ if instance_exists(obj_player){
     if Ienable{
         
         draw_set_alpha(0.4);
-        draw_rectangle(130,180,W-130,H-80,0);
-        
-        draw_rectangle(190,H-220,370,H-140,0);
-        draw_rectangle(390,H-220,570,H-140,0);
-        draw_rectangle(590,H-220,770,H-140,0);
-        draw_rectangle(190,H-320,370,H-240,0);
-        draw_rectangle(390,H-320,570,H-240,0);
-        draw_rectangle(590,H-320,770,H-240,0);        
+        draw_rectangle(200,160,W-200,H-160,0);
         draw_set_alpha(1);
         
         
         draw_set_halign(fa_right);
         draw_set_valign(fa_bottom);
-        draw_set_colour($FFFFFF);
+        
         for(var X = 0;X&lt;6;X++)
         for(var Y = 0;Y&lt;2;Y++){
             
             var Item = I[X+Y*6];
             var Quantity = Q[X+Y*6];
             
+            draw_set_colour($0);
+            draw_rectangle(W/2-239+X*80,H/2+1-Y*80,W/2-161+X*80,H/2+79-Y*80,1);
+            
             if Item{
                 
-                draw_sprite(spr_items,Item-1,230+X*100,H-180-Y*100);
+                draw_sprite(spr_items,Item-1,W/2-200+X*80,H/2+40-Y*80);
                 if Quantity{
                     
-                    
-                    draw_text(270+X*100,H-140-Y*100,Quantity);
+                    draw_set_colour($FFFFFF);
+                    draw_text(W/2-162+X*80,H/2+80-Y*80,Quantity);
                 }
             }
         }
