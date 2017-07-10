@@ -28,10 +28,13 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
-globalvar Ienable,I,Q;
+globalvar Ienable,Imove,I,Q;
 
 //Toggle inventory (0 is off).
 Ienable = 0;
+
+//Inventory position of item being moved (-1 for no item).
+Imove = -1;
 
 //Item and quantity arrays (ordered from left to right, bottom to top).
 I[11] = 0;
@@ -41,28 +44,15 @@ Q[11] = 0;
 I[0] = 1;
 Q[0] = 0;
 I[1] = 2;
-Q[1] = Gclip[0];
+Q[1] = Gcap[0];
 I[2] = 3;
-Q[2] = Gclip[1];
+Q[2] = 0;
 I[3] = 4;
-Q[3] = Gclip[2];
+Q[3] = Gcap[1];
 I[4] = 6;
-Q[4] = Gclip[1];
-/*I[5] = 7;
-Q[5] = Gclip[2];
-
-I[6] = 5;
-Q[6] = Gclip[0]-4;
-I[7] = 5;
-Q[7] = Gclip[0]-9;
-I[8] = 6;
-Q[8] = Gclip[1];
-I[9] = 5;
-Q[9] = Gclip[0]-52;
-I[10] = 5;
-Q[10] = Gclip[0]-25;
-I[11] = 7;
-Q[11] = Gclip[2];
+Q[4] = Gcap[3];
+I[5] = 5;
+Q[5] = Gcap[2];
 </string>
           </argument>
         </arguments>
@@ -93,6 +83,50 @@ if Kinventory{
     
     Ienable = !Ienable;
 }
+
+if Ienable{
+    
+    var W,H;
+    W = view_wport[0];
+    H = view_hport[0];
+    
+    var X,Y;
+    X = floor((window_mouse_get_x()-W/2-240)/80);
+    Y = 1-floor((window_mouse_get_y()-H/2)/80);
+    
+    if mouse_check_button_pressed(mb_left){
+        
+        Imove = X+Y*6;
+    }
+    else
+    if !mouse_check_button(mb_left){
+        
+        Imove = -1;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text(8,8,Imove);
 </string>
           </argument>
         </arguments>

@@ -9,7 +9,7 @@
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
   <bbox_right>79</bbox_right>
-  <bbox_top>12</bbox_top>
+  <bbox_top>10</bbox_top>
   <bbox_bottom>68</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
@@ -27,5 +27,8 @@
     <frame index="4">images\spr_items_4.png</frame>
     <frame index="5">images\spr_items_5.png</frame>
     <frame index="6">images\spr_items_6.png</frame>
+    <frame index="7">images\spr_items_7.png</frame>
+    <frame index="8">images\spr_items_8.png</frame>
+    <frame index="9">images\spr_items_9.png</frame>
   </frames>
 </sprite>

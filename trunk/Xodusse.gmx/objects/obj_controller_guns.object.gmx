@@ -29,46 +29,64 @@
 // © 2017 - Jon Harvey
 
 globalvar Gheavies,Glights,Gammo;
-Gheavies = 1;//Number of two-handed weapons.
+Gheavies = 2;//Number of two-handed weapons.
 Glights = 2;//Number of one-handed weapons.
-Gammo = 3;//Number of ammo (clips or rounds).
+Gammo = 4;//Number of ammo (clips or rounds).
 
-globalvar Gauto,Grate,Gclip,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype;
-Gauto[0] = 1;//0 = semi-automatic, 1 = fully-automatic
+globalvar Gauto,Grate,Gcap,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype;
+//0 = semi-automatic, 1 = fully-automatic
+Gauto[0] = 0;
 Gauto[1] = 1;
-Gauto[2] = 0;
+Gauto[2] = 1;
+Gauto[3] = 0;
 
-Grate[0] = 35;//Rounds per second.
-Grate[1] = 10;
-Grate[2] = 6;
+//Rounds per second.
+Grate[0] = 8;
+Grate[1] = 35;
+Grate[2] = 10;
+Grate[3] = 6;
 
-Gclip[0] = 100;//Gun clip size.
-Gclip[1] = 20;
-Gclip[2] = 10;
+//Gun magazine capacity.
+Gcap[0] = 4;
+Gcap[1] = 100;
+Gcap[2] = 20;
+Gcap[3] = 10;
 
-Greload[0] = 3;//Reload time in seconds.
-Greload[1] = 2;
-Greload[2] = 1;
+//Reload time in seconds.
+Greload[0] = 2;
+Greload[1] = 3;
+Greload[2] = 2;
+Greload[3] = 1;
 
-Garc[0] = 5;//Gun arc in degrees.
-Garc[1] = 15;
-Garc[2] = 8;
+//Gun arc in degrees.
+Garc[0] = 16;
+Garc[1] = 5;
+Garc[2] = 15;
+Garc[3] = 8;
 
-Grecoil[0] = 4;//Gun recoil per shot.
+//Gun recoil per shot.
+Grecoil[0] = 10;
 Grecoil[1] = 4;
-Grecoil[2] = 1;
+Grecoil[2] = 4;
+Grecoil[3] = 1;
 
-Gbullets[0] = 1;//Number of bullets/projectiles per shot.
+//Number of bullets/projectiles per shot.
+Gbullets[0] = 3;
 Gbullets[1] = 1;
 Gbullets[2] = 1;
+Gbullets[3] = 1;
 
-Gweight[0] = 0.7;//Speed multiplier.
-Gweight[1] = 1;
+//Speed multiplier.
+Gweight[0] = 0.6;
+Gweight[1] = 0.7;
 Gweight[2] = 1;
+Gweight[3] = 1;
 
-Gtype[0] = obj_bullet_pellet;//Type of projectile.
-Gtype[1] = obj_bullet_medium;
+//Type of projectile.
+Gtype[0] = obj_bullet_grenade;
+Gtype[1] = obj_bullet_pellet;
 Gtype[2] = obj_bullet_medium;
+Gtype[3] = obj_bullet_medium;
 </string>
           </argument>
         </arguments>

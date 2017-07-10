@@ -30,7 +30,7 @@
 
 var Gun,Count;
 //Pick random gun id.
-Gun = irandom(2);
+Gun = irandom(Gheavies+Glights);
 //Pick random amount of magazines.
 Count = 0;
 
@@ -43,7 +43,7 @@ for(var X = 0;X&lt;6;X++){
         
         //Add magazine and ammo.
         I[X+Y*6] = Gheavies*2+Glights+Gun+1;
-        Q[X+Y*6] = ceil(power(random(1),0.25)*Gclip[Gun]);
+        Q[X+Y*6] = Gcap[Gun];
         if ++Count&lt;(1+irandom(3)) break;
     }
 }

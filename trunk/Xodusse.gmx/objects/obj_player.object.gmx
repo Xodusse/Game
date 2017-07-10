@@ -141,13 +141,13 @@ Count = 0;
 for(var X = 0;X&lt;6;X++){
     
     var Item = I[X];
-    //Check if item is gun.
+    //Check if item is gun (or front part of heavy gun).
     if (Item&lt;=Gheavies*2+Glights) ^^ (Item&lt;=Gheavies*2 &amp;&amp; ((Item+1)%2)){
         
         //Set gun position in inventory.
-        P[Count] = X+(Item&lt;Gheavies*2);
+        P[Count] = X+(Item&lt;=Gheavies*2);
         //Set gun id (same as in gun controller object).
-        G[Count++] = floor(Item/2-1/2)+(Item&gt;Gheavies*2)*floor(Item/2-1);
+        G[Count++] = floor(Item/2-1/2)+(Item&gt;Gheavies*2-1)*floor(Item/2-Gheavies);
     }
 }
 
@@ -216,7 +216,7 @@ if abs(Swap)&lt;0.1 {
     Swap = mouse_wheel_down()-mouse_wheel_up();
     if Swap != 0{
         
-        Current = ((Current-Swap+Count) mod Count);
+        Current = (Current-Swap+Count)%Count;
         Rate = 0;
         Reload = Greload[G[Current]]*(Q[P[Current]]&gt;0);
     }
@@ -249,7 +249,7 @@ if abs(Swap)&lt;0.1 {
                     Bullet.image_angle = Direction;
                 }
                 
-                //Update or reload clip.
+                //Update or reload magazine.
                 if (--Q[P[Current]]&lt;1 &amp;&amp; Magazine&gt;-1){
                 
                     audio_play_sound(snd_empty,0,0);
@@ -264,8 +264,8 @@ if abs(Swap)&lt;0.1 {
             }
         }
         
-        //Reload with the reload key.
-        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gclip[G[Current]] &amp;&amp; Magazine&gt;-1){
+        //Reload magazine with the reload key.
+        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gcap[G[Current]] &amp;&amp; Magazine&gt;-1){
             
             Q[P[Current]] = 0;
             Reload = 0;

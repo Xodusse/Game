@@ -124,7 +124,7 @@ if instance_exists(obj_player){
         //Info text such as number of shots and number of magazines.
         draw_set_colour($FFFFFF);
         draw_text(2,H-40,string(max(Magazines,0)));
-        draw_text(4,H-24,string(Q[P[Current]])+"/"+string(Gclip[G[Current]]));
+        draw_text(4,H-24,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
         draw_set_colour(0);
         
         //Center gun on outer circle.
