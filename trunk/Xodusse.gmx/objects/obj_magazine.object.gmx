@@ -30,7 +30,7 @@
 
 var Gun,Count;
 //Pick random gun id.
-Gun = irandom(Gheavies+Glights);
+Gun = irandom(Gammo-1);
 //Pick random amount of magazines.
 Count = 0;
 

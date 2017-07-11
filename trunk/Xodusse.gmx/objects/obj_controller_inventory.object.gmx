@@ -94,13 +94,24 @@ if Ienable{
     X = floor((window_mouse_get_x()-W/2-240)/80);
     Y = 1-floor((window_mouse_get_y()-H/2)/80);
     
-    if mouse_check_button_pressed(mb_left){
+    if mouse_check_button_pressed(mb_left) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
         
         Imove = X+Y*6;
     }
     else
-    if !mouse_check_button(mb_left){
+    if mouse_check_button_released(mb_left){
         
+        if (Imove&gt;=0 &amp;&amp; Imove&lt;12) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
+        
+            var P = X+Y*6;
+            if P!=Imove &amp;&amp; I[P] == 0{
+            
+                I[P] = I[Imove];
+                Q[P] = Q[Imove];
+                I[Imove] = 0;
+                Q[Imove] = 0;
+            }
+        }
         Imove = -1;
     }
 }

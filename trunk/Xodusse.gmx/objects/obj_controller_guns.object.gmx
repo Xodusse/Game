@@ -31,7 +31,7 @@
 globalvar Gheavies,Glights,Gammo;
 Gheavies = 2;//Number of two-handed weapons.
 Glights = 2;//Number of one-handed weapons.
-Gammo = 4;//Number of ammo (clips or rounds).
+Gammo = Gheavies+Glights;//Number of ammo (clips or rounds).
 
 globalvar Gauto,Grate,Gcap,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype;
 //0 = semi-automatic, 1 = fully-automatic
