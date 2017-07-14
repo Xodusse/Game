@@ -42,7 +42,7 @@ for(var X = 0;X&lt;6;X++){
     if (Item == 0){
         
         //Add magazine and ammo.
-        I[X+Y*6] = Gheavies*2+Glights+Gun+1;
+        I[X+Y*6] = Gdoubles*2+Gsingles+Gun+1;
         Q[X+Y*6] = Gcap[Gun];
         if ++Count&lt;(1+irandom(3)) break;
     }

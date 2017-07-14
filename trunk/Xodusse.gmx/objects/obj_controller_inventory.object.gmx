@@ -84,6 +84,7 @@ if Kinventory{
     Ienable = !Ienable;
 }
 
+//Inventory item movement
 if Ienable{
     
     var W,H;
@@ -101,43 +102,37 @@ if Ienable{
     else
     if mouse_check_button_released(mb_left){
         
-        if (Imove&gt;=0 &amp;&amp; Imove&lt;12) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
+        var P = X+Y*6;
+        if Imove != P &amp;&amp; (Imove&gt;=0 &amp;&amp; Imove&lt;12 ) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
         
-            var P = X+Y*6;
-            if P!=Imove &amp;&amp; I[P] == 0{
-            
+            if I[Imove]&gt;Gdoubles*2 &amp;&amp; I[P] == 0{ 
+                
                 I[P] = I[Imove];
                 Q[P] = Q[Imove];
                 I[Imove] = 0;
                 Q[Imove] = 0;
             }
+            else
+            if I[Imove]&gt;0 &amp;&amp; I[P] == 0{ 
+            
+                var Shift = 2*(I[Imove]%2)-1;
+                if (X+Shift&gt;=-6 &amp;&amp; X+Shift&lt;0) &amp;&amp; I[P+Shift] == 0{
+            
+                    I[P] = I[Imove];
+                    Q[P] = Q[Imove];
+                    I[P+Shift] = I[Imove+Shift];
+                    Q[P+Shift] = Q[Imove+Shift];
+                    
+                    I[Imove] = 0;
+                    Q[Imove] = 0;
+                    I[Imove+Shift] = 0;
+                    Q[Imove+Shift] = 0;
+                }
+            }
         }
         Imove = -1;
     }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_text(8,8,Imove);
 </string>
           </argument>
         </arguments>
