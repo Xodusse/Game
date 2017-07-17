@@ -65,7 +65,7 @@ if image_index == 0{
     
         var Explosion = instance_nearest(x,y,obj_explosion);
         var Distance = point_distance(x,y,Explosion.x,Explosion.y)/Explosion.image_xscale/96;
-        if Distance&lt;1{
+        if Distance&lt;1.5{
         
             Health -= min(1.5-Distance,1)*Explosion.Damage;
         }

@@ -130,6 +130,37 @@ Radius = 16;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Control weapon swapping
+if abs(Swap)&lt;0.1{
+    
+    Swap = mouse_wheel_down()-mouse_wheel_up();
+    if Swap != 0{
+        
+        Current = (Current-Swap+Count)%Count;
+        Rate = 0;
+        Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Sort inventory for guns
 // © 2017 - Jon Harvey
 
@@ -142,12 +173,12 @@ for(var X = 0;X&lt;6;X++){
     
     var Item = I[X];
     //Check if item is gun (or front part of heavy gun).
-    if (Item&lt;=Gdoubles*2+Gsingles) ^^ (Item&lt;=Gdoubles*2 &amp;&amp; ((Item+1)%2)){
+    if (Item&lt;=Idoubles*2+Isingles) ^^ (Item&lt;=Idoubles*2 &amp;&amp; ((Item+1)%2)){
         
         //Set gun position in inventory.
-        P[Count] = X+(Item&lt;=Gdoubles*2);
+        P[Count] = X+(Item&lt;=Idoubles*2);
         //Set gun id (same as in gun controller object).
-        G[Count++] = floor(Item/2-1/2)+(Item&gt;Gdoubles*2-1)*floor(Item/2-Gdoubles);
+        G[Count++] = floor(Item/2-1/2)+(Item&gt;Idoubles*2-1)*floor(Item/2-Idoubles);
     }
 }
 
@@ -160,7 +191,7 @@ for(var X = 0;X&lt;6;X++){
     
     var Item = I[X+Y*6];
     //Check if item is the right ammo.
-    if (Item-(Gdoubles*2+Gsingles) == G[Current]+1){
+    if (Item-(Idoubles*2+Isingles) == G[Current]+1){
         
         if Q[X+Y*6]{
             
@@ -170,8 +201,18 @@ for(var X = 0;X&lt;6;X++){
                 Magazine = X+Y*6;
             }
         }
-        
     }
+}
+
+//Don't reload when empty.
+if !Magazines{
+
+    Reload = Greload[G[Current]];
+}
+else
+if Q[P[Current]]&lt;1 &amp;&amp; Reload&gt;=Greload[G[Current]]{
+
+    Reload = 0;
 }
 </string>
           </argument>
@@ -206,23 +247,15 @@ Kick *= S90;
 Swap *= S90;
 
 //Fire or swap guns when not swapping.
+Reload = lerp(Reload,Greload[G[Current]],!Magazines);
 if abs(Swap)&lt;0.1 {
        
     //Add to gun timelines.
     Rate += DELTA;
     Reload += DELTA;
     
-    //Control gun swapping.
-    Swap = mouse_wheel_down()-mouse_wheel_up();
-    if Swap != 0{
-        
-        Current = (Current-Swap+Count)%Count;
-        Rate = 0;
-        Reload = Greload[G[Current]]*(Q[P[Current]]&gt;0);
-    }
-    
     //Fill gun when finished reloading.
-    if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1 &amp;&amp; Magazine&gt;-1{
+    if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1  &amp;&amp; Magazines{
     
         Q[P[Current]] = Q[Magazine];
         //Remove magazine
@@ -250,7 +283,7 @@ if abs(Swap)&lt;0.1 {
                 }
                 
                 //Update or reload magazine.
-                if (--Q[P[Current]]&lt;1 &amp;&amp; Magazine&gt;-1){
+                if (--Q[P[Current]]&lt;1 &amp;&amp; Magazines){
                 
                     audio_play_sound(snd_empty,0,0);
                     Q[P[Current]] = 0;
@@ -265,7 +298,7 @@ if abs(Swap)&lt;0.1 {
         }
         
         //Reload magazine with the reload key.
-        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gcap[G[Current]] &amp;&amp; Magazine&gt;-1){
+        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gcap[G[Current]] &amp;&amp; Magazines){
             
             Q[P[Current]] = 0;
             Reload = 0;

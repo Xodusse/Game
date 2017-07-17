@@ -30,7 +30,7 @@
 
 var Gun,Count;
 //Pick random gun id.
-Gun = irandom(Gammo-1);
+Gun = irandom(Iammo-1);
 //Pick random amount of magazines.
 Count = 0;
 
@@ -42,7 +42,7 @@ for(var X = 0;X&lt;6;X++){
     if (Item == 0){
         
         //Add magazine and ammo.
-        I[X+Y*6] = Gdoubles*2+Gsingles+Gun+1;
+        I[X+Y*6] = Idoubles*2+Isingles+Gun+1;
         Q[X+Y*6] = Gcap[Gun];
         if ++Count&lt;(1+irandom(3)) break;
     }

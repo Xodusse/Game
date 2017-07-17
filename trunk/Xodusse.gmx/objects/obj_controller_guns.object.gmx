@@ -28,11 +28,6 @@
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
-globalvar Gdoubles,Gsingles,Gammo;
-Gdoubles = 2;//Number of two-handed weapons.
-Gsingles = 2;//Number of one-handed weapons.
-Gammo = Gdoubles+Gsingles;//Number of ammo (clips or rounds).
-
 globalvar Gauto,Grate,Gcap,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype;
 //0 = semi-automatic, 1 = fully-automatic
 Gauto[0] = 0;

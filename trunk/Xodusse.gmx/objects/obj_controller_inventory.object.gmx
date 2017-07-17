@@ -28,7 +28,10 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
-globalvar Ienable,Imove,I,Q;
+globalvar Idoubles,Isingles,Iammo,Ienable,Imove,I,Q;
+Idoubles = 2;//Number of two-handed weapons.
+Isingles = 2;//Number of one-handed weapons.
+Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
 
 //Toggle inventory (0 is off).
 Ienable = 0;
@@ -105,7 +108,7 @@ if Ienable{
         var P = X+Y*6;
         if Imove != P &amp;&amp; (Imove&gt;=0 &amp;&amp; Imove&lt;12 ) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
         
-            if I[Imove]&gt;Gdoubles*2 &amp;&amp; I[P] == 0{ 
+            if I[Imove]&gt;Idoubles*2 &amp;&amp; I[P] == 0{ 
                 
                 I[P] = I[Imove];
                 Q[P] = Q[Imove];
