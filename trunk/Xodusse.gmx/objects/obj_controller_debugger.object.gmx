@@ -131,7 +131,7 @@ if (DEBUG_VISIBLE == true){
     
     //Version number:
     draw_text(8, 10,
-        "Xodusse V.078");
+        "Xodusse V.082");
     
     //Copyright:
     draw_text(8, 35,
@@ -160,6 +160,22 @@ if (DEBUG_VISIBLE == true){
     //Physical Memory:
     draw_text(view_wview[0] - 8, 60,
          "Memory_Phy = " + string(memory_p) + "kB");
+         
+    //Current alien count:
+    draw_text(view_wview[0] - 8, 110,
+         "AlienCountCurrent: " + string(AlienCountCurrent)); 
+         
+    //Current alien max:
+    draw_text(view_wview[0] - 8, 135,
+         "AlienMax: " + string(AlienMax));
+         
+    //Current aliens remaining:
+    draw_text(view_wview[0] - 8, 160,
+         "AlienCountRemaining: " + string(AlienCountRemaining));
+         
+    //Wave:
+    draw_text(view_wview[0] - 8, 210,
+         "Wave: " + string(Wave));           
          
     // -- RESET --
     draw_set_halign(fa_left);

@@ -79,6 +79,9 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
     //Play Solo:
     if (BUTTON_TYPE == 0){
         room_goto(rm_test1);
+        
+        //Resets the wave controller:
+        AlienCountRemaining = AlienCountInitial;
     }
     
     //Play Coop:

@@ -26,22 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>///Wave variables
-// © 2017 - Jon Harvey
+// © 2017 - Jon Harvey,Reece Warren
 
-Wave = 0;
+globalvar AlienCountInitial,AlienCountRemaining,AlienMax,AlienCountCurrent,Wave;
 
-globalvar AlienCount,AlienMax;
-AlienCount = 20;
+AlienCountInitial = 20;
+AlienCountRemaining = AlienCountInitial;
 AlienMax = 10;
+AlienCountCurrent = 0;
 
-if instance_exists(obj_player){
-    
-    repeat(AlienMax){
-    
-        var A = random(360);
-        instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
-    }
-}
+Wave = 1;
+
+
 </string>
           </argument>
         </arguments>
@@ -64,9 +60,40 @@ if instance_exists(obj_player){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Wave control
-// © 2017 - Jon Harvey
+            <string>//Wave Control
+// © 2017 - Reece Warren, Jon Harvey
 
+//Only spawn aliens and perform calculations if in the game room:
+if (room == rm_test1){
+    
+    if (instance_exists(obj_enemy)){
+        AlienCountCurrent = instance_number(obj_enemy);
+    }
+    
+    else {
+        AlienCountCurrent = 0;
+    }
+    
+    //Spawn more aliens if under the memory allocation and there are aliens in the current wave left to spawn:
+    if (AlienCountCurrent &lt; AlienMax) &amp;&amp; (AlienCountRemaining &gt; 0){   
+        //Deduct an alien from the wave count:
+        AlienCountRemaining--;
+        //Spawn the alien:
+        var A = random(360); 
+        instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
+    }
+    
+    //Starts a new wave:
+    if (AlienCountCurrent == 0) &amp;&amp; (AlienCountRemaining == 0){
+        
+        //Start new wave:
+        Wave ++;
+        
+        //Adds five aliens each wave:
+        AlienCountRemaining = AlienCountInitial + ((Wave - 1) * 5);
+        
+    }
+}
 
 </string>
           </argument>

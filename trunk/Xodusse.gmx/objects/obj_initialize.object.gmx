@@ -75,6 +75,9 @@ instance_create(0,0,obj_controller_debugger);
 //Add console controller - Reece
 instance_create(0,0,obj_controller_console);
 
+//Add wave controller - Reece
+instance_create(0,0,obj_controller_wave);
+
 //GAME SETTINGS:
 globalvar DEBUG_VISIBLE, CONSOLE_ENABLED;
 

@@ -30,6 +30,9 @@
 
 if (Kreset){
     room_restart();
+    
+    //Resets the wave controller:
+    AlienCountRemaining = AlienCountInitial;    
 }
 </string>
           </argument>
