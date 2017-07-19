@@ -28,7 +28,7 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
-globalvar Idoubles,Isingles,Iammo,Ienable,Imove,I,Q;
+globalvar Idoubles,Isingles,Iammo,Ienable,Iid,Iquantity,Iposition,I,Q;
 Idoubles = 2;//Number of two-handed weapons.
 Isingles = 2;//Number of one-handed weapons.
 Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
@@ -36,8 +36,10 @@ Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
 //Toggle inventory (0 is off).
 Ienable = 0;
 
-//Inventory position of item being moved (-1 for no item).
-Imove = -1;
+//Inventory id of item being moved (0 for no item).
+Iid = 0;
+Iquantity = 0;
+Iposition = 0;
 
 //Item and quantity arrays (ordered from left to right, bottom to top).
 I[11] = 0;
@@ -100,40 +102,69 @@ if Ienable{
     
     if mouse_check_button_pressed(mb_left) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
         
-        Imove = X+Y*6;
+        var P = X+Y*6;
+        Iid = I[P];
+        Iquantity = Q[P];
+        Iposition = P;
+        
+        if Iid&lt;=Idoubles*2{
+            
+            var S = (Iid&amp;1)*2-1;
+            Iquantity = Q[P+(Iid&amp;1)];
+            I[P+S] = 0;
+            Q[P+S] = 0;
+        }
+        I[P] = 0;
+        Q[P] = 0;
     }
     else
-    if mouse_check_button_released(mb_left){
+    if mouse_check_button_released(mb_left) &amp;&amp; Iid{
         
-        var P = X+Y*6;
-        if Imove != P &amp;&amp; (Imove&gt;=0 &amp;&amp; Imove&lt;12 ) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
+        if Iid&lt;=Idoubles*2{
         
-            if I[Imove]&gt;Idoubles*2 &amp;&amp; I[P] == 0{ 
+            var S = (Iid&amp;1)*2-1;
+            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2) &amp;&amp; (X+S&gt;=-6 &amp;&amp; X+S&lt;0) &amp;&amp; !I[X+Y*6] &amp;&amp; !I[X+S+Y*6]{
+            
+                var P = X+Y*6;
+                I[P] = Iid;
+                Q[P] = Iquantity*((Iid+1)%2);
                 
-                I[P] = I[Imove];
-                Q[P] = Q[Imove];
-                I[Imove] = 0;
-                Q[Imove] = 0;
+                I[P+S] = Iid+S;
+                Q[P+S] = Iquantity*(Iid%2);
+                
+                Iid = 0;
+                Iquantity = 0;
             }
-            else
-            if I[Imove]&gt;0 &amp;&amp; I[P] == 0{ 
-            
-                var Shift = 2*(I[Imove]%2)-1;
-                if (X+Shift&gt;=-6 &amp;&amp; X+Shift&lt;0) &amp;&amp; I[P+Shift] == 0{
-            
-                    I[P] = I[Imove];
-                    Q[P] = Q[Imove];
-                    I[P+Shift] = I[Imove+Shift];
-                    Q[P+Shift] = Q[Imove+Shift];
-                    
-                    I[Imove] = 0;
-                    Q[Imove] = 0;
-                    I[Imove+Shift] = 0;
-                    Q[Imove+Shift] = 0;
-                }
+            else{
+                I[Iposition] = Iid;
+                Q[Iposition] = Iquantity*((Iid+1)%2);
+                              
+                I[Iposition+S] = Iid+S;
+                Q[Iposition+S] = Iquantity*(Iid%2);
+                
+                Iid = 0;
+                Iquantity = 0;
             }
         }
-        Imove = -1;
+        else{
+            
+            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2) &amp;&amp; !I[X+Y*6]{
+            
+                var P = X+Y*6;
+                I[P] = Iid;
+                Q[P] = Iquantity;
+                
+                Iid = 0;
+                Iquantity = 0;
+            }
+            else{
+                I[Iposition] = Iid;
+                Q[Iposition] = Iquantity;
+                
+                Iid = 0;
+                Iquantity = 0;
+            }
+        }
     }
 }
 </string>

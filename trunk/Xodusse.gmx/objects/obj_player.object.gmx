@@ -28,8 +28,14 @@
             <string>///Add GUI and inventory object
 // © 2017 - Jon Harvey
 
-instance_create(0,0,obj_controller_gui);
-instance_create(0,0,obj_controller_inventory);
+if !instance_exists(obj_controller_gui){
+    
+    instance_create(0,0,obj_controller_gui);
+}
+if !instance_exists(obj_controller_inventory){
+    
+    instance_create(0,0,obj_controller_inventory);
+}
 </string>
           </argument>
         </arguments>
@@ -248,7 +254,7 @@ Swap *= S90;
 
 //Fire or swap guns when not swapping.
 Reload = lerp(Reload,Greload[G[Current]],!Magazines);
-if abs(Swap)&lt;0.1 {
+if Count &amp;&amp; (abs(Swap)&lt;0.1) {
        
     //Add to gun timelines.
     Rate += DELTA;
