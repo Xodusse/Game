@@ -51,8 +51,8 @@
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_player_head</sprite>
-      <sprite>sprites\spr_player_legs</sprite>
       <sprite>sprites\spr_player_torso</sprite>
+      <sprite>sprites\spr_player_legs</sprite>
     </sprites>
     <sprites name="Projectiles">
       <sprite>sprites\spr_bullet_heavy</sprite>
