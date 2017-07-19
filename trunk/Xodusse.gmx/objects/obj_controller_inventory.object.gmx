@@ -92,13 +92,14 @@ if Kinventory{
 //Inventory item movement
 if Ienable{
     
-    var W,H;
+    var W,H,S;
     W = view_wport[0];
     H = view_hport[0];
+    S = 64;
     
     var X,Y;
-    X = floor((window_mouse_get_x()-W/2-240)/80);
-    Y = 1-floor((window_mouse_get_y()-H/2)/80);
+    X = floor((window_mouse_get_x()-W/2-S*3)/S);
+    Y = 1-floor((window_mouse_get_y()-H/2)/S);
     
     if mouse_check_button_pressed(mb_left) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
         

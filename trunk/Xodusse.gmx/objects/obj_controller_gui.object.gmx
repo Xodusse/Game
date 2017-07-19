@@ -96,9 +96,10 @@ if instance_exists(obj_player){
 // © 2017 - Jon Harvey
 
 //Variables for view port width and height.
-var W,H;
+var W,H,S;
 W = view_wport[0];
 H = view_hport[0];
+S = 64;
 
 if instance_exists(obj_player){
 
@@ -133,30 +134,30 @@ if instance_exists(obj_player){
             Item = I[P[Current]];
             Angle = 30*Swap-45;
             Alpha = 1;
-            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,1);
+            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
             if (Item&lt;=Idoubles*2){
                 
-                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,1);
+                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*70,H+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
             }
             
             //Top gun on outer circle.
             Item = I[P[(Current+1)%Count]];
             Angle = 30*Swap-75;
             Alpha = 0.5+Swap;
-            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,Alpha);
+            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
             if (Item&lt;=Idoubles*2){
                 
-                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,Alpha);
+                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
             }
             
             //Bottom gun on outer circle.
             Item = I[P[(Current-1+Count)%Count]];
             Angle = 30*Swap-15;
             Alpha = 0.5-Swap;
-            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,0.5,0.5,-Angle,-1,Alpha);
+            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
             if (Item&lt;=Idoubles*2){
                 
-                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,0.5,0.5,-Angle,-1,Alpha);
+                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
             }
         }
 
@@ -170,7 +171,7 @@ if instance_exists(obj_player){
           
         //Inventory base.
         draw_set_alpha(0.4);
-        draw_rectangle(200,160,W-200,H-160,0);
+        draw_rectangle(W/2+S*4,H/2+S*2,W/2-S*4,H/2-S*2,0);
         draw_set_alpha(1);    
         
         //Cycle through inventory items.
@@ -184,18 +185,18 @@ if instance_exists(obj_player){
             
             //Slot square.
             draw_set_colour(0);
-            draw_rectangle(W/2-239+X*80,H/2+1-Y*80,W/2-161+X*80,H/2+79-Y*80,1);
+            draw_rectangle(W/2-S*3+1+X*S,H/2+1-Y*S,W/2-S*2-1+X*S,H/2+S-1-Y*S,1);
             
             if Item{
                 
                 //Item sprite.
-                draw_sprite(spr_items,Item-1,W/2-200+X*80,H/2+40-Y*80);
+                draw_sprite(spr_items,Item-1,W/2-S*2.5+X*S,H/2+S/2-Y*S);
                 
-                //Number for quantity.
+                //Item quantity.
                 if Quantity{
                     
                     draw_set_colour($FFFFFF);
-                    draw_text(W/2-162+X*80,H/2+80-Y*80,Quantity);
+                    draw_text(W/2-S*2-2+X*S,H/2+S-Y*S,Quantity);
                 }
             }
         }
@@ -206,17 +207,19 @@ if instance_exists(obj_player){
             var X,Y;
             X = window_mouse_get_x();
             Y = window_mouse_get_y();
-            draw_sprite(spr_items,Iid-1,X,Y);
             
+            //Item sprite.
+            draw_sprite(spr_items,Iid-1,X,Y);
+            //Item's second part if it's a double.
             if Iid&lt;=Idoubles*2{
             
-                draw_sprite(spr_items,Iid-2+2*(Iid%2),X-80+160*(Iid%2),Y);
+                draw_sprite(spr_items,Iid-2+2*(Iid%2),X-S+S*2*(Iid%2),Y);
             }
-            
+            //Item quantity.
             if Iquantity{
             
                 draw_set_colour($FFFFFF);
-                draw_text(X+38+80*(Iid&amp;1)*(Iid&lt;=Idoubles*2),Y+40,Iquantity);
+                draw_text(X+S/2-2+S*(Iid&amp;1)*(Iid&lt;=Idoubles*2),Y+S/2,Iquantity);
             }
         }
         
