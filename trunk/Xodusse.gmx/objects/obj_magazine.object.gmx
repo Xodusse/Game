@@ -28,24 +28,30 @@
             <string>///Add magazine to inventory
 // © 2017 - Jon Harvey
 
-var Gun,Count;
+var Gun,Max,Count;
 //Pick random gun id.
 Gun = irandom(Iammo-1);
 //Pick random amount of magazines.
+Max = 1+irandom(4);
+//Number of magazines given to player.
 Count = 0;
 
-for(var Y = 1;Y&gt;=0;Y--)
+for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
 for(var X = 0;X&lt;6;X++){
     
     var Item = I[X+Y*6];
+    
+    if Max&lt;=Count break;
+    else
     //Check if item slot is free.
     if (Item == 0){
         
         //Add magazine and ammo.
         I[X+Y*6] = Idoubles*2+Isingles+Gun+1;
         Q[X+Y*6] = Gcap[Gun];
-        if ++Count&lt;(1+irandom(3)) break;
+        Count++;
     }
+    
 }
 if Count
 {

@@ -28,13 +28,16 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
-globalvar Idoubles,Isingles,Iammo,Ienable,Iid,Iquantity,Iposition,I,Q;
+globalvar Idoubles,Isingles,Iammo,Ienable,Ibackpack,Iid,Iquantity,Iposition,I,Q;
 Idoubles = 2;//Number of two-handed weapons.
 Isingles = 2;//Number of one-handed weapons.
 Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
 
-//Toggle inventory (0 is off).
+//Toggle inventory (0 is off, 1 is on).
 Ienable = 0;
+
+//Control backpack (0 is off, 1 is small, 2 is large).
+Ibackpack = 2;
 
 //Inventory id of item being moved (0 for no item).
 Iid = 0;
@@ -42,8 +45,8 @@ Iquantity = 0;
 Iposition = 0;
 
 //Item and quantity arrays (ordered from left to right, bottom to top).
-I[11] = 0;
-Q[11] = 0;
+I[23] = 0;
+Q[23] = 0;
 
 //Add default items (ids correspond to spr_items image index+1).
 I[0] = 1;
@@ -101,8 +104,10 @@ if Ienable{
     X = floor((window_mouse_get_x()-W/2-S*3)/S);
     Y = 1-floor((window_mouse_get_y()-H/2)/S);
     
-    if mouse_check_button_pressed(mb_left) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2){
+    //Select item for moving.
+    if mouse_check_button_pressed(mb_left) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack){
         
+        //Get item details.
         var P = X+Y*6;
         Iid = I[P];
         Iquantity = Q[P];
@@ -115,17 +120,21 @@ if Ienable{
             I[P+S] = 0;
             Q[P+S] = 0;
         }
+        //Empty slots.
         I[P] = 0;
         Q[P] = 0;
     }
     else
+    //Release item and move it.
     if mouse_check_button_released(mb_left) &amp;&amp; Iid{
         
         if Iid&lt;=Idoubles*2{
         
+            //Move double wide item.
             var S = (Iid&amp;1)*2-1;
-            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2) &amp;&amp; (X+S&gt;=-6 &amp;&amp; X+S&lt;0) &amp;&amp; !I[X+Y*6] &amp;&amp; !I[X+S+Y*6]{
+            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; (X+S&gt;=-6 &amp;&amp; X+S&lt;0) &amp;&amp; !I[X+Y*6] &amp;&amp; !I[X+S+Y*6]{
             
+                //Add item to new slot.
                 var P = X+Y*6;
                 I[P] = Iid;
                 Q[P] = Iquantity*((Iid+1)%2);
@@ -137,6 +146,8 @@ if Ienable{
                 Iquantity = 0;
             }
             else{
+                
+                //Add item to old slot.
                 I[Iposition] = Iid;
                 Q[Iposition] = Iquantity*((Iid+1)%2);
                               
@@ -149,8 +160,10 @@ if Ienable{
         }
         else{
             
-            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2) &amp;&amp; !I[X+Y*6]{
+            //Move single wide item.
+            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; !I[X+Y*6]{
             
+                //Add item to new slot.
                 var P = X+Y*6;
                 I[P] = Iid;
                 Q[P] = Iquantity;
@@ -159,6 +172,8 @@ if Ienable{
                 Iquantity = 0;
             }
             else{
+                
+                //Add item to old slot.
                 I[Iposition] = Iid;
                 Q[Iposition] = Iquantity;
                 

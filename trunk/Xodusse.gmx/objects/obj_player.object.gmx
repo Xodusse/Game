@@ -192,7 +192,7 @@ for(var X = 0;X&lt;6;X++){
 Magazine = -1;
 Magazines = 0;
 //Cycle through all inventory slots.
-for(var Y = 1;Y&gt;=0;Y--)
+for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
 for(var X = 0;X&lt;6;X++){
     
     var Item = I[X+Y*6];
@@ -280,16 +280,19 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1) {
                 Rate = 0;
                 
                 //Shoot all bullets.
-                for(var S = 0;S&lt;Gbullets[G[Current]];S++){
+                for(var S = 0;S&lt;Gbullets[G[Current]]*max(DELTA*Grate[G[Current]],1);S++){
                     
-                    var Bullet = instance_create(x+16*dcos(GunDirection),y-16*dsin(GunDirection),Gtype[G[Current]]);
-                    var Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Current]];
+                    var Length,Bullet,Direction;
+                    Length = 16+8*S/Gbullets[G[Current]];
+                    Bullet = instance_create(x+Length*dcos(GunDirection),y-Length*dsin(GunDirection),Gtype[G[Current]]);
+                    Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Current]];
                     Bullet.direction = Direction;
                     Bullet.image_angle = Direction;
                 }
                 
                 //Update or reload magazine.
-                if (--Q[P[Current]]&lt;1 &amp;&amp; Magazines){
+                Q[P[Current]] = max(Q[P[Current]]-ceil(DELTA*Grate[G[Current]]),0);
+                if (Q[P[Current]]&lt;1 &amp;&amp; Magazines){
                 
                     audio_play_sound(snd_empty,0,0);
                     Q[P[Current]] = 0;
