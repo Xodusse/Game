@@ -94,6 +94,12 @@
       <script>scripts\scr_cread_resolution.gml</script>
       <script>scripts\scr_cwrite.gml</script>
     </scripts>
+    <scripts name="Commands">
+      <script>scripts\scr_command_help2.gml</script>
+      <script>scripts\scr_command_help.gml</script>
+      <script>scripts\scr_command_tp.gml</script>
+      <script>scripts\scr_command_clear.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>

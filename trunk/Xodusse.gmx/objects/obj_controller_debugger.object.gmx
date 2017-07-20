@@ -169,9 +169,13 @@ if (DEBUG_VISIBLE == true){
     draw_text(view_wview[0] - 8, 135,
          "AlienMax: " + string(AlienMax));
          
+    /*Current aliens remaining:
+    draw_text(view_wview[0] - 8, 160,
+         "AlienCountRemaining: " + string(AlienCountRemaining) + string(keyboard_key));*/
+         
     //Current aliens remaining:
     draw_text(view_wview[0] - 8, 160,
-         "AlienCountRemaining: " + string(AlienCountRemaining));
+         string(keyboard_key));
          
     //Wave:
     draw_text(view_wview[0] - 8, 210,

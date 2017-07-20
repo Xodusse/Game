@@ -40,7 +40,7 @@ string5 = "";
 string6 = "";
 string7 = "";
 
-enabled_keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789_-,.:;'@#~/()[]";
+enabled_keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789_,.:;'@#~/()[]+-";
 cursor_blink = true;
 blink_speed = 0.5;
 
@@ -117,7 +117,7 @@ if (COMMAND_EXECUTED == true){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(-1);
+            <string>draw_set_font(fnt_Exudation_Large);
 draw_set_colour(c_white);
 draw_set_halign(fa_left);
 
@@ -157,7 +157,7 @@ if (CONSOLE_ENABLED == true){
 
     var length = string_width(text)+10;
     //var height = string_height(text);
-    var box_height = 25;  
+    var box_height = 28;  
     
     if (cursor_blink == true){
         draw_text((16)+length,((view_hview[0])-150),"_");
@@ -171,6 +171,7 @@ if (CONSOLE_ENABLED == true){
 }
 
 draw_set_colour(c_black);
+draw_set_font(-1);
 </string>
           </argument>
         </arguments>
@@ -194,611 +195,40 @@ draw_set_colour(c_black);
           <argument>
             <kind>1</kind>
             <string>if (CONSOLE_ENABLED == true){
-    if (string_count(chr(keyboard_key), enabled_keys)) &amp;&amp; (string_length(chr(keyboard_key)) == 1){
+
+    //If the - key is pressed:
+    if (keyboard_check_pressed(189)){    
+        text += "-";      
+    }
+    
+    else if (string_count(chr(keyboard_key), enabled_keys)) &amp;&amp; (string_length(chr(keyboard_key)) == 1){
         //Reset the cursor blinking:
         cursor_blink = true;
         Alarm[0] = blink_speed;
         
-        
-        switch(keyboard_lastchar){
+        switch(keyboard_key){
             
             case "#" : text += "\#"; break;
             
-            default: text += keyboard_lastchar; break;
+            default: text += string(keyboard_lastchar); break;
         }
                
-    }
-
+    }   
+    
     //If control isn't being held:
     if (!keyboard_check(vk_control)){
         switch(keyboard_key){
             case vk_backspace: text = string_copy(text, 0, string_length(text) - 1); break;
             
             case vk_enter:
-            
-                var command = string_upper(text); 
                 
-                //HELP 2 COMMAND:
-                if (string_pos("HELP 2",command) == true){
-                    
-                    text = "";
-                    
-                    string7 = "--- COMMAND LIST [Page 2] ---";
-                    string6 = "";
-                    string5 = "";
-                    string4 = "";
-                    string3 = "";
-                    string2 = "";
-                    string1 = "";
-                    string0 = "";
+                scr_command_help2();                
                 
-                }
+                scr_command_help();
                 
-                //HELP COMMAND:
-                else if (string_pos("HELP",command) == true) || (string_pos("HELP 1",command) == true){
-                    
-                    text = "";
-                    
-                    string7 = "--- COMMAND LIST [Page 1] ---";
-                    string6 = "/TP [X] [Y] - Teleport to position (Supports 6s.f integer numbers MAX).";
-                    string5 = "/TPX [X] - Teleports in the X coordinate.";
-                    string4 = "/TPY [Y] - Teleports in the Y coordinate.";
-                    string3 = "/CLEAR - Clears the console history.";
-                    string2 = "";
-                    string1 = "";
-                    string0 = "Type /help 2 to view next page...";
-                
-                }
-                
-                else if (string_pos("TP", command) == true){
-                    
-                    //X = 1 fig:
-                    //--------------------------------------------------------------------
-                    if (string_char_at(command, 5) == " "){
-                    
-                        var string_x = 5;
-                        xx = real( string_char_at(command, 4) );
-                        
-                        //Determine length of string to determine the Y co-ordinate:
-                        //Y = 1 fig:
-                        if (string_length(command) == 6){
-                            yy = real( string_char_at(command, string_x + 1) );
-                        }                    
-                        
-                        //Y = 2 figs:
-                        else if (string_length(command) == 7){
-                            yy = real( string_char_at(command, string_x + 1) + 
-                                            string_char_at(command, string_x + 2) );                    
-                        }
-                        
-                        //Y = 3 figs:
-                        else if (string_length(command) == 8){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) );                    
-                        }                    
-    
-                        //Y = 4 figs:
-                        else if (string_length(command) == 9){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) + 
-                                            string_char_at(command, string_x + 4) );                     
-                        }
-                        
-                        //Y = 5 figs:
-                        else if (string_length(command) == 10){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) );                                          
-                        }
-                                            
-                        //Y = 6 figs:
-                        else if (string_length(command) == 11){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) +
-                                            string_char_at(command, string_x + 6) );                                                             
-                        }                    
-                        
-                    }
-                    
-                    //X = 2 figs:
-                    //--------------------------------------------------------------------                
-                    else if (string_char_at(command, 6) == " "){
-                    
-                        var string_x = 6;
-                        xx = real( string_char_at(command, 4) + string_char_at(command, 5));
-                        
-                        //Determine length of string to determine the Y co-ordinate:
-                        //Y = 1 fig:
-                        if (string_length(command) == 7){
-                            yy = real( string_char_at(command, string_x + 1) );
-                        }                    
-                        
-                        //Y = 2 figs:
-                        else if (string_length(command) == 8){
-                            yy = real( string_char_at(command, string_x + 1) + 
-                                            string_char_at(command, string_x + 2) );                    
-                        }
-                        
-                        //Y = 3 figs:
-                        else if (string_length(command) == 9){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) );                    
-                        }                    
-    
-                        //Y = 4 figs:
-                        else if (string_length(command) == 10){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) + 
-                                            string_char_at(command, string_x + 4) );                     
-                        }
-                        
-                        //Y = 5 figs:
-                        else if (string_length(command) == 11){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) );                                          
-                        }
-                                            
-                        //Y = 6 figs:
-                        else if (string_length(command) == 12){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) +
-                                            string_char_at(command, string_x + 6) );                                                             
-                        }
-                    }
-                    
-                    //X = 3 figs:
-                    //--------------------------------------------------------------------                 
-                    else if (string_char_at(command, 7) == " "){
-                    
-                        var string_x = 7;
-                        xx = real( string_char_at(command, 4) + string_char_at(command, 5) + string_char_at(command, 6));
-                        
-                        //Determine length of string to determine the Y co-ordinate:
-                        //Y = 1 fig:
-                        if (string_length(command) == 8){
-                            yy = real( string_char_at(command, string_x + 1) );
-                        }                    
-                        
-                        //Y = 2 figs:
-                        else if (string_length(command) == 9){
-                            yy = real( string_char_at(command, string_x + 1) + 
-                                            string_char_at(command, string_x + 2) );                    
-                        }
-                        
-                        //Y = 3 figs:
-                        else if (string_length(command) == 10){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) );                    
-                        }                    
-    
-                        //Y = 4 figs:
-                        else if (string_length(command) == 11){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) + 
-                                            string_char_at(command, string_x + 4) );                     
-                        }
-                        
-                        //Y = 5 figs:
-                        else if (string_length(command) == 12){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) );                                          
-                        }
-                                            
-                        //Y = 6 figs:
-                        else if (string_length(command) == 13){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) +
-                                            string_char_at(command, string_x + 6) );                                                             
-                        }
-                    }
-                    
-                    //X = 4 figs:
-                    //--------------------------------------------------------------------                 
-                    else if (string_char_at(command, 8) == " "){
-                    
-                        var string_x = 8;
-                        xx = real( string_char_at(command, 4) + string_char_at(command, 5) + string_char_at(command, 6) + string_char_at(command, 7));
-                        
-                        //Determine length of string to determine the Y co-ordinate:
-                        //Y = 1 fig:
-                        if (string_length(command) == 9){
-                            yy = real( string_char_at(command, string_x + 1) );
-                        }                    
-                        
-                        //Y = 2 figs:
-                        else if (string_length(command) == 10){
-                            yy = real( string_char_at(command, string_x + 1) + 
-                                            string_char_at(command, string_x + 2) );                    
-                        }
-                        
-                        //Y = 3 figs:
-                        else if (string_length(command) == 11){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) );                    
-                        }                    
-    
-                        //Y = 4 figs:
-                        else if (string_length(command) == 12){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) + 
-                                            string_char_at(command, string_x + 4) );                     
-                        }
-                        
-                        //Y = 5 figs:
-                        else if (string_length(command) == 13){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) );                                          
-                        }
-                                            
-                        //Y = 6 figs:
-                        else if (string_length(command) == 14){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) +
-                                            string_char_at(command, string_x + 6) );                                                             
-                        }
-                    }
-                    
-                    //X = 5 figs:
-                    //--------------------------------------------------------------------                 
-                    else if (string_char_at(command, 9) == " "){
-                    
-                        var string_x = 9;
-                        xx = real( string_char_at(command, 4) + string_char_at(command, 5) + string_char_at(command, 6) + string_char_at(command, 7) + string_char_at(command, 8));
-                        
-                        //Determine length of string to determine the Y co-ordinate:
-                        //Y = 1 fig:
-                        if (string_length(command) == 10){
-                            yy = real( string_char_at(command, string_x + 1) );
-                        }                    
-                        
-                        //Y = 2 figs:
-                        else if (string_length(command) == 11){
-                            yy = real( string_char_at(command, string_x + 1) + 
-                                            string_char_at(command, string_x + 2) );                    
-                        }
-                        
-                        //Y = 3 figs:
-                        else if (string_length(command) == 12){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) );                    
-                        }                    
-    
-                        //Y = 4 figs:
-                        else if (string_length(command) == 13){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) + 
-                                            string_char_at(command, string_x + 4) );                     
-                        }
-                        
-                        //Y = 5 figs:
-                        else if (string_length(command) == 14){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) );                                          
-                        }
-                                            
-                        //Y = 6 figs:
-                        else if (string_length(command) == 15){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) +
-                                            string_char_at(command, string_x + 6) );                                                             
-                        }
-                    }
-                    
-                    //X = 6 figs:
-                    //--------------------------------------------------------------------                 
-                    else if (string_char_at(command, 10) == " "){
-                    
-                        var string_x = 10;
-                        xx = real( string_char_at(command, 4) + string_char_at(command, 5) + string_char_at(command, 6) + string_char_at(command, 7) + string_char_at(command, 8) + string_char_at(command, 9));
-                        
-                        //Determine length of string to determine the Y co-ordinate:
-                        //Y = 1 fig:
-                        if (string_length(command) == 11){
-                            yy = real( string_char_at(command, string_x + 1) );
-                        }                    
-                        
-                        //Y = 2 figs:
-                        else if (string_length(command) == 12){
-                            yy = real( string_char_at(command, string_x + 1) + 
-                                            string_char_at(command, string_x + 2) );                    
-                        }
-                        
-                        //Y = 3 figs:
-                        else if (string_length(command) == 13){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) );                    
-                        }                    
-    
-                        //Y = 4 figs:
-                        else if (string_length(command) == 14){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) + 
-                                            string_char_at(command, string_x + 4) );                     
-                        }
-                        
-                        //Y = 5 figs:
-                        else if (string_length(command) == 15){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) );                                          
-                        }
-                                            
-                        //Y = 6 figs:
-                        else if (string_length(command) == 16){
-                            yy = real( string_char_at(command ,string_x + 1) + 
-                                            string_char_at(command, string_x + 2) + 
-                                            string_char_at(command, string_x + 3) +
-                                            string_char_at(command, string_x + 4) +                                         
-                                            string_char_at(command, string_x + 5) +
-                                            string_char_at(command, string_x + 6) );                                                             
-                        }
-                    }                                                 
-                    
-                    if instance_exists(obj_player){
-                        obj_player.x = xx;
-                        obj_player.y = yy;
-                    }
-                }
-                
-                //TP COMMAND:
-                    //TP-X
-                else if (string_pos("TPX",command) == true){
-                    xx = real(string_digits(text));
-                    
-                    if instance_exists(obj_player){
-                        obj_player.x = xx;
-                    }
-                }
-                    //TP-Y
-                else if (string_pos("TPY",command) == true){
-                    yy = real(string_digits(text));
-                    
-                    if instance_exists(obj_player){
-                        obj_player.y = yy;
-                    }
-                }
-                
-                /*HEALTH COMMAND:
-                else if (string_pos("HEALTH",command) == true){
-                    var phealth = real(string_digits(text));
-                    
-                    //Change energy:
-                    global.P1Health = phealth;
-                    
-                }*/
-                
-                /*AMMO COMMAND:
-                else if (string_pos("AMMO",command) == true){
-                    var ammo = real(string_digits(text));
-                    
-                    //Change energy:
-                    global.Tank_Ammo = ammo;
-                    
-                }*/                                
-                
-                /*DESTROY COMMAND:
-                else if (string_pos("DESTROY",command) == true){
-                    
-                    //MINE:
-                    if (string_pos("DESTROY MINE",command) == true){
-                    
-                        //Destroy the mine:
-                        var Mine = instance_nearest(mouse_x,mouse_y,obj_Mine_AntiTank_Unactive);
-                        
-                          //Create an explosion:
-                          scr_part_create_explosion(Mine.x,Mine.y);
-                          
-                          global.ScreenShake = true;
-                          with(con_View){
-                               alarm[0] = 30;
-                          }
-                          
-                          var Glow = instance_create(Mine.x,Mine.y,obj_Lighting_Point);
-                          Glow.Light_Type = 1;
-                          
-                          with(Mine){
-                               instance_destroy();
-                          }
-                     }
-                     
-                     //ETANK_1:
-                     else if (string_pos("DESTROY ETANK1",command) == true){
-                            
-                            //Destroy the tank:
-                            var ETank_1 = instance_nearest(mouse_x,mouse_y,obj_ETank_1);
-                            
-                            //Create an explosion:
-                            scr_part_create_explosion(ETank_1.x,ETank_1.y);
-                            
-                            //Illuminate the surrounding area:
-                            Explosion = instance_create(ETank_1.x, ETank_1.y, obj_Lighting_Point);
-                            Explosion.Light_Type = 1;    
-                            
-                            //Shake the screen:
-                            //Uses an alarm to set duration and end event:
-                            global.ScreenShake = true;
-                            with(con_View){
-                                alarm[0] = 30;
-                            }
-                            
-                            with (ETank_1){
-                                instance_destroy();
-                            }
-                       }                  
-                      
-                  }*/
-                  
-                  /*LIGHTING COMMAND:
-                  else if (string_pos("LIGHTING", command) == true){  
-                    
-                      if instance_exists(obj_Lighting){
-                          obj_Lighting.Surface_Enabled = !obj_Lighting.Surface_Enabled;
-                      }
-                  }*/
-                    
-                  //CLEAR COMMAND:
-                  else if (string_pos("CLEAR", command) == true){
-                    
-                    text = "";
-                    
-                    string7 = "";
-                    string6 = "";
-                    string5 = "";
-                    string4 = "";
-                    string3 = "";
-                    string2 = "";
-                    string1 = "";
-                    string0 = "";
-                  }                
-    
-                  /*DEBUG MODE COMMAND:
-                  else if (string_pos("DEBUG",command) == true){
-                  
-                    global.DebugModeEnabled = !global.DebugModeEnabled;
-                    
-                    //Turn off no-clip and god mode if debug mode is disabled:
-                    if (global.DebugModeEnabled == false){
-                        if (global.NoClipModeEnabled == true){
-                            global.NoClipModeEnabled = false;
-                        }
-                        if (global.GODModeEnabled == true){
-                            global.GODModeEnabled = false;
-                        }
-                    }
-                    
-                  }*/
-                  
-                  //Only allow no-clip or god mode if Debug Mode is enabled:
-                  /*NO-CLIP MODE COMMAND:
-                  else if (string_pos("NOCLIP",command) == true){
-                  
-                    if (global.DebugModeEnabled == true){
-                        
-                        global.NoClipModeEnabled = !global.NoClipModeEnabled;
-                        
-                        //Set the solidity of obj_Wall to false if No Clip is true:
-                        if (global.NoClipModeEnabled == true){
-                            if instance_exists(obj_Wall){
-                                with (obj_Wall){                    
-                                    //object_set_solid(obj_Wall, false);
-                                    obj_Wall.solid = false;
-                                }
-                            }
-                        }
-                        
-                        //Set the solidity of obj_Wall to true if No Clip is false:
-                        else if (global.NoClipModeEnabled == false){
-                            if instance_exists(obj_Wall){
-                                with (obj_Wall){
-                                    //object_set_solid(obj_Wall, true);
-                                    obj_Wall.solid = true;
-                                }
-                            }
-                        }                                        
-                    }                
-                  }*/
-    
-                  /*GOD MODE COMMAND:
-                  else if (string_pos("GOD",command) == true){
-                  
-                    if (global.DebugModeEnabled == true){
-                        
-                        global.GODModeEnabled = !global.GODModeEnabled;
-                        
-                        //If the player enables God Mode:
-                        //if (global.GODModeEnabled == true){
-                            //global.GODModeEnabled = !global.GODModeEnabled;
-                            
-                            //If god mode is enabled:
-                            if (global.GODModeEnabled == true){ 
+                scr_command_tp();
                                 
-                                //Get the initial values of health and ammo and record them.
-                                obj_Debugger.InitialHealth = global.P1Health;
-                                obj_Debugger.InitialAmmo = global.Tank_Ammo;
-                                
-                                //Set the values of health and ammo to the max.
-                                global.Tank_Ammo = 99;
-                                global.P1Health = 100;
-                                
-                            }
-                            
-                            //If god mode is disabled:
-                            if (global.GODModeEnabled == false){
-                                
-                                //Reset the tanks ammo and health values to what they were initially.
-                                global.P1Health = obj_Debugger.InitialHealth;
-                                global.Tank_Ammo = obj_Debugger.InitialAmmo;
-                                
-                            }
-                        //}
-                    }                
-                  }*/                                        
-                                
-                  //Close the console if help isn't displayed:
-                  
-                  if !(string_pos("HELP",command) == true){
-                    
-                    //Record previously entered strings:
-                    string7 = string6;
-                    string6 = string5;
-                    string5 = string4;
-                    string4 = string3;
-                    string3 = string2;
-                    string2 = string1;
-                    string1 = string0;
-                    string0 = text;
-                    
-                  }
-                  
-                  
-                  //CLOSES THE CONSOLE:
-                  if !(string_pos("HELP",command) == true){
-                    COMMAND_EXECUTED = true;
-                  }
-                         
+                scr_command_clear();                                                                                    
                 
             break;
             
