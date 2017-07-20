@@ -108,21 +108,20 @@ if Ienable{
     if mouse_check_button_pressed(mb_left) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack){
         
         //Get item details.
-        var P = X+Y*6;
-        Iid = I[P];
-        Iquantity = Q[P];
-        Iposition = P;
+        Iid = I[X+Y*6];
+        Iquantity = Q[X+Y*6];
+        Iposition = X+Y*6;
         
         if Iid&lt;=Idoubles*2{
             
             var S = (Iid&amp;1)*2-1;
-            Iquantity = Q[P+(Iid&amp;1)];
-            I[P+S] = 0;
-            Q[P+S] = 0;
+            Iquantity = Q[X+Y*6+(Iid&amp;1)];
+            I[X+Y*6+S] = 0;
+            Q[X+Y*6+S] = 0;
         }
         //Empty slots.
-        I[P] = 0;
-        Q[P] = 0;
+        I[X+Y*6] = 0;
+        Q[X+Y*6] = 0;
     }
     else
     //Release item and move it.
@@ -132,55 +131,92 @@ if Ienable{
         
             //Move double wide item.
             var S = (Iid&amp;1)*2-1;
-            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; (X+S&gt;=-6 &amp;&amp; X+S&lt;0) &amp;&amp; !I[X+Y*6] &amp;&amp; !I[X+S+Y*6]{
+            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; (X+S&gt;=-6 &amp;&amp; X+S&lt;0){
             
-                //Add item to new slot.
-                var P = X+Y*6;
-                I[P] = Iid;
-                Q[P] = Iquantity*((Iid+1)%2);
+                var Item1,Item2;
+                Item1 = I[X+Y*6+max(S,0)];Item2 = I[X+Y*6+min(S,0)];
+                if (!(Item1&amp;1) || Item1&gt;Idoubles*2) &amp;&amp; (!Item2 || (Item2&amp;1) || Item2&gt;Idoubles*2){
                 
-                I[P+S] = Iid+S;
-                Q[P+S] = Iquantity*(Iid%2);
-                
-                Iid = 0;
-                Iquantity = 0;
+                    //Check items in slot.
+                    var Id1,Quantity1,Id2,Quantity2;
+                    Id1 = I[X+Y*6];
+                    Quantity1 = Q[X+Y*6];
+                    Id2 = I[X+Y*6+S];
+                    Quantity2 = Q[X+Y*6+S];
+                    
+                    //Move new item into new slot.
+                    I[X+Y*6] = Iid;
+                    Q[X+Y*6] = Iquantity*!(Iid&amp;1);
+                    I[X+Y*6+S] = Iid+S;
+                    Q[X+Y*6+S] = Iquantity*(Iid&amp;1);
+                    
+                    //Move old items to old slot (if free).
+                    if !I[Iposition]{
+                    
+                        I[Iposition] = Id1*!(!Id2)+Id2*!Id1;
+                        Q[Iposition] = Quantity1*!(!Id2)+Quantity2*!Id1;
+                    }
+                    if !I[Iposition+S]{
+                    
+                        I[Iposition+S] = Id2*!(!Id1)+Id1*!Id2;
+                        Q[Iposition+S] = Quantity2*!(!Id1)+Quantity1*!Id2;
+                    }
+                }
+                else{
+                    //Add item back to old slot.
+                    I[Iposition] = Iid;
+                    Q[Iposition] = Iquantity*!(Iid&amp;1);
+                                  
+                    I[Iposition+S] = Iid+S;
+                    Q[Iposition+S] = Iquantity*(Iid&amp;1);
+                }
             }
             else{
                 
-                //Add item to old slot.
-                I[Iposition] = Iid;
-                Q[Iposition] = Iquantity*((Iid+1)%2);
-                              
-                I[Iposition+S] = Iid+S;
-                Q[Iposition+S] = Iquantity*(Iid%2);
-                
-                Iid = 0;
-                Iquantity = 0;
+                //Drop item.
+                var Item = instance_create(mouse_x,mouse_y,obj_item);
+                Item.Id = Iid-((Iid+1)&amp;1);
+                Item.Quantity = Iquantity;
             }
         }
         else{
             
             //Move single wide item.
-            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; !I[X+Y*6]{
+            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack){
             
-                //Add item to new slot.
-                var P = X+Y*6;
-                I[P] = Iid;
-                Q[P] = Iquantity;
-                
-                Iid = 0;
-                Iquantity = 0;
+                var Item;
+                Item = I[X+Y*6];
+                if !Item || (Item&gt;Idoubles*2){
+                    
+                    //Move item (and swap anything there).
+                    var Id,Quantity;
+                    Id = I[X+Y*6];
+                    Quantity = Q[X+Y*6];
+                    I[X+Y*6] = Iid;
+                    Q[X+Y*6] = Iquantity;
+                    if !I[Iposition]{
+                    
+                        I[Iposition] = Id;
+                        Q[Iposition] = Quantity;
+                    }
+                }
+                else{
+                    
+                    I[Iposition] = Iid;
+                    Q[Iposition] = Iquantity;
+                }
             }
             else{
                 
-                //Add item to old slot.
-                I[Iposition] = Iid;
-                Q[Iposition] = Iquantity;
-                
-                Iid = 0;
-                Iquantity = 0;
+                //Drop item.
+                var Item = instance_create(mouse_x,mouse_y,obj_item);
+                Item.Id = Iid;
+                Item.Quantity = Iquantity;
             }
         }
+        //Finish moving
+        Iid = 0;
+        Iquantity = 0;
     }
 }
 </string>
