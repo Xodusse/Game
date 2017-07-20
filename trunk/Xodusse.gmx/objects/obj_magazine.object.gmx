@@ -3,7 +3,7 @@
   <spriteName>spr_gun_magazine</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>2</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -39,12 +39,10 @@ Count = 0;
 for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
 for(var X = 0;X&lt;6;X++){
     
-    var Item = I[X+Y*6];
-    
     if Max&lt;=Count break;
     else
     //Check if item slot is free.
-    if (Item == 0){
+    if (I[X+Y*6] == 0){
         
         //Add magazine and ammo.
         I[X+Y*6] = Idoubles*2+Isingles+Gun+1;
