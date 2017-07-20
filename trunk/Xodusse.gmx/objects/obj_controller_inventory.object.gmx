@@ -108,21 +108,20 @@ if Ienable{
     if mouse_check_button_pressed(mb_left) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack){
         
         //Get item details.
-        var P = X+Y*6;
-        Iid = I[P];
-        Iquantity = Q[P];
-        Iposition = P;
+        Iid = I[X+Y*6];
+        Iquantity = Q[X+Y*6];
+        Iposition = X+Y*6;
         
         if Iid&lt;=Idoubles*2{
             
             var S = (Iid&amp;1)*2-1;
-            Iquantity = Q[P+(Iid&amp;1)];
-            I[P+S] = 0;
-            Q[P+S] = 0;
+            Iquantity = Q[X+Y*6+(Iid&amp;1)];
+            I[X+Y*6+S] = 0;
+            Q[X+Y*6+S] = 0;
         }
         //Empty slots.
-        I[P] = 0;
-        Q[P] = 0;
+        I[X+Y*6] = 0;
+        Q[X+Y*6] = 0;
     }
     else
     //Release item and move it.
@@ -135,7 +134,7 @@ if Ienable{
             if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; (X+S&gt;=-6 &amp;&amp; X+S&lt;0){
             
                 var Item1,Item2;
-                Item1 = I[X+Y*6];Item2 = I[X+Y*6+S];
+                Item1 = I[X+Y*6+max(S,0)];Item2 = I[X+Y*6+min(S,0)];
                 if (!(Item1&amp;1) || Item1&gt;Idoubles*2) &amp;&amp; (!Item2 || (Item2&amp;1) || Item2&gt;Idoubles*2){
                 
                     //Check items in slot.
@@ -151,11 +150,17 @@ if Ienable{
                     I[X+Y*6+S] = Iid+S;
                     Q[X+Y*6+S] = Iquantity*(Iid&amp;1);
                     
-                    //Move old items to old slot.
-                    I[Iposition] = Id1;
-                    Q[Iposition] = Quantity1;
-                    I[Iposition+S] = Id2;
-                    Q[Iposition+S] = Quantity2;
+                    //Move old items to old slot (if free).
+                    if !I[Iposition]{
+                    
+                        I[Iposition] = Id1*!(!Id2)+Id2*!Id1;
+                        Q[Iposition] = Quantity1*!(!Id2)+Quantity2*!Id1;
+                    }
+                    if !I[Iposition+S]{
+                    
+                        I[Iposition+S] = Id2*!(!Id1)+Id1*!Id2;
+                        Q[Iposition+S] = Quantity2*!(!Id1)+Quantity1*!Id2;
+                    }
                 }
                 else{
                     //Add item back to old slot.
@@ -189,8 +194,16 @@ if Ienable{
                     Quantity = Q[X+Y*6];
                     I[X+Y*6] = Iid;
                     Q[X+Y*6] = Iquantity;
-                    I[Iposition] = Id;
-                    Q[Iposition] = Quantity;
+                    if !I[Iposition]{
+                    
+                        I[Iposition] = Id;
+                        Q[Iposition] = Quantity;
+                    }
+                }
+                else{
+                    
+                    I[Iposition] = Iid;
+                    Q[Iposition] = Iquantity;
                 }
             }
             else{
