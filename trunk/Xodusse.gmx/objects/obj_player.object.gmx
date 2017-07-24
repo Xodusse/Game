@@ -137,15 +137,22 @@ Radius = 16;
           <argument>
             <kind>1</kind>
             <string>///Control weapon swapping
-if abs(Swap)&lt;0.1{
+if Count{
     
-    Swap = mouse_wheel_down()-mouse_wheel_up();
-    if Swap != 0{
+    if abs(Swap)&lt;0.1{
         
-        Current = (Current-Swap+Count)%Count;
-        Rate = 0;
-        Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+        Swap = mouse_wheel_down()-mouse_wheel_up();
+        if Swap != 0{
+            
+            Current = (Current-Swap+Count)%Count;
+            Rate = 0;
+            Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+        }
     }
+}
+else{
+    
+    Current = 0;
 }
 </string>
           </argument>
@@ -203,7 +210,7 @@ for(var X = 0;X&lt;6;X++){
             
             Magazines++;
             if (Magazine = -1){
-            
+                
                 Magazine = X+Y*6;
             }
         }

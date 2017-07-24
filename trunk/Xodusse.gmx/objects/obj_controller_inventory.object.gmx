@@ -112,7 +112,7 @@ if Ienable{
         Iquantity = Q[X+Y*6];
         Iposition = X+Y*6;
         
-        if Iid&lt;=Idoubles*2{
+        if Iid&lt;Idoubles*2{
             
             var S = (Iid&amp;1)*2-1;
             Iquantity = Q[X+Y*6+(Iid&amp;1)];
@@ -188,12 +188,16 @@ if Ienable{
                 Item = I[X+Y*6];
                 if !Item || (Item&gt;Idoubles*2){
                     
-                    //Move item (and swap anything there).
+                    //Check items in slot.
                     var Id,Quantity;
                     Id = I[X+Y*6];
                     Quantity = Q[X+Y*6];
+                    
+                    //Move new item into new slot.
                     I[X+Y*6] = Iid;
                     Q[X+Y*6] = Iquantity;
+                    
+                    //Move old item to old slot (if free).
                     if !I[Iposition]{
                     
                         I[Iposition] = Id;
@@ -201,7 +205,7 @@ if Ienable{
                     }
                 }
                 else{
-                    
+                    //Add item back to old slot.
                     I[Iposition] = Iid;
                     Q[Iposition] = Iquantity;
                 }

@@ -64,7 +64,6 @@
     <sprites name="Logistics">
       <sprite>sprites\spr_crate_parent</sprite>
       <sprite>sprites\spr_crate</sprite>
-      <sprite>sprites\spr_gun_magazine</sprite>
       <sprite>sprites\spr_item</sprite>
     </sprites>
     <sprite>sprites\spr_enemy</sprite>
@@ -124,7 +123,6 @@
       <objects name="Logistics">
         <object>objects\obj_crate</object>
         <object>objects\obj_crate_spawner</object>
-        <object>objects\obj_magazine</object>
         <object>objects\obj_item</object>
       </objects>
       <object>objects\obj_game_object</object>

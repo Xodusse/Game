@@ -76,6 +76,9 @@ for(var X = 0;X&lt;6;X++){
                 I[X+1+Y*6] = Id+1;
                 Q[X+Y*6] = 0;
                 Q[X+1+Y*6] = Quantity;
+                
+                Message = "Picked up heavy gun";
+                MessageFade = 1;
                 instance_destroy();
             }
         }
@@ -85,6 +88,16 @@ for(var X = 0;X&lt;6;X++){
             //Add magazine and ammo (single slot).
             I[X+Y*6] = Id;
             Q[X+Y*6] = Quantity;
+            
+            if Id&gt;Idoubles*2+Isingles{
+            
+                Message = "+"+string(Quantity)+" ammo";
+            }
+            else{
+            
+                Message = "Picked up light gun";
+            }
+            MessageFade = 1;
             instance_destroy();
         }
     }
