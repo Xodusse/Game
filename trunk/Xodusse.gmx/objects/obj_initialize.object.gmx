@@ -40,7 +40,7 @@
 
 //DELTA TIMING:
 
-globalvar DESIRED_FPS, DELTA, FRAME_DELTA,S90,S98;
+globalvar DESIRED_FPS, DELTA, FRAME_DELTA,S90,S98,F1,F1H,F1Q,F30,F60;
 DESIRED_FPS = 60;
 DELTA = 1;
 FRAME_DELTA = 1;
@@ -263,6 +263,19 @@ FRAME_DELTA = DESIRED_FPS * DELTA;
 
 S90 = power(0.90,FRAME_DELTA);
 S98 = power(0.98,FRAME_DELTA);
+
+//Image_Speed calculation variables - Reece:
+
+//1 Second frame update:
+F1  = (1/DESIRED_FPS) * FRAME_DELTA;
+//Half Second frame update:
+F1H = (2/DESIRED_FPS) * FRAME_DELTA;
+//Quarter Second frame update:
+F1Q = (4/DESIRED_FPS) * FRAME_DELTA;
+//30th Second frame update:
+F30 = (30/DESIRED_FPS) * FRAME_DELTA;
+//60th Second frame update:
+F60 = (60/DESIRED_FPS) * FRAME_DELTA;
 </string>
           </argument>
         </arguments>

@@ -71,6 +71,9 @@
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_explosion</sprite>
     <sprite>sprites\spr_items</sprite>
+    <sprites name="Foliage">
+      <sprite>sprites\spr_foliage_fern_1</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -79,9 +82,6 @@
     <background>background\bac_options</background>
     <background>background\bac_sheet</background>
     <background>background\bac_grass</background>
-    <backgrounds name="Foliage">
-      <background>background\tile_fern_1</background>
-    </backgrounds>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -129,6 +129,9 @@
         <object>objects\obj_item</object>
       </objects>
       <object>objects\obj_game_object</object>
+      <objects name="Foliage">
+        <object>objects\obj_foliage_fern_1p</object>
+      </objects>
     </objects>
     <objects name="Projectiles">
       <object>objects\obj_projectile</object>
