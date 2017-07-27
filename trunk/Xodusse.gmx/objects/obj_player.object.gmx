@@ -63,8 +63,8 @@ if !instance_exists(obj_controller_inventory){
 Count = 1;
 //Gun in hand (between 0 and Count).
 Current = 0;
-//Inventory position of the next magazine.
-Magazine = -1;
+//Inventory position of the next and last magazine.
+MagazineNext = -1;
 //Number of extra magazines for the current gun.
 Magazines = 0;
 
@@ -196,7 +196,7 @@ for(var X = 0;X&lt;6;X++){
 }
 
 //Variables for magazine position and count.
-Magazine = -1;
+MagazineNext = -1;
 Magazines = 0;
 //Cycle through all inventory slots.
 for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
@@ -204,14 +204,14 @@ for(var X = 0;X&lt;6;X++){
     
     var Item = I[X+Y*6];
     //Check if item is the right ammo.
-    if (Item-(Idoubles*2+Isingles) == G[Current]+1){
+    if (Item == G[Current]+Idoubles*2+Isingles+1){
         
         if Q[X+Y*6]{
             
             Magazines++;
-            if (Magazine = -1){
+            if (MagazineNext = -1){
                 
-                Magazine = X+Y*6;
+                MagazineNext = X+Y*6;
             }
         }
     }
@@ -261,7 +261,7 @@ Swap *= S90;
 
 //Fire or swap guns when not swapping.
 Reload = lerp(Reload,Greload[G[Current]],!Magazines);
-if Count &amp;&amp; (abs(Swap)&lt;0.1) {
+if Count &amp;&amp; (abs(Swap)&lt;0.1){
        
     //Add to gun timelines.
     Rate += DELTA;
@@ -270,10 +270,10 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1) {
     //Fill gun when finished reloading.
     if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1  &amp;&amp; Magazines{
     
-        Q[P[Current]] = Q[Magazine];
+        Q[P[Current]] = Q[MagazineNext];
         //Remove magazine
-        I[Magazine] = 0;
-        Q[Magazine] = 0;
+        I[MagazineNext] = 0;
+        Q[MagazineNext] = 0;
     }
     else{
         
@@ -314,10 +314,30 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1) {
         }
         
         //Reload magazine with the reload key.
-        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gcap[G[Current]] &amp;&amp; Magazines){
+        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gcap[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Magazines){
             
-            Q[P[Current]] = 0;
-            Reload = 0;
+            var Last,Break;
+            Last = -1;
+            Break = 0;
+            for(var Y = 0;Y&lt;=1+Ibackpack;Y++)
+            for(var X = 5;X&gt;=0;X--){
+                
+                if Last&gt;=0{
+                    
+                    Break += (I[X+Y*6] == G[Current]+Idoubles*2+Isingles+1);
+                }
+                if !I[X+Y*6] &amp;&amp; !Break{
+                    
+                    Last = X+Y*6;
+                }
+            }
+            if Last&gt;=0{
+                
+                I[Last] = 8;
+                Q[Last] = Q[P[Current]];
+                Q[P[Current]] = 0;
+                Reload = 0;
+            }
         }
     }
 }

@@ -28,7 +28,7 @@
             <string>///Gun variables
 // © 2017 - Jon Harvey
 
-globalvar Gauto,Grate,Gcap,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype;
+globalvar Gauto,Grate,Gcap,Greload,Garc,Grecoil,Gbullets,Gweight,Gtype,Gname;
 //0 = semi-automatic, 1 = fully-automatic
 Gauto[0] = 0;
 Gauto[1] = 1;
@@ -82,6 +82,12 @@ Gtype[0] = obj_bullet_grenade;
 Gtype[1] = obj_bullet_pellet;
 Gtype[2] = obj_bullet_medium;
 Gtype[3] = obj_bullet_medium;
+
+//Name of gun.
+Gname[0] = "Grenade Launcher";
+Gname[1] = "LMG";
+Gname[2] = "SMG";
+Gname[3] = "Pistol";
 </string>
           </argument>
         </arguments>

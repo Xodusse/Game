@@ -112,7 +112,7 @@ if Ienable{
         Iquantity = Q[X+Y*6];
         Iposition = X+Y*6;
         
-        if Iid&lt;Idoubles*2{
+        if Iid&lt;=Idoubles*2{
             
             var S = (Iid&amp;1)*2-1;
             Iquantity = Q[X+Y*6+(Iid&amp;1)];

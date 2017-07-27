@@ -77,7 +77,7 @@ for(var X = 0;X&lt;6;X++){
                 Q[X+Y*6] = 0;
                 Q[X+1+Y*6] = Quantity;
                 
-                Message = "Picked up heavy gun";
+                Message = "Picked up "+Gname[floor(Id/2)];
                 MessageFade = 1;
                 instance_destroy();
             }
@@ -95,7 +95,7 @@ for(var X = 0;X&lt;6;X++){
             }
             else{
             
-                Message = "Picked up light gun";
+                Message = "Picked up "+Gname[Id-Idoubles-1];
             }
             MessageFade = 1;
             instance_destroy();
