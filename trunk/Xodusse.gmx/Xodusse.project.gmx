@@ -79,6 +79,9 @@
     <background>background\bac_options</background>
     <background>background\bac_sheet</background>
     <background>background\bac_grass</background>
+    <backgrounds name="Foliage">
+      <background>background\tile_fern_1</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
