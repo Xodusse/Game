@@ -113,6 +113,7 @@
       <object>objects\obj_initialize</object>
     </objects>
     <objects name="Game_Objects">
+      <object>objects\obj_game_object</object>
       <objects name="Player">
         <object>objects\obj_player</object>
       </objects>
@@ -128,7 +129,6 @@
         <object>objects\obj_crate_spawner</object>
         <object>objects\obj_item</object>
       </objects>
-      <object>objects\obj_game_object</object>
       <objects name="Foliage">
         <object>objects\obj_foliage_fern_1p</object>
       </objects>

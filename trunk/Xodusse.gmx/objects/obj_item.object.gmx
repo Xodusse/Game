@@ -30,8 +30,8 @@
 
 image_angle = irandom(360);
 
-Id = choose(1,3,5,6);
-Quantity = Gcap[floor(Id/2-1/2)+(Id&gt;Idoubles*2-1)*floor(Id/2-Idoubles)];
+Id = Idoubles*2+Isingles+Iammo+1+irandom(1);
+Quantity = 1;
 </string>
           </argument>
         </arguments>
@@ -57,11 +57,21 @@ Quantity = Gcap[floor(Id/2-1/2)+(Id&gt;Idoubles*2-1)*floor(Id/2-Idoubles)];
             <string>///Give item to player.
 // © 2017 - Jon Harvey
 
-var Given = 0;
+//Add backpack.
+if Id&gt;Idoubles*2+Isingles+Iammo{
+            
+    if !Ibackpack
+    {
+        Ibackpack = Id-(Idoubles*2+Isingles+Iammo);
+        instance_destroy();
+    }
+}
+else{
 
-for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
-for(var X = 0;X&lt;6;X++){
-    
+    var Given = 0;
+    for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
+    for(var X = 0;X&lt;6;X++){
+        
     if Given break;
     //Check if item slot is free.
     if (I[X+Y*6] == 0){
@@ -83,22 +93,23 @@ for(var X = 0;X&lt;6;X++){
             }
         }
         else{
-            
-            Given = 1;
-            //Add magazine and ammo (single slot).
-            I[X+Y*6] = Id;
-            Q[X+Y*6] = Quantity;
-            
-            if Id&gt;Idoubles*2+Isingles{
-            
-                Message = "+"+string(Quantity)+" ammo";
+                
+                //Add magazine and ammo (single slot).
+                Given = 1;
+                I[X+Y*6] = Id;
+                Q[X+Y*6] = Quantity;
+                
+                if Id&gt;Idoubles*2+Isingles{
+                
+                    Message = "+"+string(Quantity)+" ammo";
+                }
+                else{
+                
+                    Message = "Picked up "+Gname[Id-Idoubles-1];
+                }
+                MessageFade = 1;
+                instance_destroy();
             }
-            else{
-            
-                Message = "Picked up "+Gname[Id-Idoubles-1];
-            }
-            MessageFade = 1;
-            instance_destroy();
         }
     }
 }

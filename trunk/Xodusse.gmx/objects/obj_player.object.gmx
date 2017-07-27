@@ -63,6 +63,8 @@ if !instance_exists(obj_controller_inventory){
 Count = 1;
 //Gun in hand (between 0 and Count).
 Current = 0;
+//This is the gun in second hand.
+Secondary = 0;
 //Inventory position of the next and last magazine.
 MagazineNext = -1;
 //Number of extra magazines for the current gun.
@@ -78,9 +80,10 @@ Rate = 0;
 //Gun reload timeline.
 Reload = 10;
 
+//Gun positions in inventory.
+P[0] = 0;
 //Guns (ids) in inventory.
 G[0] = 0;
-P[0] = 0;
 </string>
           </argument>
         </arguments>
@@ -136,17 +139,78 @@ Radius = 16;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Sort inventory for guns
+// © 2017 - Jon Harvey
+
+//This doesn't have to be calculated every step! Only when there's an inventory change.
+
+//Variable for number of guns.
+Count = 0;
+//Cycle through primary inventory slots.
+for(var X = 0;X&lt;6;X++){
+    
+    var Item,Double;
+    Item = I[X];
+    Double = (Item&lt;=Idoubles*2);
+    //Check if item is gun (or front part of heavy gun).
+    if Item&lt;=(Idoubles*2+Isingles) ^^ (Double &amp;&amp; ((Item+1)%2)){
+        
+        P[Count] = X+Double;            
+        G[Count++] = floor(Item/2-1/2)+!Double*floor(Item/2-Idoubles);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Control weapon swapping
+// © 2017 - Jon Harvey
+
+//Reduce swap animation to 0.
+Swap *= S90;
+
 if Count{
     
     if abs(Swap)&lt;0.1{
         
+        var H,X,Y;
+        H = view_hport[0];
+        X = window_mouse_get_x();
+        Y = window_mouse_get_y();
+    
         Swap = mouse_wheel_down()-mouse_wheel_up();
         if Swap != 0{
             
-            Current = (Current-Swap+Count)%Count;
-            Rate = 0;
-            Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+            if point_distance(0,H,X,Y)&lt;150 &amp;&amp; I[P[Current]]&gt;Idoubles*2{
+                
+                Current = (Current-Swap+Count)%Count;
+                Secondary = Current;
+                Rate = 0;
+                Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+            }
+            else{
+                
+                Current = (Current-Swap+Count)%Count;
+                Secondary = Current;
+                Rate = 0;
+                Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+            }
         }
     }
 }
@@ -174,26 +238,10 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Sort inventory for guns
+            <string>///Sort inventory for magazines
 // © 2017 - Jon Harvey
 
 //This doesn't have to be calculated every step! Only when there's an inventory change.
-
-//Variable for number of guns.
-Count = 0;
-//Cycle through primary inventory slots.
-for(var X = 0;X&lt;6;X++){
-    
-    var Item = I[X];
-    //Check if item is gun (or front part of heavy gun).
-    if (Item&lt;=Idoubles*2+Isingles) ^^ (Item&lt;=Idoubles*2 &amp;&amp; ((Item+1)%2)){
-        
-        //Set gun position in inventory.
-        P[Count] = X+(Item&lt;=Idoubles*2);
-        //Set gun id (same as in gun controller object).
-        G[Count++] = floor(Item/2-1/2)+(Item&gt;Idoubles*2-1)*floor(Item/2-Idoubles);
-    }
-}
 
 //Variables for magazine position and count.
 MagazineNext = -1;
@@ -255,12 +303,14 @@ var SpeedX,SpeedY;
 SpeedX = 0;
 SpeedY = 0;
 
-//Reduce swap and kick animations to 0.
+//Reduce kick animation to 0.
 Kick *= S90;
-Swap *= S90;
 
 //Fire or swap guns when not swapping.
-Reload = lerp(Reload,Greload[G[Current]],!Magazines);
+if !Magazines{
+    
+    Reload = Greload[G[Current]];
+}
 if Count &amp;&amp; (abs(Swap)&lt;0.1){
        
     //Add to gun timelines.

@@ -110,8 +110,7 @@ if instance_exists(obj_player){
     (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AiEye,y-dcos(WalkDirection)*AiEye,obj_obstacle,0,1) == noone));
             
     if Visible{
-    
-        image_blend = merge_colour($2288FF,image_blend,S90);
+        
         AiFocus = AiFocus*S90+(1-S90);
         WalkSpeed = WalkSpeed*S90+(1-S90);
         AiTargetSpeedX = obj_player.WalkSpeedX;
@@ -120,8 +119,7 @@ if instance_exists(obj_player){
         AiTargetY = obj_player.y;
     }
     else{
-    
-        image_blend = merge_colour($FFFFFF,image_blend,S90);
+        
         AiFocus *= 1-(1-S90)*(point_distance(x,y,AiTargetX,AiTargetY)&lt;100);
     }
 

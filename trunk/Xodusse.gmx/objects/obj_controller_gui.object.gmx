@@ -185,35 +185,63 @@ if instance_exists(obj_player){
             draw_text(4,H-24,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
             draw_set_colour(0);
             
-            //Center gun on outer circle.
-            var Item,Angle,Alpha;
-            Item = I[P[Current]];
-            Angle = 30*Swap-45;
-            Alpha = 1;
-            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
-            if (Item&lt;=Idoubles*2){
+            if  Current == Secondary{
                 
-                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*70,H+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
+                //Center gun on outer circle.
+                var Item,Angle,Alpha;
+                Item = I[P[Current]];
+                Angle = 30*Swap-45;
+                Alpha = 1;
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
+                if (Item&lt;=Idoubles*2){
+                    
+                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*70,H+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
+                }
+                
+                //Top gun on outer circle.
+                Item = I[P[(Current+1)%Count]];
+                Angle = 30*Swap-75;
+                Alpha = 0.5+Swap;
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                if (Item&lt;=Idoubles*2){
+                    
+                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
+                }
+                
+                //Bottom gun on outer circle.
+                Item = I[P[(Current-1+Count)%Count]];
+                Angle = 30*Swap-15;
+                Alpha = 0.5-Swap;
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                if (Item&lt;=Idoubles*2){
+                    
+                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
+                }
             }
+            else{
             
-            //Top gun on outer circle.
-            Item = I[P[(Current+1)%Count]];
-            Angle = 30*Swap-75;
-            Alpha = 0.5+Swap;
-            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
-            if (Item&lt;=Idoubles*2){
+                //Center gun on outer circle.
+                var Item,Angle,Alpha;
+                Item = I[P[Current]];
+                Angle = 30*Swap-45;
+                Alpha = 1;
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
                 
-                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
-            }
-            
-            //Bottom gun on outer circle.
-            Item = I[P[(Current-1+Count)%Count]];
-            Angle = 30*Swap-15;
-            Alpha = 0.5-Swap;
-            draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
-            if (Item&lt;=Idoubles*2){
+                Item = I[P[Secondary]];
+                Angle = -45;
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*70,H+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
                 
-                draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
+                //Top gun on outer circle.
+                Item = I[P[(Current+1)%Count]];
+                Angle = 30*Swap-75;
+                Alpha = 0.5+Swap;
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                
+                //Bottom gun on outer circle.
+                Item = I[P[(Current-1+Count)%Count]];
+                Angle = 30*Swap-15;
+                Alpha = 0.5-Swap;
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
             }
         }
 
@@ -233,6 +261,10 @@ if instance_exists(obj_player){
         draw_rectangle(W/2+S*4.5,H/2-S*0.5,W/2+S*6.5,H/2+S*1.5,0);
         draw_set_alpha(1);
         draw_rectangle(W/2+S*5,H/2,W/2+S*6,H/2+S,1);
+        if Ibackpack{
+        
+            draw_sprite(spr_items,Idoubles*2+Isingles+Iammo+Ibackpack-1,W/2+S*5.5,H/2+S*.5);
+        }
         
         //Cycle through inventory items.
         draw_set_halign(fa_right);
