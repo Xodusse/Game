@@ -252,7 +252,7 @@ for(var X = 0;X&lt;6;X++){
     
     var Item = I[X+Y*6];
     //Check if item is the right ammo.
-    if (Item == G[Current]+Idoubles*2+Isingles+1){
+    if (Item == G[Current]+Idoubles*2+Isingles+Igrenades+1){
         
         if Q[X+Y*6]{
             

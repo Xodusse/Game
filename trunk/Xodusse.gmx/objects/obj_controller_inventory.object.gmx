@@ -148,7 +148,7 @@ if Ienable{
         SpeedX = (mouse_x-obj_player.x)/200;
         SpeedY = (mouse_y-obj_player.y)/200;
         SpeedZ = 50;
-        Speed = sqrt(max(SpeedX*SpeedX+SpeedY*SpeedY,1));
+        Speed = sqrt(max(SpeedX*SpeedX+SpeedY*SpeedY,.0001));
         if Iid&lt;=Idoubles*2{
         
             //Move double wide item.
@@ -196,7 +196,7 @@ if Ienable{
             else{
                 
                 //Drop item.
-                var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
+                var Item = instance_create(obj_player.x+30*SpeedX/Speed,obj_player.y+30*SpeedY/Speed,obj_item);
                 Item.Id = Iid-((Iid+1)&amp;1);
                 Item.Quantity = Iquantity;
                 Item.Z = 50;
@@ -214,7 +214,7 @@ if Ienable{
                     if (X != 2) || (Y != 1){
                     
                         //Drop item.
-                        var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
+                        var Item = instance_create(obj_player.x+30*SpeedX/Speed,obj_player.y+30*SpeedY/Speed,obj_item);
                         Item.Id = Iid;
                         Item.Z = 50;
                         Item.SpeedA = SpeedA;
@@ -257,7 +257,7 @@ if Ienable{
                 else{
                     
                     //Drop item.
-                    var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
+                    var Item = instance_create(obj_player.x+30*SpeedX/Speed,obj_player.y+30*SpeedY/Speed,obj_item);
                     Item.Id = Iid;
                     Item.Quantity = Iquantity;
                     Item.Z = 50;
