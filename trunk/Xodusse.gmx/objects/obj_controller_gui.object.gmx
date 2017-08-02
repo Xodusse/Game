@@ -116,7 +116,7 @@ if instance_exists(obj_player){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Update message
+            <string>///Update messages
 // © 2017 - Jon Harvey
 
 MessageFade *= S98;
@@ -142,7 +142,7 @@ MessageFade *= S98;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw gun info
+            <string>///Draw GUI
 // © 2017 - Jon Harvey
 
 //Variables for view port width and height.
@@ -155,11 +155,12 @@ if instance_exists(obj_player){
 
     draw_set_font(FNT_EXUDATION);
     
-    //Show message
+    //Show messages
     draw_set_colour($FFFFFF);
     draw_set_alpha(2*MessageFade);
     draw_text(8,H-180-60*(1-MessageFade),Message);
     draw_set_alpha(1);
+    draw_set_colour(0);
 
     with(obj_player){
     
@@ -314,7 +315,6 @@ if instance_exists(obj_player){
                 draw_text(X+S/2-2+S*(Iid&amp;1)*(Iid&lt;=Idoubles*2),Y+S/2,Iquantity);
             }
         }
-        
         draw_set_colour(0);
         draw_set_halign(fa_left);
         draw_set_valign(fa_top);

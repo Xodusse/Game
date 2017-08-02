@@ -28,10 +28,53 @@
             <string>///Set item variables
 // © 2017 - Jon Harvey
 
+Z = 0;
+
+SpeedX = 0;
+SpeedY = 0;
+SpeedZ = 0;
+
 image_angle = irandom(360);
 
 Id = Idoubles*2+Isingles+Iammo+1+irandom(1);
 Quantity = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>other</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Move when thrown
+// © 2017 - Jon Harvey
+
+if (Z&gt;0){
+    
+    SpeedZ = SpeedZ-653*DELTA;
+    
+    x += SpeedX*FRAME_DELTA;
+    y += SpeedY*FRAME_DELTA;
+    Z = max(Z+SpeedZ*FRAME_DELTA,0);
+    
+    image_xscale = 1+Z;
+    image_yscale = 1+Z;
+    depth = -Z;
+}
 </string>
           </argument>
         </arguments>
@@ -54,61 +97,64 @@ Quantity = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Give item to player.
+            <string>///Give item to player
 // © 2017 - Jon Harvey
 
-//Add backpack.
-if Id&gt;Idoubles*2+Isingles+Iammo{
-            
-    if !Ibackpack
-    {
-        Ibackpack = Id-(Idoubles*2+Isingles+Iammo);
-        instance_destroy();
-    }
-}
-else{
-
-    var Given = 0;
-    for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
-    for(var X = 0;X&lt;6;X++){
-        
-    if Given break;
-    //Check if item slot is free.
-    if (I[X+Y*6] == 0){
-        
-        if (Id&lt;=Idoubles*2)
+if (Z==0){
+    
+    //Add backpack.
+    if Id&gt;Idoubles*2+Isingles+Iammo{
+                
+        if !Ibackpack
         {
-            if  (X&lt;4) &amp;&amp; (I[X+1+Y*6] == 0)
-            {
-                Given = 1;
-                //Add magazine and ammo (double slot).
-                I[X+Y*6] = Id;
-                I[X+1+Y*6] = Id+1;
-                Q[X+Y*6] = 0;
-                Q[X+1+Y*6] = Quantity;
-                
-                Message = "Picked up "+Gname[floor(Id/2)];
-                MessageFade = 1;
-                instance_destroy();
-            }
+            Ibackpack = Id-(Idoubles*2+Isingles+Iammo);
+            instance_destroy();
         }
-        else{
-                
-                //Add magazine and ammo (single slot).
-                Given = 1;
-                I[X+Y*6] = Id;
-                Q[X+Y*6] = Quantity;
-                
-                if Id&gt;Idoubles*2+Isingles{
-                
-                    Message = "+"+string(Quantity)+" ammo";
+    }
+    else{
+    
+        var Given = 0;
+        for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
+        for(var X = 0;X&lt;6;X++){
+            
+        if Given break;
+        //Check if item slot is free.
+        if (I[X+Y*6] == 0){
+            
+            if (Id&lt;=Idoubles*2)
+            {
+                if  (X&lt;4) &amp;&amp; (I[X+1+Y*6] == 0)
+                {
+                    Given = 1;
+                    //Add magazine and ammo (double slot).
+                    I[X+Y*6] = Id;
+                    I[X+1+Y*6] = Id+1;
+                    Q[X+Y*6] = 0;
+                    Q[X+1+Y*6] = Quantity;
+                    
+                    Message = "Picked up "+Gname[floor(Id/2)];
+                    MessageFade = 1;
+                    instance_destroy();
                 }
-                else{
-                
-                    Message = "Picked up "+Gname[Id-Idoubles-1];
+            }
+            else{
+                    
+                    //Add magazine and ammo (single slot).
+                    Given = 1;
+                    I[X+Y*6] = Id;
+                    Q[X+Y*6] = Quantity;
+                    
+                    if Id&gt;Idoubles*2+Isingles{
+                    
+                        Message = "+"+string(Quantity)+" ammo";
+                    }
+                    else{
+                    
+                        Message = "Picked up "+Gname[Id-Idoubles-1];
+                    }
+                    MessageFade = 1;
+                    instance_destroy();
                 }
-                MessageFade = 1;
-                instance_destroy();
             }
         }
     }
