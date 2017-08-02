@@ -30,6 +30,7 @@
 
 Z = 0;
 
+SpeedA = 0;
 SpeedX = 0;
 SpeedY = 0;
 SpeedZ = 0;
@@ -63,18 +64,30 @@ Quantity = 1;
             <string>///Move when thrown
 // © 2017 - Jon Harvey
 
-if (Z&gt;0){
-    
-    SpeedZ = SpeedZ-653*DELTA;
-    
-    x += SpeedX*FRAME_DELTA;
-    y += SpeedY*FRAME_DELTA;
-    Z = max(Z+SpeedZ*FRAME_DELTA,0);
-    
-    image_xscale = 1+Z;
-    image_yscale = 1+Z;
-    depth = -Z;
+if (Z&lt;=-SpeedZ+.001){
+
+    //Hit ground.
+    SpeedA *= .5*S90;
+    SpeedX *= .5*S90;
+    SpeedY *= .5*S90;
+    SpeedZ *= -.5*S90;
 }
+else{
+    
+    //Fall to ground.
+    SpeedZ += -653*DELTA;
+}
+
+//Update visuals.
+image_angle += SpeedA*FRAME_DELTA;
+image_xscale = 1+.001*Z;
+image_yscale = 1+.001*Z;
+depth = -Z;
+
+//Control movement.
+x += SpeedX*FRAME_DELTA;
+y += SpeedY*FRAME_DELTA;
+Z = max(Z+SpeedZ*FRAME_DELTA,0);
 </string>
           </argument>
         </arguments>
@@ -186,12 +199,12 @@ if (Z==0){
 
 if Id&lt;=Idoubles*2{
 
-    draw_sprite_ext(spr_items,Id-1,x-16*dcos(image_angle),y+16*dsin(image_angle),1/2,1/2,image_angle,-1,1);
-    draw_sprite_ext(spr_items,Id,x+16*dcos(image_angle),y-16*dsin(image_angle),1/2,1/2,image_angle,-1,1);
+    draw_sprite_ext(spr_items,Id-1,x-image_xscale*16*dcos(image_angle),y+image_xscale*16*dsin(image_angle),image_xscale/2,image_yscale/2,image_angle,-1,1);
+    draw_sprite_ext(spr_items,Id,x+image_xscale*16*dcos(image_angle),y-image_xscale*16*dsin(image_angle),image_xscale/2,image_yscale/2,image_angle,-1,1);
 }
 else{
 
-    draw_sprite_ext(spr_items,Id-1,x,y,1/2,1/2,image_angle,-1,1);
+    draw_sprite_ext(spr_items,Id-1,x,y,image_xscale/2,image_yscale/2,image_angle,-1,1);
 }
 </string>
           </argument>

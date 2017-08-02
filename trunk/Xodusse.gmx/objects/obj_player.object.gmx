@@ -500,16 +500,18 @@ if (WalkSpeedY != 0){
             <string>///Draw player sprites
 // © 2017 - Jon Harvey
 
-var Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
-var Direction = darctan2(-WalkSpeedY,WalkSpeedX);
+var Turn,Direction,Force
+Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
+Direction = darctan2(-WalkSpeedY,WalkSpeedX);
+Force = min(Kick,5);
 
 draw_sprite_ext(spr_player_legs,WalkFrame,x,y,1,1,Direction,$FFFFFF,1);
-draw_sprite_ext(spr_player_torso,1+sign(Turn)*(abs(Turn)&gt;15),x-dcos(GunDirection)*min(Kick,5),y+dsin(GunDirection)*min(Kick,5),1,1,GunDirection,$FFFFFF,1);
-draw_sprite_ext(spr_player_head,0,x,y,1,1,GunDirection+0.6*Turn,$FFFFFF,1);
+draw_sprite_ext(spr_player_torso,1+sign(Turn)*(abs(Turn)&gt;15),x-dcos(GunDirection)*Force,y+dsin(GunDirection)*Force,1,1,GunDirection,$FFFFFF,1);
+draw_sprite_ext(spr_player_head,0,x-dcos(GunDirection)*Force*0.8,y+dsin(GunDirection)*Force*0.8,1,1,GunDirection+0.6*Turn,$FFFFFF,1);
 //Draw left arm - Reece:
-draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*min(Kick,5),y+dsin(GunDirection)*min(Kick,5),1,1,GunDirection+0.6*Turn,$FFFFFF,1);
+draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)-dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)+dcos(-GunDirection)*10,1,1,GunDirection+Force,$FFFFFF,1);
 //Draw right arm - Reece:
-draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*min(Kick,5),y+dsin(GunDirection)*min(Kick,5),1,-1,GunDirection+0.6*Turn,$FFFFFF,1);
+draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)+dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)-dcos(-GunDirection)*10,1,-1,GunDirection-Force,$FFFFFF,1);
 </string>
           </argument>
         </arguments>

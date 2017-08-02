@@ -92,8 +92,8 @@ ShakeAngle = ShakeAngle*(1-S90)+S90*20*Shake*(random(2)-1);
 if instance_exists(obj_player){
     
     //Smoothly translate and rotate view with the player.
-    view_xview[0] = view_xview[0]*S90+(1-S90)*(obj_player.x-view_wview[0]/2+ShakeX);
-    view_yview[0] = view_yview[0]*S90+(1-S90)*(obj_player.y-view_hview[0]/2+ShakeY);
+    view_xview[0] = view_xview[0]*S90+(1-S90)*(obj_player.x-view_wview[0]/2+ShakeX+100*dsin(view_angle[0]));
+    view_yview[0] = view_yview[0]*S90+(1-S90)*(obj_player.y-view_hview[0]/2+ShakeY-100*dcos(view_angle[0]));
     view_angle[0] = view_angle[0]*S98+(1-S98)*(90-obj_player.WalkDirection+ShakeAngle);
 }
 </string>

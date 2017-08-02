@@ -140,10 +140,11 @@ if Ienable{
     //Release item and move it.
     if mouse_check_button_released(mb_left) &amp;&amp; Iid{
         
-        var SpeedX,SpeedY,SpeedZ,Speed;
-        SpeedX = (mouse_x-obj_player.x)/10;
-        SpeedY = (mouse_y-obj_player.y)/10;
-        SpeedZ = 20;
+        var SpeedA,SpeedX,SpeedY,SpeedZ,Speed;
+        SpeedA = (random(10)+20);
+        SpeedX = (mouse_x-obj_player.x)/40;
+        SpeedY = (mouse_y-obj_player.y)/40;
+        SpeedZ = 100;
         Speed = sqrt(max(SpeedX*SpeedX+SpeedY*SpeedY,1));
         if Iid&lt;=Idoubles*2{
         
@@ -196,6 +197,7 @@ if Ienable{
                 Item.Id = Iid-((Iid+1)&amp;1);
                 Item.Quantity = Iquantity;
                 Item.Z = 50;
+                Item.SpeedA = SpeedA;
                 Item.SpeedX = SpeedX;
                 Item.SpeedY = SpeedY;
                 Item.SpeedZ = SpeedZ;
@@ -212,6 +214,7 @@ if Ienable{
                         var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
                         Item.Id = Iid;
                         Item.Z = 50;
+                        Item.SpeedA = SpeedA;
                         Item.SpeedX = SpeedX;
                         Item.SpeedY = SpeedY;
                         Item.SpeedZ = SpeedZ;
@@ -255,6 +258,7 @@ if Ienable{
                     Item.Id = Iid;
                     Item.Quantity = Iquantity;
                     Item.Z = 50;
+                    Item.SpeedA = SpeedA;
                     Item.SpeedX = SpeedX;
                     Item.SpeedY = SpeedY;
                     Item.SpeedZ = SpeedZ;
