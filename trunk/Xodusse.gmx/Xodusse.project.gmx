@@ -105,7 +105,6 @@
       <script>scripts\scr_command_clear.gml</script>
     </scripts>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>
     <font>fonts\fnt_Exudation</font>
