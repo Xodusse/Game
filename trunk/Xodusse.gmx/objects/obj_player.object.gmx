@@ -59,6 +59,8 @@ if !instance_exists(obj_controller_inventory){
             <string>///Set gun variables
 // © 2017 - Jon Harvey
 
+//0 is gun, 1 is grenade.
+Grenade = 0;
 //Number of guns.
 Count = 1;
 //Gun in hand (between 0 and Count).
@@ -153,7 +155,7 @@ for(var X = 0;X&lt;6;X++){
     Item = I[X];
     Double = (Item&lt;=Idoubles*2);
     //Check if item is gun (or front part of heavy gun).
-    if Item&lt;=(Idoubles*2+Isingles) ^^ (Double &amp;&amp; ((Item+1)%2)){
+    if Item&lt;=(Idoubles*2+Isingles+Igrenades) ^^ (Double &amp;&amp; ((Item+1)%2)){
         
         P[Count] = X+Double;            
         G[Count++] = floor(Item/2-1/2)+!Double*floor(Item/2-Idoubles);
@@ -202,14 +204,22 @@ if Count{
                 Current = (Current-Swap+Count)%Count;
                 Secondary = Current;
                 Rate = 0;
-                Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+                Grenade = (I[P[Current]]&gt;Idoubles*2+Isingles);
+                if !Grenade{
+                
+                    Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+                }
             }
             else{
                 
                 Current = (Current-Swap+Count)%Count;
                 Secondary = Current;
                 Rate = 0;
-                Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+                Grenade = (I[P[Current]]&gt;Idoubles*2+Isingles);
+                if !Grenade{
+                
+                    Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+                }
             }
         }
     }
@@ -218,6 +228,7 @@ else{
     
     Current = 0;
 }
+
 </string>
           </argument>
         </arguments>
@@ -266,12 +277,12 @@ for(var X = 0;X&lt;6;X++){
 }
 
 //Don't reload when empty.
-if !Magazines{
+if !Magazines &amp;&amp; !Grenade{
 
     Reload = Greload[G[Current]];
 }
 else
-if Q[P[Current]]&lt;1 &amp;&amp; Reload&gt;=Greload[G[Current]]{
+if Q[P[Current]]&lt;1 &amp;&amp; !Grenade &amp;&amp; Reload&gt;=Greload[G[Current]]{
 
     Reload = 0;
 }
@@ -307,86 +318,104 @@ SpeedY = 0;
 Kick *= S90;
 
 //Fire or swap guns when not swapping.
-if !Magazines{
-    
-    Reload = Greload[G[Current]];
-}
 if Count &amp;&amp; (abs(Swap)&lt;0.1){
        
     //Add to gun timelines.
     Rate += DELTA;
     Reload += DELTA;
     
-    //Fill gun when finished reloading.
-    if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1  &amp;&amp; Magazines{
-    
-        Q[P[Current]] = Q[MagazineNext];
-        //Remove magazine
-        I[MagazineNext] = 0;
-        Q[MagazineNext] = 0;
-    }
-    else{
+    if !Ienable &amp;&amp; Grenade{
         
-        //Shoot fully-automatic or semi-automatic with left click as long as the inventory is closed.
-        if !Ienable &amp;&amp; (mouse_check_button(mb_left)*Gauto[G[Current]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Current]]){
+        if mouse_check_button_pressed(mb_left) &amp;&amp; (Reload&gt;1){
             
-            //Check gun timelines.
-            if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]){
+                //Handle grenade.
+                var SpeedX,SpeedY,Throw;
+                SpeedX = (mouse_x-x)/60;
+                SpeedY = (mouse_y-y)/60;
+                Throw = instance_create(x,y,obj_grenade);
                 
-                audio_play_sound(snd_gun,0,0);
-                Rate = 0;
+                Throw.Z = 50;
+                Throw.SpeedA = random(20);
+                Throw.SpeedX = SpeedX;
+                Throw.SpeedY = SpeedY;
+                Throw.SpeedZ = sqrt(max(10000-SpeedX*SpeedX+SpeedY*SpeedY,0.01));
+                Reload = 0;
+            }
+        }
+        else
+        if !Grenade{
+        
+        //Fill gun when finished reloading.
+        if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1  &amp;&amp; Magazines{
+        
+            Q[P[Current]] = Q[MagazineNext];
+            //Remove magazine
+            I[MagazineNext] = 0;
+            Q[MagazineNext] = 0;
+        }
+        else{
+            
+            //Shoot fully-automatic or semi-automatic with left click as long as the inventory is closed.
+            if !Ienable &amp;&amp; (mouse_check_button(mb_left)*Gauto[G[Current]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Current]]){
                 
-                //Shoot all bullets.
-                for(var S = 0;S&lt;Gbullets[G[Current]]*max(DELTA*Grate[G[Current]],1);S++){
+                //Check gun timelines.
+                if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]){
                     
-                    var Length,Bullet,Direction;
-                    Length = 16+8*S/Gbullets[G[Current]];
-                    Bullet = instance_create(x+Length*dcos(GunDirection),y-Length*dsin(GunDirection),Gtype[G[Current]]);
-                    Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Current]];
-                    Bullet.direction = Direction;
-                    Bullet.image_angle = Direction;
+                    audio_play_sound(snd_gun,0,0);
+                    Rate = 0;
+                    
+                    //Shoot all bullets.
+                    for(var S = 0;S&lt;Gbullets[G[Current]]*max(DELTA*Grate[G[Current]],1);S++){
+                        
+                        var Length,Bullet,Direction;
+                        Length = 16+8*S/Gbullets[G[Current]];
+                        Bullet = instance_create(x+Length*dcos(GunDirection),y-Length*dsin(GunDirection),Gtype[G[Current]]);
+                        Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Current]];
+                        Bullet.direction = Direction;
+                        Bullet.image_angle = Direction;
+                    }
+                    
+                    //Update or reload magazine.
+                    Q[P[Current]] = max(Q[P[Current]]-ceil(DELTA*Grate[G[Current]]),0);
+                    if (Q[P[Current]]&lt;1 &amp;&amp; Magazines){
+                    
+                        audio_play_sound(snd_empty,0,0);
+                        Q[P[Current]] = 0;
+                        Reload = 0;
+                    }
+                    
+                    //Add gun recoil to player speed and kick.
+                    Kick = Grecoil[G[Current]];
+                    SpeedX = -Grecoil[G[Current]]*dcos(GunDirection)/FRAME_DELTA;
+                    SpeedY = -Grecoil[G[Current]]*dsin(GunDirection)/FRAME_DELTA;
                 }
+            }
+            
+            //Reload magazine with the reload key.
+            if Kreload &amp;&amp; (Q[P[Current]]&lt;Gcap[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Magazines){
                 
-                //Update or reload magazine.
-                Q[P[Current]] = max(Q[P[Current]]-ceil(DELTA*Grate[G[Current]]),0);
-                if (Q[P[Current]]&lt;1 &amp;&amp; Magazines){
-                
-                    audio_play_sound(snd_empty,0,0);
+                var Last,Break;
+                Last = -1;
+                Break = 0;
+                for(var Y = 0;Y&lt;=1+Ibackpack;Y++)
+                for(var X = 5;X&gt;=0;X--){
+                    
+                    if Last&gt;=0{
+                        
+                        Break += (I[X+Y*6] == G[Current]+Idoubles*2+Isingles+1);
+                    }
+                    if !I[X+Y*6] &amp;&amp; !Break{
+                        
+                        Last = X+Y*6;
+                    }
+                }
+                if Last&gt;=0{
+                    
+                    I[Last] = 8;
+                    Q[Last] = Q[P[Current]];
                     Q[P[Current]] = 0;
                     Reload = 0;
                 }
-                
-                //Add gun recoil to player speed and kick.
-                Kick = Grecoil[G[Current]];
-                SpeedX = -Grecoil[G[Current]]*dcos(GunDirection)/FRAME_DELTA;
-                SpeedY = -Grecoil[G[Current]]*dsin(GunDirection)/FRAME_DELTA;
-            }
-        }
-        
-        //Reload magazine with the reload key.
-        if Kreload &amp;&amp; (Q[P[Current]]&lt;Gcap[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Magazines){
-            
-            var Last,Break;
-            Last = -1;
-            Break = 0;
-            for(var Y = 0;Y&lt;=1+Ibackpack;Y++)
-            for(var X = 5;X&gt;=0;X--){
-                
-                if Last&gt;=0{
-                    
-                    Break += (I[X+Y*6] == G[Current]+Idoubles*2+Isingles+1);
-                }
-                if !I[X+Y*6] &amp;&amp; !Break{
-                    
-                    Last = X+Y*6;
-                }
-            }
-            if Last&gt;=0{
-                
-                I[Last] = 8;
-                Q[Last] = Q[P[Current]];
-                Q[P[Current]] = 0;
-                Reload = 0;
             }
         }
     }
@@ -430,7 +459,9 @@ GunDirection += 0.3*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
 var Speed;
-Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/Gweight[G[Current]];
+Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
+if !Grenade{ Speed /= Gweight[G[Current]]; }
+
 SpeedX += 4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
 SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 

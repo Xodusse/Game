@@ -61,6 +61,7 @@
       <sprite>sprites\spr_bullet_medium</sprite>
       <sprite>sprites\spr_bullet_pellet</sprite>
       <sprite>sprites\spr_bullet_grenade</sprite>
+      <sprite>sprites\spr_grenade</sprite>
     </sprites>
     <sprites name="Logistics">
       <sprite>sprites\spr_crate_parent</sprite>
@@ -142,6 +143,7 @@
       <object>objects\obj_bullet_light</object>
       <object>objects\obj_bullet_pellet</object>
       <object>objects\obj_bullet_grenade</object>
+      <object>objects\obj_grenade</object>
       <object>objects\obj_explosion</object>
     </objects>
     <objects name="Controllers">
