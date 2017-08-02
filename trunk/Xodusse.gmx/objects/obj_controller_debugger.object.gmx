@@ -131,7 +131,7 @@ if (DEBUG_VISIBLE == true){
     
     //Version number:
     draw_text(8, 10,
-        "Xodusse V.101");
+        "Xodusse V.103");
     
     //Copyright:
     draw_text(8, 35,
