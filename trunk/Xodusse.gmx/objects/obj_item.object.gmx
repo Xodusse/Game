@@ -37,7 +37,7 @@ SpeedZ = 0;
 
 image_angle = irandom(360);
 
-Id = Idoubles*2+Isingles+Iammo+1+irandom(1);
+Id = Idoubles*2+Isingles+Igrenades+Iammo+1+irandom(1);
 Quantity = 1;
 </string>
           </argument>
@@ -116,11 +116,11 @@ Z = max(Z+SpeedZ*FRAME_DELTA,0);
 if (Z==0){
     
     //Add backpack.
-    if Id&gt;Idoubles*2+Isingles+Iammo{
+    if Id&gt;Idoubles*2+Isingles+Igrenades+Iammo{
                 
         if !Ibackpack
         {
-            Ibackpack = Id-(Idoubles*2+Isingles+Iammo);
+            Ibackpack = Id-(Idoubles*2+Isingles+Igrenades+Iammo);
             instance_destroy();
         }
     }
@@ -157,7 +157,7 @@ if (Z==0){
                     I[X+Y*6] = Id;
                     Q[X+Y*6] = Quantity;
                     
-                    if Id&gt;Idoubles*2+Isingles{
+                    if Id&gt;Idoubles*2+Isingles+Igrenades{
                     
                         Message = "+"+string(Quantity)+" ammo";
                     }

@@ -28,11 +28,7 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
-globalvar Idoubles,Isingles,Iammo,Ienable,Ibackpack,Iid,Iquantity,Iposition,I,Q;
-Idoubles = 2;//Number of two-handed weapons.
-Isingles = 2;//Number of one-handed weapons.
-Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
-
+globalvar Ienable,Ibackpack,Iid,Iquantity,Iposition,I,Q;
 //Toggle inventory (0 is off, 1 is on).
 Ienable = 0;
 
@@ -61,6 +57,13 @@ I[4] = 6;
 Q[4] = Gcap[3];
 I[5] = 5;
 Q[5] = Gcap[2];
+
+globalvar Idoubles,Isingles,Igrenades,Iammo;
+Idoubles = 2;//Number of two-handed weapons.
+Isingles = 2;//Number of one-handed weapons.
+Igrenades = 1;
+Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
+
 </string>
           </argument>
         </arguments>
@@ -110,7 +113,7 @@ if Ienable{
         //Select backpack
         if (X == 2) &amp;&amp; (Y == 1){
             
-            Iid = Idoubles*2+Isingles+Iammo+Ibackpack;
+            Iid = Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack;
             Iquantity = 0;
             
             //Empty slot.
@@ -141,10 +144,10 @@ if Ienable{
     if mouse_check_button_released(mb_left) &amp;&amp; Iid{
         
         var SpeedA,SpeedX,SpeedY,SpeedZ,Speed;
-        SpeedA = (random(10)+20);
-        SpeedX = (mouse_x-obj_player.x)/40;
-        SpeedY = (mouse_y-obj_player.y)/40;
-        SpeedZ = 100;
+        SpeedA = random(10);
+        SpeedX = (mouse_x-obj_player.x)/200;
+        SpeedY = (mouse_y-obj_player.y)/200;
+        SpeedZ = 50;
         Speed = sqrt(max(SpeedX*SpeedX+SpeedY*SpeedY,1));
         if Iid&lt;=Idoubles*2{
         
@@ -205,7 +208,7 @@ if Ienable{
         }
         else{
             
-            if Iid &gt; Idoubles*2+Isingles+Iammo{
+            if Iid &gt; Idoubles*2+Isingles+Igrenades+Iammo{
                     
                     //Move backpack.    
                     if (X != 2) || (Y != 1){

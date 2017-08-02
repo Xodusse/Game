@@ -58,7 +58,7 @@ WalkSpeedY = 0;
 var Count,Type,Id;
 Count = 1+irandom(4);
 Type = irandom(Iammo-1);
-Id = Idoubles*2+Isingles+1+Type;
+Id = Idoubles*2+Isingles+Igrenades+1+Type;
 
 
 for(var N = 0;N&lt;Count;N++)

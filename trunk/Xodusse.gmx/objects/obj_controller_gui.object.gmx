@@ -264,7 +264,7 @@ if instance_exists(obj_player){
         draw_rectangle(W/2+S*5,H/2,W/2+S*6,H/2+S,1);
         if Ibackpack{
         
-            draw_sprite(spr_items,Idoubles*2+Isingles+Iammo+Ibackpack-1,W/2+S*5.5,H/2+S*.5);
+            draw_sprite(spr_items,Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack-1,W/2+S*5.5,H/2+S*.5);
         }
         
         //Cycle through inventory items.
