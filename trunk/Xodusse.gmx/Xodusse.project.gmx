@@ -54,6 +54,7 @@
       <sprite>sprites\spr_player_torso</sprite>
       <sprite>sprites\spr_player_legs</sprite>
       <sprite>sprites\spr_player_arm</sprite>
+      <sprite>sprites\spr_player_holdables</sprite>
     </sprites>
     <sprites name="Projectiles">
       <sprite>sprites\spr_bullet_heavy</sprite>
@@ -106,7 +107,6 @@
       <script>scripts\scr_command_clear.gml</script>
     </scripts>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>
     <font>fonts\fnt_Exudation</font>
