@@ -170,9 +170,54 @@
       <objects name="Enemy">
         <object>objects\obj_enemy</object>
       </objects>
-      <objects name="Props">
+      <objects name="Structures">
         <object>objects\obj_obstacle</object>
-        <object>objects\obj_wall</object>
+        <object>objects\obj_wall_parent</object>
+        <objects name="Walls">
+          <object>objects\obj_wall_1</object>
+          <object>objects\obj_wall_2</object>
+          <object>objects\obj_wall_3</object>
+          <object>objects\obj_wall_4</object>
+          <object>objects\obj_wall_5</object>
+          <object>objects\obj_wall_6</object>
+          <object>objects\obj_wall_7</object>
+          <object>objects\obj_wall_8</object>
+          <object>objects\obj_wall_9</object>
+          <object>objects\obj_wall_10</object>
+          <object>objects\obj_wall_11</object>
+          <object>objects\obj_wall_12</object>
+          <object>objects\obj_wall_13</object>
+          <object>objects\obj_wall_14</object>
+          <object>objects\obj_wall_15</object>
+          <object>objects\obj_wall_16</object>
+          <object>objects\obj_wall_17</object>
+          <object>objects\obj_wall_18</object>
+          <object>objects\obj_wall_19</object>
+          <object>objects\obj_wall_20</object>
+          <object>objects\obj_wall_21</object>
+          <object>objects\obj_wall_22</object>
+          <object>objects\obj_wall_23</object>
+          <object>objects\obj_wall_24</object>
+          <object>objects\obj_wall_25</object>
+          <object>objects\obj_wall_26</object>
+          <object>objects\obj_wall_27</object>
+          <object>objects\obj_wall_28</object>
+          <object>objects\obj_wall_29</object>
+          <object>objects\obj_wall_30</object>
+          <object>objects\obj_wall_31</object>
+          <object>objects\obj_wall_32</object>
+          <object>objects\obj_wall_33</object>
+          <object>objects\obj_wall_34</object>
+          <object>objects\obj_wall_35</object>
+          <object>objects\obj_wall_36</object>
+          <object>objects\obj_wall_37</object>
+          <object>objects\obj_wall_38</object>
+          <object>objects\obj_wall_39</object>
+          <object>objects\obj_wall_40</object>
+          <object>objects\obj_wall_41</object>
+          <object>objects\obj_wall_42</object>
+          <object>objects\obj_wall_43</object>
+        </objects>
       </objects>
       <objects name="Logistics">
         <object>objects\obj_crate</object>
