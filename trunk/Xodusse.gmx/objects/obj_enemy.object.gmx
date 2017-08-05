@@ -106,8 +106,8 @@ AiTargetY += FRAME_DELTA*AiTargetSpeedY;
 
 if instance_exists(obj_player){
     var Visible = (point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AiSight,y-dsin(WalkDirection)*AiSight)&lt;AiSight) &amp;&amp;
-    ((collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AiEye,y+dcos(WalkDirection)*AiEye,obj_obstacle,0,1) == noone) ||
-    (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AiEye,y-dcos(WalkDirection)*AiEye,obj_obstacle,0,1) == noone));
+    ((collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AiEye,y+dcos(WalkDirection)*AiEye,obj_wall_parent,0,1) == noone) ||
+    (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AiEye,y-dcos(WalkDirection)*AiEye,obj_wall_parent,0,1) == noone));
             
     if Visible{
         
@@ -182,7 +182,7 @@ x += WalkSpeedX*FRAME_DELTA;
 y += WalkSpeedY*FRAME_DELTA;
 
 //Collide with obstacle
-var Inst = instance_place(x+WalkSpeedX*10,y+WalkSpeedY*10,obj_obstacle);
+var Inst = instance_place(x+WalkSpeedX*10,y+WalkSpeedY*10,obj_wall_parent);
 if Inst != noone{
 
     WalkDirection += FRAME_DELTA*0.2*angle_difference(point_direction(Inst.x,Inst.y,x,y),WalkDirection);

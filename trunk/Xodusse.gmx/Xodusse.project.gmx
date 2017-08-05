@@ -69,10 +69,6 @@
       <sprite>sprites\spr_crate</sprite>
       <sprite>sprites\spr_item</sprite>
     </sprites>
-    <sprite>sprites\spr_enemy</sprite>
-    <sprite>sprites\spr_obstacle</sprite>
-    <sprite>sprites\spr_explosion</sprite>
-    <sprite>sprites\spr_items</sprite>
     <sprites name="Foliage">
       <sprite>sprites\spr_foliage_fern_1</sprite>
     </sprites>
@@ -124,6 +120,9 @@
         <sprite>sprites\spr_wall_43</sprite>
       </sprites>
     </sprites>
+    <sprite>sprites\spr_enemy</sprite>
+    <sprite>sprites\spr_explosion</sprite>
+    <sprite>sprites\spr_items</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -171,7 +170,6 @@
         <object>objects\obj_enemy</object>
       </objects>
       <objects name="Structures">
-        <object>objects\obj_obstacle</object>
         <object>objects\obj_wall_parent</object>
         <objects name="Walls">
           <object>objects\obj_wall_1</object>

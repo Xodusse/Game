@@ -204,22 +204,12 @@ if Count{
                 Current = (Current-Swap+Count)%Count;
                 Secondary = Current;
                 Rate = 0;
-                Grenade = (I[P[Current]]&gt;Idoubles*2+Isingles);
-                if !Grenade{
-                
-                    Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
-                }
             }
             else{
                 
                 Current = (Current-Swap+Count)%Count;
                 Secondary = Current;
                 Rate = 0;
-                Grenade = (I[P[Current]]&gt;Idoubles*2+Isingles);
-                if !Grenade{
-                
-                    Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
-                }
             }
         }
     }
@@ -228,7 +218,11 @@ else{
     
     Current = 0;
 }
+Grenade = (I[P[Current]]&gt;Idoubles*2+Isingles);
+if !Grenade &amp;&amp; (abs(Swap)==1){
 
+    Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
+}
 </string>
           </argument>
         </arguments>
@@ -472,40 +466,7 @@ y += FRAME_DELTA*WalkSpeedY;
 
 //Update walk frame
 var Speed = sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
-WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
-
-//© 2017 - Reece Warren
-//Collision code:
-
-//Horizontal Collision:
-if (WalkSpeedX != 0){
-    if (!place_free(x + WalkSpeedX, y)){
-    
-        if (WalkSpeedX &gt; 0){
-            move_contact_solid(0,WalkSpeedX);
-        }
-        else if (WalkSpeedX &lt; 0){
-            move_contact_solid(180,-WalkSpeedX);
-        }
-        
-        WalkSpeedX = 0;
-    }
-}
-
-//Vertical Collision:
-if (WalkSpeedY != 0){
-    if (!place_free(x, y + WalkSpeedY)){
-    
-        if (WalkSpeedY &gt; 0){
-            move_contact_solid(270,WalkSpeedX);
-        }
-        else if (WalkSpeedY &lt; 0){
-            move_contact_solid(90,-WalkSpeedX);
-        }
-        
-        WalkSpeedY = 0;
-    }
-}        
+WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);       
 </string>
           </argument>
         </arguments>
@@ -545,7 +506,10 @@ draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)-dsin(-GunDirecti
 draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)+dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)-dcos(-GunDirection)*10,1,-1,GunDirection-2*Force+4+Swap*45,$FFFFFF,1);
 
 //Draw gun - Reece:
-draw_sprite_ext(spr_player_holdables,G[Current],x-dcos(GunDirection)*(Force*2-8),y+dsin(GunDirection)*(Force*2-8),0.5,0.5,GunDirection-4+Swap*45,$FFFFFF,1);
+if Count{
+    
+    draw_sprite_ext(spr_player_holdables,G[Current],x-dcos(GunDirection)*(Force*2-8),y+dsin(GunDirection)*(Force*2-8),0.4,0.4,GunDirection-4+Swap*45,$FFFFFF,1);
+}
 
 draw_sprite_ext(spr_player_head,0,x-dcos(GunDirection)*Force*0.8,y+dsin(GunDirection)*Force*0.8,1,1,GunDirection+0.6*Turn,$FFFFFF,1);
 </string>
