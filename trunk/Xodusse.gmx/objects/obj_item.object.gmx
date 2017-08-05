@@ -37,8 +37,13 @@ SpeedZ = 0;
 
 image_angle = irandom(360);
 
-Id = Idoubles*2+Isingles+Igrenades+Iammo+1+irandom(1);
+var Backpack;
+Backpack = 1+irandom(1);
+Id = Idoubles*2+Isingles+Igrenades+Iammo+Backpack;
 Quantity = 1;
+
+Bac[Backpack*6] = 0;
+Qnt[Backpack*6] = 0;
 </string>
           </argument>
         </arguments>
@@ -118,9 +123,15 @@ if (Z==0){
     //Add backpack.
     if Id&gt;Idoubles*2+Isingles+Igrenades+Iammo{
                 
-        if !Ibackpack
-        {
+        if !Ibackpack{
+            
             Ibackpack = Id-(Idoubles*2+Isingles+Igrenades+Iammo);
+            for(var Y = Ibackpack-1;Y&gt;=0;Y--)
+            for(var X = 0;X&lt;6;X++){
+                
+                I[X+Y*6+12] = Bac[X+Y*6];
+                Q[X+Y*6+12] = Qnt[X+Y*6];
+            }
             instance_destroy();
         }
     }
@@ -138,8 +149,8 @@ if (Z==0){
             {
                 if  (X&lt;4) &amp;&amp; (I[X+1+Y*6] == 0)
                 {
+                    //Add double slot gun.
                     Given = 1;
-                    //Add magazine and ammo (double slot).
                     I[X+Y*6] = Id;
                     I[X+1+Y*6] = Id+1;
                     Q[X+Y*6] = 0;
@@ -152,12 +163,12 @@ if (Z==0){
             }
             else{
                     
-                    //Add magazine and ammo (single slot).
+                    //Add gun, ammo or backpack.
                     Given = 1;
                     I[X+Y*6] = Id;
                     Q[X+Y*6] = Quantity;
                     
-                    if Id&gt;Idoubles*2+Isingles+Igrenades{
+                    if Id&gt;Idoubles*2+Isingles{
                     
                         Message = "+"+string(Quantity)+" ammo";
                     }

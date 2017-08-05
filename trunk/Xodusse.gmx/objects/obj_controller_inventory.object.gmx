@@ -223,6 +223,17 @@ if Ienable{
                         Item.SpeedX = SpeedX;
                         Item.SpeedY = SpeedY;
                         Item.SpeedZ = SpeedZ;
+                        
+                        var Backpack;
+                        Backpack = Iid-(Idoubles*2+Isingles+Igrenades+Iammo);
+                        for(var Y = Backpack-1;Y&gt;=0;Y--)
+                        for(var X = 0;X&lt;6;X++){
+                            
+                            Item.Bac[X+Y*6] = I[X+Y*6+12];
+                            Item.Qnt[X+Y*6] = Q[X+Y*6+12];
+                            I[X+Y*6+12] = 0;
+                            Q[X+Y*6+12] = 0;
+                        }
                     }
                 }
                 else{

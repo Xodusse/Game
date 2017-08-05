@@ -306,7 +306,7 @@ if Q[P[Current]]&lt;1 &amp;&amp; !Grenade &amp;&amp; Reload&gt;=Greload[G[Curren
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Handle gun firing and reloading
+            <string>///Handle gun, grenades and reloading
 // © 2017 - Jon Harvey
 
 //Temporary speed variables for recoil.
@@ -330,8 +330,8 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
             
                 //Handle grenade.
                 var SpeedX,SpeedY,Throw;
-                SpeedX = (mouse_x-x)/60;
-                SpeedY = (mouse_y-y)/60;
+                SpeedX = (mouse_x-x)/60+WalkSpeedX;
+                SpeedY = (mouse_y-y)/60+WalkSpeedY;
                 Throw = instance_create(x,y,obj_grenade);
                 
                 Throw.Z = 50;
@@ -368,7 +368,7 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                     for(var S = 0;S&lt;Gbullets[G[Current]]*max(DELTA*Grate[G[Current]],1);S++){
                         
                         var Length,Bullet,Direction;
-                        Length = 16+8*S/Gbullets[G[Current]];
+                        Length = 16+8*S/Gbullets[G[Current]]+32*(G[Current]&lt;Idoubles);
                         Bullet = instance_create(x+Length*dcos(GunDirection),y-Length*dsin(GunDirection),Gtype[G[Current]]);
                         Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Current]];
                         Bullet.direction = Direction;
@@ -539,15 +539,15 @@ Force = min(Kick,5);
 draw_sprite_ext(spr_player_legs,WalkFrame,x,y,1,1,Direction,$FFFFFF,1);
 draw_sprite_ext(spr_player_torso,Ibackpack,x-dcos(GunDirection)*Force,y+dsin(GunDirection)*Force,1,1,GunDirection,$FFFFFF,1);
 
+//Draw left arm - Reece:
+draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)-dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)+dcos(-GunDirection)*10,1,1,GunDirection+2*Force-4+Swap*45,$FFFFFF,1);
+//Draw right arm - Reece:
+draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)+dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)-dcos(-GunDirection)*10,1,-1,GunDirection-2*Force+4+Swap*45,$FFFFFF,1);
+
 //Draw gun - Reece:
-draw_sprite_ext(spr_player_holdables,2,x-dcos(GunDirection)*Force*0.8,y+dsin(GunDirection)*Force*0.8,0.5,0.5,GunDirection+2*Force-4,$FFFFFF,1);
+draw_sprite_ext(spr_player_holdables,G[Current],x-dcos(GunDirection)*(Force*2-8),y+dsin(GunDirection)*(Force*2-8),0.5,0.5,GunDirection-4+Swap*45,$FFFFFF,1);
 
 draw_sprite_ext(spr_player_head,0,x-dcos(GunDirection)*Force*0.8,y+dsin(GunDirection)*Force*0.8,1,1,GunDirection+0.6*Turn,$FFFFFF,1);
-
-//Draw left arm - Reece:
-draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)-dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)+dcos(-GunDirection)*10,1,1,GunDirection+2*Force-4,$FFFFFF,1);
-//Draw right arm - Reece:
-draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)+dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)-dcos(-GunDirection)*10,1,-1,GunDirection-2*Force+4,$FFFFFF,1);
 </string>
           </argument>
         </arguments>
