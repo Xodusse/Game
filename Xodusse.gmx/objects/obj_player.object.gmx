@@ -454,19 +454,31 @@ GunDirection += 0.3*Turn*FRAME_DELTA;
 //Smooth walk using controls defined above.
 var Speed;
 Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
-if !Grenade{ Speed /= Gweight[G[Current]]; }
+if !Grenade{Speed /= Gweight[G[Current]];}
 
 SpeedX += 4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
 SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 
 WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
 WalkSpeedY = WalkSpeedY*S90-(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));
-x += FRAME_DELTA*WalkSpeedX;
-y += FRAME_DELTA*WalkSpeedY;
+var WalkSpeed;
+WalkSpeed = FRAME_DELTA*sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
+
+for(var L = 0;L&lt;WalkSpeed;L++){
+    
+    var CheckX,CheckY;
+    CheckX = x+min(WalkSpeed-L,1)*FRAME_DELTA*WalkSpeedX/WalkSpeed;
+    CheckY = y+min(WalkSpeed-L,1)*FRAME_DELTA*WalkSpeedY/WalkSpeed;
+    if place_free(CheckX,CheckY){
+        
+        x = CheckX;
+        y = CheckY;
+    }
+}
 
 //Update walk frame
 var Speed = sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
-WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);       
+WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
 </string>
           </argument>
         </arguments>
