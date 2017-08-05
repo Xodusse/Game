@@ -71,11 +71,58 @@
     </sprites>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_obstacle</sprite>
-    <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_explosion</sprite>
     <sprite>sprites\spr_items</sprite>
     <sprites name="Foliage">
       <sprite>sprites\spr_foliage_fern_1</sprite>
+    </sprites>
+    <sprites name="Structures">
+      <sprites name="walls">
+        <sprite>sprites\spr_wall_0</sprite>
+        <sprite>sprites\spr_wall_1</sprite>
+        <sprite>sprites\spr_wall_2</sprite>
+        <sprite>sprites\spr_wall_3</sprite>
+        <sprite>sprites\spr_wall_4</sprite>
+        <sprite>sprites\spr_wall_5</sprite>
+        <sprite>sprites\spr_wall_6</sprite>
+        <sprite>sprites\spr_wall_7</sprite>
+        <sprite>sprites\spr_wall_8</sprite>
+        <sprite>sprites\spr_wall_9</sprite>
+        <sprite>sprites\spr_wall_10</sprite>
+        <sprite>sprites\spr_wall_11</sprite>
+        <sprite>sprites\spr_wall_12</sprite>
+        <sprite>sprites\spr_wall_13</sprite>
+        <sprite>sprites\spr_wall_14</sprite>
+        <sprite>sprites\spr_wall_15</sprite>
+        <sprite>sprites\spr_wall_16</sprite>
+        <sprite>sprites\spr_wall_17</sprite>
+        <sprite>sprites\spr_wall_18</sprite>
+        <sprite>sprites\spr_wall_19</sprite>
+        <sprite>sprites\spr_wall_20</sprite>
+        <sprite>sprites\spr_wall_21</sprite>
+        <sprite>sprites\spr_wall_22</sprite>
+        <sprite>sprites\spr_wall_23</sprite>
+        <sprite>sprites\spr_wall_24</sprite>
+        <sprite>sprites\spr_wall_25</sprite>
+        <sprite>sprites\spr_wall_26</sprite>
+        <sprite>sprites\spr_wall_27</sprite>
+        <sprite>sprites\spr_wall_28</sprite>
+        <sprite>sprites\spr_wall_29</sprite>
+        <sprite>sprites\spr_wall_30</sprite>
+        <sprite>sprites\spr_wall_31</sprite>
+        <sprite>sprites\spr_wall_32</sprite>
+        <sprite>sprites\spr_wall_33</sprite>
+        <sprite>sprites\spr_wall_34</sprite>
+        <sprite>sprites\spr_wall_35</sprite>
+        <sprite>sprites\spr_wall_36</sprite>
+        <sprite>sprites\spr_wall_37</sprite>
+        <sprite>sprites\spr_wall_38</sprite>
+        <sprite>sprites\spr_wall_39</sprite>
+        <sprite>sprites\spr_wall_40</sprite>
+        <sprite>sprites\spr_wall_41</sprite>
+        <sprite>sprites\spr_wall_42</sprite>
+        <sprite>sprites\spr_wall_43</sprite>
+      </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
