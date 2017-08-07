@@ -131,7 +131,7 @@ if (DEBUG_VISIBLE == true){
     
     //Version number:
     draw_text(8, 10,
-        "Xodusse V.119");
+        "Xodusse V.120");
     
     //Copyright:
     draw_text(8, 35,
@@ -150,27 +150,27 @@ if (DEBUG_VISIBLE == true){
     draw_set_halign(fa_right);
     
     //FPS:
-    draw_text(view_wview[0] - 8, 10,
+    draw_text(GUIW - 8, 10,
         "FPS = " + string(FPS) + " dF = " + string(dF));
         
     //Virtual Memory:
-    draw_text(view_wview[0] - 8, 35,
+    draw_text(GUIW - 8, 35,
         "Memory_Vir = " + string(memory_v) + "kB");
         
     //Physical Memory:
-    draw_text(view_wview[0] - 8, 60,
+    draw_text(GUIW - 8, 60,
          "Memory_Phy = " + string(memory_p) + "kB");
          
     //Current alien count:
-    draw_text(view_wview[0] - 8, 110,
+    draw_text(GUIW - 8, 110,
          "AlienCountCurrent: " + string(AlienCountCurrent)); 
          
     //Current alien max:
-    draw_text(view_wview[0] - 8, 135,
+    draw_text(GUIW - 8, 135,
          "AlienMax: " + string(AlienMax));
          
     //Current aliens remaining:
-    draw_text(view_wview[0] - 8, 160,
+    draw_text(GUIW - 8, 160,
          "AlienCountRemaining: " + string(AlienCountRemaining));
          
     /*Draw the keyboard key:
@@ -178,7 +178,7 @@ if (DEBUG_VISIBLE == true){
          string(keyboard_key));*/
          
     //Wave:
-    draw_text(view_wview[0] - 8, 210,
+    draw_text(GUIW - 8, 210,
          "Wave: " + string(Wave));           
          
     // -- RESET --

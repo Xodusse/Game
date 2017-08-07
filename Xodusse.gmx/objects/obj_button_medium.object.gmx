@@ -119,8 +119,223 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
     //Fullscreen
     else if (BUTTON_TYPE == 3){
         obj_initialize.SETTING_FULLSCREEN = !obj_initialize.SETTING_FULLSCREEN;
-        window_set_fullscreen(obj_initialize.SETTING_FULLSCREEN);        
+        window_set_fullscreen(obj_initialize.SETTING_FULLSCREEN);
+        
+        if (obj_initialize.SETTING_FULLSCREEN == true){
+        
+            //ENABLE FULLSCREEN RESOLUTION MODE:
+            obj_initialize.SETTING_RESOLUTION = 7;
+            
+            GUIW = obj_initialize.DISPLAY_HRESOLUTION;
+            GUIH = obj_initialize.DISPLAY_VRESOLUTION;
+            
+            display_set_gui_size(GUIW,GUIH);
+            
+            view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
+            view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;             
+        }
+        
+        else {
+            //Set window width:
+            obj_initialize.SETTING_RESOLUTION = 0;
+            
+            GUIW = 960;
+            GUIH = 540;
+                   
+            display_set_gui_size(GUIW,GUIH);              
+            window_set_size(960,540); 
+                       
+            view_wport[0] = 960;
+            view_hport[0] = 540;
+                        
+        }
+        
+        //Reset the display after altering fullscreen mode:    
+        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);                              
     }
+    
+    //Toggle Resolution (only if not in fullscreen mode):
+    else if (BUTTON_TYPE == 4) &amp;&amp; (obj_initialize.SETTING_RESOLUTION != 7) {
+        if (obj_initialize.SETTING_RESOLUTION == 0){
+            
+            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1280) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 720){
+                obj_initialize.SETTING_RESOLUTION = 1;
+                
+                GUIW = 1280;
+                GUIH = 720;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(1280,720);
+                
+                view_wport[0] = 1280;
+                view_hport[0] = 720;
+            }
+            
+            else {
+                obj_initialize.SETTING_RESOLUTION = 0;
+                
+                GUIW = 960;
+                GUIH = 540;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(960,540);
+                
+                view_wport[0] = 960;
+                view_hport[0] = 540;
+            }                              
+        }
+        
+        else if (obj_initialize.SETTING_RESOLUTION == 1){
+            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1366) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 768){
+                obj_initialize.SETTING_RESOLUTION = 2;
+                
+                GUIW = 1366;
+                GUIH = 768;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(1366,768);
+                
+                view_wport[0] = 1366;
+                view_hport[0] = 768;
+            }
+            
+            else {
+                obj_initialize.SETTING_RESOLUTION = 0;
+                
+                GUIW = 960;
+                GUIH = 540;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(960,540);
+                
+                view_wport[0] = 960;
+                view_hport[0] = 540;
+            }                 
+        }
+        
+        else if (obj_initialize.SETTING_RESOLUTION == 2){
+            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1600) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 900){
+                obj_initialize.SETTING_RESOLUTION = 3;
+                
+                GUIW = 1600;
+                GUIH = 900;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(1600,900);
+                
+                view_wport[0] = 1600;
+                view_hport[0] = 900;
+            }
+            else {
+                obj_initialize.SETTING_RESOLUTION = 0;
+                
+                GUIW = 960;
+                GUIH = 540;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(960,540);
+                
+                view_wport[0] = 960;
+                view_hport[0] = 540;
+            }                               
+        }
+        
+        else if (obj_initialize.SETTING_RESOLUTION == 3){
+            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1920) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 1080){        
+                obj_initialize.SETTING_RESOLUTION = 4;
+                
+                GUIW = 1920;
+                GUIH = 1080;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(1920,1080);
+                
+                view_wport[0] = 1920;
+                view_hport[0] = 1080; 
+            }
+            else {
+                obj_initialize.SETTING_RESOLUTION = 0;
+                
+                GUIW = 960;
+                GUIH = 540;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(960,540);
+                
+                view_wport[0] = 960;
+                view_hport[0] = 540;
+            }                              
+        }
+        
+        else if (obj_initialize.SETTING_RESOLUTION == 4){
+            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 2560) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 1440){        
+                obj_initialize.SETTING_RESOLUTION = 5;
+                
+                GUIW = 2560;
+                GUIH = 1440;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(2560,1440);
+                
+                view_wport[0] = 2560;
+                view_hport[0] = 1440;
+            }
+            else {
+                obj_initialize.SETTING_RESOLUTION = 0;
+                
+                GUIW = 960;
+                GUIH = 540;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(960,540);
+                
+                view_wport[0] = 960;
+                view_hport[0] = 540;
+            }                             
+        }
+        
+        else if (obj_initialize.SETTING_RESOLUTION == 5){
+            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 3840) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 2160){         
+                obj_initialize.SETTING_RESOLUTION = 6;
+                
+                GUIW = 3840;
+                GUIH = 2160;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(3840,2160);
+                
+                view_wport[0] = 3840;
+                view_hport[0] = 2160;
+            }
+            else {
+                obj_initialize.SETTING_RESOLUTION = 0;
+                
+                GUIW = 960;
+                GUIH = 540;        
+                display_set_gui_size(GUIW,GUIH);
+                window_set_size(960,540);
+                
+                view_wport[0] = 960;
+                view_hport[0] = 540;
+            }                                
+        }
+        
+        else if (obj_initialize.SETTING_RESOLUTION == 6){
+            obj_initialize.SETTING_RESOLUTION = 7;
+            
+            GUIW = obj_initialize.DISPLAY_HRESOLUTION;
+            GUIH = obj_initialize.DISPLAY_VRESOLUTION;        
+            display_set_gui_size(GUIW,GUIH);
+            window_set_size(obj_initialize.DISPLAY_HRESOLUTION,obj_initialize.DISPLAY_VRESOLUTION);
+            
+            view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
+            view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;               
+        }
+        
+        else {
+            obj_initialize.SETTING_RESOLUTION = 0;
+            
+            GUIW = 960;
+            GUIH = 540;        
+            display_set_gui_size(GUIW,GUIH);
+            window_set_size(960,540);
+            
+            view_wport[0] = 960;
+            view_hport[0] = 540;                           
+        }
+    
+        //Reset the display after altering the resolution:    
+        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);                                             
+    }   
     
     //Write information to the config:
     scr_cwrite();
@@ -193,6 +408,34 @@ else if (BUTTON_TYPE == 3){
     }
     else {
         draw_text(x,y,"Fullscreen: OFF");
+    }
+}
+
+//Fullscreen:
+else if (BUTTON_TYPE == 4){
+    if (obj_initialize.SETTING_RESOLUTION == 0){
+        draw_text(x,y,"Resolution: 960x540");
+    }
+    else if (obj_initialize.SETTING_RESOLUTION == 1){
+        draw_text(x,y,"Resolution: 1280x720");
+    }
+    else if (obj_initialize.SETTING_RESOLUTION == 2){
+        draw_text(x,y,"Resolution: 1366x768");
+    }
+    else if (obj_initialize.SETTING_RESOLUTION == 3){
+        draw_text(x,y,"Resolution: 1600x900");
+    }
+    else if (obj_initialize.SETTING_RESOLUTION == 4){
+        draw_text(x,y,"Resolution: 1920x1080");
+    }
+    else if (obj_initialize.SETTING_RESOLUTION == 5){
+        draw_text(x,y,"Resolution: 2560x1440");
+    }
+    else if (obj_initialize.SETTING_RESOLUTION == 6){
+        draw_text(x,y,"Resolution: 3840x2160");
+    }
+    else if (obj_initialize.SETTING_RESOLUTION == 7){
+        draw_text(x,y,"Resolution: " + string(obj_initialize.DISPLAY_HRESOLUTION) + "x" + string(obj_initialize.DISPLAY_VRESOLUTION));
     }
 }
 

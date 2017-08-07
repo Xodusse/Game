@@ -78,6 +78,9 @@ instance_create(0,0,obj_controller_console);
 //Add wave controller - Reece
 instance_create(0,0,obj_controller_wave);
 
+//Add menu controller - Reece
+instance_create(0,0,obj_controller_menu);
+
 //GAME SETTINGS:
 globalvar DEBUG_VISIBLE, CONSOLE_ENABLED;
 
@@ -129,8 +132,7 @@ if (file_exists("Config.Xodusse")){
     scr_cread_fullscreen();
     
     //LOAD RESOLUTION:
-    scr_cread_resolution();
-    
+    scr_cread_resolution(); 
     
 }
 
@@ -211,7 +213,115 @@ else {
     file_text_close(Config_File);
 }
 
- 
+globalvar GUIW,GUIH;
+
+//Set window width: Can return: [0 for 960x540], [1 for 1280x720], [2 for 1366x768], [3 for 1600x900], [4 for 1920x1080], [5 for 2560x1440], [6 for 3840x2160], [7 for DISPLAY_HRESOLUTIONxDISPLAY_VRESOLUTION]
+if (SETTING_RESOLUTION == 0){    
+    view_wport[0] = 960;
+    view_hport[0] = 540;
+    
+    window_set_size(960,540);
+    
+    GUIW = 960;
+    GUIH = 540;       
+    display_set_gui_size(GUIW,GUIH);  
+}
+
+else if (SETTING_RESOLUTION == 1){
+    view_wport[0] = 1280;
+    view_hport[0] = 720;
+
+    window_set_size(1280,720);
+    
+    GUIW = 1280;
+    GUIH = 720;        
+    display_set_gui_size(GUIW,GUIH); 
+}
+
+else if (SETTING_RESOLUTION == 2){
+    view_wport[0] = 1366;
+    view_hport[0] = 768;
+
+    window_set_size(1366,768);
+    
+    GUIW = 1366;
+    GUIH = 768;        
+    display_set_gui_size(GUIW,GUIH); 
+}
+
+else if (SETTING_RESOLUTION == 3){
+    view_wport[0] = 1600;
+    view_hport[0] = 900;
+
+    window_set_size(1600,900);
+    
+    GUIW = 1600;
+    GUIH = 900;        
+    display_set_gui_size(GUIW,GUIH); 
+}
+
+else if (SETTING_RESOLUTION == 4){
+    view_wport[0] = 1920;
+    view_hport[0] = 1080;
+
+    window_set_size(1920,1080);
+    
+    GUIW = 1920;
+    GUIH = 1080;        
+    display_set_gui_size(GUIW,GUIH); 
+}
+
+else if (SETTING_RESOLUTION == 5){
+    view_wport[0] = 2560;
+    view_hport[0] = 1440;
+
+    window_set_size(2560,1440);
+    
+    GUIW = 2560;
+    GUIH = 1440;        
+    display_set_gui_size(GUIW,GUIH); 
+}
+
+else if (SETTING_RESOLUTION == 6){
+    view_wport[0] = 3840;
+    view_hport[0] = 2160;
+
+    window_set_size(3840,2160);
+    
+    GUIW = 3840;
+    GUIH = 2160;        
+    display_set_gui_size(GUIW,GUIH); 
+}
+
+else if (SETTING_RESOLUTION == 7){
+    view_wport[0] = DISPLAY_HRESOLUTION;
+    view_hport[0] = DISPLAY_VRESOLUTION;
+
+    window_set_size(DISPLAY_HRESOLUTION,DISPLAY_VRESOLUTION);
+    
+    GUIW = DISPLAY_HRESOLUTION;
+    GUIH = DISPLAY_VRESOLUTION;        
+    display_set_gui_size(GUIW,GUIH); 
+}           
+
+else {
+    view_wport[0] = 960;
+    view_hport[0] = 540;
+
+    window_set_size(960,540);
+    
+    GUIW = 960;
+    GUIH = 540;       
+    display_set_gui_size(GUIW,GUIH);    
+}
+    
+if (SETTING_FULLSCREEN == true){
+    GUIW = DISPLAY_HRESOLUTION;
+    GUIH = DISPLAY_VRESOLUTION;
+    
+    display_set_gui_size(GUIW,GUIH); 
+}  
+
 //Reset the display:
 display_reset(SETTING_FXAA, SETTING_VSYNC);
  
@@ -219,20 +329,7 @@ display_reset(SETTING_FXAA, SETTING_VSYNC);
 texture_set_interpolation(SETTING_INTERPOLATION);
 
 //Set fullscreen mode:
-window_set_fullscreen(SETTING_FULLSCREEN);
-
-//Set window width:
-if (SETTING_RESOLUTION == 0){
-    window_set_size(960,540);
-}
-
-else if (SETTING_RESOLUTION == 1){
-    window_set_size(1280,720);
-}
-
-else {
-    window_set_size(960,540);
-}
+window_set_fullscreen(SETTING_FULLSCREEN);  
 </string>
           </argument>
         </arguments>
@@ -314,10 +411,45 @@ else if (SETTING_RESOLUTION == 1){
     view_hport[0] = 720;
 }
 
+else if (SETTING_RESOLUTION == 2){
+    window_set_size(1366,768);
+    view_wport[0] = 1366;
+    view_hport[0] = 768;
+}
+
+else if (SETTING_RESOLUTION == 3){
+    window_set_size(1600,900);
+    view_wport[0] = 1600;
+    view_hport[0] = 900;
+}
+
+else if (SETTING_RESOLUTION == 4){
+    window_set_size(1920,1080);
+    view_wport[0] = 1920;
+    view_hport[0] = 1080;
+}
+
+else if (SETTING_RESOLUTION == 5){
+    window_set_size(2560,1440);
+    view_wport[0] = 2560;
+    view_hport[0] = 1440;
+}
+
+else if (SETTING_RESOLUTION == 6){
+    window_set_size(3840,2160);
+    view_wport[0] = 3840;
+    view_hport[0] = 2160;
+}
+
+else if (SETTING_RESOLUTION == 7){
+    window_set_size(DISPLAY_HRESOLUTION,DISPLAY_VRESOLUTION);
+    view_wport[0] = DISPLAY_HRESOLUTION;
+    view_hport[0] = DISPLAY_VRESOLUTION;
+}    
+
 else {
 
     ///TODO:
-        //Add resolutions 2 to 7.
         //Detect the maximum resolution and determine if config value is lower:
         
     window_set_size(960,540);

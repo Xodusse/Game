@@ -45,6 +45,10 @@
     <sound>sound\snd_empty</sound>
   </sounds>
   <sprites name="sprites">
+    <sprites name="Menu">
+      <sprite>sprites\spr_logo_0</sprite>
+      <sprite>sprites\spr_logo_1</sprite>
+    </sprites>
     <sprites name="Buttons">
       <sprite>sprites\spr_button_large</sprite>
       <sprite>sprites\spr_button_medium</sprite>
@@ -245,6 +249,7 @@
       <object>objects\obj_controller_guns</object>
       <object>objects\obj_controller_inventory</object>
       <object>objects\obj_controller_gui</object>
+      <object>objects\obj_controller_menu</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">

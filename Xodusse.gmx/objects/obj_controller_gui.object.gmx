@@ -147,8 +147,8 @@ MessageFade *= S98;
 
 //Variables for view port width and height.
 var W,H,S;
-W = view_wport[0];
-H = view_hport[0];
+W = GUIW;
+H = GUIH;
 S = 64;
 
 if instance_exists(obj_player){

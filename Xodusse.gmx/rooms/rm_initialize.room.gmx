@@ -26,9 +26,7 @@ if !(instance_exists(obj_initialize)){
 }
 
 //Added room switch - Jon
-room_goto_next();
-
-//Test Repo Comment</code>
+room_goto_next();</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
