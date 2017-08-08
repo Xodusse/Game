@@ -459,22 +459,35 @@ if !Grenade{Speed /= Gweight[G[Current]];}
 SpeedX += 4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
 SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 
-WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
-WalkSpeedY = WalkSpeedY*S90-(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));
-var WalkSpeed;
-WalkSpeed = FRAME_DELTA*sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
+//WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
+//WalkSpeedY = WalkSpeedY*S90-(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));
 
-for(var L = 0;L&lt;WalkSpeed;L++){
+//Set initial speed.
+var SumX,SumY;
+SumX =  (SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
+SumY = -(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));;
+
+//Get pushed by enemies.
+for(var i = instance_number(obj_game_object);i&gt;=0;i--){
+
+    var Inst = instance_find(obj_game_object,i);
+    if Inst!=id{
     
-    var CheckX,CheckY;
-    CheckX = x+min(WalkSpeed-L,1)*FRAME_DELTA*WalkSpeedX/WalkSpeed;
-    CheckY = y+min(WalkSpeed-L,1)*FRAME_DELTA*WalkSpeedY/WalkSpeed;
-    if place_free(CheckX,CheckY){
+        var Distance = point_distance(x+WalkSpeedX,y+WalkSpeedY,Inst.x+Inst.WalkSpeedX,Inst.y+Inst.WalkSpeedY);
+        if (Distance&lt;Radius+Inst.Radius){
         
-        x = CheckX;
-        y = CheckY;
+            var NormX = (x+WalkSpeedX-(Inst.x+Inst.WalkSpeedX))/Distance;
+            var NormY = (y+WalkSpeedY-(Inst.y+Inst.WalkSpeedY))/Distance;
+            SumX += NormX*(Radius+Inst.Radius-Distance);
+            SumY += NormY*(Radius+Inst.Radius-Distance);
+        }
     }
 }
+//Move smoothly and with delta timing.
+WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SumX);
+WalkSpeedY = WalkSpeedY*S90+(1-S90)*(SumY);
+x += WalkSpeedX*FRAME_DELTA;
+y += WalkSpeedY*FRAME_DELTA;
 
 //Update walk frame
 var Speed = sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
