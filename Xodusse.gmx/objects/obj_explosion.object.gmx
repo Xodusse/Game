@@ -25,14 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Rotate randomly
+            <string>///Explosion variables
 // © 2017 - Jon Harvey
 
+Scale = 1;
 Damage = 1;
+Timer = 1/2;
 
-index = 0;
-image_speed = 0;
-image_angle = random(360);
+audio_play_sound(snd_explosion,0,0);
+
+Prx[10] = 0;
+Pry[10] = 0;
+Pra[10] = 0;
+Prr[10] = 0;
+Pax[10] = 0;
+Pay[10] = 0;
+Paa[10] = 0;
+Par[10] = 1;
 </string>
           </argument>
         </arguments>
@@ -58,26 +67,82 @@ image_angle = random(360);
             <string>///Animate with delta timing
 // © 2017 - Jon Harvey
 
-if image_index == 0{
-    
-    Shake = Shake*0.9+2*sqr(image_xscale);
+if (Timer==1/2){
+
+    for(var p = 0;p&lt;10;p++){
+        
+        Prx[p] = (random(8)-4)*Scale;
+        Pry[p] = (random(8)-4)*Scale;
+        Pra[p] = random(20)-10;
+        Prr[p] = random(0.1);
+        Pax[p] = random(8)-4;
+        Pay[p] = random(8)-4;
+        Paa[p] = random(360);
+        Par[p] = Scale*2;
+    }
+    Shake = Shake*0.9+2*sqr(Scale);
     with(obj_game_object){
     
         var Explosion = instance_nearest(x,y,obj_explosion);
-        var Distance = point_distance(x,y,Explosion.x,Explosion.y)/Explosion.image_xscale/96;
+        var Distance = distance_to_object(Explosion)/Explosion.Scale/96;
         if Distance&lt;1.5{
         
             Health -= min(1.5-Distance,1)*Explosion.Damage;
         }
     }
 }
-else
-if index-image_index &gt;= image_number-1{
+
+Timer -= DELTA;
+if Timer&lt;=0{
 
     instance_destroy();
 }
-index = image_index;
-image_index += 0.25*FRAME_DELTA;
+
+for(var p = 0;p&lt;10;p++){
+
+    Prx[p] *= S90;
+    Pry[p] *= S90;
+    Pra[p] *= S90;
+    Prr[p] *= S90;
+    
+    Pax[p] += Prx[p]*FRAME_DELTA;
+    Pay[p] += Pry[p]*FRAME_DELTA;
+    Paa[p] += Pra[p]*FRAME_DELTA;
+    Par[p] += Prr[p]*FRAME_DELTA;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animate explosion
+// © 2017 - Jon Harvey
+
+draw_set_blend_mode(bm_add);
+for(var p = 0;p&lt;10;p++){
+
+    var Frame;
+    Frame = clamp(Par[p]*2-.1,0,2);
+    draw_sprite_ext(spr_explosion,Frame,x+Pax[p],y+Pay[p],Par[p],Par[p],Paa[p],-1,(Timer-Par[p]*.1)*10);
+}
+draw_set_blend_mode(bm_normal);
 </string>
           </argument>
         </arguments>

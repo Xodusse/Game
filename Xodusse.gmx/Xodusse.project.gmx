@@ -43,6 +43,7 @@
   <sounds name="sound">
     <sound>sound\snd_gun</sound>
     <sound>sound\snd_empty</sound>
+    <sound>sound\snd_explosion</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Menu">

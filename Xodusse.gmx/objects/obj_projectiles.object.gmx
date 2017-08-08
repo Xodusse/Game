@@ -67,8 +67,7 @@ if Enemy != Hit &amp;&amp; instance_exists(Enemy){
     if (Pexplode[Id]&gt;0){
         
         var Explosion = instance_create(x,y,obj_explosion);
-        Explosion.image_xscale = Pexplode[Id];
-        Explosion.image_yscale = Pexplode[Id];  
+        Explosion.Scale = Pexplode[Id];
         Explosion.Damage = Pdamage[Id];
         instance_destroy();
     }
