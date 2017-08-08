@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>-32768</depth>
+  <depth>-50</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -37,13 +37,13 @@ Gauto[3] = 0;
 
 //Rounds per second.
 Grate[0] = 3;
-Grate[1] = 60;
+Grate[1] = 25;
 Grate[2] = 10;
 Grate[3] = 6;
 
 //Gun magazine capacity.
 Gcap[0] = 6;
-Gcap[1] = 100;
+Gcap[1] = 50;
 Gcap[2] = 20;
 Gcap[3] = 10;
 
@@ -78,16 +78,70 @@ Gweight[2] = 1;
 Gweight[3] = 1;
 
 //Type of projectile.
-Gtype[0] = obj_bullet_grenade;
-Gtype[1] = obj_bullet_pellet;
-Gtype[2] = obj_bullet_medium;
-Gtype[3] = obj_bullet_medium;
+Gtype[0] = 0;
+Gtype[1] = 1
+Gtype[2] = 2;
+Gtype[3] = 3;
 
 //Name of gun.
 Gname[0] = "Grenade Launcher";
 Gname[1] = "LMG";
 Gname[2] = "SMG";
 Gname[3] = "Pistol";
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Projectile variables
+// © 2017 - Jon Harvey
+
+globalvar Pexplode,Prange,Pspeed,Ppower,Pdamage;
+
+//Explosion radius (0 for no explosion).
+Pexplode[0] = .5;
+Pexplode[1] = 0;
+Pexplode[2] = 0;
+Pexplode[3] = 0;
+
+//Projectile range in pixel units (about 1.5 cm).
+Prange[0] = 1000;
+Prange[1] = 1200;
+Prange[2] = 800;
+Prange[3] = 1500;
+
+//Speed in pixel units per frame (1/60th of a second).
+Pspeed[0] = 10;
+Pspeed[1] = 12;
+Pspeed[2] = 14;
+Pspeed[3] = 16;
+
+//Power where lower numbers meaning higher pierce.
+Ppower[0]  = 1;
+Ppower[1]  = 1;
+Ppower[2]  = 0.8;
+Ppower[3]  = 0.5;
+
+//Damage per shot (1 is an instant kill).
+Pdamage[0] = 1;
+Pdamage[1] = 0.2;
+Pdamage[2] = 0.5;
+Pdamage[3] = 1;
 </string>
           </argument>
         </arguments>

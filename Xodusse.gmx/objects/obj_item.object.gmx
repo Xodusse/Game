@@ -132,6 +132,9 @@ if (Z==0){
                 I[X+Y*6+12] = Bac[X+Y*6];
                 Q[X+Y*6+12] = Qnt[X+Y*6];
             }
+            var Text;
+            Text = instance_create(8,8,obj_message);
+            Text.Message = "Picked up a backpack";
             instance_destroy();
         }
     }
@@ -156,8 +159,9 @@ if (Z==0){
                     Q[X+Y*6] = 0;
                     Q[X+1+Y*6] = Quantity;
                     
-                    Message = "Picked up "+Gname[floor(Id/2)];
-                    MessageFade = 1;
+                    var Text;
+                    Text = instance_create(8,8,obj_message);
+                    Text.Message = "Picked up "+Gname[floor(Id/2)];
                     instance_destroy();
                 }
             }
@@ -168,15 +172,16 @@ if (Z==0){
                     I[X+Y*6] = Id;
                     Q[X+Y*6] = Quantity;
                     
+                    var Text;
+                    Text = instance_create(8,8,obj_message);
                     if Id&gt;Idoubles*2+Isingles{
                     
-                        Message = "+"+string(Quantity)+" ammo";
+                        Text.Message = "+"+string(Quantity)+" ammo";
                     }
                     else{
                     
-                        Message = "Picked up "+Gname[Id-Idoubles-1];
+                        Text.Message = "Picked up "+Gname[Id-Idoubles-1];
                     }
-                    MessageFade = 1;
                     instance_destroy();
                 }
             }

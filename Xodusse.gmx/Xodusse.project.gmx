@@ -60,14 +60,6 @@
       <sprite>sprites\spr_player_arm</sprite>
       <sprite>sprites\spr_player_holdables</sprite>
     </sprites>
-    <sprites name="Projectiles">
-      <sprite>sprites\spr_bullet_heavy</sprite>
-      <sprite>sprites\spr_bullet_light</sprite>
-      <sprite>sprites\spr_bullet_medium</sprite>
-      <sprite>sprites\spr_bullet_pellet</sprite>
-      <sprite>sprites\spr_bullet_grenade</sprite>
-      <sprite>sprites\spr_grenade</sprite>
-    </sprites>
     <sprites name="Logistics">
       <sprite>sprites\spr_crate_parent</sprite>
       <sprite>sprites\spr_crate</sprite>
@@ -124,8 +116,10 @@
         <sprite>sprites\spr_wall_43</sprite>
       </sprites>
     </sprites>
+    <sprite>sprites\spr_grenade</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_explosion</sprite>
+    <sprite>sprites\spr_projectiles</sprite>
     <sprite>sprites\spr_items</sprite>
   </sprites>
   <backgrounds name="background">
@@ -162,6 +156,7 @@
     <font>fonts\fnt_Exudation</font>
   </fonts>
   <objects name="objects">
+    <object>objects\obj_message</object>
     <objects name="Initialization">
       <object>objects\obj_initialize</object>
     </objects>
@@ -229,16 +224,11 @@
       <objects name="Foliage">
         <object>objects\obj_foliage_fern_1p</object>
       </objects>
-    </objects>
-    <objects name="Projectiles">
-      <object>objects\obj_projectile</object>
-      <object>objects\obj_bullet_heavy</object>
-      <object>objects\obj_bullet_medium</object>
-      <object>objects\obj_bullet_light</object>
-      <object>objects\obj_bullet_pellet</object>
-      <object>objects\obj_bullet_grenade</object>
-      <object>objects\obj_grenade</object>
-      <object>objects\obj_explosion</object>
+      <objects name="Projectiles">
+        <object>objects\obj_projectiles</object>
+        <object>objects\obj_grenade</object>
+        <object>objects\obj_explosion</object>
+      </objects>
     </objects>
     <objects name="Controllers">
       <object>objects\obj_controller_keys</object>

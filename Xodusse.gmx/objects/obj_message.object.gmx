@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-51</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,20 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Projectile variables
+            <string>///Message variables
 // © 2017 - Jon Harvey
 
-Pexplode = 0;
-Prange = 2000;
-Pspeed = 12;
-Ppower  = 1;
-Pdamage = 0.5;
+image_alpha = 0;
+Message = "";
+MessageFade = 3+.3*instance_number(obj_message);
 
-Hit = noone;
-if instance_exists(obj_player){
-
-    Hit = obj_player.id;
-}
+Y = GUIH-230;
 </string>
           </argument>
         </arguments>
@@ -61,37 +55,23 @@ if instance_exists(obj_player){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Collision with game objects
+            <string>///Fade message
 // © 2017 - Jon Harvey
+MessageFade -= DELTA;
 
-var Enemy = collision_line(x*2-xprevious,y*2-yprevious,xprevious,yprevious,obj_game_object,1,1);
+y = Y+MessageFade*30;
+image_alpha = min(MessageFade,(3-MessageFade)*4);
 
-if Enemy != Hit &amp;&amp; instance_exists(Enemy){
-
-    if (Pexplode&gt;0){
-        
-        var Explosion = instance_create(x,y,obj_explosion);
-        Explosion.image_xscale = Pexplode;
-        Explosion.image_yscale = Pexplode;  
-        Explosion.Damage = Pdamage;
-        instance_destroy();
-    }
-    else{
+if (MessageFade&lt;=0){
     
-        Hit = Enemy;
-        Hit.Health -= Pdamage;
-        image_alpha -= Ppower;
-    }
-}
-else
-if Enemy == noone{
-
-    Hit = noone;
+    instance_destroy();
 }
 </string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -108,16 +88,16 @@ if Enemy == noone{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Speed and fade update
+            <string>///Draw message
 // © 2017 - Jon Harvey
 
-speed = Pspeed*FRAME_DELTA;
-image_alpha -= Pspeed*FRAME_DELTA/Prange;
-
-if image_alpha&lt;0.01{
-
-    instance_destroy();
-}
+draw_set_font(FNT_EXUDATION);
+draw_set_colour($FFFFFF);
+draw_set_alpha(image_alpha);
+draw_text(8,y,Message);
+draw_set_alpha(1);
+draw_set_colour(0);
+draw_set_font(-1);
 </string>
           </argument>
         </arguments>

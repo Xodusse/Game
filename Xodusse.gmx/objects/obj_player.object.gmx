@@ -202,15 +202,23 @@ if Count{
             if point_distance(0,H,X,Y)&lt;150 &amp;&amp; I[P[Current]]&gt;Idoubles*2{
                 
                 Current = (Current-Swap+Count)%Count;
-                Secondary = Current;
                 Rate = 0;
             }
             else{
                 
                 Current = (Current-Swap+Count)%Count;
-                Secondary = Current;
                 Rate = 0;
             }
+        }
+        else{
+            
+            //Swap with number keys.
+            if (K1)           {Current = 0; Rate = 0;}
+            if (K2 &amp;&amp; Count&gt;1){Current = 1; Rate = 0;}
+            if (K3 &amp;&amp; Count&gt;2){Current = 2; Rate = 0;}
+            if (K4 &amp;&amp; Count&gt;3){Current = 3; Rate = 0;}
+            if (K5 &amp;&amp; Count&gt;4){Current = 4; Rate = 0;}
+            if (K6 &amp;&amp; Count&gt;5){Current = 5; Rate = 0;}
         }
     }
 }
@@ -223,6 +231,9 @@ if !Grenade &amp;&amp; (abs(Swap)==1){
 
     Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
 }
+
+//Broken dual wield varaible:
+Secondary = Current;
 </string>
           </argument>
         </arguments>
@@ -363,10 +374,11 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                         
                         var Length,Bullet,Direction;
                         Length = 16+8*S/Gbullets[G[Current]]+32*(G[Current]&lt;Idoubles);
-                        Bullet = instance_create(x+Length*dcos(GunDirection),y-Length*dsin(GunDirection),Gtype[G[Current]]);
+                        Bullet = instance_create(x+Length*dcos(GunDirection),y-Length*dsin(GunDirection),obj_projectiles);
                         Direction = GunDirection+sqr(random(1))*choose(1,-1)*Garc[G[Current]];
                         Bullet.direction = Direction;
                         Bullet.image_angle = Direction;
+                        Bullet.Id = Gtype[G[Current]];
                     }
                     
                     //Update or reload magazine.
