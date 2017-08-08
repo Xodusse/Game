@@ -160,6 +160,7 @@
     <object>objects\obj_message</object>
     <objects name="Initialization">
       <object>objects\obj_initialize</object>
+      <object>objects\obj_init_display</object>
     </objects>
     <objects name="Game_Objects">
       <object>objects\obj_game_object</object>

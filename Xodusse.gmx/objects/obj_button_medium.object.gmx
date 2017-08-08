@@ -168,8 +168,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
                 view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;
                 
+                surface_resize(application_surface, obj_initialize.DISPLAY_HRESOLUTION*2, obj_initialize.DISPLAY_VRESOLUTION*2);                            
+                
                 //Enables vsync automatically when toggling fullscreen to prevent the surface not drawing:
-                obj_initialize.SETTING_VSYNC = true;             
+                obj_initialize.SETTING_VSYNC = true; 
             }
             
             //If now windowed:
@@ -185,7 +187,8 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                            
                 view_wport[0] = 960;
                 view_hport[0] = 540;
-                            
+                
+                surface_resize(application_surface, 960*2, 540*2);                                                            
             }
             
             //Reset the display after altering fullscreen mode:    
@@ -208,6 +211,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 1280;
                 view_hport[0] = 720;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 1280*2, 720*2);                
             }
             
             else {
@@ -220,6 +227,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 960;
                 view_hport[0] = 540;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 960*2, 540*2);                
             }                              
         }
         
@@ -234,6 +245,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 1366;
                 view_hport[0] = 768;
+                
+                obj_init_display.alarm[0] = 1;
+
+                surface_resize(application_surface, 1366*2, 768*2);                
             }
             
             else {
@@ -246,6 +261,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 960;
                 view_hport[0] = 540;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 960*2, 540*2);                
             }                 
         }
         
@@ -260,6 +279,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 1600;
                 view_hport[0] = 900;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 1600*2, 900*2);                 
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -271,6 +294,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 960;
                 view_hport[0] = 540;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 960*2, 540*2);                 
             }                               
         }
         
@@ -284,7 +311,11 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 window_set_size(1920,1080);
                 
                 view_wport[0] = 1920;
-                view_hport[0] = 1080; 
+                view_hport[0] = 1080;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 1920*2, 1080*2);                  
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -296,6 +327,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 960;
                 view_hport[0] = 540;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 960*2, 540*2);                  
             }                              
         }
         
@@ -310,6 +345,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 2560;
                 view_hport[0] = 1440;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 2560*2, 1440*2);                
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -321,6 +360,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 960;
                 view_hport[0] = 540;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 960*2, 540*2);                  
             }                             
         }
         
@@ -335,6 +378,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 3840;
                 view_hport[0] = 2160;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 3840*2, 2160*2);                
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -346,6 +393,10 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 view_wport[0] = 960;
                 view_hport[0] = 540;
+                
+                obj_init_display.alarm[0] = 1;
+                
+                surface_resize(application_surface, 960*2, 540*2);                
             }                                
         }
         
@@ -358,7 +409,11 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
             window_set_size(obj_initialize.DISPLAY_HRESOLUTION,obj_initialize.DISPLAY_VRESOLUTION);
             
             view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
-            view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;               
+            view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;
+            
+            obj_init_display.alarm[0] = 1;
+            
+            surface_resize(application_surface, obj_initialize.DISPLAY_HRESOLUTION*2, obj_initialize.DISPLAY_VRESOLUTION*2);                            
         }
         
         else {
@@ -370,7 +425,11 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
             window_set_size(960,540);
             
             view_wport[0] = 960;
-            view_hport[0] = 540;                           
+            view_hport[0] = 540; 
+            
+            obj_init_display.alarm[0] = 1;
+                
+            surface_resize(application_surface, 960*2, 540*2);                                        
         }
     
         //Reset the display after altering the resolution:    
