@@ -149,7 +149,7 @@ else {
     DISPLAY_ASPECT = DISPLAY_HRESOLUTION / DISPLAY_VRESOLUTION;
     
     //VSync - Boolean;
-    SETTING_VSYNC = false;
+    SETTING_VSYNC = true;
       
     //Texture interpolation - Boolean;
     SETTING_INTERPOLATION = true;

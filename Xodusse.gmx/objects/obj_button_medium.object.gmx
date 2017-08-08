@@ -78,8 +78,22 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
     
     //VSYNC:
     if (BUTTON_TYPE == 0){
-        obj_initialize.SETTING_VSYNC = !obj_initialize.SETTING_VSYNC;
-        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
+        //Only allow the user to disable Vsync if not in fullscreen:
+        if (obj_initialize.SETTING_FULLSCREEN == false){
+            obj_initialize.SETTING_VSYNC = !obj_initialize.SETTING_VSYNC;
+            
+            var W_current = GUIW;
+            var H_current = GUIH;
+            
+            display_set_gui_size(GUIW,GUIH);              
+            window_set_size(W_current,H_current); 
+                       
+            view_wport[0] = W_current;
+            view_hport[0] = H_current; 
+            
+            display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
+            obj_initialize.SETTING_INTERPOLATION = false;
+        }
     }
     
     //Interpolation:
@@ -90,68 +104,94 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
     
     //FXAA:
     else if (BUTTON_TYPE == 2){
-        //0 to 2:
-        if (obj_initialize.SETTING_FXAA == 0) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt; 0) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX != 12){
-            obj_initialize.SETTING_FXAA = 2;
-        }
-        //0 to 4:
-        else if (obj_initialize.SETTING_FXAA == 0) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt; 0){
-            obj_initialize.SETTING_FXAA = 4;
-        }
-        //2 to 4:
-        else if (obj_initialize.SETTING_FXAA == 2) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt;= 6){
-            obj_initialize.SETTING_FXAA = 4;
-        }
-        //4 to 8:
-        else if (obj_initialize.SETTING_FXAA == 4) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt;= 12){
-            obj_initialize.SETTING_FXAA = 8;
-        }
-        //2 to 4:
-        else if (obj_initialize.SETTING_FXAA == 4) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX == 14){
-            obj_initialize.SETTING_FXAA = 8;
-        }
-        else {
-            obj_initialize.SETTING_FXAA = 0;
-        }
-        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);                      
+        //Only allow FXAA to be modified if VSYNC is true:
+        if (obj_initialize.SETTING_VSYNC = true){
+                
+            //0 to 2:
+            if (obj_initialize.SETTING_FXAA == 0) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt; 0) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX != 12){
+                obj_initialize.SETTING_FXAA = 2;
+            }
+            //0 to 4:
+            else if (obj_initialize.SETTING_FXAA == 0) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt; 0){
+                obj_initialize.SETTING_FXAA = 4;
+            }
+            //2 to 4:
+            else if (obj_initialize.SETTING_FXAA == 2) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt;= 6){
+                obj_initialize.SETTING_FXAA = 4;
+            }
+            //4 to 8:
+            else if (obj_initialize.SETTING_FXAA == 4) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX &gt;= 12){
+                obj_initialize.SETTING_FXAA = 8;
+            }
+            //2 to 4:
+            else if (obj_initialize.SETTING_FXAA == 4) &amp;&amp; (obj_initialize.SETTING_FXAA_MAX == 14){
+                obj_initialize.SETTING_FXAA = 8;
+            }
+            else {
+                obj_initialize.SETTING_FXAA = 0;
+            }
+            //Prevents surface bugs in fullscreen:            
+            obj_initialize.SETTING_VSYNC = true;                    
+            
+            var W_current = GUIW;
+            var H_current = GUIH;
+            
+            display_set_gui_size(GUIW,GUIH);              
+            window_set_size(W_current,H_current); 
+                       
+            view_wport[0] = W_current;
+            view_hport[0] = H_current; 
+            
+            display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
+            obj_initialize.SETTING_INTERPOLATION = false;
+        }                  
     }
     
     //Fullscreen
     else if (BUTTON_TYPE == 3){
-        obj_initialize.SETTING_FULLSCREEN = !obj_initialize.SETTING_FULLSCREEN;
-        window_set_fullscreen(obj_initialize.SETTING_FULLSCREEN);
-        
-        if (obj_initialize.SETTING_FULLSCREEN == true){
-        
-            //ENABLE FULLSCREEN RESOLUTION MODE:
-            obj_initialize.SETTING_RESOLUTION = 7;
+        //Prevent the user from using fullscreen if FXAA is not enabled (Buggy):
+        //if (obj_initialize.SETTING_FXAA != 0) || (obj_initialize.SETTING_FULLSCREEN == true){
+            obj_initialize.SETTING_FULLSCREEN = !obj_initialize.SETTING_FULLSCREEN;
+            window_set_fullscreen(obj_initialize.SETTING_FULLSCREEN);
             
-            GUIW = obj_initialize.DISPLAY_HRESOLUTION;
-            GUIH = obj_initialize.DISPLAY_VRESOLUTION;
+            //If now fullscreen:
+            if (obj_initialize.SETTING_FULLSCREEN == true){
             
-            display_set_gui_size(GUIW,GUIH);
+                //ENABLE FULLSCREEN RESOLUTION MODE:
+                obj_initialize.SETTING_RESOLUTION = 7;
+                
+                GUIW = obj_initialize.DISPLAY_HRESOLUTION;
+                GUIH = obj_initialize.DISPLAY_VRESOLUTION;
+                
+                display_set_gui_size(GUIW,GUIH);
+                
+                view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
+                view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;
+                
+                //Enables vsync automatically when toggling fullscreen to prevent the surface not drawing:
+                obj_initialize.SETTING_VSYNC = true;             
+            }
             
-            view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
-            view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;             
-        }
-        
-        else {
-            //Set window width:
-            obj_initialize.SETTING_RESOLUTION = 0;
-            
-            GUIW = 960;
-            GUIH = 540;
-                   
-            display_set_gui_size(GUIW,GUIH);              
-            window_set_size(960,540); 
+            //If now windowed:
+            else {
+                //Set window width:
+                obj_initialize.SETTING_RESOLUTION = 0;
+                
+                GUIW = 960;
+                GUIH = 540;
                        
-            view_wport[0] = 960;
-            view_hport[0] = 540;
-                        
-        }
-        
-        //Reset the display after altering fullscreen mode:    
-        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);                              
+                display_set_gui_size(GUIW,GUIH);              
+                window_set_size(960,540); 
+                           
+                view_wport[0] = 960;
+                view_hport[0] = 540;
+                            
+            }
+            
+            //Reset the display after altering fullscreen mode:    
+            display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
+            obj_initialize.SETTING_INTERPOLATION = false;
+        //}                              
     }
     
     //Toggle Resolution (only if not in fullscreen mode):
@@ -334,7 +374,8 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
         }
     
         //Reset the display after altering the resolution:    
-        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);                                             
+        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
+        obj_initialize.SETTING_INTERPOLATION = false;                                             
     }   
     
     //Write information to the config:
