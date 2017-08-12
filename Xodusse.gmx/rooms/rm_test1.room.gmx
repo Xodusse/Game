@@ -56,8 +56,6 @@
     <instance objName="obj_crate_spawner" x="704" y="224" name="inst_114C060A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player" x="480" y="256" name="inst_F8EC6A26" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_item" x="960" y="128" name="inst_63297FC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_item" x="944" y="256" name="inst_21405BB2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_item" x="1088" y="208" name="inst_0D54E940" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_foliage_fern_1p" x="576" y="352" name="inst_30568416" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_foliage_fern_1p" x="592" y="344" name="inst_DCE56EFD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="40"/>
     <instance objName="obj_foliage_fern_1p" x="592" y="360" name="inst_DC44D066" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="170"/>

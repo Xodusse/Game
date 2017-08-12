@@ -109,16 +109,17 @@ G[0] = 0;
             <string>///Set player variables
 // © 2017 - Jon Harvey
 
-Health = 10;
-
 GunDirection = 90;
 WalkDirection = 90;
 
 TurnSpeed = 0;
-WalkSpeedX = 0;
-WalkSpeedY = 0;
+SpeedX = 0;
+SpeedY = 0;
 WalkFrame = 0;
 Radius = 16;
+
+Melee = 0;
+Health = 10;
 </string>
           </argument>
         </arguments>
@@ -213,12 +214,12 @@ if Count{
         else{
             
             //Swap with number keys.
-            if (K1)           {Current = 0; Rate = 0;}
-            if (K2 &amp;&amp; Count&gt;1){Current = 1; Rate = 0;}
-            if (K3 &amp;&amp; Count&gt;2){Current = 2; Rate = 0;}
-            if (K4 &amp;&amp; Count&gt;3){Current = 3; Rate = 0;}
-            if (K5 &amp;&amp; Count&gt;4){Current = 4; Rate = 0;}
-            if (K6 &amp;&amp; Count&gt;5){Current = 5; Rate = 0;}
+            if (K1)           {Current = 0; Rate = 0;Swap = 1;}
+            if (K2 &amp;&amp; Count&gt;1){Current = 1; Rate = 0;Swap = 1;}
+            if (K3 &amp;&amp; Count&gt;2){Current = 2; Rate = 0;Swap = 1;}
+            if (K4 &amp;&amp; Count&gt;3){Current = 3; Rate = 0;Swap = 1;}
+            if (K5 &amp;&amp; Count&gt;4){Current = 4; Rate = 0;Swap = 1;}
+            if (K6 &amp;&amp; Count&gt;5){Current = 5; Rate = 0;Swap = 1;}
         }
     }
 }
@@ -315,9 +316,9 @@ if Q[P[Current]]&lt;1 &amp;&amp; !Grenade &amp;&amp; Reload&gt;=Greload[G[Curren
 // © 2017 - Jon Harvey
 
 //Temporary speed variables for recoil.
-var SpeedX,SpeedY;
-SpeedX = 0;
-SpeedY = 0;
+var RecoilSpeedX,RecoilSpeedY;
+RecoilSpeedX = 0;
+RecoilSpeedY = 0;
 
 //Reduce kick animation to 0.
 Kick *= S90;
@@ -334,16 +335,16 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
         if mouse_check_button_pressed(mb_left) &amp;&amp; (Reload&gt;1){
             
                 //Handle grenade.
-                var SpeedX,SpeedY,Throw;
-                SpeedX = (mouse_x-x)/60+WalkSpeedX;
-                SpeedY = (mouse_y-y)/60+WalkSpeedY;
+                var ThrowSpeedX,ThrowSpeedY,Throw;
+                ThrowSpeedX = (mouse_x-x)/60+SpeedX;
+                ThrowSpeedY = (mouse_y-y)/60+SpeedY;
                 Throw = instance_create(x,y,obj_grenade);
                 
                 Throw.Z = 50;
                 Throw.SpeedA = random(20);
-                Throw.SpeedX = SpeedX;
-                Throw.SpeedY = SpeedY;
-                Throw.SpeedZ = sqrt(max(10000-SpeedX*SpeedX+SpeedY*SpeedY,0.01));
+                Throw.SpeedX = ThrowSpeedX;
+                Throw.SpeedY = ThrowSpeedY;
+                Throw.SpeedZ = sqrt(max(10000-sqr(ThrowSpeedX)+sqr(ThrowSpeedY),0.01));
                 Reload = 0;
             }
         }
@@ -392,8 +393,8 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                     
                     //Add gun recoil to player speed and kick.
                     Kick = Grecoil[G[Current]];
-                    SpeedX = -Grecoil[G[Current]]*dcos(GunDirection)/FRAME_DELTA;
-                    SpeedY = -Grecoil[G[Current]]*dsin(GunDirection)/FRAME_DELTA;
+                    RecoilSpeedX = -Grecoil[G[Current]]*dcos(GunDirection)/FRAME_DELTA;
+                    RecoilSpeedY = -Grecoil[G[Current]]*dsin(GunDirection)/FRAME_DELTA;
                 }
             }
             
@@ -446,13 +447,57 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Handle meleeing
+// © 2017 - Jon Harvey
+
+Melee *= S90;
+
+//Melee when not meleeing, swapping or firing.
+if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
+
+    if !Count || (Reload&gt;=Greload[G[Current]] &amp;&amp; Rate&gt;=1/Grate[G[Current]]){
+        
+        Melee = 1;
+        with(obj_game_object){
+    
+            if object_index != obj_player{
+            
+                var Distance = max(distance_to_point(obj_player.x+dcos(obj_player.GunDirection)*8,obj_player.y-dsin(obj_player.GunDirection)*8)-Radius,0)/4;
+                if Distance&lt;1{
+                
+                    Health -= sqr(1-Distance)/2;
+                }
+            }
+        }        
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Handle player movement
 // © 2017 - Jon Harvey
 
 //Set controls for movement.
 var Turn,Vert,Hor;
 Turn = Kturnleft-Kturnright;
-Vert = Kup-Kdown;
+Vert = Kdown-Kup;
 Hor = Kleft-Kright;
 
 //Smooth turn speed for turning motion.
@@ -464,20 +509,17 @@ Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection += 0.3*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
-var Speed;
+var MoveSpeed,MoveSpeedX,MoveSpeedY;
 Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
 if !Grenade{Speed /= Gweight[G[Current]];}
 
-SpeedX += 4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
-SpeedY += 4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
-
-//WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
-//WalkSpeedY = WalkSpeedY*S90-(1-S90)*(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));
+MoveSpeedX = RecoilSpeedX+4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
+MoveSpeedY = RecoilSpeedY+4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
 
 //Set initial speed.
 var SumX,SumY;
-SumX =  (SpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
-SumY = -(SpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+0.7));;
+SumX = (MoveSpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
+SumY = (MoveSpeedY*(dsin(GunDirection)*sign(SpeedY)*-0.3+0.7));;
 
 //Get pushed by enemies.
 for(var i = instance_number(obj_game_object);i&gt;=0;i--){
@@ -485,24 +527,24 @@ for(var i = instance_number(obj_game_object);i&gt;=0;i--){
     var Inst = instance_find(obj_game_object,i);
     if Inst!=id{
     
-        var Distance = point_distance(x+WalkSpeedX,y+WalkSpeedY,Inst.x+Inst.WalkSpeedX,Inst.y+Inst.WalkSpeedY);
+        var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
         if (Distance&lt;Radius+Inst.Radius){
         
-            var NormX = (x+WalkSpeedX-(Inst.x+Inst.WalkSpeedX))/Distance;
-            var NormY = (y+WalkSpeedY-(Inst.y+Inst.WalkSpeedY))/Distance;
+            var NormX = (x+SpeedX-(Inst.x+Inst.SpeedX))/Distance;
+            var NormY = (y+SpeedY-(Inst.y+Inst.SpeedY))/Distance;
             SumX += NormX*(Radius+Inst.Radius-Distance);
             SumY += NormY*(Radius+Inst.Radius-Distance);
         }
     }
 }
 //Move smoothly and with delta timing.
-WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SumX);
-WalkSpeedY = WalkSpeedY*S90+(1-S90)*(SumY);
-x += WalkSpeedX*FRAME_DELTA;
-y += WalkSpeedY*FRAME_DELTA;
+SpeedX = SpeedX*S90+(1-S90)*(SumX);
+SpeedY = SpeedY*S90+(1-S90)*(SumY);
+x += SpeedX*FRAME_DELTA;
+y += SpeedY*FRAME_DELTA;
 
 //Update walk frame
-var Speed = sqrt(sqr(WalkSpeedX)+sqr(WalkSpeedY));
+var Speed = sqrt(sqr(SpeedX)+sqr(SpeedY));
 WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
 </string>
           </argument>
@@ -529,26 +571,32 @@ WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
             <string>///Draw player sprites
 // © 2017 - Jon Harvey
 
-var Turn,Direction,Force
+var Turn,Direction,Recoil,Switch,Swing,Face;
 Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
-Direction = darctan2(-WalkSpeedY,WalkSpeedX);
-Force = min(Kick,5);
+Direction = darctan2(-SpeedY,SpeedX);
+Recoil = min(Kick,5);
+Switch = 1-sqr(abs(abs(Swap)*2-1));
+Swing = dsin(Melee*Melee*360);
+Face = GunDirection-Swing*20;
 
 draw_sprite_ext(spr_player_legs,WalkFrame,x,y,1,1,Direction,$FFFFFF,1);
-draw_sprite_ext(spr_player_torso,Ibackpack,x-dcos(GunDirection)*Force,y+dsin(GunDirection)*Force,1,1,GunDirection,$FFFFFF,1);
+draw_sprite_ext(spr_player_torso,Ibackpack,x-dcos(Face)*Recoil,y+dsin(Face)*Recoil,1,1,Face,$FFFFFF,1);
 
-//Draw left arm - Reece:
-draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)-dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)+dcos(-GunDirection)*10,1,1,GunDirection+2*Force-4+Swap*45,$FFFFFF,1);
 //Draw right arm - Reece:
-draw_sprite_ext(spr_player_arm,0,x-dcos(GunDirection)*(Force-4)+dsin(-GunDirection)*10,y+dsin(GunDirection)*(Force-4)-dcos(-GunDirection)*10,1,-1,GunDirection-2*Force+4+Swap*45,$FFFFFF,1);
+draw_sprite_ext(spr_player_arm,0,x-dcos(Face)*(Recoil-4)-dsin(-Face)*10,y+dsin(Face)*(Recoil-4)+dcos(-Face)*10,
+1-Switch*0.1,1,Face+2*Recoil+25+Switch*60-Swing*40,$FFFFFF,1);
+//Draw left arm - Reece:
+draw_sprite_ext(spr_player_arm,0,x-dcos(Face)*(Recoil-4)+dsin(-Face)*10,y+dsin(Face)*(Recoil-4)-dcos(-Face)*10,
+1-Switch*0.7,-1,Face-2*Recoil-25+Switch*30-Swing*20,$FFFFFF,1);
 
 //Draw gun - Reece:
 if Count{
     
-    draw_sprite_ext(spr_player_holdables,G[Current],x-dcos(GunDirection)*(Force*2-8),y+dsin(GunDirection)*(Force*2-8),0.4,0.4,GunDirection-4+Swap*45,$FFFFFF,1);
+    draw_sprite_ext(spr_player_holdables,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
+    y+dsin(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)-dcos(-Face)*Switch*10,0.4*sqr(abs(abs(Swap)*2-1)),0.4,Face-4+Switch*40-Swing*30,$FFFFFF,1);
 }
 
-draw_sprite_ext(spr_player_head,0,x-dcos(GunDirection)*Force*0.8,y+dsin(GunDirection)*Force*0.8,1,1,GunDirection+0.6*Turn,$FFFFFF,1);
+draw_sprite_ext(spr_player_head,0,x-dcos(Face)*Recoil*0.8,y+dsin(Face)*Recoil*0.8,1,1,Face+0.6*Turn+Switch*20-Swing*10,$FFFFFF,1);
 </string>
           </argument>
         </arguments>

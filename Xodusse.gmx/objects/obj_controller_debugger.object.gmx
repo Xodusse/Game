@@ -74,10 +74,10 @@ if (instance_exists(obj_player)){
     player_x = round(obj_player.x);
     player_y = round(obj_player.y);
     
-    player_dir = round(darctan2(-obj_player.WalkSpeedY,obj_player.WalkSpeedX)+360) % 360;
+    player_dir = round(darctan2(-obj_player.SpeedY,obj_player.SpeedX)+360) % 360;
     //Added player speed variable - Jon.
 
-    player_speed = round(sqrt(sqr(obj_player.WalkSpeedX)+sqr(obj_player.WalkSpeedY)));
+    player_speed = round(sqrt(sqr(obj_player.SpeedX)+sqr(obj_player.SpeedY)));
 }
 //Get the current game memory usage in Kilobytes:
 memory_v = ((scr_get_memory_virtual()/8)/1024);    
@@ -131,7 +131,7 @@ if (DEBUG_VISIBLE == true){
     
     //Version number:
     draw_text(8, 10,
-        "Xodusse V.125");
+        "Xodusse V.126");
     
     //Copyright:
     draw_text(8, 35,

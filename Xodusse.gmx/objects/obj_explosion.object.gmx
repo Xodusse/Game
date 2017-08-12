@@ -84,7 +84,7 @@ if (Timer==1/2){
     with(obj_game_object){
     
         var Explosion = instance_nearest(x,y,obj_explosion);
-        var Distance = distance_to_object(Explosion)/Explosion.Scale/96;
+        var Distance = distance_to_object(Explosion)/Explosion.Scale/32;
         if Distance&lt;1.5{
         
             Health -= min(1.5-Distance,1)*Explosion.Damage;

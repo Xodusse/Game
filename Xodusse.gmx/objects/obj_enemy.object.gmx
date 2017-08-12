@@ -66,9 +66,9 @@ AiFocus = 1;
 
 WalkDirection = 0;
 
-WalkSpeed = 1;
-WalkSpeedX = 0;
-WalkSpeedY = 0;
+Speed = 1;
+SpeedX = 0;
+SpeedY = 0;
 
 Radius = 16;
 
@@ -112,9 +112,9 @@ if instance_exists(obj_player){
     if Visible{
         
         AiFocus = AiFocus*S90+(1-S90);
-        WalkSpeed = WalkSpeed*S90+(1-S90);
-        AiTargetSpeedX = obj_player.WalkSpeedX;
-        AiTargetSpeedY = obj_player.WalkSpeedY;
+        Speed = Speed*S90+(1-S90);
+        AiTargetSpeedX = obj_player.SpeedX;
+        AiTargetSpeedY = obj_player.SpeedY;
         AiTargetX = obj_player.x;
         AiTargetY = obj_player.y;
     }
@@ -155,8 +155,8 @@ image_angle = WalkDirection;
 
 //Set initial speed.
 var SumX,SumY;
-SumX =  WalkSpeed*dcos(WalkDirection);
-SumY = -WalkSpeed*dsin(WalkDirection);
+SumX =  Speed*dcos(WalkDirection);
+SumY = -Speed*dsin(WalkDirection);
 
 //Get pushed by enemies.
 for(var i = instance_number(obj_game_object);i&gt;=0;i--){
@@ -164,11 +164,11 @@ for(var i = instance_number(obj_game_object);i&gt;=0;i--){
     var Inst = instance_find(obj_game_object,i);
     if Inst!=id{
     
-        var Distance = point_distance(x+WalkSpeedX,y+WalkSpeedY,Inst.x+Inst.WalkSpeedX,Inst.y+Inst.WalkSpeedY);
+        var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
         if (Distance&lt;Radius+Inst.Radius){
         
-            var NormX = (x+WalkSpeedX-(Inst.x+Inst.WalkSpeedX))/Distance;
-            var NormY = (y+WalkSpeedY-(Inst.y+Inst.WalkSpeedY))/Distance;
+            var NormX = (x+SpeedX-(Inst.x+Inst.SpeedX))/Distance;
+            var NormY = (y+SpeedY-(Inst.y+Inst.SpeedY))/Distance;
             SumX += NormX*(Radius+Inst.Radius-Distance);
             SumY += NormY*(Radius+Inst.Radius-Distance);
         }
@@ -176,13 +176,13 @@ for(var i = instance_number(obj_game_object);i&gt;=0;i--){
 }
 
 //Move smoothly and with delta timing.
-WalkSpeedX = WalkSpeedX*S90+(1-S90)*(SumX);
-WalkSpeedY = WalkSpeedY*S90+(1-S90)*(SumY);
-x += WalkSpeedX*FRAME_DELTA;
-y += WalkSpeedY*FRAME_DELTA;
+SpeedX = SpeedX*S90+(1-S90)*(SumX);
+SpeedY = SpeedY*S90+(1-S90)*(SumY);
+x += SpeedX*FRAME_DELTA;
+y += SpeedY*FRAME_DELTA;
 
 //Collide with obstacle
-var Inst = instance_place(x+WalkSpeedX*10,y+WalkSpeedY*10,obj_wall_parent);
+var Inst = instance_place(x+SpeedX*10,y+SpeedY*10,obj_wall_parent);
 if Inst != noone{
 
     WalkDirection += FRAME_DELTA*0.2*angle_difference(point_direction(Inst.x,Inst.y,x,y),WalkDirection);

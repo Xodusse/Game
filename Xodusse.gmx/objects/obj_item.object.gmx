@@ -37,13 +37,44 @@ SpeedZ = 0;
 
 image_angle = irandom(360);
 
-var Backpack;
-Backpack = 1+irandom(1);
+var Backpack = 1+irandom(1);
 Id = Idoubles*2+Isingles+Igrenades+Iammo+Backpack;
 Quantity = 1;
 
-Bac[Backpack*6] = 0;
-Qnt[Backpack*6] = 0;
+//Check if item is backpack.
+alarm[0] = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Add inventory to backpacks only.
+// © 2017 - Jon Harvey
+
+var Backpack;
+Backpack = (Id-Idoubles*2+Isingles+Igrenades+Iammo);
+if Backpack{
+
+    Bac[Backpack*6] = 0;
+    Qnt[Backpack*6] = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -118,7 +149,7 @@ Z = max(Z+SpeedZ*FRAME_DELTA,0);
             <string>///Give item to player
 // © 2017 - Jon Harvey
 
-if (Z==0){
+if (Z==0) &amp;&amp; alarm[0] == -1{
     
     //Add backpack.
     if Id&gt;Idoubles*2+Isingles+Igrenades+Iammo{

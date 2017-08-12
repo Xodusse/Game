@@ -28,8 +28,8 @@
             <string>///Initialize variables
 // © 2017 - Jon Harvey
 
-WalkSpeedX = 0;
-WalkSpeedY = 0;
+SpeedX = 0;
+SpeedY = 0;
 Radius = 36;
 
 Health = 100;
