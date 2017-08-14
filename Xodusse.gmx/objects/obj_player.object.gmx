@@ -497,7 +497,7 @@ if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
 //Set controls for movement.
 var Turn,Vert,Hor;
 Turn = Kturnleft-Kturnright;
-Vert = Kdown-Kup;
+Vert = Kup-Kdown;
 Hor = Kleft-Kright;
 
 //Smooth turn speed for turning motion.
@@ -519,7 +519,7 @@ MoveSpeedY = RecoilSpeedY+4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/
 //Set initial speed.
 var SumX,SumY;
 SumX = (MoveSpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
-SumY = (MoveSpeedY*(dsin(GunDirection)*sign(SpeedY)*-0.3+0.7));;
+SumY = (MoveSpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+-0.7));
 
 //Get pushed by enemies.
 for(var i = instance_number(obj_game_object);i&gt;=0;i--){
