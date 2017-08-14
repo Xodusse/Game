@@ -28,19 +28,44 @@
             <string>///Inventory variables
 // © 2017 - Jon Harvey
 
-globalvar Ienable,Ibackpack,Iid,Iquantity,Iposition,I,Q;
+globalvar Idoubles,Isingles,Igrenades,Iammo;
+Idoubles = 2;//Number of two-handed weapons.
+Isingles = 2;//Number of one-handed weapons.
+Igrenades = 1;
+Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
+
+globalvar Ienable,Ibackpack,Iid,Iquantity,Iposition,Iweight,Istrength,W,I,Q;
 //Toggle inventory (0 is off, 1 is on).
 Ienable = 0;
-
 //Control backpack (0 is off, 1 is small, 2 is large).
 Ibackpack = 0;
-
 //Inventory id of item being moved (0 for no item).
 Iid = 0;
 Iquantity = 0;
 Iposition = 0;
 
-//Item and quantity arrays (ordered from left to right, bottom to top).
+//Weight and strength (max weight) in kg used in inventory.
+Iweight = 0;
+Istrength = 25;
+
+//Weight[id], weight of items in kg.
+W[Idoubles*2+Isingles+Igrenades+Iammo+2] = 0;
+//Guns
+W[0] = 1;
+W[1] = 1.2;
+W[2] = 1.2;
+W[3] = 0.8;
+W[4] = 1.2;
+W[5] = 1;
+//Grenade
+W[6] = 1.2;
+//Ammo
+W[7] = 1.2;
+W[8] = 1.2;
+W[9] = 1.2;
+W[10] = 1.2;
+
+//Item[pos] and quantity[pos] arrays (ordered from left to right, bottom to top).
 I[23] = 0;
 Q[23] = 0;
 
@@ -59,13 +84,6 @@ I[5] = 6;
 Q[5] = Gcap[3];
 I[6] = 7;
 Q[6] = 3;
-
-globalvar Idoubles,Isingles,Igrenades,Iammo;
-Idoubles = 2;//Number of two-handed weapons.
-Isingles = 2;//Number of one-handed weapons.
-Igrenades = 1;
-Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
-
 </string>
           </argument>
         </arguments>

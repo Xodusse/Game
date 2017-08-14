@@ -82,9 +82,9 @@ Rate = 0;
 //Gun reload timeline.
 Reload = 10;
 
-//Gun positions in inventory.
+//Position[slot], Gun positions in inventory.
 P[0] = 0;
-//Guns (ids) in inventory.
+//Gun[slot], Guns (ids) in inventory.
 G[0] = 0;
 </string>
           </argument>
@@ -142,7 +142,7 @@ Health = 10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Sort inventory for guns
+            <string>///Check for guns in hotbar
 // © 2017 - Jon Harvey
 
 //This doesn't have to be calculated every step! Only when there's an inventory change.
@@ -255,12 +255,13 @@ Secondary = Current;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Sort inventory for magazines
+            <string>///Check for magazines and weight
 // © 2017 - Jon Harvey
 
 //This doesn't have to be calculated every step! Only when there's an inventory change.
 
 //Variables for magazine position and count.
+Iweight = 0;
 MagazineNext = -1;
 Magazines = 0;
 //Cycle through all inventory slots.
@@ -268,15 +269,20 @@ for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
 for(var X = 0;X&lt;6;X++){
     
     var Item = I[X+Y*6];
-    //Check if item is the right ammo.
-    if (Item == G[Current]+Idoubles*2+Isingles+Igrenades+1){
+    if Item{
         
-        if Q[X+Y*6]{
+        //Add weight to inventory;
+        Iweight += W[Item];
+        //Check if item is the right ammo.
+        if (Item == G[Current]+Idoubles*2+Isingles+Igrenades+1){
             
-            Magazines++;
-            if (MagazineNext = -1){
+            if Q[X+Y*6]{
                 
-                MagazineNext = X+Y*6;
+                Magazines++;
+                if (MagazineNext = -1){
+                    
+                    MagazineNext = X+Y*6;
+                }
             }
         }
     }
@@ -497,7 +503,7 @@ if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
 //Set controls for movement.
 var Turn,Vert,Hor;
 Turn = Kturnleft-Kturnright;
-Vert = Kup-Kdown;
+Vert = Kdown-Kup;
 Hor = Kleft-Kright;
 
 //Smooth turn speed for turning motion.
@@ -513,13 +519,13 @@ var MoveSpeed,MoveSpeedX,MoveSpeedY;
 Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
 if !Grenade{Speed /= Gweight[G[Current]];}
 
-MoveSpeedX = RecoilSpeedX+4*(Vert*dsin(view_angle[0])-Hor*dcos(-view_angle[0]))/Speed;
-MoveSpeedY = RecoilSpeedY+4*(Vert*dcos(view_angle[0])-Hor*dsin(-view_angle[0]))/Speed;
+MoveSpeedX = RecoilSpeedX+4*(Vert*dsin(-view_angle[0])-Hor*dcos(view_angle[0]))/Speed;
+MoveSpeedY = RecoilSpeedY+4*(Vert*dcos(-view_angle[0])-Hor*dsin(view_angle[0]))/Speed;
 
 //Set initial speed.
 var SumX,SumY;
 SumX = (MoveSpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
-SumY = (MoveSpeedY*(dsin(GunDirection)*sign(SpeedY)*0.3+-0.7));
+SumY = (MoveSpeedY*(dsin(GunDirection)*sign(SpeedY)*-0.3+0.7));
 
 //Get pushed by enemies.
 for(var i = instance_number(obj_game_object);i&gt;=0;i--){

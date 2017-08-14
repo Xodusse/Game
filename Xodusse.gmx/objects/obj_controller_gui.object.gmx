@@ -204,9 +204,19 @@ if instance_exists(obj_player){
     //Inventory system.
     if Ienable{
           
-        draw_set_alpha(0.4);
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
         //Inventory base.
+        draw_set_alpha(0.4);
         draw_rectangle(W/2-S*3.5,H/2-S*1.5-S*Ibackpack,W/2+S*3.5,H/2+S*1.5,0);
+        
+        //Weight and strength capacity
+        draw_rectangle(W/2+S*2.5,H/2-S*2-S*Ibackpack,W/2+S*3.5,H/2-S*1.5-S*Ibackpack-1,0);
+        draw_set_alpha(1);
+        draw_set_colour($FFFFFF);
+        draw_text(W/2+S*3.5,H/2-S*1.5-S*Ibackpack,string(ceil(Iweight))+"/"+string(Istrength)+" KG");
+        draw_set_alpha(0.4);
+        draw_set_colour(0);
         
         //Backpack slot.
         draw_rectangle(W/2+S*4.5,H/2-S*0.5,W/2+S*6.5,H/2+S*1.5,0);
@@ -218,8 +228,6 @@ if instance_exists(obj_player){
         }
         
         //Cycle through inventory items.
-        draw_set_halign(fa_right);
-        draw_set_valign(fa_bottom);
         for(var Y = 0;Y&lt;2+Ibackpack;Y++)
         for(var X = 0;X&lt;6;X++){
             
