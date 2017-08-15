@@ -118,14 +118,12 @@ if Kinventory{
 //Inventory item movement
 if Ienable{
     
-    var W,H,S;
-    W = view_wport[0];
-    H = view_hport[0];
+    var S;
     S = 64;
     
     var X,Y;
-    X = floor((window_mouse_get_x()-W/2-S*3)/S);
-    Y = 1-floor((window_mouse_get_y()-H/2)/S);
+    X = floor((window_mouse_get_x()-GUIW/2-S*3)/S);
+    Y = 1-floor((window_mouse_get_y()-GUIH/2)/S);
     
     //Select item from inventory for moving.
     if mouse_check_button_pressed(mb_left){
@@ -198,10 +196,28 @@ if Ienable{
                         I[Iposition] = Id1*!(!Id2)+Id2*!Id1;
                         Q[Iposition] = Quantity1*!(!Id2)+Quantity2*!Id1;
                     }
+                    else{
+                    
+                        //Drop item.
+                        var Item = instance_create(obj_player.x+30*SpeedX/Speed,obj_player.y+30*SpeedY/Speed,obj_item);
+                        Item.Id = Id1*!(!Id2)+Id2*!Id1;
+                        Item.Quantity = Quantity1*!(!Id2)+Quantity2*!Id1;
+                        Item.Z = 50;
+                        Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
+                    }
                     if !I[Iposition+S]{
                     
                         I[Iposition+S] = Id2*!(!Id1)+Id1*!Id2;
                         Q[Iposition+S] = Quantity2*!(!Id1)+Quantity1*!Id2;
+                    }
+                    else{
+                    
+                        //Drop item.
+                        var Item = instance_create(obj_player.x+30*SpeedX/Speed,obj_player.y+30*SpeedY/Speed,obj_item);
+                        Item.Id = Id2*!(!Id1)+Id1*!Id2;
+                        Item.Quantity = Quantity2*!(!Id1)+Quantity1*!Id2;
+                        Item.Z = 50;
+                        Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
                     }
                 }
                 else{
@@ -220,15 +236,12 @@ if Ienable{
                 Item.Id = Iid-((Iid+1)&amp;1);
                 Item.Quantity = Iquantity;
                 Item.Z = 50;
-                Item.SpeedA = SpeedA;
-                Item.SpeedX = SpeedX;
-                Item.SpeedY = SpeedY;
-                Item.SpeedZ = SpeedZ;
+                Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
             }
         }
         else{
             
-            if Iid &gt; Idoubles*2+Isingles+Igrenades+Iammo{
+            if Iid&gt;Idoubles*2+Isingles+Igrenades+Iammo{
                     
                     //Move backpack.    
                     if (X != 2) || (Y != 1){
@@ -237,10 +250,7 @@ if Ienable{
                         var Item = instance_create(obj_player.x+30*SpeedX/Speed,obj_player.y+30*SpeedY/Speed,obj_item);
                         Item.Id = Iid;
                         Item.Z = 50;
-                        Item.SpeedA = SpeedA;
-                        Item.SpeedX = SpeedX;
-                        Item.SpeedY = SpeedY;
-                        Item.SpeedZ = SpeedZ;
+                        Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
                         
                         var Backpack;
                         Backpack = Iid-(Idoubles*2+Isingles+Igrenades+Iammo);
@@ -278,8 +288,18 @@ if Ienable{
                                 I[Iposition] = Id;
                                 Q[Iposition] = Quantity;
                             }
+                            else{
+                                
+                                //Drop item.
+                                var Item = instance_create(obj_player.x+30*SpeedX/Speed,obj_player.y+30*SpeedY/Speed,obj_item);
+                                Item.Id = Id;
+                                Item.Quantity = Quantity;
+                                Item.Z = 50;
+                                Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
+                            }
                         }
                         else{
+                                
                             //Add item back to old slot.
                             I[Iposition] = Iid;
                             Q[Iposition] = Iquantity;
@@ -292,10 +312,7 @@ if Ienable{
                     Item.Id = Iid;
                     Item.Quantity = Iquantity;
                     Item.Z = 50;
-                    Item.SpeedA = SpeedA;
-                    Item.SpeedX = SpeedX;
-                    Item.SpeedY = SpeedY;
-                    Item.SpeedZ = SpeedZ;
+                    Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
                 }
             }
         }

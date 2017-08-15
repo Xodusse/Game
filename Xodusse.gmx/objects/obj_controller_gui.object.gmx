@@ -61,14 +61,14 @@ ShakeAngle = 0;
 Shake = Shake*S90;
 ShakeX = ShakeX*(1-S90)+S90*50*Shake*(random(2)-1);
 ShakeY = ShakeY*(1-S90)+S90*50*Shake*(random(2)-1);
-ShakeAngle = ShakeAngle*(1-S90)+S90*20*Shake*(random(2)-1);
+ShakeAngle = ShakeAngle*(1-S90)+S90*Shake*(random(40)-20);
 
 if instance_exists(obj_player){
     
     //Smoothly translate and rotate view with the player.
     view_xview[0] = view_xview[0]*S90+(1-S90)*(obj_player.x-view_wview[0]/2+ShakeX+100*dsin(view_angle[0]));
     view_yview[0] = view_yview[0]*S90+(1-S90)*(obj_player.y-view_hview[0]/2+ShakeY-100*dcos(view_angle[0]));
-    view_angle[0] = view_angle[0]*S98+(1-S98)*(90-obj_player.WalkDirection+ShakeAngle);
+    view_angle[0] = view_angle[0]*S90+(1-S90)*(90-obj_player.WalkDirection+ShakeAngle);
 }
 </string>
           </argument>
@@ -96,9 +96,7 @@ if instance_exists(obj_player){
 // © 2017 - Jon Harvey
 
 //Variables for view port width and height.
-var W,H,S;
-W = GUIW;
-H = GUIH;
+var S;
 S = 64;
 
 if instance_exists(obj_player){
@@ -108,7 +106,7 @@ if instance_exists(obj_player){
     
         //Inner circle.
         draw_set_alpha(0.6);
-        draw_circle_colour(0,H,60,$222222,$333333,0);
+        draw_circle_colour(0,GUIH,60,$222222,$333333,0);
         draw_set_alpha(1);
         
         //Outer reload circle.
@@ -121,8 +119,8 @@ if instance_exists(obj_player){
         for(var i = 0;i&lt;=30;i++){
             
             var Angle = i*3*Progress;
-            draw_vertex_colour(dcos(Angle)*150,H-dsin(Angle)*150,$444499,0.6);
-            draw_vertex_colour(dcos(Angle)*60,H-dsin(Angle)*60,$333333,0.6);
+            draw_vertex_colour(dcos(Angle)*150,GUIH-dsin(Angle)*150,$444499,0.6);
+            draw_vertex_colour(dcos(Angle)*60,GUIH-dsin(Angle)*60,$333333,0.6);
         }
         draw_primitive_end();
         
@@ -131,8 +129,8 @@ if instance_exists(obj_player){
             draw_set_colour($FFFFFF);
             if !Grenade{
             
-                draw_text(2,H-40,string(max(Magazines,0)));
-                draw_text(4,H-24,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
+                draw_text(2,GUIH-40,string(max(Magazines,0)));
+                draw_text(4,GUIH-24,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
             }
             draw_set_colour(0);
             
@@ -143,30 +141,30 @@ if instance_exists(obj_player){
                 Item = I[P[Current]];
                 Angle = 30*Swap-45;
                 Alpha = 1;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
                 if (Item&lt;=Idoubles*2){
                     
-                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*70,H+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
+                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*70,GUIH+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
                 }
                 
                 //Top gun on outer circle.
                 Item = I[P[(Current+1)%Count]];
                 Angle = 30*Swap-75;
                 Alpha = 0.5+Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
                 if (Item&lt;=Idoubles*2){
                     
-                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
+                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,GUIH+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
                 }
                 
                 //Bottom gun on outer circle.
                 Item = I[P[(Current-1+Count)%Count]];
                 Angle = 30*Swap-15;
                 Alpha = 0.5-Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
                 if (Item&lt;=Idoubles*2){
                     
-                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,H+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
+                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,GUIH+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
                 }
             }
             else{
@@ -176,29 +174,29 @@ if instance_exists(obj_player){
                 Item = I[P[Current]];
                 Angle = 30*Swap-45;
                 Alpha = 1;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
                 
                 Item = I[P[Secondary]];
                 Angle = -45;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*70,H+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*70,GUIH+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
                 
                 //Top gun on outer circle.
                 Item = I[P[(Current+1)%Count]];
                 Angle = 30*Swap-75;
                 Alpha = 0.5+Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
                 
                 //Bottom gun on outer circle.
                 Item = I[P[(Current-1+Count)%Count]];
                 Angle = 30*Swap-15;
                 Alpha = 0.5-Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,H+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
             }
         }
 
         //Health bar.
-        draw_rectangle(W-100,H-40,W-20,H-20,1);        
-        draw_rectangle(W-100,H-40,W-100+clamp(Health,0,10)*8,H-20,0);
+        draw_rectangle(GUIW-100,GUIH-40,GUIW-20,GUIH-20,1);        
+        draw_rectangle(GUIW-100,GUIH-40,GUIW-100+clamp(Health,0,10)*8,GUIH-20,0);
     }
     
     //Inventory system.
@@ -208,23 +206,23 @@ if instance_exists(obj_player){
         draw_set_valign(fa_bottom);
         //Inventory base.
         draw_set_alpha(0.4);
-        draw_rectangle(W/2-S*3.5,H/2-S*1.5-S*Ibackpack,W/2+S*3.5,H/2+S*1.5,0);
+        draw_rectangle(GUIW/2-S*3.5,GUIH/2-S*1.5-S*Ibackpack,GUIW/2+S*3.5,GUIH/2+S*1.5,0);
         
         //Weight and strength capacity
-        draw_rectangle(W/2+S*2.5,H/2-S*2-S*Ibackpack,W/2+S*3.5,H/2-S*1.5-S*Ibackpack-1,0);
+        draw_rectangle(GUIW/2+S*2.5,GUIH/2-S*2-S*Ibackpack,GUIW/2+S*3.5,GUIH/2-S*1.5-S*Ibackpack-1,0);
         draw_set_alpha(1);
         draw_set_colour($FFFFFF);
-        draw_text(W/2+S*3.5,H/2-S*1.5-S*Ibackpack,string(ceil(Iweight))+"/"+string(Istrength)+" KG");
+        draw_text(GUIW/2+S*3.5,GUIH/2-S*1.5-S*Ibackpack,string(ceil(Iweight))+"/"+string(Istrength)+" KG");
         draw_set_alpha(0.4);
         draw_set_colour(0);
         
         //Backpack slot.
-        draw_rectangle(W/2+S*4.5,H/2-S*0.5,W/2+S*6.5,H/2+S*1.5,0);
+        draw_rectangle(GUIW/2+S*4.5,GUIH/2-S*0.5,GUIW/2+S*6.5,GUIH/2+S*1.5,0);
         draw_set_alpha(1);
-        draw_rectangle(W/2+S*5,H/2,W/2+S*6,H/2+S,1);
+        draw_rectangle(GUIW/2+S*5,GUIH/2,GUIW/2+S*6,GUIH/2+S,1);
         if Ibackpack{
         
-            draw_sprite(spr_items,Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack-1,W/2+S*5.5,H/2+S*.5);
+            draw_sprite(spr_items,Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack-1,GUIW/2+S*5.5,GUIH/2+S*.5);
         }
         
         //Cycle through inventory items.
@@ -236,18 +234,18 @@ if instance_exists(obj_player){
             
             //Slot square.
             draw_set_colour(0);
-            draw_rectangle(W/2-S*3+1+X*S,H/2+1-Y*S,W/2-S*2-1+X*S,H/2+S-1-Y*S,1);
+            draw_rectangle(GUIW/2-S*3+1+X*S,GUIH/2+1-Y*S,GUIW/2-S*2-1+X*S,GUIH/2+S-1-Y*S,1);
             
             if Item{
                 
                 //Item sprite.
-                draw_sprite(spr_items,Item-1,W/2-S*2.5+X*S,H/2+S/2-Y*S);
+                draw_sprite(spr_items,Item-1,GUIW/2-S*2.5+X*S,GUIH/2+S/2-Y*S);
                 
                 //Item quantity.
                 if Quantity{
                     
                     draw_set_colour($FFFFFF);
-                    draw_text(W/2-S*2-2+X*S,H/2+S-Y*S,Quantity);
+                    draw_text(GUIW/2-S*2-2+X*S,GUIH/2+S-Y*S,Quantity);
                 }
             }
         }
