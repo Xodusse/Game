@@ -74,7 +74,7 @@ for(var i=1; i&lt;=room_last; i++){
 }
 
 //Resize the surface:
-surface_resize(application_surface,ideal_width,ideal_height);
+surface_resize(application_surface,ideal_width*2,ideal_height*2);
 window_set_size(ideal_width,ideal_height);
 
 room_goto(room_next(room));

@@ -2086,6 +2086,8 @@
     <tile bgName="bac_sheet" x="1344" y="-64" w="32" h="32" xo="376" yo="70" id="10005678" name="inst_FB84079C" depth="20" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bac_sheet" x="1344" y="-96" w="32" h="32" xo="308" yo="70" id="10005679" name="inst_40366AFA" depth="20" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bac_sheet" x="1312" y="-96" w="32" h="32" xo="274" yo="70" id="10005680" name="inst_FD44806A" depth="20" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bac_sheet" x="512" y="64" w="32" h="32" xo="36" yo="104" id="10005681" name="inst_E03681CC" depth="20" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bac_sheet" x="512" y="32" w="32" h="32" xo="36" yo="104" id="10005682" name="inst_A634088C" depth="20" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

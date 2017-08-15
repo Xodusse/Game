@@ -402,49 +402,73 @@ F60 = (60/DESIRED_FPS) * FRAME_DELTA;
 if (SETTING_RESOLUTION == 0){
     window_set_size(960,540);
     view_wport[0] = 960;
-    view_hport[0] = 540; 
+    view_hport[0] = 540;
+    view_wview[0] = 960;
+    view_hview[0] = 540;
+    surface_resize(application_surface, 960*2, 540*2);
 }
 
 else if (SETTING_RESOLUTION == 1){
     window_set_size(1280,720);
     view_wport[0] = 1280;
     view_hport[0] = 720;
+    view_wview[0] = 960;
+    view_hview[0] = 540;    
+    surface_resize(application_surface, 1280*2, 720*2);
 }
 
 else if (SETTING_RESOLUTION == 2){
     window_set_size(1366,768);
     view_wport[0] = 1366;
     view_hport[0] = 768;
+    view_wview[0] = 960;
+    view_hview[0] = 540; 
+    surface_resize(application_surface, 1366*2, 768*2);
 }
 
 else if (SETTING_RESOLUTION == 3){
     window_set_size(1600,900);
     view_wport[0] = 1600;
     view_hport[0] = 900;
+    view_wview[0] = 960;
+    view_hview[0] = 540; 
+    surface_resize(application_surface, 1600*2, 900*2);
 }
 
 else if (SETTING_RESOLUTION == 4){
     window_set_size(1920,1080);
     view_wport[0] = 1920;
     view_hport[0] = 1080;
+    view_wview[0] = 960;
+    view_hview[0] = 540; 
+    surface_resize(application_surface, 1920*2, 1080*2);
 }
 
 else if (SETTING_RESOLUTION == 5){
     window_set_size(2560,1440);
     view_wport[0] = 2560;
     view_hport[0] = 1440;
+    view_wview[0] = 960;
+    view_hview[0] = 540; 
+    surface_resize(application_surface, 2560*2, 1440*2);
 }
 
 else if (SETTING_RESOLUTION == 6){
     window_set_size(3840,2160);
     view_wport[0] = 3840;
     view_hport[0] = 2160;
+    view_wview[0] = 960;
+    view_hview[0] = 540; 
+    surface_resize(application_surface, 3840*2, 2160*2);
 }
 
 else if (SETTING_RESOLUTION == 7){
     window_set_size(DISPLAY_HRESOLUTION,DISPLAY_VRESOLUTION);
     view_wport[0] = DISPLAY_HRESOLUTION;
     view_hport[0] = DISPLAY_VRESOLUTION;
+    view_wview[0] = 960;
+    view_hview[0] = 540; 
+    surface_resize(application_surface, DISPLAY_HRESOLUTION*2, DISPLAY_VRESOLUTION*2);
 }    
 
 else {
@@ -454,7 +478,8 @@ else {
         
     window_set_size(960,540);
     view_wport[0] = 960;
-    view_hport[0] = 540; 
+    view_hport[0] = 540;
+    surface_resize(application_surface, 960*2, 540*2); 
 }
 </string>
           </argument>
