@@ -100,13 +100,13 @@ if Backpack{
             <string>///Move when thrown
 // © 2017 - Jon Harvey
 
-if (Z&lt;=-SpeedZ+.001){
+if (Z&lt;=-SpeedZ){
 
     //Hit ground.
     SpeedA *= .5*S90;
     SpeedX *= .5*S90;
     SpeedY *= .5*S90;
-    SpeedZ *= -.5*S90;
+    SpeedZ = -Z;
 }
 else{
     
@@ -149,7 +149,14 @@ Z = max(Z+SpeedZ*FRAME_DELTA,0);
             <string>///Give item to player
 // © 2017 - Jon Harvey
 
-if (Z==0) &amp;&amp; alarm[0] == -1{
+var Weight;
+Weight = W[Id-1];
+if (Id&gt;Idoubles*2){
+    
+    Weight += W[Id];
+}
+
+if (Z==0) &amp;&amp; (alarm[0] == -1) &amp;&amp; (Iweight+Weight&lt;=Istrength){
     
     //Add backpack.
     if Id&gt;Idoubles*2+Isingles+Igrenades+Iammo{

@@ -125,13 +125,19 @@ if instance_exists(obj_player){
         draw_primitive_end();
         
         if Count{
-            //Info text such as number of shots and number of magazines.
             draw_set_colour($FFFFFF);
             if !Grenade{
             
+                //Gun info (magazine count, shots count in magazine, magazine capacity).
                 draw_text(2,GUIH-40,string(max(Magazines,0)));
                 draw_text(4,GUIH-24,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
             }
+            else{
+            
+                //Grenade info (grenade count).
+                draw_text(2,GUIH-40,string(max(Q[P[Current]],0)));
+            }
+            
             draw_set_colour(0);
             
             if  Current == Secondary{

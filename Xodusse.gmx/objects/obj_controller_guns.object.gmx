@@ -39,13 +39,13 @@ Gauto[3] = 0;
 Grate[0] = 3;
 Grate[1] = 25;
 Grate[2] = 10;
-Grate[3] = 6;
+Grate[3] = 5;
 
 //Capacity[gun], Gun magazine capacity.
 Gcap[0] = 6;
 Gcap[1] = 50;
 Gcap[2] = 20;
-Gcap[3] = 10;
+Gcap[3] = 8;
 
 //Reload[gun], Reload time in seconds.
 Greload[0] = 2;
@@ -131,7 +131,7 @@ Pspeed[1] = 12;
 Pspeed[2] = 14;
 Pspeed[3] = 16;
 
-//Power[projectile], Power where lower numbers meaning higher pierce.
+//Power[projectile], Power where lower numbers means a higher pierce value.
 Ppower[0]  = 1;
 Ppower[1]  = 1;
 Ppower[2]  = 0.8;

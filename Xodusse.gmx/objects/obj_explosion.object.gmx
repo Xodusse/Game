@@ -3,7 +3,7 @@
   <spriteName>spr_explosion</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-4</depth>
+  <depth>-11</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -28,20 +28,23 @@
             <string>///Explosion variables
 // © 2017 - Jon Harvey
 
+SpeedX = 0;
+SpeedY = 0;
+
 Scale = 1;
 Damage = 1;
 Timer = 1/2;
 
 audio_play_sound(snd_explosion,0,0);
 
-Prx[10] = 0;
-Pry[10] = 0;
-Pra[10] = 0;
-Prr[10] = 0;
-Pax[10] = 0;
-Pay[10] = 0;
-Paa[10] = 0;
-Par[10] = 1;
+Prx[40] = 0;
+Pry[40] = 0;
+Pra[40] = 0;
+Prr[40] = 0;
+Pax[40] = 0;
+Pay[40] = 0;
+Paa[40] = 0;
+Par[40] = 1;
 </string>
           </argument>
         </arguments>
@@ -69,10 +72,11 @@ Par[10] = 1;
 
 if (Timer==1/2){
 
-    for(var p = 0;p&lt;10;p++){
+    for(var p = 0;p&lt;40;p++){
         
-        Prx[p] = (random(8)-4)*Scale;
-        Pry[p] = (random(8)-4)*Scale;
+        var Speed = power(random(1),8);
+        Prx[p] = (random(4)-2)*Scale+SpeedX*Speed;
+        Pry[p] = (random(4)-2)*Scale+SpeedY*Speed;
         Pra[p] = random(20)-10;
         Prr[p] = random(0.1);
         Pax[p] = random(8)-4;
@@ -98,7 +102,7 @@ if Timer&lt;=0{
     instance_destroy();
 }
 
-for(var p = 0;p&lt;10;p++){
+for(var p = 0;p&lt;40;p++){
 
     Prx[p] *= S90;
     Pry[p] *= S90;
@@ -136,7 +140,7 @@ for(var p = 0;p&lt;10;p++){
 // © 2017 - Jon Harvey
 
 draw_set_blend_mode(bm_add);
-for(var p = 0;p&lt;10;p++){
+for(var p = 0;p&lt;40;p++){
 
     var Frame;
     Frame = clamp(Par[p]*2-.1,0,2);

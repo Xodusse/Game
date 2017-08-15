@@ -67,6 +67,8 @@ if Enemy != Hit &amp;&amp; instance_exists(Enemy){
     if (Pexplode[Id]&gt;0){
         
         var Explosion = instance_create(x,y,obj_explosion);
+        Explosion.SpeedX =  speed*dcos(direction);
+        Explosion.SpeedY = -speed*dsin(direction);
         Explosion.Scale = Pexplode[Id];
         Explosion.Damage = Pdamage[Id];
         instance_destroy();
@@ -74,7 +76,7 @@ if Enemy != Hit &amp;&amp; instance_exists(Enemy){
     else{
     
         Hit = Enemy;
-        Hit.Health -= Pdamage[Id];
+        Hit.Health -= Pdamage[Id]*min(image_alpha/Ppower[Id],1);
         image_alpha -= Ppower[Id];
     }
 }
@@ -137,7 +139,6 @@ if image_alpha&lt;0.01{
             <kind>1</kind>
             <string>///Draw projectile
 // © 2017 - Jon Harvey
-
 
 draw_sprite_ext(spr_projectiles,Id,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 </string>

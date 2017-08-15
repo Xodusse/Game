@@ -93,8 +93,9 @@ Timer += DELTA;
 if (Timer&gt;2){
 
     var Explosion = instance_create(x,y,obj_explosion);
-    Explosion.image_xscale = 1;
-    Explosion.image_yscale = 1;  
+    Explosion.SpeedX = SpeedX;
+    Explosion.SpeedY = SpeedY;  
+    Explosion.Scale = 1;
     Explosion.Damage = 4;
     instance_destroy();
 }

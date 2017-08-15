@@ -272,7 +272,7 @@ for(var X = 0;X&lt;6;X++){
     if Item{
         
         //Add weight to inventory;
-        Iweight += W[Item];
+        Iweight += W[Item-1];
         //Check if item is the right ammo.
         if (Item == G[Current]+Idoubles*2+Isingles+Igrenades+1){
             
@@ -318,7 +318,7 @@ if Q[P[Current]]&lt;1 &amp;&amp; !Grenade &amp;&amp; Reload&gt;=Greload[G[Curren
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Handle gun, grenades and reloading
+            <string>///Handle grenades, gun and reloading
 // © 2017 - Jon Harvey
 
 //Temporary speed variables for recoil.
@@ -337,35 +337,44 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
     Reload += DELTA;
     
     if !Ienable &amp;&amp; Grenade{
-        
-        if mouse_check_button_pressed(mb_left) &amp;&amp; (Reload&gt;1){
             
-                //Handle grenade.
-                var ThrowSpeedX,ThrowSpeedY,Throw;
-                ThrowSpeedX = (mouse_x-x)/60+SpeedX;
-                ThrowSpeedY = (mouse_y-y)/60+SpeedY;
-                Throw = instance_create(x,y,obj_grenade);
-                
-                Throw.Z = 50;
-                Throw.SpeedA = random(20);
-                Throw.SpeedX = ThrowSpeedX;
-                Throw.SpeedY = ThrowSpeedY;
-                Throw.SpeedZ = sqrt(max(10000-sqr(ThrowSpeedX)+sqr(ThrowSpeedY),0.01));
-                Reload = 0;
+        if mouse_check_button_pressed(mb_left) &amp;&amp; (Reload&gt;1){
+                    
+            if (Q[P[Current]]&gt;0){
+            
+                    Q[P[Current]]--;
+                    //Handle grenade.
+                    var ThrowSpeedX,ThrowSpeedY,Throw;
+                    ThrowSpeedX = (mouse_x-x)/60+SpeedX;
+                    ThrowSpeedY = (mouse_y-y)/60+SpeedY;
+                    Throw = instance_create(x,y,obj_grenade);
+                    
+                    Throw.Z = 50;
+                    Throw.SpeedA = random(20);
+                    Throw.SpeedX = ThrowSpeedX;
+                    Throw.SpeedY = ThrowSpeedY;
+                    Throw.SpeedZ = sqrt(max(10000-sqr(ThrowSpeedX)+sqr(ThrowSpeedY),0.01));
+                    Reload = 0;
+                }
+                else{
+            
+                    //Remove empty grenade slot.
+                    I[P[Current]] = 0;
+                }
             }
         }
         else
         if !Grenade{
         
-        //Fill gun when finished reloading.
-        if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1  &amp;&amp; Magazines{
-        
-            Q[P[Current]] = Q[MagazineNext];
-            //Remove magazine
-            I[MagazineNext] = 0;
-            Q[MagazineNext] = 0;
-        }
-        else{
+            //Fill gun when finished reloading.
+            if Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]&lt;1  &amp;&amp; Magazines{
+            
+                Q[P[Current]] = Q[MagazineNext];
+                //Remove magazine
+                I[MagazineNext] = 0;
+                Q[MagazineNext] = 0;
+            }
+            else{
             
             //Shoot fully-automatic or semi-automatic with left click as long as the inventory is closed.
             if !Ienable &amp;&amp; (mouse_check_button(mb_left)*Gauto[G[Current]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Current]]){
@@ -400,7 +409,7 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                     //Add gun recoil to player speed and kick.
                     Kick = Grecoil[G[Current]];
                     RecoilSpeedX = -Grecoil[G[Current]]*dcos(GunDirection)/FRAME_DELTA;
-                    RecoilSpeedY = -Grecoil[G[Current]]*dsin(GunDirection)/FRAME_DELTA;
+                    RecoilSpeedY =  Grecoil[G[Current]]*dsin(GunDirection)/FRAME_DELTA;
                 }
             }
             
@@ -516,7 +525,7 @@ GunDirection += 0.3*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
 var MoveSpeed,MoveSpeedX,MoveSpeedY;
-Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1);
+Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/(1-0.5*sqr(Iweight/Istrength));
 if !Grenade{Speed /= Gweight[G[Current]];}
 
 MoveSpeedX = RecoilSpeedX+4*(Vert*dsin(-view_angle[0])-Hor*dcos(view_angle[0]))/Speed;
