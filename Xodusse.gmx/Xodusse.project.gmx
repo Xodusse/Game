@@ -116,6 +116,12 @@
         <sprite>sprites\spr_wall_42</sprite>
         <sprite>sprites\spr_wall_43</sprite>
       </sprites>
+      <sprites name="furnature">
+        <sprite>sprites\spr_f_rug_large</sprite>
+        <sprite>sprites\spr_f_rug_small</sprite>
+        <sprite>sprites\spr_f_table</sprite>
+        <sprite>sprites\spr_f_chair</sprite>
+      </sprites>
     </sprites>
     <sprite>sprites\spr_grenade</sprite>
     <sprite>sprites\spr_enemy</sprite>
@@ -216,6 +222,12 @@
           <object>objects\obj_wall_41</object>
           <object>objects\obj_wall_42</object>
           <object>objects\obj_wall_43</object>
+        </objects>
+        <objects name="Furnature">
+          <object>objects\obj_rug_large</object>
+          <object>objects\obj_rug_small</object>
+          <object>objects\obj_table</object>
+          <object>objects\obj_chair</object>
         </objects>
       </objects>
       <objects name="Logistics">
