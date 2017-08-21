@@ -162,7 +162,7 @@ SumY = -Speed*dsin(WalkDirection);
 for(var i = instance_number(obj_game_object);i&gt;=0;i--){
 
     var Inst = instance_find(obj_game_object,i);
-    if Inst!=id{
+    if (Inst!=id) &amp;&amp; (Inst!=noone){
     
         var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
         if (Distance&lt;Radius+Inst.Radius){
