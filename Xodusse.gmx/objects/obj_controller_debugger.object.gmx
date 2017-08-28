@@ -90,7 +90,7 @@ view_a =(round(view_angle[0])+360) mod 360;
 FPS_Counter -= (1/60) * FRAME_DELTA;
 if (FPS_Counter &lt;= 0){
     FPS_Counter = 0.5;
-    FPS = floor(fps_real);
+    FPS = floor(fps);
     dF = FRAME_DELTA;
 }
 
@@ -179,7 +179,11 @@ if (DEBUG_VISIBLE == true){
          
     //Wave:
     draw_text(GUIW - 8, 210,
-         "Wave: " + string(Wave));           
+         "Wave: " + string(Wave));
+         
+    //Wave:
+    draw_text(GUIW - 8, 235,
+         "Surface Scale: " + string(obj_initialize.SETTING_SURFACE_SCALE) + "x");           
          
     // -- RESET --
     draw_set_halign(fa_left);

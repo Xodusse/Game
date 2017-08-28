@@ -132,7 +132,10 @@ if (file_exists("Config.Xodusse")){
     scr_cread_fullscreen();
     
     //LOAD RESOLUTION:
-    scr_cread_resolution(); 
+    scr_cread_resolution();
+    
+    //LOAD SURFACE SCALE:
+    scr_cread_surfacescale(); 
     
 }
 
@@ -169,7 +172,10 @@ else {
     SETTING_FULLSCREEN = false;
     
     //Resolution current - Real (Can return: [0 for 960x540], [1 for 1280x720], [2 for 1366x768], [3 for 1600x900], [4 for 1920x1080], [5 for 2560x1440], [6 for 3840x2160], [7 for DISPLAY_HRESOLUTIONxDISPLAY_VRESOLUTION]);
-    SETTING_RESOLUTION = 0;     
+    SETTING_RESOLUTION = 0;
+    
+    //Surface Scale - Real (Can return: [1 for 1x], [2 for 2x], [4 for 4x].)
+    SETTING_SURFACE_SCALE = 1;     
         
     // -----
 
@@ -183,6 +189,7 @@ else {
     var C_FXAA = SETTING_FXAA;
     var C_Fullscreen = SETTING_FULLSCREEN;
     var C_Resolution = SETTING_RESOLUTION;
+    var C_SurfaceScale = SETTING_SURFACE_SCALE;
     
     //Write Settings:
     file_text_write_string(Config_File, "[ XODUSSE CONFIGURATION ]");
@@ -207,6 +214,10 @@ else {
     
     file_text_write_string(Config_File, "RESOLUTION: ");
     file_text_write_real(Config_File, C_Resolution);
+    file_text_writeln(Config_File);
+    
+    file_text_write_string(Config_File, "SURFACE SCALE: ");
+    file_text_write_real(Config_File, C_SurfaceScale);
     file_text_writeln(Config_File);
     
     
@@ -405,7 +416,7 @@ if (SETTING_RESOLUTION == 0){
     view_hport[0] = 540;
     view_wview[0] = 960;
     view_hview[0] = 540;
-    surface_resize(application_surface, 960*2, 540*2);
+    surface_resize(application_surface, 960*SETTING_SURFACE_SCALE, 540*SETTING_SURFACE_SCALE);
 }
 
 else if (SETTING_RESOLUTION == 1){
@@ -414,7 +425,7 @@ else if (SETTING_RESOLUTION == 1){
     view_hport[0] = 720;
     view_wview[0] = 960;
     view_hview[0] = 540;    
-    surface_resize(application_surface, 1280*2, 720*2);
+    surface_resize(application_surface, 1280*SETTING_SURFACE_SCALE, 720*SETTING_SURFACE_SCALE);
 }
 
 else if (SETTING_RESOLUTION == 2){
@@ -423,7 +434,7 @@ else if (SETTING_RESOLUTION == 2){
     view_hport[0] = 768;
     view_wview[0] = 960;
     view_hview[0] = 540; 
-    surface_resize(application_surface, 1366*2, 768*2);
+    surface_resize(application_surface, 1366*SETTING_SURFACE_SCALE, 768*SETTING_SURFACE_SCALE);
 }
 
 else if (SETTING_RESOLUTION == 3){
@@ -432,7 +443,7 @@ else if (SETTING_RESOLUTION == 3){
     view_hport[0] = 900;
     view_wview[0] = 960;
     view_hview[0] = 540; 
-    surface_resize(application_surface, 1600*2, 900*2);
+    surface_resize(application_surface, 1600*SETTING_SURFACE_SCALE, 900*SETTING_SURFACE_SCALE);
 }
 
 else if (SETTING_RESOLUTION == 4){
@@ -441,7 +452,7 @@ else if (SETTING_RESOLUTION == 4){
     view_hport[0] = 1080;
     view_wview[0] = 960;
     view_hview[0] = 540; 
-    surface_resize(application_surface, 1920*2, 1080*2);
+    surface_resize(application_surface, 1920*SETTING_SURFACE_SCALE, 1080*SETTING_SURFACE_SCALE);
 }
 
 else if (SETTING_RESOLUTION == 5){
@@ -450,7 +461,7 @@ else if (SETTING_RESOLUTION == 5){
     view_hport[0] = 1440;
     view_wview[0] = 960;
     view_hview[0] = 540; 
-    surface_resize(application_surface, 2560*2, 1440*2);
+    surface_resize(application_surface, 2560*SETTING_SURFACE_SCALE, 1440*SETTING_SURFACE_SCALE);
 }
 
 else if (SETTING_RESOLUTION == 6){
@@ -459,7 +470,7 @@ else if (SETTING_RESOLUTION == 6){
     view_hport[0] = 2160;
     view_wview[0] = 960;
     view_hview[0] = 540; 
-    surface_resize(application_surface, 3840*2, 2160*2);
+    surface_resize(application_surface, 3840*SETTING_SURFACE_SCALE, 2160*SETTING_SURFACE_SCALE);
 }
 
 else if (SETTING_RESOLUTION == 7){
@@ -468,7 +479,7 @@ else if (SETTING_RESOLUTION == 7){
     view_hport[0] = DISPLAY_VRESOLUTION;
     view_wview[0] = 960;
     view_hview[0] = 540; 
-    surface_resize(application_surface, DISPLAY_HRESOLUTION*2, DISPLAY_VRESOLUTION*2);
+    surface_resize(application_surface, DISPLAY_HRESOLUTION*SETTING_SURFACE_SCALE, DISPLAY_VRESOLUTION*SETTING_SURFACE_SCALE);
 }    
 
 else {
@@ -479,7 +490,7 @@ else {
     window_set_size(960,540);
     view_wport[0] = 960;
     view_hport[0] = 540;
-    surface_resize(application_surface, 960*2, 540*2); 
+    surface_resize(application_surface, 960*SETTING_SURFACE_SCALE, 540*SETTING_SURFACE_SCALE); 
 }
 </string>
           </argument>

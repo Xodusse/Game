@@ -149,6 +149,7 @@
       <script>scripts\scr_cread_fxaa.gml</script>
       <script>scripts\scr_cread_fullscreen.gml</script>
       <script>scripts\scr_cread_resolution.gml</script>
+      <script>scripts\scr_cread_surfacescale.gml</script>
       <script>scripts\scr_cwrite.gml</script>
     </scripts>
     <scripts name="Commands">

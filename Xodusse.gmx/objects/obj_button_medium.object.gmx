@@ -214,7 +214,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 1280*2, 720*2);                
+                surface_resize(application_surface, 1280*obj_initialize.SETTING_SURFACE_SCALE, 720*obj_initialize.SETTING_SURFACE_SCALE);                
             }
             
             else {
@@ -230,7 +230,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 960*2, 540*2);                
+                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                
             }                              
         }
         
@@ -248,7 +248,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
 
-                surface_resize(application_surface, 1366*2, 768*2);                
+                surface_resize(application_surface, 1366*obj_initialize.SETTING_SURFACE_SCALE, 768*obj_initialize.SETTING_SURFACE_SCALE);                
             }
             
             else {
@@ -264,7 +264,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 960*2, 540*2);                
+                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                
             }                 
         }
         
@@ -282,7 +282,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 1600*2, 900*2);                 
+                surface_resize(application_surface, 1600*obj_initialize.SETTING_SURFACE_SCALE, 900*obj_initialize.SETTING_SURFACE_SCALE);                 
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -297,7 +297,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 960*2, 540*2);                 
+                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                 
             }                               
         }
         
@@ -315,7 +315,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 1920*2, 1080*2);                  
+                surface_resize(application_surface, 1920*obj_initialize.SETTING_SURFACE_SCALE, 1080*obj_initialize.SETTING_SURFACE_SCALE);                  
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -330,7 +330,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 960*2, 540*2);                  
+                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                  
             }                              
         }
         
@@ -348,7 +348,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 2560*2, 1440*2);                
+                surface_resize(application_surface, 2560*obj_initialize.SETTING_SURFACE_SCALE, 1440*obj_initialize.SETTING_SURFACE_SCALE);                
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -363,7 +363,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 960*2, 540*2);                  
+                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                  
             }                             
         }
         
@@ -381,7 +381,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 3840*2, 2160*2);                
+                surface_resize(application_surface, 3840*obj_initialize.SETTING_SURFACE_SCALE, 2160*obj_initialize.SETTING_SURFACE_SCALE);                
             }
             else {
                 obj_initialize.SETTING_RESOLUTION = 0;
@@ -396,7 +396,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
                 
                 obj_init_display.alarm[0] = 1;
                 
-                surface_resize(application_surface, 960*2, 540*2);                
+                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                
             }                                
         }
         
@@ -413,7 +413,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
             
             obj_init_display.alarm[0] = 1;
             
-            surface_resize(application_surface, obj_initialize.DISPLAY_HRESOLUTION*2, obj_initialize.DISPLAY_VRESOLUTION*2);                            
+            surface_resize(application_surface, obj_initialize.DISPLAY_HRESOLUTION*obj_initialize.SETTING_SURFACE_SCALE, obj_initialize.DISPLAY_VRESOLUTION*obj_initialize.SETTING_SURFACE_SCALE);                            
         }
         
         else {
@@ -429,12 +429,28 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
             
             obj_init_display.alarm[0] = 1;
                 
-            surface_resize(application_surface, 960*2, 540*2);                                        
+            surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                                        
         }
     
         //Reset the display after altering the resolution:    
         display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
         obj_initialize.SETTING_INTERPOLATION = false;                                             
+    }
+    
+    //SURFACE SCALE:
+    if (BUTTON_TYPE == 5){
+        //Only allow the user to disable Vsync if not in fullscreen:
+        if (obj_initialize.SETTING_SURFACE_SCALE == 1){
+            obj_initialize.SETTING_SURFACE_SCALE = 2;
+        }
+        
+        else if (obj_initialize.SETTING_SURFACE_SCALE == 2){
+            obj_initialize.SETTING_SURFACE_SCALE = 4;
+        }
+        
+        else if (obj_initialize.SETTING_SURFACE_SCALE == 4){
+            obj_initialize.SETTING_SURFACE_SCALE = 1;
+        }
     }   
     
     //Write information to the config:
@@ -536,6 +552,19 @@ else if (BUTTON_TYPE == 4){
     }
     else if (obj_initialize.SETTING_RESOLUTION == 7){
         draw_text(x,y,"Resolution: " + string(obj_initialize.DISPLAY_HRESOLUTION) + "x" + string(obj_initialize.DISPLAY_VRESOLUTION));
+    }
+}
+
+//Surface Scale:
+else if (BUTTON_TYPE == 5){
+    if (obj_initialize.SETTING_SURFACE_SCALE == 1){
+        draw_text(x,y,"Surface Scale: 1x");
+    }
+    else if (obj_initialize.SETTING_SURFACE_SCALE == 2){
+        draw_text(x,y,"Surface Scale: 2x");
+    }
+    else if (obj_initialize.SETTING_SURFACE_SCALE == 4){
+        draw_text(x,y,"Surface Scale: 4x");
     }
 }
 

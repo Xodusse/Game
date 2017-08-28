@@ -8,6 +8,7 @@ var C_Interpolation = obj_initialize.SETTING_INTERPOLATION;
 var C_FXAA = obj_initialize.SETTING_FXAA;
 var C_Fullscreen = obj_initialize.SETTING_FULLSCREEN;
 var C_Resolution = obj_initialize.SETTING_RESOLUTION;
+var C_SurfaceScale = obj_initialize.SETTING_SURFACE_SCALE;
 
 //Write Settings:
 file_text_write_string(Config_File, "[ XODUSSE CONFIGURATION ]");
@@ -32,6 +33,10 @@ file_text_writeln(Config_File);
 
 file_text_write_string(Config_File, "RESOLUTION: ");
 file_text_write_real(Config_File, C_Resolution);
+file_text_writeln(Config_File);
+
+file_text_write_string(Config_File, "SURFACE SCALE: ");
+file_text_write_real(Config_File, C_SurfaceScale);
 file_text_writeln(Config_File);
 
 
