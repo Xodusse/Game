@@ -65,6 +65,8 @@
       <sprite>sprites\spr_crate_parent</sprite>
       <sprite>sprites\spr_crate</sprite>
       <sprite>sprites\spr_item</sprite>
+      <sprite>sprites\spr_Barrel</sprite>
+      <sprite>sprites\spr_Barrel_Puddle</sprite>
     </sprites>
     <sprites name="Foliage">
       <sprite>sprites\spr_foliage_fern_1</sprite>
@@ -235,6 +237,8 @@
         <object>objects\obj_crate</object>
         <object>objects\obj_crate_spawner</object>
         <object>objects\obj_item</object>
+        <object>objects\obj_Barrel</object>
+        <object>objects\obj_Barrel_Puddle</object>
       </objects>
       <objects name="Foliage">
         <object>objects\obj_foliage_fern_1p</object>
