@@ -128,7 +128,7 @@ if Ienable{
     //Select item from inventory for moving.
     if mouse_check_button_pressed(mb_left){
         
-        //Select backpack
+        //Select backpack.
         if (X == 2) &amp;&amp; (Y == 1){
             
             Iid = Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack;
@@ -161,172 +161,15 @@ if Ienable{
     //Release item and move it.
     if mouse_check_button_released(mb_left) &amp;&amp; Iid{
         
-        var SpeedA,SpeedX,SpeedY,SpeedZ,Speed;
-        SpeedA = random(10);
-        SpeedX = (mouse_x-obj_player.x)/200;
-        SpeedY = (mouse_y-obj_player.y)/200;
-        SpeedZ = 50;
-        Speed = sqrt(max(SpeedX*SpeedX+SpeedY*SpeedY,.0001));
-        if Iid&lt;=Idoubles*2{
-            
-            //Move double wide item.
-            var S = (Iid&amp;1)*2-1;
-            if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; (X+S&gt;=-6 &amp;&amp; X+S&lt;0){
+        if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack) &amp;&amp; (X&gt;=-6 &amp;&amp; X&lt;0){
                 
-                var Item1,Item2;
-                Item1 = I[X+Y*6+max(S,0)];Item2 = I[X+Y*6+min(S,0)];
-                if (!(Item1&amp;1) || Item1&gt;Idoubles*2) &amp;&amp; (!Item2 || (Item2&amp;1) || Item2&gt;Idoubles*2){
-                
-                    //Check items in slot.
-                    var Id1,Quantity1,Id2,Quantity2;
-                    Id1 = I[X+Y*6];
-                    Quantity1 = Q[X+Y*6];
-                    Id2 = I[X+Y*6+S];
-                    Quantity2 = Q[X+Y*6+S];
-                    
-                    //Move new item into new slot.
-                    I[X+Y*6] = Iid;
-                    Q[X+Y*6] = Iquantity*!(Iid&amp;1);
-                    I[X+Y*6+S] = Iid+S;
-                    Q[X+Y*6+S] = Iquantity*(Iid&amp;1);
-                    
-                    //Move old items to old slot (if free).
-                    if !I[Iposition]{
-                    
-                        I[Iposition] = Id1*!(!Id2)+Id2*!Id1;
-                        Q[Iposition] = Quantity1*!(!Id2)+Quantity2*!Id1;
-                    }
-                    else
-                    if (Iposition != X+S+Y*6) &amp;&amp; (Id1*!(!Id2)+Id2*!Id1 &gt;= Idoubles*2){
-                        
-                        //Drop item.
-                        var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
-                        Item.Id = Id1*!(!Id2)+Id2*!Id1;
-                        Item.Quantity = Quantity1*!(!Id2)+Quantity2*!Id1;
-                        Item.Z = 50;
-                        Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
-                    }
-                    if !I[Iposition+S]{
-                        
-                        I[Iposition+S] = Id2*!(!Id1)+Id1*!Id2;
-                        Q[Iposition+S] = Quantity2*!(!Id1)+Quantity1*!Id2;
-                    }
-                    else
-                    if (Iposition != X+Y*6) &amp;&amp; (Id2*!(!Id1)+Id1*!Id2 &gt;= Idoubles*2){
-                        
-                        //Drop item.
-                        var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
-                        Item.Id = Id2*!(!Id1)+Id1*!Id2;
-                        Item.Quantity = Quantity2*!(!Id1)+Quantity1*!Id2;
-                        Item.Z = 50;
-                        Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
-                    }
-                }
-                else{
-                    
-                    //Add item back to old slot.
-                    I[Iposition] = Iid;
-                    Q[Iposition] = Iquantity*!(Iid&amp;1);
-                                  
-                    I[Iposition+S] = Iid+S;
-                    Q[Iposition+S] = Iquantity*(Iid&amp;1);
-                }
-            }
-            else{
-                
-                //Drop item.
-                var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
-                Item.Id = Iid-((Iid+1)&amp;1);
-                Item.Quantity = Iquantity;
-                Item.Z = 50;
-                Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
-            }
+            scr_inventory_swap(X+Y*6,Iposition,Iid,Iquantity);            
         }
         else{
             
-            if Iid&gt;Idoubles*2+Isingles+Igrenades+Iammo{
-                    
-                    //Move backpack.    
-                    if (X == 2) &amp;&amp; (Y == 1){
-                        
-                        //Move backpack to old slot.
-                        Ibackpack = Iid-(Idoubles*2+Isingles+Igrenades+Iammo);
-                    }
-                    else{
-                        
-                        //Drop item.
-                        var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
-                        Item.Id = Iid;
-                        Item.Z = 50;
-                        Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
-                        
-                        var Backpack;
-                        Backpack = Iid-(Idoubles*2+Isingles+Igrenades+Iammo);
-                        for(var Y = Backpack-1;Y&gt;=0;Y--)
-                        for(var X = 0;X&lt;6;X++){
-                            
-                            Item.Bac[X+Y*6] = I[X+Y*6+12];
-                            Item.Qnt[X+Y*6] = Q[X+Y*6+12];
-                            I[X+Y*6+12] = 0;
-                            Q[X+Y*6+12] = 0;
-                        }
-                    }
-                }
-                else{
-                    
-                    //Move single wide item.
-                    if (X&gt;=-6 &amp;&amp; X&lt;0) &amp;&amp; (Y&gt;0 &amp;&amp; Y&lt;=2+Ibackpack){
-                        
-                        var Item;
-                        Item = I[X+Y*6];
-                        if !Item{
-                            
-                            //Check items in slot.
-                            var Id,Quantity;
-                            Id = I[X+Y*6];
-                            Quantity = Q[X+Y*6];
-                            
-                            //Move new item into new slot.
-                            I[X+Y*6] = Iid;
-                            Q[X+Y*6] = Iquantity;
-                            
-                            //Move old item to old slot (if free).
-                            if !I[Iposition]{
-                                
-                                I[Iposition] = Id;
-                                Q[Iposition] = Quantity;
-                            }
-                            else
-                            if (Iposition != X+Y*6){
-                                
-                                //Drop item.
-                                var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
-                                Item.Id = Id;
-                                Item.Quantity = Quantity;
-                                Item.Z = 50;
-                                Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
-                            }
-                        }
-                        else{
-                            
-                            //Add item back to old slot.
-                            I[Iposition] = Iid;
-                            Q[Iposition] = Iquantity;
-                    }
-                }
-                else{
-                    
-                    //Drop item.
-                    var Item = instance_create(obj_player.x+40*SpeedX/Speed,obj_player.y+40*SpeedY/Speed,obj_item);
-                    Item.Id = Iid;
-                    Item.Quantity = Iquantity;
-                    Item.Z = 50;
-                    Item.SpeedA = SpeedA;Item.SpeedX = SpeedX;Item.SpeedY = SpeedY;Item.SpeedZ = SpeedZ;
-                }
-            }
+            scr_inventory_drop(Iid,Iquantity);
         }
         
-        //Finish moving
         Iid = 0;
         Iquantity = 0;
     }
