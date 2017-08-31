@@ -440,7 +440,11 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
     //SURFACE SCALE:
     if (BUTTON_TYPE == 5){
         //Only allow the user to disable Vsync if not in fullscreen:
-        if (obj_initialize.SETTING_SURFACE_SCALE == 1){
+        if (obj_initialize.SETTING_SURFACE_SCALE == 0.5){
+            obj_initialize.SETTING_SURFACE_SCALE = 1;
+        }        
+        
+        else if (obj_initialize.SETTING_SURFACE_SCALE == 1){
             obj_initialize.SETTING_SURFACE_SCALE = 2;
         }
         
@@ -449,7 +453,7 @@ if (image_index &amp;&amp; mouse_check_button_released(mb_left)){
         }
         
         else if (obj_initialize.SETTING_SURFACE_SCALE == 4){
-            obj_initialize.SETTING_SURFACE_SCALE = 1;
+            obj_initialize.SETTING_SURFACE_SCALE = 0.5;
         }
     }   
     
@@ -557,15 +561,7 @@ else if (BUTTON_TYPE == 4){
 
 //Surface Scale:
 else if (BUTTON_TYPE == 5){
-    if (obj_initialize.SETTING_SURFACE_SCALE == 1){
-        draw_text(x,y,"Surface Scale: 1x");
-    }
-    else if (obj_initialize.SETTING_SURFACE_SCALE == 2){
-        draw_text(x,y,"Surface Scale: 2x");
-    }
-    else if (obj_initialize.SETTING_SURFACE_SCALE == 4){
-        draw_text(x,y,"Surface Scale: 4x");
-    }
+    draw_text(x,y,"Surface Scale: " + string(obj_initialize.SETTING_SURFACE_SCALE) + "x");
 }
 
 //Revert draw settings:
