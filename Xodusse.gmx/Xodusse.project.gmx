@@ -52,7 +52,7 @@
     </sprites>
     <sprites name="Buttons">
       <sprite>sprites\spr_button_large</sprite>
-      <sprite>sprites\spr_button_medium</sprite>
+      <sprite>sprites\spr_button_small</sprite>
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_player_head</sprite>
@@ -269,7 +269,7 @@
     <objects name="GUI">
       <objects name="Buttons">
         <object>objects\obj_button_large</object>
-        <object>objects\obj_button_medium</object>
+        <object>objects\obj_button_small</object>
       </objects>
     </objects>
   </objects>

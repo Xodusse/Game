@@ -165,15 +165,15 @@ if (Hover == true){
     //Extend the button if it is not the full size:
     if !(Extender &gt; 128){
         draw_rectangle_colour(x-128,y-16,x+Extender,y+16,$000000,$600000,$600000,$000000,false);
-        draw_triangle_colour(x+Extender,y-16,x+Extender,y+16,x+Extender+16,y-16,$F6D22A,$F6D22A,$F6D22A,false);
-        draw_triangle_colour(x+Extender,y-16,x+Extender-16,y+16,x+Extender,y+16,$F6D22A,$F6D22A,$F6D22A,false);
+        draw_triangle_colour(x+Extender,y-16-1,x+Extender,y+16,x+Extender+16,y-16-1,$F6D22A,$F6D22A,$F6D22A,false);
+        draw_triangle_colour(x+Extender,y-16-1,x+Extender-16,y+16,x+Extender,y+16,$F6D22A,$F6D22A,$F6D22A,false);
         draw_set_colour($FFFF00);
     }
     //Otherwise, draw it at a fixed size:
     else {
         draw_rectangle_colour(x-128,y-16,x+Extender,y+16,$000000,$600000,$600000,$000000,false);
-        draw_triangle_colour(x+Extender,y-16,x+Extender,y+16,x+Extender+16,y-16,$F6D22A,$F6D22A,$F6D22A,false);
-        draw_triangle_colour(x+Extender,y-16,x+Extender-16,y+16,x+Extender,y+16,$F6D22A,$F6D22A,$F6D22A,false);
+        draw_triangle_colour(x+Extender,y-16-1,x+Extender,y+16,x+Extender+16,y-16-1,$F6D22A,$F6D22A,$F6D22A,false);
+        draw_triangle_colour(x+Extender,y-16-1,x+Extender-16,y+16,x+Extender,y+16,$F6D22A,$F6D22A,$F6D22A,false);
         draw_set_colour($FFFF00);
     }    
 }
@@ -181,7 +181,7 @@ if (Hover == true){
 //If not hovered on, draw a standard button:
 else {
     draw_rectangle(x-128,y-16,x+Extender,y+16,false);
-    draw_triangle(x+Extender,y-16,x+Extender,y+16,x+Extender+16,y-16,false);
+    draw_triangle(x+Extender,y-16-1,x+Extender,y+16,x+Extender+16,y-16-1,false);
     draw_set_colour($FFFFFF);
 }
 
