@@ -60,9 +60,9 @@ if instance_exists(obj_player){
             <string>///Collision with game objects
 // © 2017 - Jon Harvey
 
-var Enemy = collision_line(x*2-xprevious,y*2-yprevious,xprevious,yprevious,obj_game_object,1,1);
+var Object = collision_line(x*2-xprevious,y*2-yprevious,xprevious,yprevious,obj_game_object,1,1);
 
-if Enemy != Hit &amp;&amp; instance_exists(Enemy){
+if Object != Hit &amp;&amp; instance_exists(Object){
 
     if (Pexplode[Id]&gt;0){
         
@@ -75,13 +75,13 @@ if Enemy != Hit &amp;&amp; instance_exists(Enemy){
     }
     else{
     
-        Hit = Enemy;
+        Hit = Object;
         Hit.Health -= Pdamage[Id]*min(image_alpha/Ppower[Id],1);
         image_alpha -= Ppower[Id];
     }
 }
 else
-if Enemy == noone{
+if Object == noone{
 
     Hit = noone;
 }

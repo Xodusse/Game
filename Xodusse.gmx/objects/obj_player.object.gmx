@@ -519,9 +519,10 @@ Hor = Kleft-Kright;
 TurnSpeed = TurnSpeed*S90+(1-S90)*Turn;
 
 //Handle player turning gun and player direction.
-WalkDirection += 2*TurnSpeed*FRAME_DELTA;
+WalkDirection = (WalkDirection+2*TurnSpeed*FRAME_DELTA+360)%360;
 Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 GunDirection += 0.3*Turn*FRAME_DELTA;
+//GunDirection = (GunDirection+0.3*Turn*FRAME_DELTA+360)%360;
 
 //Smooth walk using controls defined above.
 var MoveSpeed,MoveSpeedX,MoveSpeedY;
@@ -586,15 +587,17 @@ WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
             <string>///Draw player sprites
 // © 2017 - Jon Harvey
 
-var Turn,Direction,Recoil,Switch,Swing,Face;
+var Turn,Direction,Recoil,Switch,Swing,Face,Angle,Side;
 Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
 Direction = darctan2(-SpeedY,SpeedX);
 Recoil = min(Kick,5);
 Switch = 1-sqr(abs(abs(Swap)*2-1));
 Swing = dsin(Melee*Melee*360);
 Face = GunDirection-Swing*20;
+Angle = angle_difference(Direction,GunDirection);
+Side = (abs(abs(Angle)-90)&lt;45);
 
-draw_sprite_ext(spr_player_legs,WalkFrame,x,y,1,1,Direction,$FFFFFF,1);
+draw_sprite_ext(spr_player_legs,(WalkFrame%4)+4*Side,x,y,1,1,Direction-Side*sign(Angle)*90,$FFFFFF,1);
 draw_sprite_ext(spr_player_torso,Ibackpack,x-dcos(Face)*Recoil,y+dsin(Face)*Recoil,1,1,Face,$FFFFFF,1);
 
 //Draw right arm - Reece:
