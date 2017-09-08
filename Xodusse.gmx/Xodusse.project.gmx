@@ -162,6 +162,7 @@
     </scripts>
     <scripts name="Inventory">
       <script>scripts\scr_inventory_drop.gml</script>
+      <script>scripts\scr_inventory_pickup.gml</script>
       <script>scripts\scr_inventory_place.gml</script>
       <script>scripts\scr_inventory_remove.gml</script>
       <script>scripts\scr_inventory_swap.gml</script>

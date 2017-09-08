@@ -341,25 +341,25 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
         if mouse_check_button_pressed(mb_left) &amp;&amp; (Reload&gt;1){
                     
             if (Q[P[Current]]&gt;0){
+                
+                Q[P[Current]]--;
+                //Handle grenade.
+                var ThrowSpeedX,ThrowSpeedY,Throw;
+                ThrowSpeedX = (mouse_x-x)/60+SpeedX;
+                ThrowSpeedY = (mouse_y-y)/60+SpeedY;
+                Throw = instance_create(x,y,obj_grenade);
+                
+                Throw.Z = 50;
+                Throw.SpeedA = random(20);
+                Throw.SpeedX = ThrowSpeedX;
+                Throw.SpeedY = ThrowSpeedY;
+                Throw.SpeedZ = sqrt(max(10000-sqr(ThrowSpeedX)+sqr(ThrowSpeedY),0.01));
+                Reload = 0;
+            }
+            else{
             
-                    Q[P[Current]]--;
-                    //Handle grenade.
-                    var ThrowSpeedX,ThrowSpeedY,Throw;
-                    ThrowSpeedX = (mouse_x-x)/60+SpeedX;
-                    ThrowSpeedY = (mouse_y-y)/60+SpeedY;
-                    Throw = instance_create(x,y,obj_grenade);
-                    
-                    Throw.Z = 50;
-                    Throw.SpeedA = random(20);
-                    Throw.SpeedX = ThrowSpeedX;
-                    Throw.SpeedY = ThrowSpeedY;
-                    Throw.SpeedZ = sqrt(max(10000-sqr(ThrowSpeedX)+sqr(ThrowSpeedY),0.01));
-                    Reload = 0;
-                }
-                else{
-            
-                    //Remove empty grenade slot.
-                    I[P[Current]] = 0;
+                //Remove empty grenade slot.
+                I[P[Current]] = 0;
                 }
             }
         }
@@ -420,20 +420,20 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                 Last = -1;
                 Break = 0;
                 for(var Y = 0;Y&lt;=1+Ibackpack;Y++)
-                for(var X = 5;X&gt;=0;X--){
+                for(var X = 0;X&lt;6;X++){
                     
-                    if Last&gt;=0{
-                        
-                        Break += (I[X+Y*6] == G[Current]+Idoubles*2+Isingles+1);
-                    }
                     if !I[X+Y*6] &amp;&amp; !Break{
                         
                         Last = X+Y*6;
                     }
+                    if Last&gt;=0{
+                        
+                        Break += (I[X+Y*6] == G[Current]+Idoubles*2+Isingles+1);
+                    }
                 }
                 if Last&gt;=0{
                     
-                    I[Last] = 8;
+                    I[Last] = G[Current]+Idoubles*2+Isingles+Igrenades+1;
                     Q[Last] = Q[P[Current]];
                     Q[P[Current]] = 0;
                     Reload = 0;

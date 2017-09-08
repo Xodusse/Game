@@ -156,7 +156,7 @@ if (Id&gt;Idoubles*2){
     Weight += W[Id];
 }
 
-if (Z==0) &amp;&amp; (alarm[0] == -1) &amp;&amp; (Iweight+Weight&lt;=Istrength){
+if (Z==0) &amp;&amp; (alarm[0] == -1){
     
     //Add backpack.
     if Id&gt;Idoubles*2+Isingles+Igrenades+Iammo{
@@ -177,53 +177,9 @@ if (Z==0) &amp;&amp; (alarm[0] == -1) &amp;&amp; (Iweight+Weight&lt;=Istrength){
         }
     }
     else{
-    
-        var Given = 0;
-        for(var Y = 1+Ibackpack;Y&gt;=0;Y--)
-        for(var X = 0;X&lt;6;X++){
-            
-        if Given break;
-        //Check if item slot is free.
-        if (I[X+Y*6] == 0){
-            
-            if (Id&lt;=Idoubles*2)
-            {
-                if  (X&lt;4) &amp;&amp; (I[X+1+Y*6] == 0)
-                {
-                    //Add double slot gun.
-                    Given = 1;
-                    I[X+Y*6] = Id;
-                    I[X+1+Y*6] = Id+1;
-                    Q[X+Y*6] = 0;
-                    Q[X+1+Y*6] = Quantity;
-                    
-                    var Text;
-                    Text = instance_create(8,8,obj_message);
-                    Text.Message = "Picked up "+Gname[floor(Id/2)];
-                    instance_destroy();
-                }
-            }
-            else{
-                    
-                    //Add gun, ammo or backpack.
-                    Given = 1;
-                    I[X+Y*6] = Id;
-                    Q[X+Y*6] = Quantity;
-                    
-                    var Text;
-                    Text = instance_create(8,8,obj_message);
-                    if Id&gt;Idoubles*2+Isingles{
-                    
-                        Text.Message = "+"+string(Quantity)+" ammo";
-                    }
-                    else{
-                    
-                        Text.Message = "Picked up "+Gname[Id-Idoubles-1];
-                    }
-                    instance_destroy();
-                }
-            }
-        }
+        
+        //Add item.
+        scr_inventory_pickup(Id,Quantity,Weight);
     }
 }
 </string>
