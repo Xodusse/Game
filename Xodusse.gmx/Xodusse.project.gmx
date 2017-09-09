@@ -173,7 +173,6 @@
     <font>fonts\fnt_Exudation</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_message</object>
     <objects name="Initialization">
       <object>objects\obj_initialize</object>
       <object>objects\obj_init_display</object>
@@ -272,6 +271,7 @@
         <object>objects\obj_button_large</object>
         <object>objects\obj_button_small</object>
       </objects>
+      <object>objects\obj_message</object>
     </objects>
   </objects>
   <rooms name="rooms">

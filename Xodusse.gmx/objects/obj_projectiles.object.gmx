@@ -62,8 +62,14 @@ if instance_exists(obj_player){
 
 var Object = collision_line(x*2-xprevious,y*2-yprevious,xprevious,yprevious,obj_game_object,1,1);
 
-if Object != Hit &amp;&amp; instance_exists(Object){
-
+if instance_exists(Object) &amp;&amp; Object != Hit{
+    
+    //Bounce
+    var Normal;
+    Normal = point_direction(Object.x,Object.y,x,y);
+    direction += angle_difference(Normal,direction);
+    image_angle = direction;
+    
     if (Pexplode[Id]&gt;0){
         
         var Explosion = instance_create(x,y,obj_explosion);
