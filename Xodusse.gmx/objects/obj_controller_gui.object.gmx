@@ -78,6 +78,48 @@ if instance_exists(obj_player){
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>PAUSED</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -286,6 +328,208 @@ if instance_exists(obj_player){
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>PAUSED</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw the pause screen.
+//© 2017 - Reece Warren.
+
+/* This needs to be drawn in a standard draw event because the button objects
+   do not work whilst using Draw GUI, due to an alteration of the object's
+   co-ordinates 
+   */
+   
+draw_set_colour($000000);
+
+//The final view_xview and view_yview co-ordinates that account for rotation.
+var p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y;
+
+    /*
+       
+        p1x,p1y   ---   p2x,p2y     ----
+           |               |        vDist
+       pH1x,pH1y   .   pH2x,pH2y    ----
+           |               |           
+        p3x,p3y   ---   p4x,p4y 
+        
+       
+      * Firstly the horizontal relative camera points (pH1x,pH1y) &amp; (pH2x,pH2y) must be calculated from
+        the center of the camera which is the rotation point:
+             ( view_xview[0]+(view_wview[0]/2) )
+             ( view_yview[0]+(view_hview[0]/2) )              
+        
+      * This is because the screen width and height are not considered to be a square ratio.
+      
+      * Next, the variable vDist is calculated, which determines the vertical component between the center rotation
+        point and the top of the screen. (This is calculated by adding 90 degrees to the VIEW_ANGLE variable to account for
+        the direction, and then this is multiplied by one half of the height of the view (view_hview[0]/2).
+        
+      * Lastly, this variable is then used to calculate the final positions of each point on the screen based upon
+        the VIEW_ANGLE+90 direction, multiplied by the vDist, and either added or subtracted depending upon each unique
+        co-ordinate.
+        
+      * NOTE:
+        64px have also been added at either side to account for screen shake, when the edges overlap the visible
+        view in the room. (This is the extender variable).   
+      
+    */
+
+//Used in debugging:
+/*
+draw_circle(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),5,false);
+
+draw_circle(pH1x,pH1y,5,false);
+draw_circle(pH2x,pH2y,5,false);
+
+draw_circle(p1x,p1y,5,false);
+draw_circle(p2x,p2y,5,false);
+draw_circle(p3x,p3y,5,false);
+draw_circle(p4x,p4y,5,false);
+*/    
+    
+var Extender = 64;
+       
+var pH1x = (view_xview[0]+(view_wview[0]/2))-(dcos(VIEW_ANGLE)*((view_wview[0]/2) + Extender));
+var pH1y = (view_yview[0]+(view_hview[0]/2))-(dsin(VIEW_ANGLE)*((view_wview[0]/2) + Extender));
+
+var pH2x = (view_xview[0]+(view_wview[0]/2))+(dcos(VIEW_ANGLE)*((view_wview[0]/2) + Extender));
+var pH2y = (view_yview[0]+(view_hview[0]/2))+(dsin(VIEW_ANGLE)*((view_wview[0]/2) + Extender));
+
+var vDist = point_distance(
+            (view_xview[0]+(view_wview[0]/2))-(dcos(VIEW_ANGLE+90)*((view_hview[0]/2) + Extender)),
+            (view_yview[0]+(view_hview[0]/2))-(dsin(VIEW_ANGLE+90)*((view_hview[0]/2) + Extender)),
+            (view_xview[0]+(view_wview[0]/2)),
+            (view_yview[0]+(view_hview[0]/2)));
+
+var p1x = pH1x - (dcos(VIEW_ANGLE+90)*vDist);
+var p1y = pH1y - (dsin(VIEW_ANGLE+90)*vDist);
+
+var p2x = pH2x - (dcos(VIEW_ANGLE+90)*vDist);
+var p2y = pH2y - (dsin(VIEW_ANGLE+90)*vDist);
+
+var p3x = pH1x + (dcos(VIEW_ANGLE+90)*vDist);
+var p3y = pH1y + (dsin(VIEW_ANGLE+90)*vDist);
+
+var p4x = pH2x + (dcos(VIEW_ANGLE+90)*vDist);
+var p4y = pH2y + (dsin(VIEW_ANGLE+90)*vDist);
+
+
+//Draw the pause screen background:
+draw_set_alpha(0.4);
+
+draw_triangle(p1x,p1y,p2x,p2y,p3x,p3y,false);
+draw_triangle(p2x,p2y,p3x,p3y,p4x,p4y,false);
+
+//Reset the draw settings:
+draw_set_colour($FFFFFF);
+draw_set_alpha(1);
+
+draw_set_font(fnt_Exudation_Large);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+
+//Draw menu items:
+draw_text_transformed(
+            (view_xview[0]+(view_wview[0]/2))-(dcos(VIEW_ANGLE+90)*128),
+            (view_yview[0]+(view_hview[0]/2))-(dsin(VIEW_ANGLE+90)*128),
+            "GAME PAUSED",
+            1,1,VIEW_ANGLE*-1);
+
+//Reset the draw settings:                      
+draw_set_font(-1);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);  
+
+draw_set_colour(-1);          
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
   </events>

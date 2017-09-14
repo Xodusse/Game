@@ -101,9 +101,10 @@ FNT_EXUDATION_LARGE = fnt_Exudation_Large;
 FNT_EXUDATION = fnt_Exudation;
 
 //DEFINE OTHER GAME VARIABLES:
-globalvar PAUSED;
+globalvar PAUSED, VIEW_ANGLE;
 
 PAUSED = false;
+VIEW_ANGLE = 0;
 
 
 //GAME CONFIGURATION:
@@ -384,6 +385,9 @@ F1Q = (4/DESIRED_FPS) * FRAME_DELTA;
 F30 = (30/DESIRED_FPS) * FRAME_DELTA;
 //60th Second frame update:
 F60 = (60/DESIRED_FPS) * FRAME_DELTA;
+
+//Update View Angle:
+VIEW_ANGLE = view_angle[0] % 360;
 </string>
           </argument>
         </arguments>

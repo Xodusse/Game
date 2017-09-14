@@ -270,6 +270,7 @@
       <objects name="Buttons">
         <object>objects\obj_button_large</object>
         <object>objects\obj_button_small</object>
+        <object>objects\obj_button_pause</object>
       </objects>
       <object>objects\obj_message</object>
     </objects>
