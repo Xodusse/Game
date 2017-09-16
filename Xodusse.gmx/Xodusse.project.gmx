@@ -56,9 +56,17 @@
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_player_head</sprite>
+      <sprite>sprites\spr_player_head_n</sprite>
+      <sprite>sprites\spr_player_head_she</sprite>
       <sprite>sprites\spr_player_torso</sprite>
+      <sprite>sprites\spr_player_torso_n</sprite>
+      <sprite>sprites\spr_player_torso_she</sprite>
       <sprite>sprites\spr_player_legs</sprite>
+      <sprite>sprites\spr_player_legs_n</sprite>
+      <sprite>sprites\spr_player_legs_she</sprite>
       <sprite>sprites\spr_player_arm</sprite>
+      <sprite>sprites\spr_player_arm_n</sprite>
+      <sprite>sprites\spr_player_arm_she</sprite>
       <sprite>sprites\spr_player_holdables</sprite>
     </sprites>
     <sprites name="Logistics">
