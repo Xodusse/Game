@@ -167,7 +167,17 @@
       <script>scripts\scr_inventory_remove.gml</script>
       <script>scripts\scr_inventory_swap.gml</script>
     </scripts>
+    <scripts name="Lighting">
+      <script>scripts\scr_lighting_init.gml</script>
+      <script>scripts\scr_lighting_update.gml</script>
+      <script>scripts\scr_lighting_draw_sprite.gml</script>
+      <script>scripts\scr_lighting_draw_point.gml</script>
+    </scripts>
   </scripts>
+  <shaders name="shaders">
+    <shader type="HLSL9">shaders\shdr_lighting_maps.shader</shader>
+    <shader type="GLSLES">shaders\shdr_lighting_point.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>
     <font>fonts\fnt_Exudation</font>
@@ -265,6 +275,7 @@
       <object>objects\obj_controller_inventory</object>
       <object>objects\obj_controller_gui</object>
       <object>objects\obj_controller_menu</object>
+      <object>objects\obj_controller_normal</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
