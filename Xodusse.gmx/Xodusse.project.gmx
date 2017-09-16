@@ -167,6 +167,9 @@
       <script>scripts\scr_inventory_remove.gml</script>
       <script>scripts\scr_inventory_swap.gml</script>
     </scripts>
+    <scripts name="Drawing">
+      <script>scripts\draw_quad.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>
