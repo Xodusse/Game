@@ -141,6 +141,9 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="Drawing">
+      <script>scripts\draw_quad.gml</script>
+    </scripts>
     <scripts name="Externals">
       <script>scripts\scr_get_memory_virtual.gml</script>
       <script>scripts\scr_get_memory_physical.gml</script>

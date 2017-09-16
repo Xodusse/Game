@@ -200,16 +200,13 @@ if (Hover == true){
     
     //Extend the button if it is not the full size:
     if !(Extender &gt; 96){
-        draw_triangle_colour(p1x,p1y,p2x,p2y,p3x,p3y,$000000,$000000,$000000,false);
-        draw_triangle_colour(p2x,p2y,p3x,p3y,p4x,p4y,$000000,$000000,$000000,false);           
+        draw_quad(p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y);      
         
         draw_set_colour($FFFF00);
     }
     //Otherwise, draw it at a fixed size:
-    else {                                  
-                              
-        draw_triangle_colour(p1x,p1y,p2x,p2y,p3x,p3y,$000000,$000000,$000000,false);
-        draw_triangle_colour(p2x,p2y,p3x,p3y,p4x,p4y,$000000,$000000,$000000,false);        
+    else {                                                                
+        draw_quad(p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y);         
                 
         draw_set_colour($FFFF00);
     }    
@@ -217,8 +214,7 @@ if (Hover == true){
 
 //If not hovered on, draw a standard button:
 else {
-    draw_triangle_colour(p1x,p1y,p2x,p2y,p3x,p3y,$000000,$000000,$000000,false);
-    draw_triangle_colour(p2x,p2y,p3x,p3y,p4x,p4y,$000000,$000000,$000000,false);      
+    draw_quad(p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y);     
     draw_set_colour($FFFFFF);
 }
 
