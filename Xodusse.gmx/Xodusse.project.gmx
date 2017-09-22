@@ -141,9 +141,6 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
-    <background>background\bac_game</background>
-    <background>background\bac_main</background>
-    <background>background\bac_options</background>
     <background>background\bac_sheet</background>
     <background>background\bac_grass</background>
   </backgrounds>
@@ -182,12 +179,16 @@
       <script>scripts\scr_lighting_init.gml</script>
       <script>scripts\scr_lighting_update.gml</script>
       <script>scripts\scr_lighting_draw_sprite.gml</script>
+      <script>scripts\scr_lighting_draw_emissive.gml</script>
       <script>scripts\scr_lighting_draw_point.gml</script>
+      <script>scripts\scr_lighting_draw_direct.gml</script>
+      <script>scripts\scr_lighting_draw_final.gml</script>
     </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="HLSL9">shaders\shdr_lighting_maps.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_point.shader</shader>
+    <shader type="GLSLES">shaders\shdr_lighting_direct.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>

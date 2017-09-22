@@ -367,7 +367,7 @@ window_set_fullscreen(SETTING_FULLSCREEN);
             <string>///Delta time variables.
 // © 2017 - Jon Harvey
 
-DELTA = delta_time / 1000000;
+DELTA = (delta_time / 1000000)*!PAUSED;
 FRAME_DELTA = DESIRED_FPS * DELTA;
 
 S90 = power(0.90,FRAME_DELTA);

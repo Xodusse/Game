@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1000000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -34,7 +34,7 @@ scr_lighting_init();
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -54,16 +54,32 @@ scr_lighting_init();
             <string>///Draw normal map lighting
 // © 2017 - Jon Harvey
 
-/*
-var A;
-A = current_time/100;
-
-scr_lighting_update();
-scr_lighting_draw_sprite(spr_test,spr_test_n,0,x,y,1,1,A,$FFFFFF,1);
-
-scr_lighting_draw_point(256,256,384);
-scr_lighting_draw_point(512,512,512);
-*/
+scr_lighting_draw_point(128,128,20,512,$FFFFFF);
+scr_lighting_draw_direct(1,0,0,$0000FF);
+scr_lighting_draw_final(1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="72">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scr_lighting_update();
 </string>
           </argument>
         </arguments>

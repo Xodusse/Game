@@ -139,14 +139,12 @@ for(var p = 0;p&lt;40;p++){
             <string>///Animate explosion
 // © 2017 - Jon Harvey
 
-draw_set_blend_mode(bm_add);
 for(var p = 0;p&lt;40;p++){
 
     var Frame;
     Frame = clamp(Par[p]*2-.1,0,2);
-    draw_sprite_ext(spr_explosion,Frame,x+Pax[p],y+Pay[p],Par[p],Par[p],Paa[p],-1,(Timer-Par[p]*.1)*10);
+    scr_lighting_draw_emissive(spr_explosion,Frame,x+Pax[p],y+Pay[p],Par[p],Par[p],Paa[p],-1,(Timer-Par[p]*.1)*10);
 }
-draw_set_blend_mode(bm_normal);
 </string>
           </argument>
         </arguments>

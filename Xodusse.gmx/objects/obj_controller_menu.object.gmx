@@ -26,20 +26,15 @@
           <argument>
             <kind>1</kind>
             <string>//© 2017 - Reece Warren
-//Draw menu sprites:
 
-if (room == rm_main){
-    draw_background(bac_main,0,0); 
-    draw_sprite(spr_logo_0,0,960-240,540-156);
-    draw_sprite(spr_logo_1,0,960-240,540-156);       
-}
 
-if (room == rm_game){
-    draw_background(bac_game,0,0);
-}
-
-if (room == rm_options){
-    draw_background(rm_options,0,0);
+if (room != rm_test1){
+    
+    draw_clear($222222);//Draw background color - Jon
+    if (room == rm_main){
+        draw_sprite(spr_logo_0,0,960-240,540-156);
+        draw_sprite(spr_logo_1,0,960-240,540-156);       
+    }
 }
 </string>
           </argument>
