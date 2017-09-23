@@ -54,8 +54,13 @@ scr_lighting_init();
             <string>///Draw normal map lighting
 // © 2017 - Jon Harvey
 
-scr_lighting_draw_point(128,128,20,512,$FFFFFF);
-scr_lighting_draw_direct(1,0,0,$0000FF);
+//scr_lighting_draw_point(128,128,20,512,$0000FF);
+scr_lighting_draw_direct(1,0,0,$FFFFFF);
+
+if instance_exists(obj_player){
+    scr_lighting_draw_point(obj_player.x,obj_player.y,20,128,$0000FF);
+}
+
 scr_lighting_draw_final(1);
 </string>
           </argument>
