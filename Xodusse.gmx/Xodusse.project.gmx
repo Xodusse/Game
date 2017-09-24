@@ -77,7 +77,11 @@
         <sprite>sprites\spr_crate_she</sprite>
       </sprites>
       <sprite>sprites\spr_item</sprite>
-      <sprite>sprites\spr_Barrel</sprite>
+      <sprites name="Barrels">
+        <sprite>sprites\spr_Barrel</sprite>
+        <sprite>sprites\spr_Barrel_n</sprite>
+        <sprite>sprites\spr_Barrel_she</sprite>
+      </sprites>
       <sprite>sprites\spr_Barrel_Puddle</sprite>
     </sprites>
     <sprites name="Foliage">
@@ -87,50 +91,9 @@
     </sprites>
     <sprites name="Structures">
       <sprites name="walls">
-        <sprite>sprites\spr_wall_0</sprite>
-        <sprite>sprites\spr_wall_1</sprite>
-        <sprite>sprites\spr_wall_2</sprite>
-        <sprite>sprites\spr_wall_3</sprite>
-        <sprite>sprites\spr_wall_4</sprite>
-        <sprite>sprites\spr_wall_5</sprite>
-        <sprite>sprites\spr_wall_6</sprite>
-        <sprite>sprites\spr_wall_7</sprite>
-        <sprite>sprites\spr_wall_8</sprite>
-        <sprite>sprites\spr_wall_9</sprite>
-        <sprite>sprites\spr_wall_10</sprite>
-        <sprite>sprites\spr_wall_11</sprite>
-        <sprite>sprites\spr_wall_12</sprite>
-        <sprite>sprites\spr_wall_13</sprite>
-        <sprite>sprites\spr_wall_14</sprite>
-        <sprite>sprites\spr_wall_15</sprite>
-        <sprite>sprites\spr_wall_16</sprite>
-        <sprite>sprites\spr_wall_17</sprite>
-        <sprite>sprites\spr_wall_18</sprite>
-        <sprite>sprites\spr_wall_19</sprite>
-        <sprite>sprites\spr_wall_20</sprite>
-        <sprite>sprites\spr_wall_21</sprite>
-        <sprite>sprites\spr_wall_22</sprite>
-        <sprite>sprites\spr_wall_23</sprite>
-        <sprite>sprites\spr_wall_24</sprite>
-        <sprite>sprites\spr_wall_25</sprite>
-        <sprite>sprites\spr_wall_26</sprite>
-        <sprite>sprites\spr_wall_27</sprite>
-        <sprite>sprites\spr_wall_28</sprite>
-        <sprite>sprites\spr_wall_29</sprite>
-        <sprite>sprites\spr_wall_30</sprite>
-        <sprite>sprites\spr_wall_31</sprite>
-        <sprite>sprites\spr_wall_32</sprite>
-        <sprite>sprites\spr_wall_33</sprite>
-        <sprite>sprites\spr_wall_34</sprite>
-        <sprite>sprites\spr_wall_35</sprite>
-        <sprite>sprites\spr_wall_36</sprite>
-        <sprite>sprites\spr_wall_37</sprite>
-        <sprite>sprites\spr_wall_38</sprite>
-        <sprite>sprites\spr_wall_39</sprite>
-        <sprite>sprites\spr_wall_40</sprite>
-        <sprite>sprites\spr_wall_41</sprite>
-        <sprite>sprites\spr_wall_42</sprite>
-        <sprite>sprites\spr_wall_43</sprite>
+        <sprite>sprites\spr_wall</sprite>
+        <sprite>sprites\spr_wall_n</sprite>
+        <sprite>sprites\spr_wall_she</sprite>
       </sprites>
       <sprites name="furnature">
         <sprite>sprites\spr_f_rug_large</sprite>
@@ -214,51 +177,8 @@
         <object>objects\obj_enemy</object>
       </objects>
       <objects name="Structures">
-        <object>objects\obj_wall_parent</object>
         <objects name="Walls">
-          <object>objects\obj_wall_1</object>
-          <object>objects\obj_wall_2</object>
-          <object>objects\obj_wall_3</object>
-          <object>objects\obj_wall_4</object>
-          <object>objects\obj_wall_5</object>
-          <object>objects\obj_wall_6</object>
-          <object>objects\obj_wall_7</object>
-          <object>objects\obj_wall_8</object>
-          <object>objects\obj_wall_9</object>
-          <object>objects\obj_wall_10</object>
-          <object>objects\obj_wall_11</object>
-          <object>objects\obj_wall_12</object>
-          <object>objects\obj_wall_13</object>
-          <object>objects\obj_wall_14</object>
-          <object>objects\obj_wall_15</object>
-          <object>objects\obj_wall_16</object>
-          <object>objects\obj_wall_17</object>
-          <object>objects\obj_wall_18</object>
-          <object>objects\obj_wall_19</object>
-          <object>objects\obj_wall_20</object>
-          <object>objects\obj_wall_21</object>
-          <object>objects\obj_wall_22</object>
-          <object>objects\obj_wall_23</object>
-          <object>objects\obj_wall_24</object>
-          <object>objects\obj_wall_25</object>
-          <object>objects\obj_wall_26</object>
-          <object>objects\obj_wall_27</object>
-          <object>objects\obj_wall_28</object>
-          <object>objects\obj_wall_29</object>
-          <object>objects\obj_wall_30</object>
-          <object>objects\obj_wall_31</object>
-          <object>objects\obj_wall_32</object>
-          <object>objects\obj_wall_33</object>
-          <object>objects\obj_wall_34</object>
-          <object>objects\obj_wall_35</object>
-          <object>objects\obj_wall_36</object>
-          <object>objects\obj_wall_37</object>
-          <object>objects\obj_wall_38</object>
-          <object>objects\obj_wall_39</object>
-          <object>objects\obj_wall_40</object>
-          <object>objects\obj_wall_41</object>
-          <object>objects\obj_wall_42</object>
-          <object>objects\obj_wall_43</object>
+          <object>objects\obj_wall</object>
         </objects>
         <objects name="Furnature">
           <object>objects\obj_rug_large</object>

@@ -36,7 +36,7 @@ if (percent &lt; 30){
     image_index = 1;
     puddle_child = instance_create(x,y,obj_Barrel_Puddle);
     puddle_child.parent = id;
-    Health = 600000;
+    Health = 2;
 }
 
 else {
@@ -86,6 +86,29 @@ Radius = 12;
 
 instance_create(x,y,obj_explosion);
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scr_lighting_draw_sprite(spr_Barrel,spr_Barrel_n,image_index,x,y,1,1,image_angle,-1,1);
 </string>
           </argument>
         </arguments>
