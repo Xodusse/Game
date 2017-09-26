@@ -1,1 +1,1 @@
-return external_call(GM_MEMORY_USAGE_PHYSICAL);
+//return external_call(GM_MEMORY_USAGE_PHYSICAL);
