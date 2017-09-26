@@ -68,6 +68,8 @@
       <sprite>sprites\spr_player_arm_n</sprite>
       <sprite>sprites\spr_player_arm_she</sprite>
       <sprite>sprites\spr_player_holdables</sprite>
+      <sprite>sprites\spr_player_holdables_n</sprite>
+      <sprite>sprites\spr_player_holdables_she</sprite>
     </sprites>
     <sprites name="Logistics">
       <sprites name="Crates">
@@ -76,12 +78,12 @@
         <sprite>sprites\spr_crate_n</sprite>
         <sprite>sprites\spr_crate_she</sprite>
       </sprites>
-      <sprite>sprites\spr_item</sprite>
       <sprites name="Barrels">
         <sprite>sprites\spr_Barrel</sprite>
         <sprite>sprites\spr_Barrel_n</sprite>
         <sprite>sprites\spr_Barrel_she</sprite>
       </sprites>
+      <sprite>sprites\spr_item</sprite>
       <sprite>sprites\spr_Barrel_Puddle</sprite>
     </sprites>
     <sprites name="Foliage">
@@ -102,16 +104,24 @@
         <sprite>sprites\spr_f_chair</sprite>
       </sprites>
     </sprites>
+    <sprites name="Items">
+      <sprite>sprites\spr_items</sprite>
+      <sprite>sprites\spr_items_n</sprite>
+      <sprite>sprites\spr_items_she</sprite>
+    </sprites>
     <sprite>sprites\spr_grenade</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_explosion</sprite>
     <sprite>sprites\spr_projectiles</sprite>
-    <sprite>sprites\spr_items</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
-    <background>background\bac_sheet</background>
+    <background>background\bac_dirt_n</background>
     <background>background\bac_grass</background>
+    <background>background\bac_grass_n</background>
+    <background>background\bac_sheet</background>
+    <background>background\bac_sheet_n</background>
+    <background>background\bac_sheet_she</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">

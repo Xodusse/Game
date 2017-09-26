@@ -566,6 +566,29 @@ WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (Health &lt;= 0){
+    room_goto(rm_main);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -609,9 +632,12 @@ scr_lighting_draw_sprite(spr_player_arm,spr_player_arm_n,0,x-dcos(Face)*(Recoil-
 
 //Draw gun - Reece:
 if Count{
-    
-    draw_sprite_ext(spr_player_holdables,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
+
+    scr_lighting_draw_sprite(spr_player_holdables,spr_player_holdables_n,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
     y+dsin(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)-dcos(-Face)*Switch*10,0.4*sqr(abs(abs(Swap)*2-1)),0.4,Face-4+Switch*40-Swing*30,$FFFFFF,1);
+    
+    //draw_sprite_ext(spr_player_holdables,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
+    //y+dsin(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)-dcos(-Face)*Switch*10,0.4*sqr(abs(abs(Swap)*2-1)),0.4,Face-4+Switch*40-Swing*30,$FFFFFF,1);
 }
 
 scr_lighting_draw_sprite(spr_player_head,spr_player_head_n,0,x-dcos(Face)*Recoil*0.8,y+dsin(Face)*Recoil*0.8,1,1,Face+0.6*Turn+Switch*20-Swing*10,$FFFFFF,1);

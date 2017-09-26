@@ -148,7 +148,16 @@ if instance_exists(obj_player){
     
         //Inner circle.
         draw_set_alpha(0.6);
-        draw_circle_colour(0,GUIH,60,$222222,$333333,0);
+        //draw_circle_colour(0,GUIH,60,$222222,$333333,0);
+        
+        draw_primitive_begin(pr_trianglestrip);
+        for(var i = 0;i&lt;=30;i++){            
+            var Angle = i*3;
+            draw_vertex_colour(dcos(Angle)*52,GUIH-dsin(Angle)*52,$999329,0.2);
+            draw_vertex_colour(dcos(Angle),GUIH-dsin(Angle),$999329,0.2);
+        }        
+        draw_primitive_end();
+        
         draw_set_alpha(1);
         
         //Outer reload circle.
@@ -157,12 +166,13 @@ if instance_exists(obj_player){
         
             Progress = min(Reload/Greload[G[Current]],1);
         }
+        
         draw_primitive_begin(pr_trianglestrip);
         for(var i = 0;i&lt;=30;i++){
             
             var Angle = i*3*Progress;
-            draw_vertex_colour(dcos(Angle)*150,GUIH-dsin(Angle)*150,$444499,0.6);
-            draw_vertex_colour(dcos(Angle)*60,GUIH-dsin(Angle)*60,$333333,0.6);
+            draw_vertex_colour(dcos(Angle)*150,GUIH-dsin(Angle)*150,$D18214,0.3);
+            draw_vertex_colour(dcos(Angle)*52,GUIH-dsin(Angle)*52,$999329,0.1);
         }
         draw_primitive_end();
         
@@ -242,9 +252,17 @@ if instance_exists(obj_player){
             }
         }
 
-        //Health bar.
-        draw_rectangle(GUIW-100,GUIH-40,GUIW-20,GUIH-20,1);        
+        
+        //Health bar:       
+        draw_set_colour($999329);
+               
         draw_rectangle(GUIW-100,GUIH-40,GUIW-100+clamp(Health,0,10)*8,GUIH-20,0);
+        
+        draw_set_colour($FFFFFF);
+
+        draw_rectangle(GUIW-100,GUIH-40,GUIW-20,GUIH-20,1);         
+        
+        draw_set_colour(0);
     }
     
     //Inventory system.
@@ -252,6 +270,7 @@ if instance_exists(obj_player){
           
         draw_set_halign(fa_right);
         draw_set_valign(fa_bottom);
+        
         //Inventory base.
         draw_set_alpha(0.4);
         draw_rectangle(GUIW/2-S*3.5,GUIH/2-S*1.5-S*Ibackpack,GUIW/2+S*3.5,GUIH/2+S*1.5,0);
@@ -267,7 +286,9 @@ if instance_exists(obj_player){
         //Backpack slot.
         draw_rectangle(GUIW/2+S*4.5,GUIH/2-S*0.5,GUIW/2+S*6.5,GUIH/2+S*1.5,0);
         draw_set_alpha(1);
+        draw_set_colour($999329);
         draw_rectangle(GUIW/2+S*5,GUIH/2,GUIW/2+S*6,GUIH/2+S,1);
+        draw_set_colour(0);
         if Ibackpack{
         
             draw_sprite(spr_items,Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack-1,GUIW/2+S*5.5,GUIH/2+S*.5);
@@ -281,8 +302,9 @@ if instance_exists(obj_player){
             var Quantity = Q[X+Y*6];
             
             //Slot square.
-            draw_set_colour(0);
+            draw_set_colour($999329);
             draw_rectangle(GUIW/2-S*3+1+X*S,GUIH/2+1-Y*S,GUIW/2-S*2-1+X*S,GUIH/2+S-1-Y*S,1);
+            draw_set_colour(0);
             
             if Item{
                 

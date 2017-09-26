@@ -136,6 +136,11 @@ else {
 
 //Reece - Update pause buttons:
 
+//Destroy the button if the game is unpaused:
+if (PAUSED == false){
+    instance_destroy();
+}
+
 //Back to game:
 if (BUTTON_TYPE == 0){    
 
@@ -154,17 +159,37 @@ else if (BUTTON_TYPE == 1){
     y = (view_yview[0]+(view_hview[0]/2))-(dsin(VIEW_ANGLE+90)*-64);
 
     if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){ 
-        room_goto(rm_main);
+        //Main menu:
+        event_user(0);
         PAUSED = false; 
     }         
 }
 
-//Destroy the button if the game is unpaused:
-if (PAUSED == false){
-    instance_destroy();
-}
 
-
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Go to the Main menu:
+room_goto(rm_main);
 </string>
           </argument>
         </arguments>
