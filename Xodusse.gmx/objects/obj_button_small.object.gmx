@@ -76,6 +76,8 @@ Extender = 96;
 */
 
 //Reece - Assigned the hover state to a variable so it can be used to control animations:
+var Resolution,Hover;
+Resolution = obj_initialize.SETTING_RESOLUTION;
 Hover = point_in_rectangle(mouse_x,mouse_y,x-96,y-16,x+96,y+16);
 
 if (Hover == true){
@@ -106,14 +108,11 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
         if (obj_initialize.SETTING_FULLSCREEN == false){
             obj_initialize.SETTING_VSYNC = !obj_initialize.SETTING_VSYNC;
             
-            var W_current = GUIW;
-            var H_current = GUIH;
-            
             display_set_gui_size(GUIW,GUIH);              
-            window_set_size(W_current,H_current); 
+            window_set_size(GUIW,GUIH); 
                        
-            view_wport[0] = W_current;
-            view_hport[0] = H_current; 
+            view_wport[0] = GUIW;
+            view_hport[0] = GUIH; 
             
             display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
             obj_initialize.SETTING_INTERPOLATION = false;
@@ -155,16 +154,13 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
                 obj_initialize.SETTING_FXAA = 0;
             }
             //Prevents surface bugs in fullscreen:            
-            obj_initialize.SETTING_VSYNC = true;                    
-            
-            var W_current = GUIW;
-            var H_current = GUIH;
+            obj_initialize.SETTING_VSYNC = true;
             
             display_set_gui_size(GUIW,GUIH);              
-            window_set_size(W_current,H_current); 
+            window_set_size(GUIW,GUIH); 
                        
-            view_wport[0] = W_current;
-            view_hport[0] = H_current; 
+            view_wport[0] = GUIW;
+            view_hport[0] = GUIH; 
             
             display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
             obj_initialize.SETTING_INTERPOLATION = false;
@@ -179,40 +175,24 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
             window_set_fullscreen(obj_initialize.SETTING_FULLSCREEN);
             
             //If now fullscreen:
-            if (obj_initialize.SETTING_FULLSCREEN == true){
+            if (obj_initialize.SETTING_FULLSCREEN){
             
                 //ENABLE FULLSCREEN RESOLUTION MODE:
-                obj_initialize.SETTING_RESOLUTION = 7;
-                
                 GUIW = obj_initialize.DISPLAY_HRESOLUTION;
                 GUIH = obj_initialize.DISPLAY_VRESOLUTION;
-                
-                display_set_gui_size(GUIW,GUIH);
-                
-                view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
-                view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;
-                
-                surface_resize(application_surface, obj_initialize.DISPLAY_HRESOLUTION*2, obj_initialize.DISPLAY_VRESOLUTION*2);                            
+                obj_initialize.SETTING_RESOLUTION = 7;                            
                 
                 //Enables vsync automatically when toggling fullscreen to prevent the surface not drawing:
                 obj_initialize.SETTING_VSYNC = true; 
             }
             
             //If now windowed:
-            else {
-                //Set window width:
-                obj_initialize.SETTING_RESOLUTION = 0;
+            else{
                 
+                //Set window width:
                 GUIW = 960;
                 GUIH = 540;
-                       
-                display_set_gui_size(GUIW,GUIH);              
-                window_set_size(960,540); 
-                           
-                view_wport[0] = 960;
-                view_hport[0] = 540;
-                
-                surface_resize(application_surface, 960*2, 540*2);                                                            
+                obj_initialize.SETTING_RESOLUTION = 0;                                                
             }
             
             //Reset the display after altering fullscreen mode:    
@@ -223,242 +203,53 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
     
     //Toggle Resolution (only if not in fullscreen mode):
     else if (BUTTON_TYPE == 4) &amp;&amp; (obj_initialize.SETTING_RESOLUTION != 7) {
-        if (obj_initialize.SETTING_RESOLUTION == 0){
-            
-            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1280) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 720){
-                obj_initialize.SETTING_RESOLUTION = 1;
-                
-                GUIW = 1280;
-                GUIH = 720;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(1280,720);
-                
-                view_wport[0] = 1280;
-                view_hport[0] = 720;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 1280*obj_initialize.SETTING_SURFACE_SCALE, 720*obj_initialize.SETTING_SURFACE_SCALE);                
-            }
-            
-            else {
-                obj_initialize.SETTING_RESOLUTION = 0;
-                
-                GUIW = 960;
-                GUIH = 540;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(960,540);
-                
-                view_wport[0] = 960;
-                view_hport[0] = 540;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                
-            }                              
-        }
         
-        else if (obj_initialize.SETTING_RESOLUTION == 1){
-            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1366) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 768){
-                obj_initialize.SETTING_RESOLUTION = 2;
+        //Simplified code - Jon
+        obj_initialize.SETTING_RESOLUTION += 1;
                 
-                GUIW = 1366;
-                GUIH = 768;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(1366,768);
-                
-                view_wport[0] = 1366;
-                view_hport[0] = 768;
-                
-                obj_init_display.alarm[0] = 1;
-
-                surface_resize(application_surface, 1366*obj_initialize.SETTING_SURFACE_SCALE, 768*obj_initialize.SETTING_SURFACE_SCALE);                
-            }
-            
-            else {
-                obj_initialize.SETTING_RESOLUTION = 0;
-                
-                GUIW = 960;
-                GUIH = 540;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(960,540);
-                
-                view_wport[0] = 960;
-                view_hport[0] = 540;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                
-            }                 
-        }
-        
-        else if (obj_initialize.SETTING_RESOLUTION == 2){
-            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1600) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 900){
-                obj_initialize.SETTING_RESOLUTION = 3;
-                
-                GUIW = 1600;
-                GUIH = 900;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(1600,900);
-                
-                view_wport[0] = 1600;
-                view_hport[0] = 900;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 1600*obj_initialize.SETTING_SURFACE_SCALE, 900*obj_initialize.SETTING_SURFACE_SCALE);                 
-            }
-            else {
-                obj_initialize.SETTING_RESOLUTION = 0;
-                
-                GUIW = 960;
-                GUIH = 540;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(960,540);
-                
-                view_wport[0] = 960;
-                view_hport[0] = 540;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                 
-            }                               
-        }
-        
-        else if (obj_initialize.SETTING_RESOLUTION == 3){
-            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 1920) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 1080){        
-                obj_initialize.SETTING_RESOLUTION = 4;
-                
-                GUIW = 1920;
-                GUIH = 1080;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(1920,1080);
-                
-                view_wport[0] = 1920;
-                view_hport[0] = 1080;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 1920*obj_initialize.SETTING_SURFACE_SCALE, 1080*obj_initialize.SETTING_SURFACE_SCALE);                  
-            }
-            else {
-                obj_initialize.SETTING_RESOLUTION = 0;
-                
-                GUIW = 960;
-                GUIH = 540;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(960,540);
-                
-                view_wport[0] = 960;
-                view_hport[0] = 540;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                  
-            }                              
-        }
-        
-        else if (obj_initialize.SETTING_RESOLUTION == 4){
-            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 2560) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 1440){        
-                obj_initialize.SETTING_RESOLUTION = 5;
-                
-                GUIW = 2560;
-                GUIH = 1440;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(2560,1440);
-                
-                view_wport[0] = 2560;
-                view_hport[0] = 1440;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 2560*obj_initialize.SETTING_SURFACE_SCALE, 1440*obj_initialize.SETTING_SURFACE_SCALE);                
-            }
-            else {
-                obj_initialize.SETTING_RESOLUTION = 0;
-                
-                GUIW = 960;
-                GUIH = 540;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(960,540);
-                
-                view_wport[0] = 960;
-                view_hport[0] = 540;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                  
-            }                             
-        }
-        
-        else if (obj_initialize.SETTING_RESOLUTION == 5){
-            if (obj_initialize.DISPLAY_HRESOLUTION &gt;= 3840) &amp;&amp; (obj_initialize.DISPLAY_VRESOLUTION &gt;= 2160){         
-                obj_initialize.SETTING_RESOLUTION = 6;
-                
-                GUIW = 3840;
-                GUIH = 2160;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(3840,2160);
-                
-                view_wport[0] = 3840;
-                view_hport[0] = 2160;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 3840*obj_initialize.SETTING_SURFACE_SCALE, 2160*obj_initialize.SETTING_SURFACE_SCALE);                
-            }
-            else {
-                obj_initialize.SETTING_RESOLUTION = 0;
-                
-                GUIW = 960;
-                GUIH = 540;        
-                display_set_gui_size(GUIW,GUIH);
-                window_set_size(960,540);
-                
-                view_wport[0] = 960;
-                view_hport[0] = 540;
-                
-                obj_init_display.alarm[0] = 1;
-                
-                surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                
-            }                                
-        }
-        
-        else if (obj_initialize.SETTING_RESOLUTION == 6){
-            obj_initialize.SETTING_RESOLUTION = 7;
-            
-            GUIW = obj_initialize.DISPLAY_HRESOLUTION;
-            GUIH = obj_initialize.DISPLAY_VRESOLUTION;        
-            display_set_gui_size(GUIW,GUIH);
-            window_set_size(obj_initialize.DISPLAY_HRESOLUTION,obj_initialize.DISPLAY_VRESOLUTION);
-            
-            view_wport[0] = obj_initialize.DISPLAY_HRESOLUTION;
-            view_hport[0] = obj_initialize.DISPLAY_VRESOLUTION;
-            
-            obj_init_display.alarm[0] = 1;
-            
-            surface_resize(application_surface, obj_initialize.DISPLAY_HRESOLUTION*obj_initialize.SETTING_SURFACE_SCALE, obj_initialize.DISPLAY_VRESOLUTION*obj_initialize.SETTING_SURFACE_SCALE);                            
-        }
-        
-        else {
+        switch(obj_initialize.SETTING_RESOLUTION)
+        {
+            default:
             obj_initialize.SETTING_RESOLUTION = 0;
-            
             GUIW = 960;
-            GUIH = 540;        
-            display_set_gui_size(GUIW,GUIH);
-            window_set_size(960,540);
+            GUIH = 540;
+            break;
             
-            view_wport[0] = 960;
-            view_hport[0] = 540; 
+            case 1:
+            GUIW = 1280;
+            GUIH = 720;
+            break;
             
-            obj_init_display.alarm[0] = 1;
-                
-            surface_resize(application_surface, 960*obj_initialize.SETTING_SURFACE_SCALE, 540*obj_initialize.SETTING_SURFACE_SCALE);                                        
+            case 2:
+            GUIW = 1366;
+            GUIH = 768;
+            break;
+            
+            case 3:
+            GUIW = 1600;
+            GUIH = 900;
+            break;
+            
+            case 4:
+            GUIW = 1920;
+            GUIH = 1080;
+            break;
+            
+            case 5:
+            GUIW = 2560;
+            GUIH = 1440;
+            break;
+            
+            case 6:
+            GUIW = 3840;
+            GUIH = 2160;
+            break;
+            
+            case 7:
+            GUIW = obj_initialize.DISPLAY_HRESOLUTION;
+            GUIH = obj_initialize.DISPLAY_VRESOLUTION;
+            break;
         }
-    
-        //Reset the display after altering the resolution:    
-        display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
-        obj_initialize.SETTING_INTERPOLATION = false;                                             
     }
     
     //SURFACE SCALE:
@@ -483,7 +274,36 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
     
     //Write information to the config:
     scr_cwrite();
+
+    //Update display
+    if (obj_initialize.DISPLAY_HRESOLUTION &lt; GUIW) || (obj_initialize.DISPLAY_VRESOLUTION &lt; GUIH){
     
+        obj_initialize.SETTING_RESOLUTION = 0;
+        GUIW = 960;
+        GUIH = 540;
+        
+        if (obj_initialize.DISPLAY_HRESOLUTION &lt; GUIW) || (obj_initialize.DISPLAY_VRESOLUTION &lt; GUIH){
+            
+            obj_initialize.SETTING_RESOLUTION = 7;
+            GUIW = DISPLAY_HRESOLUTION;
+            GUIH = DISPLAY_VRESOLUTION;
+        }
+    }
+    
+    var Scale;
+    Scale = obj_initialize.SETTING_SURFACE_SCALE;
+    
+    display_set_gui_size(GUIW,GUIH);
+    window_set_size(GUIW,GUIH);
+                
+    view_wport[0] = GUIW;
+    view_hport[0] = GUIH;
+    
+    obj_init_display.alarm[0] = 1;
+    surface_resize(application_surface,GUIW*Scale,GUIH*Scale);
+        
+    //Reset the display after altering the resolution:    
+    display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
 }
 </string>
           </argument>

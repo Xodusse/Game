@@ -8,15 +8,21 @@ Azpos = argument[2];
 Aradi = argument[3];
 Acolr = argument[4];
 
-var View = matrix_get(matrix_view);
+var Vscal,Vmatx;
+Vscal = obj_initialize.SETTING_SURFACE_SCALE;
+Vmatx = matrix_get(matrix_view);
+Vmatx[0] *= Vscal*GUIW/960;Vmatx[1] *= Vscal*GUIH/540;
+Vmatx[4] *= Vscal*GUIW/960;Vmatx[5] *= Vscal*GUIH/540;
+Vmatx[12] *= Vscal*GUIW/960;Vmatx[13] *= Vscal*GUIH/540;
 surface_set_target(LSligt);
 draw_set_blend_mode(bm_add);
 shader_set(shdr_lighting_point);
-matrix_set(matrix_view,View);
+matrix_set(matrix_view,Vmatx);
 
 texture_set_stage(PUcolr,surface_get_texture(LScolr));
 texture_set_stage(PUnorm,surface_get_texture(LSnorm));
 shader_set_uniform_f(PUlpos,Axpos,Aypos,Azpos);
+shader_set_uniform_f(PUsize,GUIW*Vscal,GUIH*Vscal);
 
 draw_primitive_begin(pr_trianglefan);
 draw_vertex_colour(Axpos,Aypos,Acolr,1);

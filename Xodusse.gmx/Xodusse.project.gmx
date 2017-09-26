@@ -146,7 +146,6 @@
     </scripts>
     <scripts name="Lighting">
       <script>scripts\scr_lighting_init.gml</script>
-      <script>scripts\scr_lighting_update.gml</script>
       <script>scripts\scr_lighting_draw_sprite.gml</script>
       <script>scripts\scr_lighting_draw_emissive.gml</script>
       <script>scripts\scr_lighting_draw_point.gml</script>

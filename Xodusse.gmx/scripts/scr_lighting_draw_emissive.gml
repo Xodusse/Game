@@ -22,9 +22,15 @@ Vyscl = sprite_get_height(Aemis)*Ayscl*Vsuv1[7]-Vyoff;
 Vxrot = dcos(Arotn);
 Vyrot = dsin(Arotn);
 
-var View = matrix_get(matrix_view);
+var Vscal,Vmatx;
+Vscal = obj_initialize.SETTING_SURFACE_SCALE;
+Vmatx = matrix_get(matrix_view);
+Vmatx[0] *= Vscal*GUIW/960;Vmatx[1] *= Vscal*GUIH/540;
+Vmatx[4] *= Vscal*GUIW/960;Vmatx[5] *= Vscal*GUIH/540;
+Vmatx[12] *= Vscal*GUIW/960;Vmatx[13] *= Vscal*GUIH/540;
+
 surface_set_target(LSligt);
-matrix_set(matrix_view,View);
+matrix_set(matrix_view,Vmatx);
 draw_set_blend_mode(bm_add);
 
 draw_set_colour(Ablnd);

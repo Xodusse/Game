@@ -54,11 +54,7 @@ image_speed = 0;
 
 SpeedX = 0;
 SpeedY = 0;
-Radius = 12;
-
-
-
-
+Radius = 20;
 </string>
           </argument>
         </arguments>

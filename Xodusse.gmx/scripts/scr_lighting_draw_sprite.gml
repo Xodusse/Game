@@ -25,11 +25,17 @@ Vyscl = sprite_get_height(Acolr)*Ayscl*Vsuv1[7]-Vyoff;
 Vxrot = dcos(Arotn);
 Vyrot = dsin(Arotn);
 
-var View = matrix_get(matrix_view);
+var Vscal,Vmatx;
+Vscal = obj_initialize.SETTING_SURFACE_SCALE;
+Vmatx = matrix_get(matrix_view);
+Vmatx[0] *= Vscal*GUIW/960;Vmatx[1] *= Vscal*GUIH/540;
+Vmatx[4] *= Vscal*GUIW/960;Vmatx[5] *= Vscal*GUIH/540;
+Vmatx[12] *= Vscal*GUIW/960;Vmatx[13] *= Vscal*GUIH/540;
+
 surface_set_target_ext(0,LScolr);
 surface_set_target_ext(1,LSnorm);
-matrix_set(matrix_view,View);
 shader_set(shdr_lighting_maps);
+matrix_set(matrix_view,Vmatx);
 
 texture_set_stage(LUnorm,Vnorm);
 shader_set_uniform_f(LUmatx,dcos(-Arotn)*Axscl,dsin(-Arotn)*Ayscl,dsin(-Arotn)*Axscl,-dcos(-Arotn)*Ayscl);

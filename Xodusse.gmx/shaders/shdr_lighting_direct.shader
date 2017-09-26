@@ -5,14 +5,23 @@ attribute vec2 in_TextureCoord;
 varying vec4 v_vColor;
 varying vec2 v_vTexcoord;
 
+uniform vec2 Size;
+
 void main()
 {
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position,1);
     
     v_vColor = in_Color;
-    v_vTexcoord = (gm_Matrices[MATRIX_VIEW] * vec4(in_Position,1)).xy/vec2(960,540)+0.5;
+    v_vTexcoord = (gm_Matrices[MATRIX_VIEW] * vec4(in_Position,1)).xy/Size+0.5;
 }
 //######################_==_YOYO_SHADER_MARKER_==_######################@~
+
+
+
+
+
+
+
 varying vec4 v_vColor;
 varying vec2 v_vTexcoord;
 
