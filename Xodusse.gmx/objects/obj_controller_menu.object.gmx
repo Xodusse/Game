@@ -27,10 +27,8 @@
             <kind>1</kind>
             <string>//© 2017 - Reece Warren
 
-
 if (room != rm_test1){
     
-    draw_clear($222222);//Draw background color - Jon
     if (room == rm_main){
         draw_sprite(spr_logo_0,0,960-240,540-156);
         draw_sprite(spr_logo_1,0,960-240,540-156);       

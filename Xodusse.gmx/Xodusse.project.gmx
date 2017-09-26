@@ -122,6 +122,7 @@
     <background>background\bac_sheet</background>
     <background>background\bac_sheet_n</background>
     <background>background\bac_sheet_she</background>
+    <background>background\bac_menu</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -156,6 +157,7 @@
     </scripts>
     <scripts name="Lighting">
       <script>scripts\scr_lighting_init.gml</script>
+      <script>scripts\scr_lighting_draw_background.gml</script>
       <script>scripts\scr_lighting_draw_sprite.gml</script>
       <script>scripts\scr_lighting_draw_emissive.gml</script>
       <script>scripts\scr_lighting_draw_point.gml</script>

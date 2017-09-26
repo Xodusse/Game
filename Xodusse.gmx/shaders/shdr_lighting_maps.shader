@@ -40,10 +40,10 @@ struct Render
 
 void main(in Fragment IN, out Render OUT)
 {
-    float4 Color = IN.Color * tex2D(gm_BaseTexture,IN.Texcoord*(UV1.zw-UV1.xy)+UV1.xy);
+    float4 Color = IN.Color * tex2D(gm_BaseTexture,frac(IN.Texcoord)*(UV1.zw-UV1.xy)+UV1.xy);
     OUT.Colr = Color;
     
-    float3 Normal = tex2D(Norm,IN.Texcoord*(UV2.zw-UV2.xy)+UV2.xy).xyz*2.0-1.0;
+    float3 Normal = tex2D(Norm,frac(IN.Texcoord)*(UV2.zw-UV2.xy)+UV2.xy).xyz*2.0-1.0;
     Normal = float3(dot(Normal.xy,Mat.xy),dot(Normal.xy,Mat.zw),Normal.z);
     OUT.Norm = float4(normalize(Normal)*.5+.5,Color.a);
 }
