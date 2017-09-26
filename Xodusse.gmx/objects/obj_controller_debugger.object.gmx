@@ -154,12 +154,12 @@ if (DEBUG_VISIBLE == true){
         "FPS = " + string(FPS) + " dF = " + string(dF));
         
     //Virtual Memory:
-    draw_text(GUIW - 8, 35,
-        "Memory_Vir = " + string(memory_v) + "kB");
+    //draw_text(GUIW - 8, 35,
+    //    "Memory_Vir = " + string(memory_v) + "kB");
         
     //Physical Memory:
-    draw_text(GUIW - 8, 60,
-         "Memory_Phy = " + string(memory_p) + "kB");
+    //draw_text(GUIW - 8, 60,
+    //     "Memory_Phy = " + string(memory_p) + "kB");
          
     //Current alien count:
     draw_text(GUIW - 8, 110,
