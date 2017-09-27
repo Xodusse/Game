@@ -113,6 +113,7 @@
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_explosion</sprite>
     <sprite>sprites\spr_projectiles</sprite>
+    <sprite>sprites\spr_light</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_dirt</background>
@@ -161,13 +162,16 @@
       <script>scripts\scr_lighting_draw_sprite.gml</script>
       <script>scripts\scr_lighting_draw_emissive.gml</script>
       <script>scripts\scr_lighting_draw_point.gml</script>
+      <script>scripts\scr_lighting_draw_point_mask.gml</script>
       <script>scripts\scr_lighting_draw_direct.gml</script>
       <script>scripts\scr_lighting_draw_final.gml</script>
+      <script>scripts\scr_lighting_end.gml</script>
     </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="HLSL9">shaders\shdr_lighting_maps.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_point.shader</shader>
+    <shader type="GLSLES">shaders\shdr_lighting_point_mask.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_direct.shader</shader>
   </shaders>
   <fonts name="fonts">

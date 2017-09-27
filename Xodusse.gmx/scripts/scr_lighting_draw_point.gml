@@ -1,4 +1,4 @@
-///scr_lighting_draw_point(x,y,z,radius,color)
+﻿///scr_lighting_draw_point(x,y,z,radius,color)
 // © 2017 - Jon Harvey
 
 var Axpos,Aypos,Azpos,Aradi,Acolr;

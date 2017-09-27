@@ -29,12 +29,11 @@ shader_set_uniform_f(LUmatx,1,0,0,1);
 shader_set_uniform_f(LUsuv1,Vsuv1[0],Vsuv1[1],Vsuv1[2],Vsuv1[3]);
 shader_set_uniform_f(LUsuv2,Vsuv2[0],Vsuv2[1],Vsuv2[2],Vsuv2[3]);
 
-texture_set_interpolation(1);
 draw_primitive_begin_texture(pr_trianglestrip,1);
-draw_vertex_texture(-10000,10000,0,0);
-draw_vertex_texture(10000,10000,500,0);
-draw_vertex_texture(-10000,-10000,0,500);
-draw_vertex_texture(10000,-10000,500,500);
+draw_vertex_texture(-32000,32000,0,0);
+draw_vertex_texture(32000,32000,2000,0);
+draw_vertex_texture(-32000,-32000,0,2000);
+draw_vertex_texture(32000,-32000,2000,2000);
 draw_primitive_end();
 shader_reset();
 draw_set_blend_mode(bm_normal);
