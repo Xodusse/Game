@@ -253,6 +253,23 @@ if instance_exists(obj_player){
         }
 
         
+        //ROUND NUMBER:
+        draw_set_colour($FFFFFF);
+        
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+        
+        if (instance_exists(obj_controller_wave)) &amp;&amp; (room == rm_game_0){
+            draw_set_font(fnt_Exudation_Large);
+            draw_text_transformed(GUIW-60,GUIH-100,string(obj_controller_wave.WaveNumber),2,2,0);
+            draw_set_font(fnt_Exudation);
+            draw_text(GUIW-60,GUIH-60,"WAVE:");
+        }
+        
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);        
+        
+        
         //Health bar:       
         draw_set_colour($999329);
                

@@ -36,6 +36,7 @@ AlienMax = 10;
 AlienCountCurrent = 0;
 
 Wave = 1;
+WaveNumber = 1;
 
 
 </string>
@@ -64,7 +65,7 @@ Wave = 1;
 // © 2017 - Reece Warren, Jon Harvey
 
 //Only spawn aliens and perform calculations if in the game room:
-if (room == rm_test1){
+if (room == rm_test1) || (room == rm_game_0){
     
     if (instance_exists(obj_enemy)){
         AlienCountCurrent = instance_number(obj_enemy);
@@ -80,7 +81,7 @@ if (room == rm_test1){
         AlienCountRemaining--;
         //Spawn the alien:
         var A = random(360); 
-        instance_create(obj_player.x+dcos(A)*1000,obj_player.y+dsin(A)*1000,obj_enemy);
+        instance_create(obj_player.x+dcos(A)*500,obj_player.y+dsin(A)*500,obj_enemy);
     }
     
     //Starts a new wave:
@@ -88,6 +89,7 @@ if (room == rm_test1){
         
         //Start new wave:
         Wave ++;
+        WaveNumber += 1;
         
         //Adds five aliens each wave:
         AlienCountRemaining = AlienCountInitial + ((Wave - 1) * 5);
@@ -120,6 +122,7 @@ if (room == rm_test1){
             <string>//© 2017 - Reece Warren
 //Reset wave at game start:
 Wave = 1;
+WaveNumber = 1;
 </string>
           </argument>
         </arguments>

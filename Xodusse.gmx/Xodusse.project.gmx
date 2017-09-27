@@ -44,6 +44,15 @@
     <sound>sound\snd_gun</sound>
     <sound>sound\snd_empty</sound>
     <sound>sound\snd_explosion</sound>
+    <sounds name="Aliens">
+      <sounds name="Type_1">
+        <sound>sound\snd_enemy_death_0</sound>
+        <sound>sound\snd_enemy_death_1</sound>
+        <sound>sound\snd_enemy_death_2</sound>
+        <sound>sound\snd_enemy_death_3</sound>
+        <sound>sound\snd_enemy_death_4</sound>
+      </sounds>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="Menu">
@@ -70,6 +79,13 @@
       <sprite>sprites\spr_player_holdables</sprite>
       <sprite>sprites\spr_player_holdables_n</sprite>
       <sprite>sprites\spr_player_holdables_she</sprite>
+    </sprites>
+    <sprites name="Aliens">
+      <sprites name="Type_1">
+        <sprite>sprites\spr_Alien_0</sprite>
+        <sprite>sprites\spr_Alien_0_n</sprite>
+        <sprite>sprites\spr_Alien_0_she</sprite>
+      </sprites>
     </sprites>
     <sprites name="Logistics">
       <sprites name="Crates">
@@ -109,10 +125,30 @@
       <sprite>sprites\spr_items_n</sprite>
       <sprite>sprites\spr_items_she</sprite>
     </sprites>
+    <sprites name="Projectiles">
+      <sprite>sprites\spr_projectiles</sprite>
+      <sprite>sprites\spr_projectiles_n</sprite>
+    </sprites>
+    <sprites name="Temp_Tiles">
+      <sprite>sprites\spr_t_dirt_0</sprite>
+      <sprite>sprites\spr_t_dirt_0_n</sprite>
+      <sprite>sprites\spr_t_dirt_1</sprite>
+      <sprite>sprites\spr_t_dirt_1_n</sprite>
+      <sprite>sprites\spr_t_dirt_2</sprite>
+      <sprite>sprites\spr_t_dirt_2_n</sprite>
+      <sprite>sprites\spr_t_rock_0</sprite>
+      <sprite>sprites\spr_t_rock_0_n</sprite>
+      <sprite>sprites\spr_t_rock_1</sprite>
+      <sprite>sprites\spr_t_rock_1_n</sprite>
+      <sprite>sprites\spr_t_sand_0</sprite>
+      <sprite>sprites\spr_t_sand_0_n</sprite>
+      <sprite>sprites\spr_t_wood_0</sprite>
+      <sprite>sprites\spr_t_wood_0_n</sprite>
+      <sprite>sprites\spr_t_wood_1</sprite>
+      <sprite>sprites\spr_t_wood_1_n</sprite>
+    </sprites>
     <sprite>sprites\spr_grenade</sprite>
-    <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_explosion</sprite>
-    <sprite>sprites\spr_projectiles</sprite>
     <sprite>sprites\spr_light</sprite>
   </sprites>
   <backgrounds name="background">
@@ -229,6 +265,7 @@
       <object>objects\obj_controller_gui</object>
       <object>objects\obj_controller_menu</object>
       <object>objects\obj_controller_normal</object>
+      <object>objects\obj_controller_tiles</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
@@ -237,6 +274,13 @@
         <object>objects\obj_button_pause</object>
       </objects>
       <object>objects\obj_message</object>
+    </objects>
+    <objects name="Temporary_Tiles">
+      <object>objects\obj_tile_dirt</object>
+      <object>objects\obj_tile_dirt_1</object>
+      <object>objects\obj_tile_dirt_2</object>
+      <object>objects\obj_tile_sand</object>
+      <object>objects\obj_tile_rock_0</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -250,6 +294,7 @@
     </rooms>
     <rooms name="Levels">
       <room>rooms\rm_test1</room>
+      <room>rooms\rm_game_0</room>
     </rooms>
   </rooms>
   <help>

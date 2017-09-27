@@ -100,7 +100,7 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
     
     //Play Solo:
     if (BUTTON_TYPE == 0){
-        room_goto(rm_test1);
+        room_goto(rm_game_0);
         
         //Resets the wave controller:
         AlienCountRemaining = AlienCountInitial;
