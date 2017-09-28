@@ -162,12 +162,7 @@ else {
     SETTING_FXAA_MAX = display_aa;
     
     //Anti-aliasing current - Real;
-    if (SETTING_FXAA_MAX == 14){ 
-        SETTING_FXAA = 8;
-    }
-    else {
-        SETTING_FXAA = 0;
-    }
+    SETTING_FXAA = 0;
     
     //Fullscreen - Boolean;
     SETTING_FULLSCREEN = false;
@@ -272,12 +267,12 @@ switch(SETTING_RESOLUTION){
     break;
 }
     
-if (SETTING_FULLSCREEN == true){
-    
+if (SETTING_FULLSCREEN == true){   
     SETTING_RESOLUTION = 7;
     GUIW = DISPLAY_HRESOLUTION;
     GUIH = DISPLAY_VRESOLUTION;
-}  
+}
+  
 if (DISPLAY_HRESOLUTION &lt; GUIW) || (DISPLAY_VRESOLUTION &lt; GUIH){
 
     SETTING_RESOLUTION = 0;

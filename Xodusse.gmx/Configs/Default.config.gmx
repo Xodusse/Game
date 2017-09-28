@@ -468,10 +468,10 @@
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
     <option_version>100</option_version>
-    <option_version_build>7</option_version_build>
+    <option_version_build>8</option_version_build>
     <option_version_company>Warrenaterz &amp; Xor</option_version_company>
     <option_version_copyright>© 2017 - Jon Harvey, Reece Warren. MIT.</option_version_copyright>
-    <option_version_description>Survive the alien invasion in Xodusse!</option_version_description>
+    <option_version_description>Xodusse</option_version_description>
     <option_version_major>0</option_version_major>
     <option_version_minor>1</option_version_minor>
     <option_version_product>Xodusse</option_version_product>
@@ -548,11 +548,11 @@
     <option_winUAP_wide_logo>Configs\Default\WindowsUAP\logos\WideLogo.scale-100.png</option_winUAP_wide_logo>
     <option_windowcolor>clBlack</option_windowcolor>
     <option_windows_alternate_sync_method>False</option_windows_alternate_sync_method>
-    <option_windows_build_version>7</option_windows_build_version>
+    <option_windows_build_version>8</option_windows_build_version>
     <option_windows_company_info>Warrenaterz &amp; Xor</option_windows_company_info>
     <option_windows_copyright_info>© 2017 - Jon Harvey, Reece Warren. MIT.</option_windows_copyright_info>
     <option_windows_create_textures_on_demand>False</option_windows_create_textures_on_demand>
-    <option_windows_description_info>Survive the alien invasion in Xodusse!</option_windows_description_info>
+    <option_windows_description_info>Xodusse</option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
