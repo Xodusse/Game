@@ -129,33 +129,14 @@
       <sprite>sprites\spr_projectiles</sprite>
       <sprite>sprites\spr_projectiles_n</sprite>
     </sprites>
-    <sprites name="Temp_Tiles">
-      <sprite>sprites\spr_t_dirt_0</sprite>
-      <sprite>sprites\spr_t_dirt_0_n</sprite>
-      <sprite>sprites\spr_t_dirt_1</sprite>
-      <sprite>sprites\spr_t_dirt_1_n</sprite>
-      <sprite>sprites\spr_t_dirt_2</sprite>
-      <sprite>sprites\spr_t_dirt_2_n</sprite>
-      <sprite>sprites\spr_t_rock_0</sprite>
-      <sprite>sprites\spr_t_rock_0_n</sprite>
-      <sprite>sprites\spr_t_rock_1</sprite>
-      <sprite>sprites\spr_t_rock_1_n</sprite>
-      <sprite>sprites\spr_t_sand_0</sprite>
-      <sprite>sprites\spr_t_sand_0_n</sprite>
-      <sprite>sprites\spr_t_wood_0</sprite>
-      <sprite>sprites\spr_t_wood_0_n</sprite>
-      <sprite>sprites\spr_t_wood_1</sprite>
-      <sprite>sprites\spr_t_wood_1_n</sprite>
-    </sprites>
+    <sprite>sprites\spr_t_wood_1</sprite>
+    <sprite>sprites\spr_t_wood_1_n</sprite>
     <sprite>sprites\spr_grenade</sprite>
     <sprite>sprites\spr_explosion</sprite>
     <sprite>sprites\spr_light</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bac_dirt</background>
-    <background>background\bac_dirt_n</background>
-    <background>background\bac_grass</background>
-    <background>background\bac_grass_n</background>
+    <background>background\bac_level</background>
     <background>background\bac_sheet</background>
     <background>background\bac_sheet_n</background>
     <background>background\bac_sheet_she</background>
@@ -194,7 +175,7 @@
     </scripts>
     <scripts name="Lighting">
       <script>scripts\scr_lighting_init.gml</script>
-      <script>scripts\scr_lighting_draw_background.gml</script>
+      <script>scripts\scr_lighting_draw_level.gml</script>
       <script>scripts\scr_lighting_draw_sprite.gml</script>
       <script>scripts\scr_lighting_draw_emissive.gml</script>
       <script>scripts\scr_lighting_draw_point.gml</script>
@@ -206,6 +187,7 @@
   </scripts>
   <shaders name="shaders">
     <shader type="HLSL9">shaders\shdr_lighting_maps.shader</shader>
+    <shader type="HLSL9">shaders\shdr_lighting_maps_terrain.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_point.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_point_mask.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_direct.shader</shader>
@@ -274,13 +256,6 @@
         <object>objects\obj_button_pause</object>
       </objects>
       <object>objects\obj_message</object>
-    </objects>
-    <objects name="Temporary_Tiles">
-      <object>objects\obj_tile_dirt</object>
-      <object>objects\obj_tile_dirt_1</object>
-      <object>objects\obj_tile_dirt_2</object>
-      <object>objects\obj_tile_sand</object>
-      <object>objects\obj_tile_rock_0</object>
     </objects>
   </objects>
   <rooms name="rooms">
