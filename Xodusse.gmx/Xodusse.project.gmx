@@ -141,6 +141,7 @@
     <background>background\bac_sheet_n</background>
     <background>background\bac_sheet_she</background>
     <background>background\bac_menu</background>
+    <background>background\bac_sheet_new</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
