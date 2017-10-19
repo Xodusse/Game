@@ -132,7 +132,7 @@ scr_lighting_end();
             <string>///Draw normal map lighting
 // © 2017 - Jon Harvey
 
-scr_lighting_draw_level(bac_level,bac_sheet,bac_sheet_n);
+scr_lighting_draw_level(bac_level,bac_sheet,bac_sheet_n,bac_sheet_she);
 
 scr_lighting_draw_direct(1,3,0,$383528);
 

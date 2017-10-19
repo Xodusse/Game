@@ -14,11 +14,15 @@ LUnorm = shader_get_sampler_index(shdr_lighting_maps,"Norm");
 LUmatx = shader_get_uniform(shdr_lighting_maps,"Mat");
 LUsuv1 = shader_get_uniform(shdr_lighting_maps,"UV1");
 LUsuv2 = shader_get_uniform(shdr_lighting_maps,"UV2");
-globalvar TUnorm,TUbuvm,TUbuv1,TUbuv2;
+
+globalvar TUcolr,TUnorm,TUprop,TUbuvm,TUbuv1,TUbuv2,TUbuv3;
+TUcolr = shader_get_sampler_index(shdr_lighting_maps_terrain,"Colr");
 TUnorm = shader_get_sampler_index(shdr_lighting_maps_terrain,"Norm");
+TUprop = shader_get_sampler_index(shdr_lighting_maps_terrain,"Prop");
 TUbuvm = shader_get_uniform(shdr_lighting_maps_terrain,"UVM");
 TUbuv1 = shader_get_uniform(shdr_lighting_maps_terrain,"UV1");
 TUbuv2 = shader_get_uniform(shdr_lighting_maps_terrain,"UV2");
+TUbuv3 = shader_get_uniform(shdr_lighting_maps_terrain,"UV3");
 
 globalvar PUcolr,PUnorm,PUlpos,PUsize;
 PUcolr = shader_get_sampler_index(shdr_lighting_point,"Colr");
