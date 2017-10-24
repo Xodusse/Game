@@ -23,11 +23,13 @@ varying vec2 v_vCoord;
 uniform vec3 Pos;
 uniform sampler2D Colr;
 uniform sampler2D Norm;
+uniform sampler2D Prop;
 
 void main()
 {
     vec4 Color = texture2D(Colr,v_vMapcoord);
     vec3 Normal = normalize(texture2D(Norm,v_vMapcoord).xyz*2.0-1.0);
-    vec3 Ray = normalize(Pos-vec3(v_vCoord,0));
+    vec4 Proper = texture2D(Prop,v_vMapcoord);
+    vec3 Ray = normalize(Pos-vec3(v_vCoord,Proper.g*80.));
     gl_FragColor = vec4(Color.rgb,v_vColor.a*Color.a*exp(dot(Normal,Ray)*1.0-1.0));
 }

@@ -39,6 +39,7 @@ struct Render
 {
     float4 Colr : COLOR0;
     float4 Norm : COLOR1;
+    float4 Prop : COLOR2;
 };
 
 float2 TileCoord(float2 Coord,float2 Tile)
@@ -47,7 +48,7 @@ float2 TileCoord(float2 Coord,float2 Tile)
     float2 C = floor(Coord*64.);
     float2 F = 0.;
     F = step(0.,cos(C.yx*float2(3.7,4.1))+cos(C*float2(1.9,2.4))); //This is the tile flip and can be commented out.
-    return (F+frac(Coord*64.+Tile)*(1.-2.*F)+float2(floor(Map.g*12.),0))/16.;
+    return (F+frac(Coord*64.+Tile)*(1.-2.*F)+float2(floor(Map.g*11.),0))/16.;
 }
 
 void main(in Fragment IN, out Render OUT)
@@ -84,4 +85,6 @@ void main(in Fragment IN, out Render OUT)
     
     float3 Normal = normalize((N1*B.x+N2*B.y+N3*B.z+N4*B.w).xyz*2.0-1.0);
     OUT.Norm = float4(Normal*.5+.5,Color.a);
+    
+    OUT.Prop = P1*B.x+P2*B.y+P3*B.z+P4*B.w;
 }

@@ -1,6 +1,7 @@
 ///scr_lighting_end()
 // © 2017 - Jon Harvey
 
-surface_free(LScolr);
-surface_free(LSnorm);
-surface_free(LSligt);
+if surface_exists(LScolr) surface_free(LScolr);
+if surface_exists(LSnorm) surface_free(LSnorm);
+if surface_exists(LSprop) surface_free(LSprop);
+if surface_exists(LSligt) surface_free(LSligt);

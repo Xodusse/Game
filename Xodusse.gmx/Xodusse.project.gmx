@@ -140,8 +140,8 @@
     <background>background\bac_sheet</background>
     <background>background\bac_sheet_n</background>
     <background>background\bac_sheet_she</background>
-    <background>background\bac_menu</background>
     <background>background\bac_sheet_new</background>
+    <background>background\bac_menu</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -192,6 +192,7 @@
     <shader type="GLSLES">shaders\shdr_lighting_point.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_point_mask.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_direct.shader</shader>
+    <shader type="GLSLES">shaders\shdr_lighting_post.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>

@@ -58,7 +58,7 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_lighting_draw_sprite(spr_wall,spr_wall_n,image_index,x,y,1,1,image_angle,-1,1);
+            <string>scr_lighting_draw_sprite(spr_wall,spr_wall_n,spr_wall_she,image_index,x,y,1,1,image_angle,-1,1);
 </string>
           </argument>
         </arguments>

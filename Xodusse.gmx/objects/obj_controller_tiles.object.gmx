@@ -50,7 +50,8 @@ RoomNumber = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch(RoomNumber){
+            <string>//No property texture (SHE)
+/*switch(RoomNumber){
 
     default:
     
@@ -115,7 +116,7 @@ RoomNumber = 0;
         scr_lighting_draw_sprite(spr_t_wood_1,spr_t_wood_1_n,0,1328,848,1,1,0,-1,1);                                              
         
     break;
-}
+}*/
 </string>
           </argument>
         </arguments>

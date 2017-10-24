@@ -4,20 +4,23 @@
 var Acolr,Anorm,Asimg,Axpos,Aypos,Axscl,Ayscl,Arotn,Ablnd,Alpha
 Acolr = argument[0];
 Anorm = argument[1];
-Asimg = argument[2];
-Axpos = argument[3];
-Aypos = argument[4];
-Axscl = argument[5];
-Ayscl = argument[6];
-Arotn = argument[7];
-Ablnd = argument[8];
-Alpha = argument[9];
+Aprop = argument[2];
+Asimg = argument[3];
+Axpos = argument[4];
+Aypos = argument[5];
+Axscl = argument[6];
+Ayscl = argument[7];
+Arotn = argument[8];
+Ablnd = argument[9];
+Alpha = argument[10];
 
-var Vsuv1,Vsuv2,Vcolr,Vnorm,Vwidt,Vheig,Vxoff,Vyoff,Vxscl,Vyscl,Vxrot,Vyrot;
+var Vsuv1,Vsuv2,Vsuv3,Vcolr,Vnorm,Vprop,Vwidt,Vheig,Vxoff,Vyoff,Vxscl,Vyscl,Vxrot,Vyrot;
 Vsuv1 = sprite_get_uvs(Acolr,Asimg);
 Vsuv2 = sprite_get_uvs(Anorm,Asimg);
+Vsuv3 = sprite_get_uvs(Aprop,Asimg);
 Vcolr = sprite_get_texture(Acolr,Asimg);
 Vnorm = sprite_get_texture(Anorm,Asimg);
+Vprop = sprite_get_texture(Aprop,Asimg);
 Vwidt = sprite_get_width(Acolr);
 Vheig = sprite_get_height(Acolr);
 Vxoff = sprite_get_xoffset(Acolr)*Axscl*Vsuv1[6];
@@ -38,13 +41,16 @@ if abs(Axpos-view_xview[0]-view_wview[0]/2)<(Vwidt+view_wview[0]/2) || abs(Aypos
     
     surface_set_target_ext(0,LScolr);
     surface_set_target_ext(1,LSnorm);
+    surface_set_target_ext(2,LSprop);
     shader_set(shdr_lighting_maps);
     matrix_set(matrix_view,Vmatx);
     
     texture_set_stage(LUnorm,Vnorm);
+    texture_set_stage(LUprop,Vprop);
     shader_set_uniform_f(LUmatx,dcos(-Arotn)*Axscl,dsin(-Arotn)*Ayscl,dsin(-Arotn)*Axscl,-dcos(-Arotn)*Ayscl);
     shader_set_uniform_f(LUsuv1,Vsuv1[0],Vsuv1[1],Vsuv1[2],Vsuv1[3]);
     shader_set_uniform_f(LUsuv2,Vsuv2[0],Vsuv2[1],Vsuv2[2],Vsuv2[3]);
+    shader_set_uniform_f(LUsuv3,Vsuv3[0],Vsuv3[1],Vsuv3[2],Vsuv3[3]);
     
     draw_set_colour(Ablnd);
     draw_set_alpha(Alpha);

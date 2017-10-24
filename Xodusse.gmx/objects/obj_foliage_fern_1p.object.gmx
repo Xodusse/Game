@@ -78,7 +78,7 @@ image_speed = F1Q;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_lighting_draw_sprite(spr_foliage_fern_1,spr_foliage_fern_1_n,image_index,x,y,1,1,image_angle,-1,1);
+            <string>scr_lighting_draw_sprite(spr_foliage_fern_1,spr_foliage_fern_1_n,spr_foliage_fern_1_she,image_index,x,y,1,1,image_angle,-1,1);
 </string>
           </argument>
         </arguments>

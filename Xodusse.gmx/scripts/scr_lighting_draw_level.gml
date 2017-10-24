@@ -25,6 +25,7 @@ Vmatx[12] *= Vscal*GUIW/960;Vmatx[13] *= Vscal*GUIH/540;
 
 surface_set_target_ext(0,LScolr);
 surface_set_target_ext(1,LSnorm);
+surface_set_target_ext(2,LSprop);
 draw_set_blend_mode_ext(bm_inv_dest_alpha,bm_one);
 shader_set(shdr_lighting_maps_terrain);
 matrix_set(matrix_view,Vmatx);

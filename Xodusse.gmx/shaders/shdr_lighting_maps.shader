@@ -22,8 +22,10 @@ void main(in Attribute IN, out Fragment OUT)
 uniform float4 Mat;
 uniform float4 UV1;
 uniform float4 UV2;
+uniform float4 UV3;
 
 uniform sampler2D Norm;
+uniform sampler2D Prop;
 
 struct Fragment
 {
@@ -36,6 +38,7 @@ struct Render
 {
     float4 Colr : COLOR0;
     float4 Norm : COLOR1;
+    float4 Prop : COLOR2;
 };
 
 void main(in Fragment IN, out Render OUT)
@@ -46,4 +49,6 @@ void main(in Fragment IN, out Render OUT)
     float3 Normal = tex2D(Norm,frac(IN.Texcoord)*(UV2.zw-UV2.xy)+UV2.xy).xyz*2.0-1.0;
     Normal = normalize(float3(dot(Normal.xy,Mat.xy),dot(Normal.xy,Mat.zw),Normal.z));
     OUT.Norm = float4(Normal*.5+.5,Color.a);
+    
+    OUT.Prop = tex2D(Prop,frac(IN.Texcoord)*(UV3.zw-UV3.xy)+UV3.xy);
 }
