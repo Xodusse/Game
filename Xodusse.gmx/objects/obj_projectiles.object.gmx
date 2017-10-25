@@ -64,11 +64,17 @@ var Object = collision_line(x*2-xprevious,y*2-yprevious,xprevious,yprevious,obj_
 
 if instance_exists(Object) &amp;&amp; Object != Hit{
     
-    //Bounce
-    var Normal;
-    Normal = point_direction(Object.x,Object.y,x,y);
-    direction += angle_difference(Normal,direction);
-    image_angle = direction;
+    if !irandom(10){
+    
+        var Normal;
+        Normal = point_direction(Object.x,Object.y,x,y);
+        direction += angle_difference(Normal,direction);
+        image_angle = direction;
+    }
+    else{
+    
+        instance_destroy();
+    }
     
     if (Pexplode[Id]&gt;0){
         

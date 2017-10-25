@@ -25,7 +25,7 @@ uniform sampler2D Prop;
 void main()
 {
     vec4 Color = texture2D(Colr,v_vMapcoord);
-    vec3 Normal = texture2D(Norm,v_vMapcoord).xyz*2.0-1.0;
+    vec3 Normal = texture2D(Norm,v_vMapcoord).xyz*2.-1.;
     vec4 Proper = texture2D(Prop,v_vMapcoord);
-    gl_FragColor = vec4(v_vColor.rgb,v_vColor.a*Color.a*exp(dot(Normal,normalize(Dir))*1.0-1.0));
+    gl_FragColor = vec4(v_vColor.rgb,v_vColor.a*pow(dot(Normal,normalize(Dir))*.5+.5,3.));
 }

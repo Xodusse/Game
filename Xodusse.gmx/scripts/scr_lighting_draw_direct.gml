@@ -18,6 +18,7 @@ shader_set(shdr_lighting_direct);
 
 texture_set_stage(DUcolr,surface_get_texture(LScolr));
 texture_set_stage(DUnorm,surface_get_texture(LSnorm));
+texture_set_stage(DUprop,surface_get_texture(LSprop));
 shader_set_uniform_f(DUldir,Axpos,Aypos,Azpos);
 shader_set_uniform_f(DUsize,GUIW*Vscal,GUIH*Vscal);
 

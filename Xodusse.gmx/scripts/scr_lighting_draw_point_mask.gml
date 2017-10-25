@@ -38,6 +38,7 @@ matrix_set(matrix_view,Vmatx);
 
 texture_set_stage(MUcolr,surface_get_texture(LScolr));
 texture_set_stage(MUnorm,surface_get_texture(LSnorm));
+texture_set_stage(MUprop,surface_get_texture(LSprop));
 shader_set_uniform_f(MUlpos,Axpos,Aypos,Azpos);
 shader_set_uniform_f(MUsize,GUIW*Vscal,GUIH*Vscal);
 

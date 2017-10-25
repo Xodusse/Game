@@ -1,9 +1,10 @@
-///scr_lighting_draw_final(enable,ambient color)
+///scr_lighting_draw_final(ambient color, lighting, post process)
 // © 2017 - Jon Harvey
 
-var Aenbl,Aacol;
-Aenbl = argument[0];
-Aacol = argument[1];
+var Aacol,Aelig,Aepos;
+Aacol = argument[0];
+Aelig = argument[1];
+Aepos = argument[2];
 
 var Vscal;
 Vscal = obj_initialize.SETTING_SURFACE_SCALE;
@@ -17,7 +18,7 @@ draw_set_colour($FFFFFF);
 surface_set_target(application_surface);
 draw_surface(LScolr,0,0);
 
-if Aenbl{
+if Aelig{
     
     draw_set_blend_mode_ext(bm_inv_dest_alpha,bm_src_colour);
     draw_surface(LSligt,0,0);
@@ -25,13 +26,16 @@ if Aenbl{
 }
 surface_reset_target();
 
-surface_set_target(application_surface);
-shader_set(shdr_lighting_post);
-texture_set_stage(EUcolr,surface_get_texture(LScolr));
-texture_set_stage(EUprop,surface_get_texture(LSprop));
-draw_surface(application_surface,0,0);
-shader_reset();
-surface_reset_target();
+if Aepos{
+
+    surface_set_target(application_surface);
+    shader_set(shdr_lighting_post);
+    texture_set_stage(EUcolr,surface_get_texture(LScolr));
+    texture_set_stage(EUprop,surface_get_texture(LSprop));
+    draw_surface(application_surface,0,0);
+    shader_reset();
+    surface_reset_target();
+}
 
 surface_set_target(LSligt);
 draw_clear(Aacol);

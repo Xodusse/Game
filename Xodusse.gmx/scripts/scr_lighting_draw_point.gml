@@ -21,6 +21,7 @@ matrix_set(matrix_view,Vmatx);
 
 texture_set_stage(PUcolr,surface_get_texture(LScolr));
 texture_set_stage(PUnorm,surface_get_texture(LSnorm));
+texture_set_stage(PUprop,surface_get_texture(LSprop));
 shader_set_uniform_f(PUlpos,Axpos,Aypos,Azpos);
 shader_set_uniform_f(PUsize,GUIW*Vscal,GUIH*Vscal);
 
