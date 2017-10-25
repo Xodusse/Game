@@ -8,6 +8,88 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Set the background position:
+
+/*
+ * © 2017 - Reece Warren.
+ * MIT License.
+ */
+ 
+backgroundX = 0;
+backgroundX2 = 0;
+
+sinrate = 0;
+alpha = 0.5;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Set the background position:
+
+/*
+ * © 2017 - Reece Warren.
+ * MIT License.
+ */
+ 
+backgroundX -= S90;
+backgroundX2 += S90;
+
+if (backgroundX &lt;= -1024){
+    backgroundX = 0;
+}
+
+if (backgroundX2 &gt;= 2048){
+    backgroundX2 = 0;
+}
+
+sinrate += F1/90;
+if (sinrate &gt;= 1){
+    sinrate = 0;
+}
+
+var angle = sinrate * 90
+
+alpha = sin(angle);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,13 +107,40 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//© 2017 - Reece Warren
+            <string>//Draw menu elements:
+
+/*
+ * © 2017 - Reece Warren.
+ * MIT License.
+ */
 
 if (room != rm_test1){
     
     if (room == rm_main){
-        draw_sprite(spr_logo_0,0,960-240,540-156);
-        draw_sprite(spr_logo_1,0,960-240,540-156);       
+        //Draw clouds:
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,540/2,1,1,-1,1);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,540/2,2,2,-1,0.75);
+        
+        //Draw lighting:
+        draw_sprite_ext(spr_menu_gradient,0,128,540,1,0.5,0,-1,alpha);
+        draw_sprite_ext(spr_menu_gradient,0,128,540,1,0.5,0,-1,0.5);      
+    
+        //Draw game logo:
+        draw_sprite(spr_logo_0,0,-36,160);
+        draw_sprite(spr_logo_1,0,-36,160); 
+        
+        //Draw version:
+        draw_set_font(fnt_Exudation);
+        draw_set_colour($FFFFFF);
+        draw_set_halign(fa_right);
+        draw_text(960-32,424,"© 2017 - Reece Warren, Jon Harvey. MIT License.");
+        draw_text(960-32,448,"Version 165");
+        draw_text(960-32,424,"© 2017 - Reece Warren, Jon Harvey. MIT License.");
+        draw_text(960-32,448,"Version 165");
+        draw_set_halign(fa_left);        
+        draw_set_colour(-1);
+        draw_set_font(-1); 
+          
     }
 }
 </string>

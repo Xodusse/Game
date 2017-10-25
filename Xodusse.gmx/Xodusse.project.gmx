@@ -58,6 +58,8 @@
     <sprites name="Menu">
       <sprite>sprites\spr_logo_0</sprite>
       <sprite>sprites\spr_logo_1</sprite>
+      <sprite>sprites\spr_menu_clouds</sprite>
+      <sprite>sprites\spr_menu_gradient</sprite>
     </sprites>
     <sprites name="Buttons">
       <sprite>sprites\spr_button_large</sprite>

@@ -204,7 +204,7 @@
     <option_androidtv_use_test_ads>false</option_androidtv_use_test_ads>
     <option_argumenterrors>True</option_argumenterrors>
     <option_audioGroupCount>1</option_audioGroupCount>
-    <option_author></option_author>
+    <option_author>Reece Warren, Jon Harvey</option_author>
     <option_backimage>nil</option_backimage>
     <option_borderless>False</option_borderless>
     <option_changed>false</option_changed>
@@ -467,8 +467,8 @@
     <option_use_fast_collision>False</option_use_fast_collision>
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
-    <option_version>100</option_version>
-    <option_version_build>4</option_version_build>
+    <option_version>165</option_version>
+    <option_version_build>5</option_version_build>
     <option_version_company>Warrenaterz &amp; Xor</option_version_company>
     <option_version_copyright>© 2017 - Jon Harvey, Reece Warren. MIT.</option_version_copyright>
     <option_version_description>Xodusse</option_version_description>
@@ -548,7 +548,7 @@
     <option_winUAP_wide_logo>Configs\Default\WindowsUAP\logos\WideLogo.scale-100.png</option_winUAP_wide_logo>
     <option_windowcolor>clBlack</option_windowcolor>
     <option_windows_alternate_sync_method>False</option_windows_alternate_sync_method>
-    <option_windows_build_version>4</option_windows_build_version>
+    <option_windows_build_version>5</option_windows_build_version>
     <option_windows_company_info>Warrenaterz &amp; Xor</option_windows_company_info>
     <option_windows_copyright_info>© 2017 - Jon Harvey, Reece Warren. MIT.</option_windows_copyright_info>
     <option_windows_create_textures_on_demand>False</option_windows_create_textures_on_demand>
