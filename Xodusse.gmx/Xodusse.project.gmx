@@ -231,7 +231,7 @@
         <object>objects\obj_Barrel_Puddle</object>
       </objects>
       <objects name="Foliage">
-        <object>objects\obj_foliage_fern_1p</object>
+        <object>objects\obj_foliage_fern_1</object>
       </objects>
       <objects name="Projectiles">
         <object>objects\obj_projectiles</object>

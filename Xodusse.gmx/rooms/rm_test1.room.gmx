@@ -56,45 +56,6 @@
     <instance objName="obj_crate_spawner" x="720" y="208" name="inst_114C060A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player" x="480" y="256" name="inst_F8EC6A26" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_item" x="960" y="128" name="inst_63297FC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="576" y="352" name="inst_30568416" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="592" y="344" name="inst_DCE56EFD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="40"/>
-    <instance objName="obj_foliage_fern_1p" x="592" y="360" name="inst_DC44D066" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="170"/>
-    <instance objName="obj_foliage_fern_1p" x="576" y="336" name="inst_879BF13B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="20"/>
-    <instance objName="obj_foliage_fern_1p" x="592" y="328" name="inst_7C0FB701" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="608" y="336" name="inst_BE97C4CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="35"/>
-    <instance objName="obj_foliage_fern_1p" x="608" y="352" name="inst_2588F626" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="624" y="320" name="inst_404FB2C4" locked="0" code="" scaleX="0.800000011920929" scaleY="0.800000011920929" colour="4294967295" rotation="190"/>
-    <instance objName="obj_foliage_fern_1p" x="744" y="408" name="inst_D2E1854E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="728" y="424" name="inst_89F39C71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="40"/>
-    <instance objName="obj_foliage_fern_1p" x="744" y="424" name="inst_FF512780" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="728" y="400" name="inst_F451C31F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="30"/>
-    <instance objName="obj_foliage_fern_1p" x="712" y="416" name="inst_C5E0B37D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="704" y="440" name="inst_20489A18" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="720" y="456" name="inst_D5BCA705" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="600" y="136" name="inst_1AF5B80C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="608" y="152" name="inst_6A1C6F34" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="30"/>
-    <instance objName="obj_foliage_fern_1p" x="584" y="152" name="inst_DFF8C18E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="576" y="128" name="inst_BF64C346" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="584" y="136" name="inst_60720536" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="50"/>
-    <instance objName="obj_foliage_fern_1p" x="560" y="152" name="inst_958375C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-45"/>
-    <instance objName="obj_foliage_fern_1p" x="592" y="168" name="inst_657132A0" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="560" y="184" name="inst_49F18C90" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="60"/>
-    <instance objName="obj_foliage_fern_1p" x="568" y="200" name="inst_3CBC2508" locked="0" code="" scaleX="-1" scaleY="-1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="592" y="192" name="inst_E51042E5" locked="0" code="" scaleX="0.699999988079071" scaleY="0.699999988079071" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="584" y="136" name="inst_22511E8C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="50"/>
-    <instance objName="obj_foliage_fern_1p" x="320" y="320" name="inst_9DE410E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="45"/>
-    <instance objName="obj_foliage_fern_1p" x="336" y="336" name="inst_EC2EA120" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="312" y="336" name="inst_047A4279" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="304" y="304" name="inst_0281350D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="344" y="312" name="inst_6EA4391B" locked="0" code="" scaleX="0.800000011920929" scaleY="0.800000011920929" colour="4294967295" rotation="-30"/>
-    <instance objName="obj_foliage_fern_1p" x="296" y="328" name="inst_1A2136AB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="752" y="296" name="inst_033EC0B5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="768" y="280" name="inst_320AFEF9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="45"/>
-    <instance objName="obj_foliage_fern_1p" x="768" y="304" name="inst_662B4B9D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="736" y="280" name="inst_2A748AB9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="720" y="312" name="inst_8CBEB0CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="752" y="328" name="inst_C2818295" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_foliage_fern_1p" x="744" y="312" name="inst_EBFD352D" locked="0" code="" scaleX="1.25" scaleY="1.25" colour="4294967295" rotation="10"/>
     <instance objName="obj_rug_large" x="976" y="256" name="inst_CBBE5572" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-90"/>
     <instance objName="obj_rug_small" x="1088" y="224" name="inst_55A42284" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="obj_rug_small" x="960" y="128" name="inst_894E5087" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

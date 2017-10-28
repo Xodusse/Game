@@ -160,8 +160,11 @@ else if (BUTTON_TYPE == 1){
 
     if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){ 
         //Main menu:
-        event_user(0);
-        PAUSED = false; 
+        if (instance_exists(obj_player)){
+            obj_player.Health = 0;
+        }
+        PAUSED = false;
+        room_goto(rm_main);         
     }         
 }
 
@@ -189,7 +192,7 @@ else if (BUTTON_TYPE == 1){
           <argument>
             <kind>1</kind>
             <string>//Go to the Main menu:
-room_goto(rm_main);
+
 </string>
           </argument>
         </arguments>
