@@ -195,7 +195,7 @@ K5 = keyboard_check_released(KI5);
 K6 = keyboard_check_released(KI6);
 
 //Quit game
-if !(CONSOLE_ENABLED) &amp;&amp; (Kescape) {
+if !(CONSOLE_ENABLED) &amp;&amp; (Kescape) &amp;&amp; (room != rm_main) &amp;&amp; (room != rm_game) &amp;&amp; (room != rm_options) {
     PAUSED = !PAUSED;
     
     //Create pause menu buttons:
