@@ -197,25 +197,26 @@ K6 = keyboard_check_released(KI6)*!CONSOLE_ENABLED;
 //Quit game
 if !(CONSOLE_ENABLED) &amp;&amp; (Kescape) {
 
-if !(CONSOLE_ENABLED) &amp;&amp; (Kescape) &amp;&amp; (room != rm_main) &amp;&amp; (room != rm_game) &amp;&amp; (room != rm_options) {
-    PAUSED = !PAUSED;
-    
-    //Create pause menu buttons:
-    if (PAUSED == true){
-    
-        var button0 = instance_create(
-            (view_xview[0]+(view_wview[0]/2)),
-            (view_yview[0]+(view_hview[0]/2)),
-            obj_button_pause);
-        button0.BUTTON_TYPE = 0;
+    if !(CONSOLE_ENABLED) &amp;&amp; (Kescape) &amp;&amp; (room != rm_main) &amp;&amp; (room != rm_game) &amp;&amp; (room != rm_options) {
+        PAUSED = !PAUSED;
         
-        var button0 = instance_create(
-            (view_xview[0]+(view_wview[0]/2))-(dcos(VIEW_ANGLE+90)*-64),
-            (view_yview[0]+(view_hview[0]/2))-(dsin(VIEW_ANGLE+90)*-64),
-            obj_button_pause);
-        button0.BUTTON_TYPE = 1;
+        //Create pause menu buttons:
+        if (PAUSED == true){
         
-    }    
+            var button0 = instance_create(
+                (view_xview[0]+(view_wview[0]/2)),
+                (view_yview[0]+(view_hview[0]/2)),
+                obj_button_pause);
+            button0.BUTTON_TYPE = 0;
+            
+            var button0 = instance_create(
+                (view_xview[0]+(view_wview[0]/2))-(dcos(VIEW_ANGLE+90)*-64),
+                (view_yview[0]+(view_hview[0]/2))-(dsin(VIEW_ANGLE+90)*-64),
+                obj_button_pause);
+            button0.BUTTON_TYPE = 1;
+            
+        }    
+    }
 }
 </string>
           </argument>
