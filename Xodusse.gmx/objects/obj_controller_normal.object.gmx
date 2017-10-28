@@ -142,7 +142,7 @@ if instance_exists(obj_player){
     scr_lighting_draw_point_mask(spr_light,0,obj_player.x,obj_player.y,0,2,2,obj_player.GunDirection,$FFFFFF,1);
 }
 
-scr_lighting_draw_final($080508,1,1);
+scr_lighting_draw_final($080508,1,0);
 </string>
           </argument>
         </arguments>

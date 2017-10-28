@@ -27,5 +27,5 @@ void main()
     vec4 Color = texture2D(Colr,v_vMapcoord);
     vec3 Normal = texture2D(Norm,v_vMapcoord).xyz*2.-1.;
     vec4 Proper = texture2D(Prop,v_vMapcoord);
-    gl_FragColor = vec4(v_vColor.rgb,v_vColor.a*pow(dot(Normal,normalize(Dir))*.5+.5,3.));
+    gl_FragColor = vec4(v_vColor.rgb,v_vColor.a*(pow(dot(Normal,normalize(Dir))*.5+.5,3.)+Proper.r*smoothstep(.8,.9,reflect(-normalize(Dir),Normal).z)));
 }

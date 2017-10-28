@@ -1,35 +1,55 @@
-attribute vec4 in_Color;
-attribute vec3 in_Position;
-
-varying vec4 v_vColor;
-varying vec2 v_vMapcoord;
-varying vec2 v_vCoord;
-
-uniform vec2 Size;
-
-void main()
+struct Attribute 
 {
-    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position,1);
+    float4 Position : POSITION;
+    float4 Color    : COLOR0;
+};
+
+struct Fragment
+{
+    float4 Position : POSITION;
+    float4 Color    : COLOR0;
+    float2 Coord    : TEXCOORD0;
+    float2 MapCoord : TEXCOORD1;
+};
+
+uniform float2 Size;
+
+void main(in Attribute IN, out Fragment OUT)
+{
+    OUT.Position = mul(gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION],IN.Position);
+    OUT.Color = IN.Color;
     
-    v_vColor = in_Color;
-    v_vMapcoord = (gm_Matrices[MATRIX_VIEW] * vec4(in_Position,1)).xy/Size+0.5;
-    v_vCoord = in_Position.xy;
+    OUT.MapCoord = mul(gm_Matrices[MATRIX_VIEW],IN.Position).xy/Size+0.5;
+    OUT.Coord = IN.Position.xy;
 }
 //######################_==_YOYO_SHADER_MARKER_==_######################@~
-varying vec4 v_vColor;
-varying vec2 v_vMapcoord;
-varying vec2 v_vCoord;
-
-uniform vec3 Pos;
+uniform float3 Pos;
 uniform sampler2D Colr;
 uniform sampler2D Norm;
 uniform sampler2D Prop;
 
-void main()
+struct Fragment
 {
-    vec4 Color = texture2D(Colr,v_vMapcoord);
-    vec3 Normal = normalize(texture2D(Norm,v_vMapcoord).xyz*2.-1.);
-    vec4 Proper = texture2D(Prop,v_vMapcoord);
-    vec3 Ray = normalize(Pos-vec3(v_vCoord,0.));
-    gl_FragColor = vec4(Color.rgb,v_vColor.a*pow(dot(Normal,Ray)*.5+.5,3.));
+    float4 Position : POSITION;
+    float4 Color    : COLOR0;
+    float2 Coord    : TEXCOORD0;
+    float2 MapCoord : TEXCOORD1;
+};
+
+struct Render
+{
+    float4 Prop : COLOR0;
+    float4 Ligt : COLOR1;
+};
+
+void main(in Fragment IN, out Render OUT)
+{
+    float4 Color = tex2D(Colr,IN.MapCoord);
+    float3 Normal = normalize(tex2D(Norm,IN.MapCoord).xyz*2.-1.);
+    float4 Proper = tex2D(Prop,IN.MapCoord);
+    float3 Ray = normalize(Pos-float3(IN.Coord,Proper.g*0.));
+    float Spec = Proper.r*smoothstep(.0,.9,reflect(-Ray,Normal).z);
+    
+    OUT.Prop = 0;//float4(0,0,IN.Color.a*Spec,0);
+    OUT.Ligt = float4(Color.rgb,IN.Color.a*(pow(dot(Normal,Ray)*.5+.5,3.)+Spec));
 }

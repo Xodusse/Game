@@ -130,28 +130,23 @@ if (DEBUG_VISIBLE == true){
     // -- LEFT --
     
     //Version number:
-    draw_text(8, 10,
-        "Xodusse V.165");
+    draw_text(8, 10, "#V"+string(GM_version));
     
     //Copyright:
-    draw_text(8, 35,
-        "© 2017 - Reece Warren, Jon Harvey. MIT License.");
+    draw_text(8, 35, "#© 2017 - Reece Warren, Jon Harvey. MIT License.");
         
     //X &amp; Y &amp; R:
-    draw_text(8, 85,
-        "X = " + string(player_x) + "  Y = " + string(player_y) + "  R = " + string(view_a));
+    draw_text(8, 85, "#X = " + string(player_x) + "  Y = " + string(player_y) + "  R = " + string(view_a));
         
     //Speed and Direction:
-    draw_text(8, 110,
-        "P_Dir = " + string(player_dir) + " P_Speed = " + string(player_speed));
+    draw_text(8, 110, "#P_Dir = " + string(player_dir) + " P_Speed = " + string(player_speed));
     
     // -- RIGHT --    
             
     draw_set_halign(fa_right);
     
     //FPS:
-    draw_text(GUIW - 8, 10,
-        "FPS = " + string(FPS) + " dF = " + string(dF));
+    draw_text(GUIW - 8, 10, "#FPS = " + string(FPS) + " dF = " + string(dF));
         
     //Virtual Memory:
     //draw_text(GUIW - 8, 35,
@@ -162,28 +157,23 @@ if (DEBUG_VISIBLE == true){
     //     "Memory_Phy = " + string(memory_p) + "kB");
          
     //Current alien count:
-    draw_text(GUIW - 8, 110,
-         "AlienCountCurrent: " + string(AlienCountCurrent)); 
+    draw_text(GUIW - 8, 110, "#AlienCountCurrent: " + string(AlienCountCurrent)); 
          
     //Current alien max:
-    draw_text(GUIW - 8, 135,
-         "AlienMax: " + string(AlienMax));
+    draw_text(GUIW - 8, 135, "#AlienMax: " + string(AlienMax));
          
     //Current aliens remaining:
-    draw_text(GUIW - 8, 160,
-         "AlienCountRemaining: " + string(AlienCountRemaining));
+    draw_text(GUIW - 8, 160, "#AlienCountRemaining: " + string(AlienCountRemaining));
          
     /*Draw the keyboard key:
     draw_text(view_wview[0] - 8, 160,
          string(keyboard_key));*/
          
     //Wave:
-    draw_text(GUIW - 8, 210,
-         "Wave: " + string(Wave));
+    draw_text(GUIW - 8, 210, "#Wave: " + string(Wave));
          
     //Wave:
-    draw_text(GUIW - 8, 235,
-         "Surface Scale: " + string(obj_initialize.SETTING_SURFACE_SCALE) + "x");           
+    draw_text(GUIW - 8, 235, "#Surface Scale: " + string(obj_initialize.SETTING_SURFACE_SCALE) + "x");           
          
     // -- RESET --
     draw_set_halign(fa_left);

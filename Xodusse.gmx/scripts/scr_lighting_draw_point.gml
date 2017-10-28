@@ -14,7 +14,9 @@ Vmatx = matrix_get(matrix_view);
 Vmatx[0] *= Vscal*GUIW/960;Vmatx[1] *= Vscal*GUIH/540;
 Vmatx[4] *= Vscal*GUIW/960;Vmatx[5] *= Vscal*GUIH/540;
 Vmatx[12] *= Vscal*GUIW/960;Vmatx[13] *= Vscal*GUIH/540;
-surface_set_target(LSligt);
+surface_set_target_ext(0,LSprop);
+surface_set_target_ext(1,LSligt);
+
 draw_set_blend_mode(bm_add);
 shader_set(shdr_lighting_point);
 matrix_set(matrix_view,Vmatx);

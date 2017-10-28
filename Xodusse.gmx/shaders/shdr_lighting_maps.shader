@@ -50,5 +50,5 @@ void main(in Fragment IN, out Render OUT)
     Normal = normalize(float3(dot(Normal.xy,Mat.xy),dot(Normal.xy,Mat.zw),Normal.z));
     OUT.Norm = float4(Normal*.5+.5,Color.a);
     
-    OUT.Prop = tex2D(Prop,frac(IN.Texcoord)*(UV3.zw-UV3.xy)+UV3.xy);
+    OUT.Prop = float4(tex2D(Prop,frac(IN.Texcoord)*(UV3.zw-UV3.xy)+UV3.xy).rgb,Color.a);
 }

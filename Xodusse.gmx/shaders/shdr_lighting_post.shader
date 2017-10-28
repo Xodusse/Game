@@ -30,5 +30,5 @@ void main()
     Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(-1,1)/Size,0.,1.)).b;
     Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(0,2)/Size,0.,1.)).b;
     Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(1,1)/Size,0.,1.)).b;
-    gl_FragColor = vec4(mix(Tex.rgb,Color.rgb,Emission/10.),Tex.a);
+    gl_FragColor = vec4(Color.rgb+(Emission/10.),Tex.a);
 }

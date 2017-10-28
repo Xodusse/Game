@@ -1,4 +1,4 @@
-///scr_lighting_draw_sprite(color sprite,normal sprite,subimg,x,y,xscale,yscale,rot,color,alpha)
+///scr_lighting_draw_sprite(color sprite,normal sprite,property sprite,subimg,x,y,xscale,yscale,rot,color,alpha)
 // © 2017 - Jon Harvey
 
 var Acolr,Anorm,Asimg,Axpos,Aypos,Axscl,Ayscl,Arotn,Ablnd,Alpha

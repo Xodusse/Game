@@ -187,15 +187,16 @@ Kconsole = keyboard_check_released(KIconsole);
 Kescape = keyboard_check_released(KIescape);
 
 //Number keys:
-K1 = keyboard_check_released(KI1);
-K2 = keyboard_check_released(KI2);
-K3 = keyboard_check_released(KI3);
-K4 = keyboard_check_released(KI4);
-K5 = keyboard_check_released(KI5);
-K6 = keyboard_check_released(KI6);
+K1 = keyboard_check_released(KI1)*!CONSOLE_ENABLED;
+K2 = keyboard_check_released(KI2)*!CONSOLE_ENABLED;
+K3 = keyboard_check_released(KI3)*!CONSOLE_ENABLED;
+K4 = keyboard_check_released(KI4)*!CONSOLE_ENABLED;
+K5 = keyboard_check_released(KI5)*!CONSOLE_ENABLED;
+K6 = keyboard_check_released(KI6)*!CONSOLE_ENABLED;
 
 //Quit game
 if !(CONSOLE_ENABLED) &amp;&amp; (Kescape) {
+
     PAUSED = !PAUSED;
     
     //Create pause menu buttons:

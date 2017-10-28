@@ -86,5 +86,5 @@ void main(in Fragment IN, out Render OUT)
     float3 Normal = normalize((N1*B.x+N2*B.y+N3*B.z+N4*B.w).xyz*2.0-1.0);
     OUT.Norm = float4(Normal*.5+.5,Color.a);
     
-    OUT.Prop = P1*B.x+P2*B.y+P3*B.z+P4*B.w;
+    OUT.Prop =  float4((P1*B.x+P2*B.y+P3*B.z+P4*B.w).rgb,Color.a);
 }

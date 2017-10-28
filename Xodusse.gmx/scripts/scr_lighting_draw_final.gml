@@ -38,7 +38,7 @@ if Aepos{
 }
 
 surface_set_target(LSligt);
-draw_clear(Aacol);
+draw_clear_alpha(Aacol,0);
 surface_reset_target();
 
 surface_set_target_ext(0,LScolr);
