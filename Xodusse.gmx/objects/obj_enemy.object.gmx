@@ -205,7 +205,7 @@ else{
 //Check health.
 if Health&lt;=0
 {
-    //Play death sound 20% chance:
+    //Play death sound 50% chance:
     var chance = irandom(100);
     if (chance &lt;= 50){   
         if (instance_exists(obj_player)){
@@ -213,6 +213,12 @@ if Health&lt;=0
                 var deathsound = choose(0,1,2,3,4);
                 audio_play_sound(
                     asset_get_index("snd_enemy_death_" + string(deathsound)), 1, false);
+                
+                //Drop ammo.
+                if !irandom(8){
+                    var Type = irandom(3);
+                    scr_inventory_drop(Idoubles*2+Isingles+Igrenades+1+Type,ceil(sqrt(random(1))*Gcap[Type]),x,y,SpeedX,SpeedY);
+                }
             }
         }
     }

@@ -1,15 +1,15 @@
 ///scr_lighting_draw_level(level map,color sheet,normal sheet,property sheet,x,y)
 // © 2017 - Jon Harvey
 
-var Alevl,Acolr,Anorm,Aprop,Ax,Ay;
+var Alevl,Acolr,Anorm,Aprop,Axpos,Aypos;
 Alevl = argument[0];
 Acolr = argument[1];
 Anorm = argument[2];
 Aprop = argument[3];
-Ax = argument[4];
-Ay = argument[5];
+Axpos = argument[4];
+Aypos = argument[5];
 
-var Vbuvm,Vbuv1,Vbuv2,Vbuv3,Vcolr,Vnorm,Vprop,Vx,Vy;
+var Vbuvm,Vbuv1,Vbuv2,Vbuv3,Vcolr,Vnorm,Vprop,Vxpos,Vypos;
 Vbuvm = background_get_uvs(Alevl);
 Vbuv1 = background_get_uvs(Acolr);
 Vbuv2 = background_get_uvs(Anorm);
@@ -17,8 +17,8 @@ Vbuv3 = background_get_uvs(Aprop);
 Vcolr = background_get_texture(Acolr);
 Vnorm = background_get_texture(Anorm);
 Vprop = background_get_texture(Aprop);
-Vx = Ax - GUIW;
-Vy = Ay - GUIH;
+Vxpos = Axpos - GUIW;
+Vypos = Aypos - GUIH;
 
 var Vscal,Vmatx;
 Vscal = obj_initialize.SETTING_SURFACE_SCALE;
@@ -42,8 +42,8 @@ shader_set_uniform_f(TUbuv1,Vbuv1[0],Vbuv1[1],Vbuv1[2],Vbuv1[3]);
 shader_set_uniform_f(TUbuv2,Vbuv2[0],Vbuv2[1],Vbuv2[2],Vbuv2[3]);
 shader_set_uniform_f(TUbuv3,Vbuv3[0],Vbuv3[1],Vbuv3[2],Vbuv3[3]);
 
-for(var Mx = floor(Vx/2048); Mx<=ceil(Vx/2048);Mx++)
-for(var My = floor(Vy/2048); My<=ceil(Vy/2048);My++)
+for(var Mx = floor(Vxpos/2048); Mx<=ceil(Vxpos/2048);Mx++)
+for(var My = floor(Vypos/2048); My<=ceil(Vypos/2048);My++)
 {
     draw_primitive_begin_texture(pr_trianglestrip,1);
     draw_vertex_texture(Mx*2048,My*2048,0,0);

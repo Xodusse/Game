@@ -141,6 +141,16 @@ if instance_exists(obj_player){
     scr_lighting_draw_point_mask(spr_light,0,obj_player.x,obj_player.y,100,2,2,obj_player.GunDirection,$FFFFFF,1);
 }
 
+with(obj_explosion){
+    
+    scr_lighting_draw_point(x,y,100,512*Scale*sqr(Timer*2),$AACCDD);
+}
+
+with(obj_projectiles){
+    
+    scr_lighting_draw_point(x,y,100,64,$447788);
+}
+
 scr_lighting_draw_final($080508,1,1);
 </string>
           </argument>

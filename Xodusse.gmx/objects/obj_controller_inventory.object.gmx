@@ -82,8 +82,6 @@ I[4] = 5;
 Q[4] = Gcap[2];
 I[5] = 6;
 Q[5] = Gcap[3];
-I[6] = 7;
-Q[6] = 30;
 </string>
           </argument>
         </arguments>

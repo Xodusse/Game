@@ -345,15 +345,15 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                 Q[P[Current]]--;
                 //Handle grenade.
                 var ThrowSpeedX,ThrowSpeedY,Throw;
-                ThrowSpeedX = (mouse_x-x)/60+SpeedX;
-                ThrowSpeedY = (mouse_y-y)/60+SpeedY;
+                ThrowSpeedX = (mouse_x-x)/40+SpeedX;
+                ThrowSpeedY = (mouse_y-y)/40+SpeedY;
                 Throw = instance_create(x,y,obj_grenade);
                 
                 Throw.Z = 50;
                 Throw.SpeedA = random(20);
                 Throw.SpeedX = ThrowSpeedX;
                 Throw.SpeedY = ThrowSpeedY;
-                Throw.SpeedZ = sqrt(max(10000-sqr(ThrowSpeedX)+sqr(ThrowSpeedY),0.01));
+                Throw.SpeedZ = sqrt(sqr(ThrowSpeedX)+sqr(ThrowSpeedY));
                 Reload = 0;
             }
             else{
@@ -471,7 +471,7 @@ Melee *= S90;
 //Melee when not meleeing, swapping or firing.
 if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
 
-    if !Count || (Reload&gt;=Greload[G[Current]] &amp;&amp; Rate&gt;=1/Grate[G[Current]]){
+    if !Grenade &amp;&amp; (!Count || (Reload&gt;=Greload[G[Current]] &amp;&amp; Rate&gt;=1/Grate[G[Current]])){
         
         Melee = 1;
         with(obj_game_object){
@@ -522,7 +522,7 @@ MouseY = window_mouse_get_y();
 
 if obj_initialize.SETTING_CONTROL_MODE{
     
-    Turn = sign(GUIW/2-MouseX)*(1-MouseY/GUIH)*((abs(MouseX-GUIW/2)*2/GUIW)&gt;.72+.4*MouseY/GUIH);
+    Turn = sign(GUIW/2-MouseX)*(1-MouseY/GUIH)*((abs(MouseX-GUIW/2)*2/GUIW)&gt;.5+.7*MouseY/GUIH);
 }
 //Smooth turn speed for turning motion.
 TurnSpeed = TurnSpeed*S90+(1-S90)*Turn;
@@ -567,6 +567,8 @@ SpeedX = SpeedX*S90+(1-S90)*(SumX);
 SpeedY = SpeedY*S90+(1-S90)*(SumY);
 x += SpeedX*FRAME_DELTA;
 y += SpeedY*FRAME_DELTA;
+x = clamp(x,0,2048);
+y = clamp(y,0,2048);
 
 //Update walk frame
 var Speed = sqrt(sqr(SpeedX)+sqr(SpeedY));

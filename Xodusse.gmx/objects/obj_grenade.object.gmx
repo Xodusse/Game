@@ -87,7 +87,7 @@ if instance_exists(Object) &amp;&amp; (Object.object_index != obj_player) &amp;&
     Normal = point_direction(Object.x,Object.y,x,y);
     Direction = darctan2(-SpeedY,SpeedX);
     Direction += angle_difference(Normal,Direction);
-    Length = sqrt(sqr(SpeedX)+sqr(SpeedY));
+    Length = sqrt(sqr(SpeedX)+sqr(SpeedY))*.8;
     SpeedX = dcos(Direction)*Length;
     SpeedY = dcos(Direction)*Length;
 }
@@ -97,16 +97,15 @@ var SumX,SumY;
 SumX = SpeedX;
 SumY = SpeedY;
 
-//Get pushed by enemies.
+//Get pushed by all objects.
 for(var i = instance_number(obj_game_object);i&gt;=0;i--){
 
     var Inst = instance_find(obj_game_object,i);
-    if (Inst!=id) &amp;&amp; (Inst!=noone){
+    if (Inst!=noone) &amp;&amp; (Inst!=id){
         
         var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
         if (Distance&lt;Radius+Inst.Radius){
             
-
             var NormX = (x+SpeedX-(Inst.x+Inst.SpeedX))/Distance;
             var NormY = (y+SpeedY-(Inst.y+Inst.SpeedY))/Distance;
             SumX += NormX*(Radius+Inst.Radius-Distance);
@@ -127,7 +126,7 @@ SpeedY = SpeedY*S90+(1-S90)*(SumY);
 image_angle += SpeedA*FRAME_DELTA;
 image_xscale = 1+.001*Z;
 image_yscale = 1+.001*Z;
-depth = -Z;
+depth = -2;
 
 //Control movement.
 x += SpeedX*FRAME_DELTA;
