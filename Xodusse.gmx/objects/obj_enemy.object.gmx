@@ -105,6 +105,7 @@ AiTargetY += FRAME_DELTA*AiTargetSpeedY;
 
 
 if instance_exists(obj_player){
+    
     var Visible = (point_distance(obj_player.x,obj_player.y,x+dcos(WalkDirection)*AiSight,y-dsin(WalkDirection)*AiSight)&lt;AiSight) &amp;&amp;
     ((collision_line(obj_player.x,obj_player.y,x+dsin(WalkDirection)*AiEye,y+dcos(WalkDirection)*AiEye,obj_wall,0,1) == noone) ||
     (collision_line(obj_player.x,obj_player.y,x-dsin(WalkDirection)*AiEye,y-dcos(WalkDirection)*AiEye,obj_wall,0,1) == noone));
@@ -195,6 +196,10 @@ var Inst = instance_place(x+SpeedX*10,y+SpeedY*10,obj_wall);
 if Inst != noone{
 
     WalkDirection += FRAME_DELTA*0.2*angle_difference(point_direction(Inst.x,Inst.y,x,y),WalkDirection);
+}
+else{
+    
+    WalkDirection += FRAME_DELTA*0.1*angle_difference(point_direction(0,0,SpeedX,SpeedY),WalkDirection);
 }
 
 //Check health.
