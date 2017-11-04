@@ -153,9 +153,9 @@ if (room != rm_test1){
         draw_set_colour($FFFFFF);
         draw_set_halign(fa_right);
         draw_text(960-32,424,"© 2017 - Reece Warren, Jon Harvey. MIT License.");
-        draw_text(960-32,448,"Version 166");
+        draw_text(960-32,448,"Version: " + string(GM_version));
         draw_text(960-32,424,"© 2017 - Reece Warren, Jon Harvey. MIT License.");
-        draw_text(960-32,448,"Version 166");
+        draw_text(960-32,448,"Version: " + string(GM_version));
         draw_set_halign(fa_left);        
         draw_set_colour(-1);
         draw_set_font(-1); 

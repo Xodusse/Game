@@ -140,6 +140,9 @@ if (file_exists("Config.Xodusse")){
     //LOAD SURFACE SCALE:
     scr_cread_surfacescale(); 
     
+    //LOAD CONTROL MODE:
+    scr_cread_controlmode();
+    
 }
 
 
@@ -173,7 +176,10 @@ else {
     SETTING_RESOLUTION = 0;
     
     //Surface Scale - Real (Can return: [1 for 1x], [2 for 2x], [4 for 4x].)
-    SETTING_SURFACE_SCALE = 1;     
+    SETTING_SURFACE_SCALE = 1;
+    
+    //Mouse control mode (Can return: [0 for Q&amp;E rotation], [1 for Mouse].):
+    SETTING_CONTROL_MODE = 0;     
         
     // -----
 
@@ -188,6 +194,7 @@ else {
     var C_Fullscreen = SETTING_FULLSCREEN;
     var C_Resolution = SETTING_RESOLUTION;
     var C_SurfaceScale = SETTING_SURFACE_SCALE;
+    var C_ControlMode = SETTING_CONTROL_MODE;
     
     //Write Settings:
     file_text_write_string(Config_File, "[ XODUSSE CONFIGURATION ]");
@@ -218,6 +225,9 @@ else {
     file_text_write_real(Config_File, C_SurfaceScale);
     file_text_writeln(Config_File);
     
+    file_text_write_string(Config_File, "CONTROL MODE: ");
+    file_text_write_real(Config_File, C_ControlMode);
+    file_text_writeln(Config_File);
     
     file_text_close(Config_File);
 }

@@ -270,7 +270,13 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
         else if (obj_initialize.SETTING_SURFACE_SCALE == 4){
             obj_initialize.SETTING_SURFACE_SCALE = 0.5;
         }
-    }   
+    } 
+    
+    //CONTROL MODE:
+    if (BUTTON_TYPE == 6){
+        //Toggle the control mode:
+        obj_initialize.SETTING_CONTROL_MODE = !obj_initialize.SETTING_CONTROL_MODE;
+    }  
     
     //Write information to the config:
     scr_cwrite();
@@ -445,6 +451,16 @@ else if (BUTTON_TYPE == 4){
 //Surface Scale:
 else if (BUTTON_TYPE == 5){
     draw_text(x,y,"Surface Scale: " + string(obj_initialize.SETTING_SURFACE_SCALE) + "x");
+}
+
+//Surface Scale:
+else if (BUTTON_TYPE == 6){
+    if (obj_initialize.SETTING_CONTROL_MODE == 0){
+        draw_text(x,y,"Rotation Control: Q&amp;E");
+    }
+    else {
+        draw_text(x,y,"Rotation Control: Mouse");
+    }
 }
 
 //Revert draw settings:
