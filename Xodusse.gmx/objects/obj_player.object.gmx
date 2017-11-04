@@ -382,6 +382,7 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                 //Check gun timelines.
                 if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]){
                     
+                    Shake = Shake*0.9+0.05*Grecoil[G[Current]];
                     audio_play_sound(snd_gun,0,0);
                     Rate = 0;
                     
@@ -515,6 +516,14 @@ Turn = Kturnleft-Kturnright;
 Vert = Kdown-Kup;
 Hor = Kleft-Kright;
 
+var MouseX,MouseY;
+MouseX = window_mouse_get_x();
+MouseY = window_mouse_get_y();
+
+if obj_initialize.SETTING_CONTROL_MODE{
+    
+    Turn = sign(GUIW/2-MouseX)*(1-MouseY/GUIH)*((abs(MouseX-GUIW/2)*2/GUIW)&gt;.72+.4*MouseY/GUIH);
+}
 //Smooth turn speed for turning motion.
 TurnSpeed = TurnSpeed*S90+(1-S90)*Turn;
 
