@@ -190,7 +190,7 @@
   <shaders name="shaders">
     <shader type="HLSL9">shaders\shdr_lighting_maps.shader</shader>
     <shader type="HLSL9">shaders\shdr_lighting_maps_terrain.shader</shader>
-    <shader type="HLSL9">shaders\shdr_lighting_point.shader</shader>
+    <shader type="GLSLES">shaders\shdr_lighting_point.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_point_mask.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_direct.shader</shader>
     <shader type="GLSLES">shaders\shdr_lighting_post.shader</shader>

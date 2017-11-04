@@ -90,6 +90,10 @@ if instance_exists(Object) &amp;&amp; Object != Hit{
         Hit = Object;
         Hit.Health -= Pdamage[Id]*min(image_alpha/Ppower[Id],1);
         image_alpha -= Ppower[Id];
+        if (Hit.object_index == obj_player){
+            
+            Shake = Shake*0.9+Pdamage[Id];
+        }
     }
 }
 else
