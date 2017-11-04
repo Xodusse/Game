@@ -29,29 +29,9 @@ Vmatx[0] *= Vscal*GUIW/960;Vmatx[1] *= Vscal*GUIH/540;
 Vmatx[4] *= Vscal*GUIW/960;Vmatx[5] *= Vscal*GUIH/540;
 Vmatx[12] *= Vscal*GUIW/960;Vmatx[13] *= Vscal*GUIH/540;
 
-//Add color
-surface_set_target(LScolr);
-matrix_set(matrix_view,Vmatx);
-draw_set_blend_mode(bm_add);
-
-draw_set_colour(Ablnd);
-draw_set_alpha(Alpha);
-draw_primitive_begin_texture(pr_trianglestrip,Vemis);
-draw_vertex_texture(Axpos-Vxoff*Vxrot-Vyoff*Vyrot,Aypos-Vyoff*Vxrot+Vxoff*Vyrot,0,0);
-draw_vertex_texture(Axpos+Vxscl*Vxrot-Vyoff*Vyrot,Aypos-Vyoff*Vxrot-Vxscl*Vyrot,1,0);
-draw_vertex_texture(Axpos-Vxoff*Vxrot+Vyscl*Vyrot,Aypos+Vyscl*Vxrot+Vxoff*Vyrot,0,1);
-draw_vertex_texture(Axpos+Vxscl*Vxrot+Vyscl*Vyrot,Aypos+Vyscl*Vxrot-Vxscl*Vyrot,1,1);
-draw_primitive_end();
-draw_set_alpha(1);
-
-draw_set_blend_mode(bm_normal);
-surface_reset_target();
-
-//Add light
-surface_set_target(LSprop);
+surface_set_target(LSligt);
 matrix_set(matrix_view,Vmatx);
 draw_set_blend_mode(bm_add)
-draw_set_colour_write_enable(0,0,1,1);
 draw_set_alpha(Alpha);
 draw_primitive_begin_texture(pr_trianglestrip,Vemis);
 draw_vertex_texture(Axpos-Vxoff*Vxrot-Vyoff*Vyrot,Aypos-Vyoff*Vxrot+Vxoff*Vyrot,0,0);
@@ -62,6 +42,5 @@ draw_primitive_end();
 draw_set_alpha(1);
 
 draw_set_colour($FFFFFF);
-draw_set_colour_write_enable(1,1,1,1);
 draw_set_blend_mode(bm_normal);
 surface_reset_target();

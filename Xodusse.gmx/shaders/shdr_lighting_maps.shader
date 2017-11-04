@@ -48,7 +48,7 @@ void main(in Fragment IN, out Render OUT)
     
     float3 Normal = tex2D(Norm,frac(IN.Texcoord)*(UV2.zw-UV2.xy)+UV2.xy).xyz*2.0-1.0;
     Normal = normalize(float3(dot(Normal.xy,Mat.xy),dot(Normal.xy,Mat.zw),Normal.z));
-    OUT.Norm = float4(Normal*.5+.5,Color.a);
+    OUT.Norm = float4(Normal*.5+.5,1.)*Color.a;
     
-    OUT.Prop = float4(tex2D(Prop,frac(IN.Texcoord)*(UV3.zw-UV3.xy)+UV3.xy).rgb,Color.a);
+    OUT.Prop = float4(tex2D(Prop,frac(IN.Texcoord)*(UV3.zw-UV3.xy)+UV3.xy).rgb,1.)*Color.a;
 }

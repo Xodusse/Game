@@ -84,7 +84,7 @@ if (Timer==1/2){
         Paa[p] = random(360);
         Par[p] = Scale*2;
     }
-    Shake = Shake*0.9+2*sqr(Scale);
+    Shake = Shake*.9+3*sqr(Scale);
     with(obj_game_object){
     
         var Explosion = instance_nearest(x,y,obj_explosion);

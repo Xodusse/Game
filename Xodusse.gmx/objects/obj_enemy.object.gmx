@@ -238,7 +238,9 @@ if Health&lt;=0
             <kind>1</kind>
             <string>///Damage player
 // © 2017 - Jon Harvey
+
 obj_player.Health -= random(.02)*FRAME_DELTA;
+Shake = .2;
 </string>
           </argument>
         </arguments>
