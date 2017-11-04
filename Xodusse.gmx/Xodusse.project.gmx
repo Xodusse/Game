@@ -122,6 +122,8 @@
         <sprite>sprites\spr_f_rug_small</sprite>
         <sprite>sprites\spr_f_table</sprite>
         <sprite>sprites\spr_f_chair</sprite>
+        <sprite>sprites\spr_f_chair_n</sprite>
+        <sprite>sprites\spr_f_chair_she</sprite>
       </sprites>
     </sprites>
     <sprites name="Items">
@@ -132,6 +134,7 @@
     <sprites name="Projectiles">
       <sprite>sprites\spr_projectiles</sprite>
       <sprite>sprites\spr_projectiles_n</sprite>
+      <sprite>sprites\spr_projectiles_she</sprite>
     </sprites>
     <sprite>sprites\spr_t_wood_1</sprite>
     <sprite>sprites\spr_t_wood_1_n</sprite>
