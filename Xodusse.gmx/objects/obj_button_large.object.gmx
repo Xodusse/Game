@@ -82,6 +82,9 @@ if (Hover == true){
     if !(Extender &gt; 128){
         Extender += 8 * FRAME_DELTA;
     }
+    
+    //Trigger the cursor:
+    obj_controller_cursor.CURSOR_TARGETING = 1;    
 }
 
 else {

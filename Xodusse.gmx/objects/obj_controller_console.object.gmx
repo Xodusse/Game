@@ -228,7 +228,13 @@ draw_set_font(-1);
                 
                 scr_command_tp();
                                 
-                scr_command_clear();                                                                                    
+                scr_command_clear();
+                
+                scr_command_god();
+                
+                scr_command_killall();
+                
+                scr_command_alienmax();                                                                                  
                 
             break;
             

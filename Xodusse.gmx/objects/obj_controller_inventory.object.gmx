@@ -164,8 +164,8 @@ if Ienable{
             scr_inventory_swap(X+Y*6,Iposition,Iid,Iquantity);            
         }
         else{
-            
-            scr_inventory_drop(Iid,Iquantity);
+            //Reece - Added extra required arguments to script:
+            scr_inventory_drop(Iid,Iquantity,mouse_x,mouse_y,0,0);
         }
         
         Iid = 0;

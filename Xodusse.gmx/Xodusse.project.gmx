@@ -136,6 +136,10 @@
       <sprite>sprites\spr_projectiles_n</sprite>
       <sprite>sprites\spr_projectiles_she</sprite>
     </sprites>
+    <sprites name="Cursor">
+      <sprite>sprites\spr_Cursor_Free</sprite>
+      <sprite>sprites\spr_Cursor_Target</sprite>
+    </sprites>
     <sprite>sprites\spr_t_wood_1</sprite>
     <sprite>sprites\spr_t_wood_1_n</sprite>
     <sprite>sprites\spr_grenade</sprite>
@@ -173,6 +177,9 @@
       <script>scripts\scr_command_help.gml</script>
       <script>scripts\scr_command_tp.gml</script>
       <script>scripts\scr_command_clear.gml</script>
+      <script>scripts\scr_command_god.gml</script>
+      <script>scripts\scr_command_killall.gml</script>
+      <script>scripts\scr_command_alienmax.gml</script>
     </scripts>
     <scripts name="Inventory">
       <script>scripts\scr_inventory_drop.gml</script>
@@ -257,6 +264,7 @@
       <object>objects\obj_controller_menu</object>
       <object>objects\obj_controller_normal</object>
       <object>objects\obj_controller_tiles</object>
+      <object>objects\obj_controller_cursor</object>
     </objects>
     <objects name="GUI">
       <objects name="Buttons">
@@ -279,6 +287,7 @@
     <rooms name="Levels">
       <room>rooms\rm_test1</room>
       <room>rooms\rm_game_0</room>
+      <room>rooms\rm_game_1</room>
     </rooms>
   </rooms>
   <help>

@@ -84,6 +84,10 @@ if (Hover == true){
     if !(Extender &gt; 128){
         Extender += 8 * FRAME_DELTA;
     }
+    
+    //Trigger the cursor:
+    obj_controller_cursor.CURSOR_TARGETING = 1;
+    
 }
 
 else {
@@ -264,10 +268,6 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
         }
         
         else if (obj_initialize.SETTING_SURFACE_SCALE == 2){
-            obj_initialize.SETTING_SURFACE_SCALE = 4;
-        }
-        
-        else if (obj_initialize.SETTING_SURFACE_SCALE == 4){
             obj_initialize.SETTING_SURFACE_SCALE = 0.5;
         }
     } 
@@ -304,6 +304,10 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
                 
     view_wport[0] = GUIW;
     view_hport[0] = GUIH;
+    
+    with(obj_controller_cursor){
+        event_user(0);
+    }
     
     obj_init_display.alarm[0] = 1;
     surface_resize(application_surface,GUIW*Scale,GUIH*Scale);

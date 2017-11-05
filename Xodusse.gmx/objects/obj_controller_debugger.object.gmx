@@ -173,7 +173,13 @@ if (DEBUG_VISIBLE == true){
     draw_text(GUIW - 8, 210, "#Wave: " + string(Wave));
          
     //Wave:
-    draw_text(GUIW - 8, 235, "#Surface Scale: " + string(obj_initialize.SETTING_SURFACE_SCALE) + "x");           
+    draw_text(GUIW - 8, 235, "#Surface Scale: " + string(obj_initialize.SETTING_SURFACE_SCALE) + "x");
+    
+    if (CHEAT_GODMODE){
+        draw_set_colour(c_red);
+        draw_text(GUIW - 8, 310, "#GOD MODE ENABLED");
+        draw_set_colour(c_white);
+    }        
          
     // -- RESET --
     draw_set_halign(fa_left);

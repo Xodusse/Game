@@ -40,10 +40,14 @@
 
 //DELTA TIMING:
 
-globalvar DESIRED_FPS, DELTA, FRAME_DELTA,S90,S98,F1,F1H,F1Q,F10,F30,F60;
+globalvar DESIRED_FPS, DELTA, FRAME_DELTA, FRAME_DELTA_OVERRIDE, S90, S98,
+F1, F1H, F1Q, F10, F30, F60;
+
 DESIRED_FPS = 60;
 DELTA = 1;
 FRAME_DELTA = 1;
+
+FRAME_DELTA_OVERRIDE = 1;
 
 //SMOOTH DELTA TIMING.
 S90 = power(0.90,FRAME_DELTA);
@@ -55,7 +59,7 @@ S98 = power(0.98,FRAME_DELTA);
 random_set_seed(7);
 SEED = random_get_seed();
 
-show_debug_overlay(1);
+//show_debug_overlay(1);
 
 
 /*
@@ -74,21 +78,23 @@ instance_create(0,0,obj_controller_level_selector);
 //Add debug profiler - Reece
 instance_create(0,0,obj_controller_debugger);
 
-//Add console controller - Reece
-instance_create(0,0,obj_controller_console);
-
 //Add wave controller - Reece
 instance_create(0,0,obj_controller_wave);
+
+//Add console controller - Reece
+instance_create(0,0,obj_controller_console);
 
 //Add menu controller - Reece
 instance_create(0,0,obj_controller_menu);
 
 //GAME SETTINGS:
-globalvar DEBUG_VISIBLE, CONSOLE_ENABLED;
+globalvar DEBUG_VISIBLE, CONSOLE_ENABLED, CHEAT_GODMODE;
 
 CONSOLE_ENABLED = false;
 
 DEBUG_VISIBLE = false;
+
+CHEAT_GODMODE = false;
 
 //GAME MEMORY USAGE:
 //globalvar GM_MEMORY_USAGE_VIRTUAL, GM_MEMORY_USAGE_PHYSICAL, GM_CPU_USAGE;
@@ -108,6 +114,9 @@ globalvar PAUSED, VIEW_ANGLE;
 PAUSED = false;
 VIEW_ANGLE = 0;
 
+//Set the cursor sprite:
+window_set_cursor(cr_none);
+//cursor_sprite = spr_Cursor_Free;
 
 //GAME CONFIGURATION:
 
@@ -318,7 +327,10 @@ display_reset(SETTING_FXAA, SETTING_VSYNC);
 texture_set_interpolation(SETTING_INTERPOLATION);
 
 //Set fullscreen mode:
-window_set_fullscreen(SETTING_FULLSCREEN);  
+window_set_fullscreen(SETTING_FULLSCREEN);
+
+//Add cursor controller - Reece
+instance_create(0,0,obj_controller_cursor);
 </string>
           </argument>
         </arguments>
@@ -342,11 +354,16 @@ window_set_fullscreen(SETTING_FULLSCREEN);
           <argument>
             <kind>1</kind>
             <string>///Delta time variables.
-// © 2017 - Jon Harvey
+// © 2017 - Jon Harvey, Reece Warren
 
-DELTA = (delta_time / 1000000)*!PAUSED;
+DELTA_OVERRIDE = (delta_time / 1000000);
+DELTA = DELTA_OVERRIDE*!PAUSED;
+
+//Some objects still need to function when the game is paused:
+FRAME_DELTA_OVERRIDE = DESIRED_FPS * DELTA_OVERRIDE;
 FRAME_DELTA = DESIRED_FPS * DELTA;
 
+//Smoothing:
 S90 = power(0.90,FRAME_DELTA);
 S98 = power(0.98,FRAME_DELTA);
 

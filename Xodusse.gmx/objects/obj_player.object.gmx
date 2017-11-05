@@ -593,8 +593,16 @@ WalkFrame = (WalkFrame+0.05*FRAME_DELTA*Speed)*(Speed&gt;5*DELTA);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (Health &lt;= 0){
-    room_goto(rm_main);
+            <string>///Kill the player if their health is 0
+//© 2017 - Reece Warren
+
+if !(CHEAT_GODMODE){
+    if (Health &lt;= 0){
+        room_goto(rm_main);
+    }
+}
+else {
+    Health = 10;
 }
 </string>
           </argument>

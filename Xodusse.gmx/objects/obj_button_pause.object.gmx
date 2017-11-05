@@ -123,6 +123,25 @@ if (Hover == true){
     else {
         Extender = 128;
     }
+    
+    //Trigger the cursor:
+    obj_controller_cursor.CURSOR_TARGETING = 1;
+    
+    //If pressed:
+    if (mouse_check_button_released(mb_left)){
+        if (BUTTON_TYPE == 0){
+            PAUSED = false;          
+        }
+        
+        else if (BUTTON_TYPE == 1){
+            //Main menu:
+            if (instance_exists(obj_player)){
+                obj_player.Health = 0;
+            }
+            PAUSED = false;
+            room_goto(rm_main);                    
+        }            
+    }
 }
 
 else {
@@ -141,7 +160,8 @@ if (PAUSED == false){
     instance_destroy();
 }
 
-//Back to game:
+//UNUSED:
+/*Back to game:
 if (BUTTON_TYPE == 0){    
 
     x = (view_xview[0]+(view_wview[0]/2));
@@ -166,7 +186,7 @@ else if (BUTTON_TYPE == 1){
         PAUSED = false;
         room_goto(rm_main);         
     }         
-}
+}*/
 
 
 </string>
