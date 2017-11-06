@@ -472,7 +472,7 @@
     <option_version_company>Warrenaterz &amp; Xor</option_version_company>
     <option_version_copyright>© 2017 - Jon Harvey, Reece Warren. MIT.</option_version_copyright>
     <option_version_description>Xodusse</option_version_description>
-    <option_version_major>0</option_version_major>
+    <option_version_major>1</option_version_major>
     <option_version_minor>1</option_version_minor>
     <option_version_product>Xodusse</option_version_product>
     <option_version_release>7</option_version_release>
@@ -557,7 +557,7 @@
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
     <option_windows_mainor_version>1</option_windows_mainor_version>
-    <option_windows_major_version>0</option_windows_major_version>
+    <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>Xodusse</option_windows_product_info>
     <option_windows_release_version>7</option_windows_release_version>

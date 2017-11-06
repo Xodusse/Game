@@ -197,7 +197,13 @@ if Count{
         X = window_mouse_get_x();
         Y = window_mouse_get_y();
     
-        Swap = mouse_wheel_down()-mouse_wheel_up();
+        if (obj_initialize.SETTING_GAMEPAD_ENABLED){
+            Swap = (gamepad_button_check_released(0,gp_shoulderr)-gamepad_button_check_released(0,gp_shoulderl));
+        }
+        else {
+            Swap = mouse_wheel_down()-mouse_wheel_up();
+        }
+        
         if Swap != 0{
             
             if point_distance(0,H,X,Y)&lt;150 &amp;&amp; I[P[Current]]&gt;Idoubles*2{
@@ -377,7 +383,10 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
             else{
             
             //Shoot fully-automatic or semi-automatic with left click as long as the inventory is closed.
-            if !Ienable &amp;&amp; (mouse_check_button(mb_left)*Gauto[G[Current]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Current]]){
+            if !Ienable &amp;&amp; (mouse_check_button(mb_left)*Gauto[G[Current]] || 
+                   mouse_check_button_pressed(mb_left)*!Gauto[G[Current]] || 
+        gamepad_button_check_pressed(0, gp_shoulderrb)*!Gauto[G[Current]] || 
+                 gamepad_button_check(0, gp_shoulderrb)*Gauto[G[Current]]){
                 
                 //Check gun timelines.
                 if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]){
@@ -512,13 +521,19 @@ if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
 
 //Set controls for movement.
 var Turn,Vert,Hor;
-Turn = Kturnleft-Kturnright;
-Vert = Kdown-Kup;
-Hor = Kleft-Kright;
-
 var MouseX,MouseY;
-MouseX = window_mouse_get_x();
-MouseY = window_mouse_get_y();
+if (obj_initialize.SETTING_GAMEPAD_ENABLED) &amp;&amp; !PAUSED {
+    Turn = -Controller_RJoy_x;
+    Vert = Controller_LJoy_y;
+    Hor = -Controller_LJoy_x;
+}
+else {
+    Turn = Kturnleft-Kturnright;
+    Vert = Kdown-Kup;
+    Hor = Kleft-Kright;
+    MouseX = window_mouse_get_x();
+    MouseY = window_mouse_get_y();
+}
 
 if obj_initialize.SETTING_CONTROL_MODE{
     
@@ -529,7 +544,14 @@ TurnSpeed = TurnSpeed*S90+(1-S90)*Turn;
 
 //Handle player turning gun and player direction.
 WalkDirection = (WalkDirection+2*TurnSpeed*FRAME_DELTA);
-Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
+
+if (obj_initialize.SETTING_GAMEPAD_ENABLED) &amp;&amp; !PAUSED {
+    Turn = angle_difference(point_direction(x,y,x-(dcos(WalkDirection-180)*256),y-(dsin(WalkDirection)*256)),GunDirection);
+}
+else {
+    Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
+}
+
 GunDirection += 0.3*Turn*FRAME_DELTA;
 //GunDirection = (GunDirection+0.3*Turn*FRAME_DELTA+360)%360;
 

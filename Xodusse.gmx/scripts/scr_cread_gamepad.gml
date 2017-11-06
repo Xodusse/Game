@@ -10,22 +10,23 @@ file_text_readln(Config_File);
 file_text_readln(Config_File);  
 file_text_readln(Config_File);
 file_text_readln(Config_File);
+file_text_readln(Config_File);
 
 //LOAD VSYNC VARIABLE:
-var str_controlmode = file_text_read_string(Config_File);     
+var str_gamepad = file_text_read_string(Config_File);     
     
 //Check the string contains a digit:
-if (string_pos("0", str_controlmode)) || (string_pos("1", str_controlmode)){
-    var real_controlmode = real(string_digits(str_controlmode));
+if (string_pos("0", str_gamepad)) || (string_pos("1", str_gamepad)){
+    var real_gamepad = real(string_digits(str_gamepad));
  
     //Control mode - Real (Can return: [0 for Q&E rotation], [1 for mouse]);  
-    if (real_controlmode == 0) || (real_controlmode == 1){
-        obj_initialize.SETTING_CONTROL_MODE = real_controlmode;
+    if (real_gamepad == 0) || (real_gamepad == 1){
+        obj_initialize.SETTING_GAMEPAD_ENABLED = real_gamepad;
     }   
     //Otherwise, define it:
     else { 
-        obj_initialize.SETTING_CONTROL_MODE = 0;  
-    }     
+        obj_initialize.SETTING_GAMEPAD_ENABLED = 0;  
+    }   
            
     //Close the file:
     file_text_close(Config_File);        
@@ -34,7 +35,7 @@ if (string_pos("0", str_controlmode)) || (string_pos("1", str_controlmode)){
 //Otherwise, define it:
 else { 
 
-    obj_initialize.SETTING_CONTROL_MODE = 0;
+    obj_initialize.SETTING_GAMEPAD_ENABLED = 0; 
     
     //Close the file:
     file_text_close(Config_File);    

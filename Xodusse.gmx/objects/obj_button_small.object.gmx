@@ -34,7 +34,10 @@
 //1 = Interpolation,
 //2 = FXAA,
 //3 = Fullscreen,
-//4 = Resolution:
+//4 = Resolution,
+//5 = Surface Scale,
+//6 = Control Mode,
+//7 = Gamepad Toggle,
 
 //NOTE:
     //Button types for main menu buttons are set in object creation code:
@@ -276,6 +279,12 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
     if (BUTTON_TYPE == 6){
         //Toggle the control mode:
         obj_initialize.SETTING_CONTROL_MODE = !obj_initialize.SETTING_CONTROL_MODE;
+    }
+    
+    //GAMEPAD TOGGLE:
+    if (BUTTON_TYPE == 7){
+        //Toggle the gamepad:
+        obj_initialize.SETTING_GAMEPAD_ENABLED = !obj_initialize.SETTING_GAMEPAD_ENABLED;
     }  
     
     //Write information to the config:
@@ -464,6 +473,16 @@ else if (BUTTON_TYPE == 6){
     }
     else {
         draw_text(x,y,"Rotation Control: Mouse");
+    }
+}
+
+//Gamepad Toggle:
+else if (BUTTON_TYPE == 7){
+    if (obj_initialize.SETTING_GAMEPAD_ENABLED == 0){
+        draw_text(x,y,"Controller: Disabled");
+    }
+    else {
+        draw_text(x,y,"Controller: Enabled");
     }
 }
 

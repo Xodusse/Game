@@ -55,10 +55,11 @@
     <instance objName="obj_button_small" x="672" y="96" name="inst_18410685" locked="0" code="///Interpolation Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_small" x="288" y="288" name="inst_2707B8AE" locked="0" code="///FXAA Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 2;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_small" x="672" y="288" name="inst_BBE4BBDA" locked="0" code="///Fullscreen Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 3;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_large" x="192" y="448" name="inst_1B3A2E66" locked="0" code="///GUI Back Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 4;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_large" x="192" y="480" name="inst_1B3A2E66" locked="0" code="///GUI Back Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 4;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_small" x="288" y="192" name="inst_1E377E79" locked="0" code="///Interpolation Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 4;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_small" x="672" y="192" name="inst_9D337494" locked="0" code="///Surface Scale Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_small" x="672" y="384" name="inst_91ACEF9E" locked="0" code="///Control Mode Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 6;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_small" x="288" y="384" name="inst_AF1E42D4" locked="0" code="///Gamepad:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 7;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

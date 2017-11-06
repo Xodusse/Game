@@ -152,6 +152,9 @@ if (file_exists("Config.Xodusse")){
     //LOAD CONTROL MODE:
     scr_cread_controlmode();
     
+    //LOAD GAMEPAD SETTING:
+    scr_cread_gamepad();
+    
 }
 
 
@@ -188,7 +191,10 @@ else {
     SETTING_SURFACE_SCALE = 1;
     
     //Mouse control mode (Can return: [0 for Q&amp;E rotation], [1 for Mouse].):
-    SETTING_CONTROL_MODE = 0;     
+    SETTING_CONTROL_MODE = 0;
+    
+    //Gamepad Enabled (Can return: [0 for keyboard], [1 for controller].):
+    SETTING_GAMEPAD_ENABLED = 0;
         
     // -----
 
@@ -204,6 +210,7 @@ else {
     var C_Resolution = SETTING_RESOLUTION;
     var C_SurfaceScale = SETTING_SURFACE_SCALE;
     var C_ControlMode = SETTING_CONTROL_MODE;
+    var C_GamepadEnabled = SETTING_GAMEPAD_ENABLED;
     
     //Write Settings:
     file_text_write_string(Config_File, "[ XODUSSE CONFIGURATION ]");
@@ -236,6 +243,10 @@ else {
     
     file_text_write_string(Config_File, "CONTROL MODE: ");
     file_text_write_real(Config_File, C_ControlMode);
+    file_text_writeln(Config_File);
+    
+    file_text_write_string(Config_File, "GAMEPAD ENABLED: ");
+    file_text_write_real(Config_File, C_GamepadEnabled);
     file_text_writeln(Config_File);
     
     file_text_close(Config_File);

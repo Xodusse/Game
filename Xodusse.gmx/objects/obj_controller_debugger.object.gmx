@@ -179,8 +179,35 @@ if (DEBUG_VISIBLE == true){
         draw_set_colour(c_red);
         draw_text(GUIW - 8, 310, "#GOD MODE ENABLED");
         draw_set_colour(c_white);
-    }        
-         
+    } 
+    
+    /*remove
+    if gamepad_is_connected(0){
+        draw_text(- 8, 335, "#Gamepad Slot - " + string(0));
+        draw_text(- 8, 360 + 20, "#Gamepad Type - " + string(gamepad_get_description(0)));
+        draw_text(- 8, 385 + 40, "#Left H Axis - " + string(gamepad_axis_value(0, gp_axislh)));
+        draw_text(- 8, 410 + 60, "#Left V Axis - " + string(gamepad_axis_value(0, gp_axislv)));
+        draw_text(- 8, 435 + 80, "#Right H Axis - " + string(gamepad_axis_value(0, gp_axisrh)));
+        draw_text(- 8, 460 + 100, "#Right V Axis - " + string(gamepad_axis_value(0, gp_axisrv)));   
+        draw_text(- 8, 485 + 120, "#Fire Rate - " + string(gamepad_button_value(0, gp_shoulderrb)));
+    }*/       
+    
+    var gp_num = gamepad_get_device_count();
+    for (var i = 0; i &lt; gp_num; i++;){
+       if gamepad_is_connected(i){
+          draw_text(GUIW - 8, 335 + (i * 32), string(gamepad_get_description(i)));
+          draw_text(GUIW - 8, 335, "#Gamepad Slot - " + string(i));
+          draw_text(GUIW - 8, 385 + 40, "#Left H Axis - " + string(gamepad_axis_value(i, gp_axislh)));
+          draw_text(GUIW - 8, 410 + 60, "#Left V Axis - " + string(gamepad_axis_value(i, gp_axislv)));
+          draw_text(GUIW - 8, 435 + 80, "#Right H Axis - " + string(gamepad_axis_value(i, gp_axisrh)));
+          draw_text(GUIW - 8, 460 + 100, "#Right V Axis - " + string(gamepad_axis_value(i, gp_axisrv)));   
+          draw_text(GUIW - 8, 485 + 120, "#Fire Rate - " + string(gamepad_button_value(i, gp_shoulderrb)));          
+       }
+       //else{
+          //draw_text(GUIW - 8, 335 + (i * 32), "No Gamepad Connected");
+       //}
+    }
+        
     // -- RESET --
     draw_set_halign(fa_left);
         
