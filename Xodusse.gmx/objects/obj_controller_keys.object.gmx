@@ -63,6 +63,9 @@ Controller_RJoy_y = gamepad_axis_value(0,gp_axisrv);
 Controller_LJoy_x = gamepad_axis_value(0,gp_axislh);
 Controller_LJoy_y = gamepad_axis_value(0,gp_axislv);
 
+//Set controller deadzone:
+gamepad_set_axis_deadzone(0,0.1);
+
 //-
 
 //Keyboard press variables.
