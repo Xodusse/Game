@@ -185,7 +185,7 @@ Kturnleft = keyboard_check(KIturnleft)*           !CONSOLE_ENABLED;
 Kturnright = keyboard_check(KIturnright)*         !CONSOLE_ENABLED;
 Kmelee = (keyboard_check_pressed(KImelee) || gamepad_button_check_released(0,gp_stickr)) * !CONSOLE_ENABLED;
 Kreload = (keyboard_check_released(KIreload) || gamepad_button_check_released(0,gp_face3)) * !CONSOLE_ENABLED;
-Kinventory = keyboard_check_released(KIinventory)*!CONSOLE_ENABLED;
+Kinventory = (keyboard_check_released(KIinventory) || gamepad_button_check_released(0,gp_select)) *!CONSOLE_ENABLED;
 
 //© 2017 - Reece Warren
 //Function Keys:
@@ -193,7 +193,7 @@ Kreset = keyboard_check_released(KIreset)*!CONSOLE_ENABLED;
 Kdebug = keyboard_check_released(KIdebug)*!CONSOLE_ENABLED;
 
 Kconsole = keyboard_check_released(KIconsole);
-Kescape = keyboard_check_released(KIescape);
+Kescape = keyboard_check_released(KIescape) || gamepad_button_check_released(0,gp_start);
 
 //Number keys:
 K1 = keyboard_check_released(KI1)*!CONSOLE_ENABLED;
