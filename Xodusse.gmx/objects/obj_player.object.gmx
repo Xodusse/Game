@@ -351,21 +351,22 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                 Q[P[Current]]--;
                 //Handle grenade.
                 var ThrowSpeedX,ThrowSpeedY,Throw;
-                ThrowSpeedX = (mouse_x-x)/40+SpeedX;
-                ThrowSpeedY = (mouse_y-y)/40+SpeedY;
+                ThrowSpeedX = (mouse_x-x)/30+SpeedX;
+                ThrowSpeedY = (mouse_y-y)/30+SpeedY;
                 Throw = instance_create(x,y,obj_grenade);
                 
                 Throw.Z = 50;
                 Throw.SpeedA = random(20);
                 Throw.SpeedX = ThrowSpeedX;
                 Throw.SpeedY = ThrowSpeedY;
-                Throw.SpeedZ = sqrt(sqr(ThrowSpeedX)+sqr(ThrowSpeedY));
+                Throw.SpeedZ = power(sqr(ThrowSpeedX)+sqr(ThrowSpeedY),1/4);
                 Reload = 0;
             }
             else{
             
                 //Remove empty grenade slot.
                 I[P[Current]] = 0;
+                Current = (Current+Count-1) % Count;
                 }
             }
         }
@@ -555,8 +556,9 @@ else {
 GunDirection += 0.3*Turn*FRAME_DELTA;
 
 //Smooth walk using controls defined above.
-var MoveSpeed,MoveSpeedX,MoveSpeedY;
-Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/(1-0.8*Iweight/Istrength);
+var MoveSlow,MoveSpeed,MoveSpeedX,MoveSpeedY;
+MoveSlow = 1+4*(instance_position(x,y,obj_barrel_puddle) != noone);
+Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/(1-0.8*Iweight/Istrength)*MoveSlow;
 if !Grenade{Speed /= Gweight[G[Current]];}
 
 MoveSpeedX = RecoilSpeedX+4*(Vert*dsin(-view_angle[0])-Hor*dcos(view_angle[0]))/Speed;

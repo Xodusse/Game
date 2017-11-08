@@ -84,9 +84,9 @@
     </sprites>
     <sprites name="Aliens">
       <sprites name="Type_1">
-        <sprite>sprites\spr_Alien_0</sprite>
-        <sprite>sprites\spr_Alien_0_n</sprite>
-        <sprite>sprites\spr_Alien_0_she</sprite>
+        <sprite>sprites\spr_alien_0</sprite>
+        <sprite>sprites\spr_alien_0_n</sprite>
+        <sprite>sprites\spr_alien_0_she</sprite>
       </sprites>
     </sprites>
     <sprites name="Logistics">
@@ -97,12 +97,12 @@
         <sprite>sprites\spr_crate_she</sprite>
       </sprites>
       <sprites name="Barrels">
-        <sprite>sprites\spr_Barrel</sprite>
-        <sprite>sprites\spr_Barrel_n</sprite>
-        <sprite>sprites\spr_Barrel_she</sprite>
-        <sprite>sprites\spr_Barrel_Puddle</sprite>
-        <sprite>sprites\spr_Barrel_Puddle_n</sprite>
-        <sprite>sprites\spr_Barrel_Puddle_she</sprite>
+        <sprite>sprites\spr_barrel</sprite>
+        <sprite>sprites\spr_barrel_n</sprite>
+        <sprite>sprites\spr_barrel_she</sprite>
+        <sprite>sprites\spr_barrel_puddle</sprite>
+        <sprite>sprites\spr_barrel_puddle_n</sprite>
+        <sprite>sprites\spr_barrel_puddle_she</sprite>
       </sprites>
       <sprite>sprites\spr_item</sprite>
     </sprites>
@@ -247,8 +247,8 @@
         <object>objects\obj_crate</object>
         <object>objects\obj_crate_spawner</object>
         <object>objects\obj_item</object>
-        <object>objects\obj_Barrel</object>
-        <object>objects\obj_Barrel_Puddle</object>
+        <object>objects\obj_barrel</object>
+        <object>objects\obj_barrel_puddle</object>
       </objects>
       <objects name="Foliage">
         <object>objects\obj_foliage_fern_1</object>

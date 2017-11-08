@@ -21,15 +21,25 @@ void main()
 {
     vec4 Tex = texture2D(gm_BaseTexture,v_vTexcoord);
     vec4 Color = texture2D(Colr,v_vTexcoord);
-    float Emission = texture2D(Prop,clamp(v_vTexcoord+vec2(-1,-1)/Size,0.,1.)).b;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(0,-2)/Size,0.,1.)).b;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(1,-1)/Size,0.,1.)).b;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(-2,0)/Size,0.,1.)).b;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(0,0)/Size,0.,1.)).b*2.;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(2,0)/Size,0.,1.)).b;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(-1,1)/Size,0.,1.)).b;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(0,2)/Size,0.,1.)).b;
-    Emission += texture2D(Prop,clamp(v_vTexcoord+vec2(1,1)/Size,0.,1.)).b;
     
-    gl_FragColor = vec4(Tex.rgb+(Emission/10.),Tex.a);
+    vec2 UV = clamp(v_vTexcoord+vec2(-1,-1)/Size,0.,1.);
+    vec3 Emission = texture2D(Colr,UV).rgb*texture2D(Prop,UV).b;
+    UV = clamp(v_vTexcoord+vec2(0,-2)/Size,0.,1.);
+    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b;
+    UV = clamp(v_vTexcoord+vec2(1,-1)/Size,0.,1.);
+    Emission += texture2D(Colr,v_vTexcoord).rgb*texture2D(Prop,UV).b;
+    UV = clamp(v_vTexcoord+vec2(-2,0)/Size,0.,1.);
+    Emission += texture2D(Colr,v_vTexcoord).rgb*texture2D(Prop,UV).b;
+    UV = clamp(v_vTexcoord+vec2(0,0)/Size,0.,1.);
+    Emission += texture2D(Colr,v_vTexcoord).rgb*texture2D(Prop,UV).b*2.;
+    UV = clamp(v_vTexcoord+vec2(2,0)/Size,0.,1.);
+    Emission += texture2D(Colr,v_vTexcoord).rgb*texture2D(Prop,UV).b;
+    UV = clamp(v_vTexcoord+vec2(-1,1)/Size,0.,1.);
+    Emission += texture2D(Colr,v_vTexcoord).rgb*texture2D(Prop,UV).b;
+    UV = clamp(v_vTexcoord+vec2(0,2)/Size,0.,1.);
+    Emission += texture2D(Colr,v_vTexcoord).rgb*texture2D(Prop,UV).b;
+    UV = clamp(v_vTexcoord+vec2(1,1)/Size,0.,1.);
+    Emission += texture2D(Colr,v_vTexcoord).rgb*texture2D(Prop,UV).b;
+    
+    gl_FragColor = vec4(Tex.rgb+Color.rgb*(Emission/5.),Tex.a);
 }

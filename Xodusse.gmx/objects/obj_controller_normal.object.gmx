@@ -30,10 +30,7 @@
 
 scr_lighting_init();
 
-Light_Visible = true;
-
-intensity = 0;
-toggle = true;
+Timer = 0;
 </string>
           </argument>
         </arguments>
@@ -65,7 +62,7 @@ scr_lighting_end();
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="10">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -82,10 +79,10 @@ scr_lighting_end();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Temporary Lighting Control
-//© 2017 - Reece Warren:
+            <string>///Set timer.
+// © 2017 - Jon Harvey
 
-Light_Visible = false;
+Timer += DELTA*5;
 </string>
           </argument>
         </arguments>
@@ -167,32 +164,15 @@ if instance_exists(obj_player){
     
     scr_lighting_draw_level(bac_level,bac_sheet,bac_sheet_n,bac_sheet_she);
     
-    if (intensity &lt;= 10) &amp;&amp; (toggle = true){
-        intensity += FRAME_DELTA/1200;
-    }
-    else {
-        toggle = false;
-    }
-    if (toggle == false) &amp;&amp; (intensity &gt;= 0){
-        intensity -= FRAME_DELTA/1200;
-    }
-    else {
-        toggle = true;
-    }
-    scr_lighting_draw_direct(1,3,intensity,$383528);
+    scr_lighting_draw_direct(.2,dsin(Timer),dcos(Timer),make_colour_hsv(40,10,120));
+    scr_lighting_draw_direct(.2,dsin(Timer+90),dcos(Timer+90),make_colour_hsv(200,150,15));
+    scr_lighting_draw_direct(.2,dsin(Timer-90),dcos(Timer-90),make_colour_hsv(200,150,15));
+    
     scr_lighting_draw_point(obj_player.x,obj_player.y,80,256,$C6C497);
     scr_lighting_draw_point_mask(spr_light,0,obj_player.x,obj_player.y,100,2,2,obj_player.GunDirection,$FFFFFF,1);
     
     scr_lighting_draw_point(1392,704,90,110,$7CD3FF);
     scr_lighting_draw_point(1264,704,90,110,$7CD3FF);
-      
-    //Triggered in obj_item obj_player_collision - line 31:
-    //Turned off in event_user(0);
-    if (Light_Visible){
-        var light1;
-        light1 = (dsin(current_time/2) * 96) + 16;          
-        scr_lighting_draw_point(1120,608,light1,128,$7CD3FF);
-    }
 }
 
 with(obj_explosion){
@@ -205,7 +185,7 @@ with(obj_projectiles){
     scr_lighting_draw_point(x,y,100,64,$447788);
 }
 
-scr_lighting_draw_final($080508,1,1);
+scr_lighting_draw_final($010403,1,1);
 </string>
           </argument>
         </arguments>
