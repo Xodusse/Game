@@ -150,13 +150,13 @@ if instance_exists(obj_player){
         draw_set_alpha(0.6);
         //draw_circle_colour(0,GUIH,60,$222222,$333333,0);
         
-        draw_primitive_begin(pr_trianglestrip);
+        /*draw_primitive_begin(pr_trianglestrip);
         for(var i = 0;i&lt;=30;i++){            
             var Angle = i*3;
             draw_vertex_colour(dcos(Angle)*52,GUIH-dsin(Angle)*52,$999329,0.2);
             draw_vertex_colour(dcos(Angle),GUIH-dsin(Angle),$999329,0.2);
         }        
-        draw_primitive_end();
+        draw_primitive_end();*/
         
         draw_set_alpha(1);
         
@@ -177,20 +177,25 @@ if instance_exists(obj_player){
         draw_primitive_end();
         
         if Count{
-            draw_set_colour($FFFFFF);
+            draw_set_colour($FFFFFF);           
+            draw_set_font(FNT_EXUDATION_LARGE);
+            draw_set_valign(fa_bottom);
+            
             if !Grenade{
             
                 //Gun info (magazine count, shots count in magazine, magazine capacity).
-                draw_text(2,GUIH-40,string(max(Magazines,0)));
-                draw_text(4,GUIH-24,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
+                draw_text_transformed(160,GUIH-40,string(max(Magazines,0)),1.5,1.5,0);
+                draw_text_transformed(160,GUIH-8,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]),1.5,1.5,0);
             }
             else{
             
                 //Grenade info (grenade count).
-                draw_text(2,GUIH-40,string(max(Q[P[Current]],0)));
+                draw_text_transformed(160,GUIH-40,string(max(Q[P[Current]],0)),1.5,1.5,0);
             }
             
             draw_set_colour(0);
+            draw_set_font(FNT_EXUDATION);
+            draw_set_valign(fa_top);
             
             if  Current == Secondary{
                 

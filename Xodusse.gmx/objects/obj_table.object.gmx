@@ -3,7 +3,7 @@
   <spriteName>spr_f_table</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>obj_game_object</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -33,6 +33,32 @@ SpeedY = 0;
 Radius = 28;
 
 Health = 100;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw Sprite:
+//© 2017 - Reece Warren.
+
+scr_lighting_draw_sprite(spr_f_table,spr_f_table_n,spr_f_table_she,0,x,y,1,1,image_angle,-1,1);
 </string>
           </argument>
         </arguments>

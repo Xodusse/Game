@@ -119,8 +119,14 @@
       </sprites>
       <sprites name="furnature">
         <sprite>sprites\spr_f_rug_large</sprite>
+        <sprite>sprites\spr_f_rug_large_n</sprite>
+        <sprite>sprites\spr_f_rug_large_she</sprite>
         <sprite>sprites\spr_f_rug_small</sprite>
+        <sprite>sprites\spr_f_rug_small_n</sprite>
+        <sprite>sprites\spr_f_rug_small_she</sprite>
         <sprite>sprites\spr_f_table</sprite>
+        <sprite>sprites\spr_f_table_n</sprite>
+        <sprite>sprites\spr_f_table_she</sprite>
         <sprite>sprites\spr_f_chair</sprite>
         <sprite>sprites\spr_f_chair_n</sprite>
         <sprite>sprites\spr_f_chair_she</sprite>
