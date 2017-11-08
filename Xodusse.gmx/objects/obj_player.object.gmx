@@ -553,11 +553,10 @@ else {
 }
 
 GunDirection += 0.3*Turn*FRAME_DELTA;
-//GunDirection = (GunDirection+0.3*Turn*FRAME_DELTA+360)%360;
 
 //Smooth walk using controls defined above.
 var MoveSpeed,MoveSpeedX,MoveSpeedY;
-Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/(1-0.5*sqr(Iweight/Istrength));
+Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/(1-0.8*Iweight/Istrength);
 if !Grenade{Speed /= Gweight[G[Current]];}
 
 MoveSpeedX = RecoilSpeedX+4*(Vert*dsin(-view_angle[0])-Hor*dcos(view_angle[0]))/Speed;

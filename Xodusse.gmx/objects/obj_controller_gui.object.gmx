@@ -292,20 +292,22 @@ if instance_exists(obj_player){
         draw_set_alpha(0.4);
         draw_rectangle(GUIW/2-S*3.5,GUIH/2-S*1.5-S*Ibackpack,GUIW/2+S*3.5,GUIH/2+S*1.5,0);
         
-        //Weight and strength capacity
-        draw_rectangle(GUIW/2+S*2.5,GUIH/2-S*2-S*Ibackpack,GUIW/2+S*3.5,GUIH/2-S*1.5-S*Ibackpack-1,0);
-        draw_set_alpha(1);
-        draw_set_colour($FFFFFF);
-        draw_text(GUIW/2+S*3.5,GUIH/2-S*1.5-S*Ibackpack,string(ceil(Iweight))+"/"+string(Istrength)+" KG");
-        draw_set_alpha(0.4);
-        draw_set_colour(0);
-        
         //Backpack slot.
-        draw_rectangle(GUIW/2+S*4.5,GUIH/2-S*0.5,GUIW/2+S*6.5,GUIH/2+S*1.5,0);
+        draw_rectangle(GUIW/2+S*4.5,GUIH/2-S*1,GUIW/2+S*6.5,GUIH/2+S*1.5,0);
         draw_set_alpha(1);
         draw_set_colour($999329);
         draw_rectangle(GUIW/2+S*5,GUIH/2,GUIW/2+S*6,GUIH/2+S,1);
+        
+        //Weight and strength capacity
+        draw_set_alpha(1);
+        draw_set_colour($FFFFFF);
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+        draw_text(GUIW/2+S*5.5,GUIH/2-S*0.5,string(ceil(Iweight))+"/"+string(Istrength)+" KG");
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
         draw_set_colour(0);
+        
         if Ibackpack{
         
             draw_sprite(spr_items,Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack-1,GUIW/2+S*5.5,GUIH/2+S*.5);
