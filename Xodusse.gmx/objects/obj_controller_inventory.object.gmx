@@ -165,7 +165,7 @@ if Ienable{
         }
         else{
             //Reece - Added extra required arguments to script:
-            scr_inventory_drop(Iid,Iquantity,mouse_x,mouse_y,0,0);
+            scr_inventory_drop(Iid,Iquantity,obj_player.x,obj_player.y,(mouse_x-obj_player.x)/200,(mouse_y-obj_player.y)/200);
         }
         
         Iid = 0;

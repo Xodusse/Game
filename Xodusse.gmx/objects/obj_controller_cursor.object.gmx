@@ -104,8 +104,6 @@ else {
     Cursor_Angle = 0;
     Cursor_Scale = 1;
 }
-
-
 </string>
           </argument>
         </arguments>
@@ -280,10 +278,7 @@ resolution_scaling_factor = GUIW / view_wview[view_current];
 //© 2017 - Reece Warren:
 
 //draw_sprite(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True);
-if !(obj_initialize.SETTING_GAMEPAD_ENABLED) {
-    draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
-}
-else if (obj_initialize.SETTING_GAMEPAD_ENABLED) &amp;&amp; (room != rm_game_0 || PAUSED){
+if ! (obj_initialize.SETTING_GAMEPAD_ENABLED) || !(room != rm_game_0 || PAUSED){
     draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
 }
 </string>

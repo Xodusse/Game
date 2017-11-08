@@ -71,11 +71,16 @@ alarm[0] = 1;
 // © 2017 - Jon Harvey
 
 var Backpack;
-Backpack = (Id-Idoubles*2+Isingles+Igrenades+Iammo);
+Backpack = Id-(Idoubles*2+Isingles+Igrenades+Iammo);
+
 if Backpack{
 
-    Bac[Backpack*6] = 0;
-    Qnt[Backpack*6] = 0;
+    for(var Y = Backpack-1;Y&gt;=0;Y--)
+    for(var X = 0;X&lt;6;X++){
+                        
+        Bac[X+Y*6] = I[X+Y*6+12];
+        Qnt[X+Y*6] = Q[X+Y*6+12];
+    }
 }
 </string>
           </argument>

@@ -165,7 +165,7 @@ scr_lighting_end();
 
 if instance_exists(obj_player){
     
-    scr_lighting_draw_level(bac_level,bac_sheet,bac_sheet_n,bac_sheet_she,obj_player.x,obj_player.y);
+    scr_lighting_draw_level(bac_level,bac_sheet,bac_sheet_n,bac_sheet_she);
     
     if (intensity &lt;= 10) &amp;&amp; (toggle = true){
         intensity += FRAME_DELTA/1200;

@@ -200,6 +200,12 @@
       <script>scripts\scr_lighting_draw_final.gml</script>
       <script>scripts\scr_lighting_end.gml</script>
     </scripts>
+    <scripts name="Models">
+      <script>scripts\scr_vertex_init.gml</script>
+      <script>scripts\scr_vertex_point.gml</script>
+      <script>scripts\scr_vertex_sprite.gml</script>
+      <script>scripts\scr_vertex_end.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="HLSL9">shaders\shdr_lighting_maps.shader</shader>
