@@ -123,6 +123,8 @@ if (room == rm_test1) || (room == rm_game_0){
 //Reset wave at game start:
 Wave = 1;
 WaveNumber = 1;
+
+AlienCountRemaining = AlienCountInitial;
 </string>
           </argument>
         </arguments>

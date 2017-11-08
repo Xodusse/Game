@@ -172,7 +172,7 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_crate" x="1360" y="1456" name="inst_8C0280DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="35"/>
     <instance objName="obj_crate" x="1368" y="1416" name="inst_5A668A50" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-10"/>
     <instance objName="obj_crate" x="424" y="1064" name="inst_FCC9ED30" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="65"/>
-    <instance objName="obj_crate" x="1368" y="680" name="inst_240F6F51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="10"/>
+    <instance objName="obj_crate" x="1368" y="592" name="inst_240F6F51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="10"/>
     <instance objName="obj_wall" x="384" y="1216" name="inst_AC020C3D" locked="0" code="image_index = 20;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="384" y="1024" name="inst_E740988A" locked="0" code="image_index = 18;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="544" y="1024" name="inst_8A27E145" locked="0" code="image_index = 19;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -183,6 +183,12 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_wall" x="1248" y="1504" name="inst_30D7433C" locked="0" code="image_index = 20;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1248" y="1344" name="inst_25DED81B" locked="0" code="image_index = 18;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1408" y="1344" name="inst_F8C3A04A" locked="0" code="image_index = 19;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_rug_large" x="1304" y="728" name="inst_35D69A71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="obj_rug_small" x="544" y="1104" name="inst_15A8EBCA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="obj_rug_small" x="424" y="1184" name="inst_99AF1DBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_rug_small" x="1328" y="1344" name="inst_6FD0115B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_table" x="1320" y="728" name="inst_F9287C7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-35"/>
+    <instance objName="obj_chair" x="1288" y="584" name="inst_C34530D6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="55"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
