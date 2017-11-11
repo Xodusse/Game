@@ -3,8 +3,8 @@
   <caption></caption>
   <width>2048</width>
   <height>2048</height>
-  <vsnap>8</vsnap>
-  <hsnap>8</hsnap>
+  <vsnap>4</vsnap>
+  <hsnap>4</hsnap>
   <isometric>0</isometric>
   <speed>9999</speed>
   <persistent>0</persistent>
@@ -116,7 +116,7 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_barrel" x="816" y="320" name="inst_128D94E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_barrel" x="1520" y="320" name="inst_628A5DF0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_chair" x="1368" y="760" name="inst_9670DF86" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-135"/>
-    <instance objName="obj_chair" x="1288" y="760" name="inst_40D003E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="135"/>
+    <instance objName="obj_chair" x="1284" y="764" name="inst_40D003E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="135"/>
     <instance objName="obj_wall" x="1056" y="576" name="inst_25CAAA23" locked="0" code="image_index = 23;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1056" y="608" name="inst_5D6C7FB2" locked="0" code="image_index = 23;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1408" y="576" name="inst_31C22B68" locked="0" code="image_index = 23;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -183,14 +183,15 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_wall" x="1248" y="1504" name="inst_30D7433C" locked="0" code="image_index = 20;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1248" y="1344" name="inst_25DED81B" locked="0" code="image_index = 18;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1408" y="1344" name="inst_F8C3A04A" locked="0" code="image_index = 19;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_rug_large" x="1304" y="728" name="inst_35D69A71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="obj_rug_large" x="1312" y="720" name="inst_35D69A71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="obj_rug_small" x="544" y="1104" name="inst_15A8EBCA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="obj_rug_small" x="424" y="1184" name="inst_99AF1DBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_rug_small" x="1328" y="1344" name="inst_6FD0115B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_table" x="1320" y="728" name="inst_F9287C7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-35"/>
+    <instance objName="obj_table" x="1328" y="688" name="inst_F9287C7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-40"/>
     <instance objName="obj_chair" x="1288" y="584" name="inst_C34530D6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="55"/>
-    <instance objName="obj_healthpack" x="1184" y="896" name="inst_01CBFF70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_healthpack" x="1376" y="952" name="inst_F88EEAFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_healthpack" x="504" y="1172" name="inst_01CBFF70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-35"/>
+    <instance objName="obj_healthpack" x="1308" y="1424" name="inst_F88EEAFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="45"/>
+    <instance objName="obj_healthpack" x="1208" y="668" name="inst_F5CA62D5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-10"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

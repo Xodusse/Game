@@ -33,6 +33,9 @@ Shake = 0;
 ShakeX = 0;
 ShakeY = 0;
 ShakeAngle = 0;
+
+TextOpacityValue = 0;
+TextSine = 0;
 </string>
           </argument>
         </arguments>
@@ -62,6 +65,9 @@ Shake = Shake*S90;
 ShakeX = ShakeX*(1-S90)+S90*50*Shake*(random(2)-1);
 ShakeY = ShakeY*(1-S90)+S90*50*Shake*(random(2)-1);
 ShakeAngle = ShakeAngle*(1-S90)+S90*Shake*(random(40)-20);
+
+TextOpacityValue = TextOpacityValue + F1;
+TextSine = (((dsin(TextOpacityValue * 360)*0.5)+0.5) * 0.75) + 0.25;
 
 if instance_exists(obj_player){
     
@@ -270,7 +276,9 @@ if instance_exists(obj_player){
             draw_set_font(fnt_Exudation);
             draw_text(GUIW-60,GUIH-60,"WAVE:");
         }
+
         
+        draw_set_font(FNT_EXUDATION);
         draw_set_halign(fa_left);
         draw_set_valign(fa_top);        
         
@@ -369,6 +377,44 @@ if instance_exists(obj_player){
         draw_set_valign(fa_top);
     }
     draw_set_font(-1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw wave delay
+//© 2017 - Reece Warren.
+
+//New wave timer:
+if (obj_controller_wave.WaveDelay == true) &amp;&amp; instance_exists(obj_player){
+
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    
+    draw_set_colour($FFFFFF);
+    
+    draw_set_font(FNT_EXUDATION_LARGE);
+    draw_set_alpha(TextSine);
+    draw_text_transformed(GUIW/2,(GUIH/2)+384,"New wave starting in: " + string(ceil(obj_controller_wave.WaveDelayTimer)),1,1,0);
+    
+    draw_set_alpha(1);
+    draw_set_colour(-1);           
 }
 </string>
           </argument>

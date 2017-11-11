@@ -191,6 +191,7 @@
       <script>scripts\scr_command_god.gml</script>
       <script>scripts\scr_command_killall.gml</script>
       <script>scripts\scr_command_alienmax.gml</script>
+      <script>scripts\scr_command_wave.gml</script>
     </scripts>
     <scripts name="Inventory">
       <script>scripts\scr_inventory_drop.gml</script>

@@ -38,6 +38,9 @@ AlienCountCurrent = 0;
 Wave = 1;
 WaveNumber = 1;
 
+//Boolean variable for wave delay:
+WaveDelay = false;
+WaveDelayTimer = 10;
 
 </string>
           </argument>
@@ -84,16 +87,29 @@ if (room == rm_test1) || (room == rm_game_0){
         instance_create(obj_player.x+dcos(A)*500,obj_player.y+dsin(A)*500,obj_enemy);
     }
     
-    //Starts a new wave:
-    if (AlienCountCurrent == 0) &amp;&amp; (AlienCountRemaining == 0){
+    //Starts the wave delay timer:
+    if (AlienCountCurrent == 0) &amp;&amp; (AlienCountRemaining == 0) &amp;&amp; (WaveDelay == false){
         
-        //Start new wave:
-        Wave ++;
-        WaveNumber += 1;
+        //Trigger the Wave Delay:
+        WaveDelay = true;
+        WaveDelayTimer = 10;       
+    }
+    
+    //Update the wave delay timer:
+    if (WaveDelay == true){
         
-        //Adds five aliens each wave:
-        AlienCountRemaining = AlienCountInitial + ((Wave - 1) * 5);
+        WaveDelayTimer -= DELTA;
         
+        //Starts a new wave:
+        if (WaveDelayTimer &lt;= 0){
+            Wave ++;
+            WaveNumber += 1;
+        
+            //Adds five aliens each wave:
+            AlienCountRemaining = AlienCountInitial + ((Wave - 1) * 5);
+            
+            WaveDelay = false;
+        }
     }
 }
 

@@ -56,7 +56,7 @@ S98 = power(0.98,FRAME_DELTA);
 //Seed:
 
 //Fixed seed setting to real random - Jon
-random_set_seed(7);
+random_set_seed(9);
 SEED = random_get_seed();
 
 //show_debug_overlay(1);
