@@ -180,8 +180,10 @@ for(var i = instance_number(obj_collider);i&gt;=0;i--){
 }
 
 //Move smoothly and with delta timing.
-SpeedX = SpeedX*S90+(1-S90)*(SumX);
-SpeedY = SpeedY*S90+(1-S90)*(SumY);
+var MoveSlow;
+MoveSlow = 1+4*(instance_position(x,y,obj_barrel_puddle) != noone);
+SpeedX = SpeedX*S90+(1-S90)*(SumX/MoveSlow);
+SpeedY = SpeedY*S90+(1-S90)*(SumY/MoveSlow);
 x += SpeedX*FRAME_DELTA;
 y += SpeedY*FRAME_DELTA;
 

@@ -30,7 +30,7 @@
 
 image_alpha = 0;
 Message = "";
-MessageFade = 3+.3*instance_number(obj_message);
+MessageFade = 3+.5*instance_number(obj_message);
 
 Y = GUIH-230;
 </string>
@@ -91,13 +91,16 @@ if (MessageFade&lt;=0){
             <string>///Draw message
 // © 2017 - Jon Harvey
 
-draw_set_font(FNT_EXUDATION);
-draw_set_colour($FFFFFF);
-draw_set_alpha(image_alpha);
-draw_text(8,y,Message);
-draw_set_alpha(1);
-draw_set_colour(0);
-draw_set_font(-1);
+if !PAUSED{
+
+    draw_set_font(FNT_EXUDATION);
+    draw_set_colour($FFFFFF);
+    draw_set_alpha(image_alpha);
+    draw_text(8,y,Message);
+    draw_set_alpha(1);
+    draw_set_colour(0);
+    draw_set_font(-1);
+}
 </string>
           </argument>
         </arguments>

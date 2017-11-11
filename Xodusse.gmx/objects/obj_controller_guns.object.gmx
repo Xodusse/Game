@@ -84,10 +84,10 @@ Gtype[2] = 2;
 Gtype[3] = 3;
 
 //Name[gun], Name of gun.
-Gname[0] = "Grenade Launcher";
-Gname[1] = "LMG";
-Gname[2] = "SMG";
-Gname[3] = "Pistol";
+Gname[0] = "GL-M65";
+Gname[1] = "LMG-M11";
+Gname[2] = "SMG-P6";
+Gname[3] = "HG-P45";
 </string>
           </argument>
         </arguments>

@@ -679,12 +679,9 @@ if Count{
 
     scr_lighting_draw_sprite(spr_player_holdables,spr_player_holdables_n,spr_player_holdables_she,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
     y+dsin(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)-dcos(-Face)*Switch*10,0.4*sqr(abs(abs(Swap)*2-1)),0.4,Face-4+Switch*40-Swing*30+Sway/3,$FFFFFF,1);
-    
-    //draw_sprite_ext(spr_player_holdables,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
-    //y+dsin(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)-dcos(-Face)*Switch*10,0.4*sqr(abs(abs(Swap)*2-1)),0.4,Face-4+Switch*40-Swing*30,$FFFFFF,1);
 }
 
-scr_lighting_draw_sprite(spr_player_head,spr_player_head_n,spr_player_head_she,0,x-dcos(Face)*Recoil*0.8,y+dsin(Face)*Recoil*0.8,1,1,Face+0.6*Turn+Switch*20-Swing*10,$FFFFFF,1);
+scr_lighting_draw_sprite(spr_player_head,spr_player_head_n,spr_player_head_she,0,x-dcos(Face)*Recoil*0.8,y+dsin(Face)*Recoil*0.8,1,1,Face+0.6*Turn*!PAUSED+Switch*20-Swing*10,$FFFFFF,1);
 </string>
           </argument>
         </arguments>
