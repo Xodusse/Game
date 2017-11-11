@@ -104,6 +104,7 @@
         <sprite>sprites\spr_barrel_puddle_n</sprite>
         <sprite>sprites\spr_barrel_puddle_she</sprite>
       </sprites>
+      <sprite>sprites\spr_heathpack</sprite>
       <sprite>sprites\spr_item</sprite>
     </sprites>
     <sprites name="Foliage">
@@ -232,6 +233,7 @@
     </objects>
     <objects name="Game_Objects">
       <object>objects\obj_game_object</object>
+      <object>objects\obj_collider</object>
       <objects name="Player">
         <object>objects\obj_player</object>
       </objects>
@@ -250,9 +252,10 @@
         </objects>
       </objects>
       <objects name="Logistics">
+        <object>objects\obj_item</object>
+        <object>objects\obj_healthpack</object>
         <object>objects\obj_crate</object>
         <object>objects\obj_crate_spawner</object>
-        <object>objects\obj_item</object>
         <object>objects\obj_barrel</object>
         <object>objects\obj_barrel_puddle</object>
       </objects>

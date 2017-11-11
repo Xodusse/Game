@@ -80,7 +80,7 @@ else{
 }
 
 //Bounce
-var Object = collision_line(x*2-xprevious,y*2-yprevious,xprevious,yprevious,obj_game_object,1,1);
+var Object = collision_line(x*2-xprevious,y*2-yprevious,xprevious,yprevious,obj_collider,1,1);
 if instance_exists(Object) &amp;&amp; (Object.object_index != obj_player) &amp;&amp; !Hit{
     
     var Normal,Direction,Length;
@@ -98,9 +98,9 @@ SumX = SpeedX;
 SumY = SpeedY;
 
 //Get pushed by all objects.
-for(var i = instance_number(obj_game_object);i&gt;=0;i--){
+for(var i = instance_number(obj_collider);i&gt;=0;i--){
 
-    var Inst = instance_find(obj_game_object,i);
+    var Inst = instance_find(obj_collider,i);
     if (Inst!=noone) &amp;&amp; (Inst!=id){
         
         var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);

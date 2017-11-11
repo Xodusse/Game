@@ -9,7 +9,7 @@
   <speed>9999</speed>
   <persistent>0</persistent>
   <colour>12632256</colour>
-  <showcolour>-1</showcolour>
+  <showcolour>0</showcolour>
   <code>instance_create(x,y,obj_controller_normal);
 
 var TileDrawer = instance_create(x,y,obj_controller_tiles);
@@ -189,6 +189,8 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_rug_small" x="1328" y="1344" name="inst_6FD0115B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_table" x="1320" y="728" name="inst_F9287C7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-35"/>
     <instance objName="obj_chair" x="1288" y="584" name="inst_C34530D6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="55"/>
+    <instance objName="obj_healthpack" x="1184" y="896" name="inst_01CBFF70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_healthpack" x="1376" y="952" name="inst_F88EEAFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

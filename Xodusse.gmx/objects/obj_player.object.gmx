@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-2</depth>
   <persistent>0</persistent>
-  <parentName>obj_game_object</parentName>
+  <parentName>obj_collider</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -119,7 +119,8 @@ WalkFrame = 0;
 Radius = 16;
 
 Melee = 0;
-Health = 10;
+MaxHealth = 10;
+Health = MaxHealth;
 </string>
           </argument>
         </arguments>
@@ -484,7 +485,7 @@ if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
     if !Grenade &amp;&amp; (!Count || (Reload&gt;=Greload[G[Current]] &amp;&amp; Rate&gt;=1/Grate[G[Current]])){
         
         Melee = 1;
-        with(obj_game_object){
+        with(obj_collider){
     
             if object_index != obj_player{
             
@@ -570,9 +571,9 @@ SumX = (MoveSpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
 SumY = (MoveSpeedY*(dsin(GunDirection)*sign(SpeedY)*-0.3+0.7));
 
 //Get pushed by enemies.
-for(var i = instance_number(obj_game_object);i&gt;=0;i--){
+for(var i = instance_number(obj_collider);i&gt;=0;i--){
 
-    var Inst = instance_find(obj_game_object,i);
+    var Inst = instance_find(obj_collider,i);
     if (Inst!=id) &amp;&amp; (Inst!=noone){
     
         var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);

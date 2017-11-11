@@ -82,7 +82,7 @@ scr_lighting_end();
             <string>///Set timer.
 // © 2017 - Jon Harvey
 
-Timer += DELTA*5;
+Timer += DELTA/5;
 </string>
           </argument>
         </arguments>
@@ -164,9 +164,9 @@ if instance_exists(obj_player){
     
     scr_lighting_draw_level(bac_level,bac_sheet,bac_sheet_n,bac_sheet_she);
     
-    scr_lighting_draw_direct(.2,dsin(Timer),dcos(Timer),make_colour_hsv(40,10,120));
-    scr_lighting_draw_direct(.2,dsin(Timer+90),dcos(Timer+90),make_colour_hsv(200,150,15));
-    scr_lighting_draw_direct(.2,dsin(Timer-90),dcos(Timer-90),make_colour_hsv(200,150,15));
+    scr_lighting_draw_direct(.2,-dsin(Timer),-dcos(Timer),make_colour_hsv(40,10,100));
+    scr_lighting_draw_direct(.2,-dsin(Timer+90),-dcos(Timer+90),make_colour_hsv(200,150,15));
+    scr_lighting_draw_direct(.2,-dsin(Timer-90),-dcos(Timer-90),make_colour_hsv(200,150,15));
     
     scr_lighting_draw_point(obj_player.x,obj_player.y,80,256,$C6C497);
     scr_lighting_draw_point_mask(spr_light,0,obj_player.x,obj_player.y,100,2,2,obj_player.GunDirection,$FFFFFF,1);
