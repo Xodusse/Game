@@ -104,7 +104,11 @@
         <sprite>sprites\spr_barrel_puddle_n</sprite>
         <sprite>sprites\spr_barrel_puddle_she</sprite>
       </sprites>
-      <sprite>sprites\spr_heathpack</sprite>
+      <sprites name="Healthpack">
+        <sprite>sprites\spr_healthpack</sprite>
+        <sprite>sprites\spr_healthpack_n</sprite>
+        <sprite>sprites\spr_healthpack_she</sprite>
+      </sprites>
       <sprite>sprites\spr_item</sprite>
     </sprites>
     <sprites name="Foliage">
