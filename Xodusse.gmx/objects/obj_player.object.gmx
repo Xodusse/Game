@@ -65,8 +65,6 @@ Grenade = 0;
 Count = 1;
 //Gun in hand (between 0 and Count).
 Current = 0;
-//This is the gun in second hand.
-Secondary = 0;
 //Inventory position of the next and last magazine.
 MagazineNext = -1;
 //Number of extra magazines for the current gun.
@@ -239,9 +237,6 @@ if !Grenade &amp;&amp; (abs(Swap)==1){
 
     Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
 }
-
-//Broken dual wield varaible:
-Secondary = Current;
 </string>
           </argument>
         </arguments>
