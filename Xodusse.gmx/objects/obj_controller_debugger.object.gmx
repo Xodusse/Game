@@ -38,6 +38,93 @@ FPS = floor(fps_real);
 
 memory_v = -1;
 memory_p = -1;
+
+//Used for process calculation:
+Timer = 1;
+OutputTime = Timer;
+
+OutputTimeMax = Timer;
+
+OutputTimeRatio = OutputTime/OutputTimeMax;
+OutputTimeRatioMax = OutputTimeRatio;
+
+GraphTimer = 0;
+GraphBar = 0;
+GraphRepeat = 0;
+
+var i = 0;
+for (i = 0 i &lt; GUIW - 544; i++){ 
+    OutputData[i] = OutputTimeRatio;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>OutputTime = get_timer()-Time;
+
+if (OutputTime &gt; OutputTimeMax){
+    OutputTimeMax = OutputTime;
+}
+
+OutputTimeRatio = OutputTime/OutputTimeMax;
+
+GraphTimer += F60;
+if (GraphTimer &gt;= 1){
+
+    GraphTimer = 0;    
+    GraphBar++;
+    
+    //416 is the width of the graph at 960x540;
+    
+    if (GraphBar &gt; GUIW - 544){
+        GraphBar = 0;
+    }
+    
+    OutputData[GraphBar] = clamp((OutputTime/OutputTimeMax)*62,0,62);
+    //32, 224 = 192
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Time = get_timer();
 </string>
           </argument>
         </arguments>
@@ -117,8 +204,9 @@ if (FPS_Counter &lt;= 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//© 2017 - Reece Warren, All rights reserved.
-//Draw debug screen.
+            <string>///OLD DEBUG SCREEN
+//© 2017 - Reece Warren, All rights reserved.
+/*Draw debug screen.
 
 if (DEBUG_VISIBLE == true){
 
@@ -168,7 +256,9 @@ if (DEBUG_VISIBLE == true){
     /*Draw the keyboard key:
     draw_text(view_wview[0] - 8, 160,
          string(keyboard_key));*/
+     
          
+    /*    
     //Wave:
     draw_text(GUIW - 8, 210, "#Wave: " + string(Wave));
          
@@ -192,6 +282,8 @@ if (DEBUG_VISIBLE == true){
         draw_text(- 8, 485 + 120, "#Fire Rate - " + string(gamepad_button_value(0, gp_shoulderrb)));
     }*/       
     
+    
+    /*
     var gp_num = gamepad_get_device_count();
     for (var i = 0; i &lt; gp_num; i++;){
        if gamepad_is_connected(i){
@@ -217,6 +309,90 @@ if (DEBUG_VISIBLE == true){
     
 }
    
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Debug Profiler:
+//© 2017 - Reece Warren, All rights reserved.
+
+if (DEBUG_VISIBLE == true){
+
+//Set draw settings:
+draw_set_colour($FFFFFF);
+//draw_set_font(FNT_DEBUGFONT);
+draw_set_font(FNT_EXUDATION);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+//Draw boxes:
+draw_rectangle(16,16,240,110,true);
+draw_rectangle(256,16,GUIW-256,110,true);
+draw_rectangle(GUIW-240,16,GUIW-16,110,true);
+
+//Draw debug stats:
+
+//Section 1:
+draw_text(32,32,"XODUSSE V." + string(GM_version));
+draw_text(32,64,"© 2017 - REECE WARREN,");
+draw_text(32,80,"JON HARVEY. MIT LICENSE.");
+
+
+//Section 2:
+draw_text(272,32,"UPDATE SPEED (MICROSECONDS): " + string(OutputTime));
+//draw_healthbar(272,48,GUIW-272,94,OutputTimeRatio*100,-1,c_teal,c_red,0,0,0);
+
+//Draw the graph:
+var i = 0;
+for(i = 0; i &lt;= GraphBar; i++){
+    if (i == GraphBar){
+        draw_set_colour(c_white);
+        draw_line(272+i,94,272+i,94-OutputData[i]);    
+    }
+    else if (OutputData[i] &gt; 50){
+        draw_set_colour(c_red);
+        draw_line(272+i,94,272+i,94-OutputData[i]);
+    }
+    else if (OutputData[i] &gt; 31){
+        draw_set_colour(c_orange);
+        draw_line(272+i,94,272+i,94-OutputData[i]);
+    }
+    else {
+        draw_set_colour(c_teal);
+        draw_line(272+i,94,272+i,94-OutputData[i]);
+    }
+}
+
+draw_set_colour(c_white);
+
+//Section 3:
+draw_text(GUIW-224,32,"FPS: " + string(FPS) +  "   DELTA: " + string(dF));
+//draw_text(GUIW-224,64,"RAM: " + string(memory_p) + "KB"));
+draw_text(GUIW-224,48,"X: " + string(player_x) + "   Y: " + string(player_y) + "   R: " + string(view_a));
+draw_text(GUIW-224,64,"P DIR: " + string(player_dir) + "   P SPEED: " + string(player_speed));
+draw_text(GUIW-224,80,"WAVE: " + string(Wave) + "   ALIENS: " + string(AlienCountRemaining + AlienCountCurrent)); 
+
+//Revert draw settings:
+draw_set_font(FNT_EXUDATION);
+draw_set_colour(-1);
+
+}
 </string>
           </argument>
         </arguments>

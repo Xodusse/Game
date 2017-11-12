@@ -75,9 +75,6 @@ instance_create(0,0,obj_controller_guns);
 //Add level controller - Reece
 instance_create(0,0,obj_controller_level_selector);
 
-//Add debug profiler - Reece
-instance_create(0,0,obj_controller_debugger);
-
 //Add wave controller - Reece
 instance_create(0,0,obj_controller_wave);
 
@@ -107,6 +104,7 @@ globalvar FNT_EXUDATION_LARGE, FNT_EXUDATION;
 
 FNT_EXUDATION_LARGE = fnt_Exudation_Large;
 FNT_EXUDATION = fnt_Exudation;
+//FNT_DEBUGFONT = font_add_sprite_ext(spr_debugfont, ":.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ ", true, 2);
 
 //DEFINE OTHER GAME VARIABLES:
 globalvar PAUSED, VIEW_ANGLE;
@@ -340,8 +338,13 @@ texture_set_interpolation(SETTING_INTERPOLATION);
 //Set fullscreen mode:
 window_set_fullscreen(SETTING_FULLSCREEN);
 
+//THESE CONTROLLER OBJECTS MUST BE CREATED AFTER INITIALISING THE GUI:
+
 //Add cursor controller - Reece
 instance_create(0,0,obj_controller_cursor);
+
+//Add debug profiler - Reece
+instance_create(0,0,obj_controller_debugger);
 </string>
           </argument>
         </arguments>
