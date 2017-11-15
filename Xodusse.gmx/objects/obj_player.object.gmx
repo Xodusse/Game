@@ -389,7 +389,24 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                 if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]){
                     
                     Shake = Shake*0.9+0.05*Grecoil[G[Current]];
-                    audio_play_sound(snd_gun,0,0);
+                    
+                    switch(G[Current]){
+
+                        default: break;
+                        
+                        case 0: audio_play_sound(snd_gun_gl,0,0); break;   
+                        
+                        case 1: audio_play_sound(snd_gun_lmg,0,0); break;                       
+                                        
+                        case 2: audio_play_sound(snd_gun_smg,0,0); break;
+                        
+                        case 3: audio_play_sound(snd_gun_hg,0,0); break;                   
+                    
+                    }
+                    /*if (G[Current] == 2){
+                        audio_play_sound(snd_gun_smg,0,0);
+                    }*/
+                    
                     Rate = 0;
                     
                     //Shoot all bullets.

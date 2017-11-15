@@ -41,7 +41,10 @@
   </datafiles>
   <NewExtensions/>
   <sounds name="sound">
-    <sound>sound\snd_gun</sound>
+    <sound>sound\snd_gun_smg</sound>
+    <sound>sound\snd_gun_lmg</sound>
+    <sound>sound\snd_gun_gl</sound>
+    <sound>sound\snd_gun_hg</sound>
     <sound>sound\snd_empty</sound>
     <sound>sound\snd_explosion</sound>
     <sounds name="Aliens">

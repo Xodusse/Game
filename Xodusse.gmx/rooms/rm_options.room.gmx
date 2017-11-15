@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>9999</speed>
   <persistent>0</persistent>
-  <colour>0</colour>
+  <colour>2763306</colour>
   <showcolour>-1</showcolour>
   <code></code>
   <enableViews>0</enableViews>
@@ -59,7 +59,7 @@
     <instance objName="obj_button_small" x="288" y="192" name="inst_1E377E79" locked="0" code="///Interpolation Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 4;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_small" x="672" y="192" name="inst_9D337494" locked="0" code="///Surface Scale Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_small" x="672" y="384" name="inst_91ACEF9E" locked="0" code="///Control Mode Button:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 6;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_small" x="288" y="384" name="inst_AF1E42D4" locked="0" code="///Gamepad:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 7;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_small" x="288" y="384" name="inst_AF1E42D4" locked="0" code="///Gamepad:&#xA;//© 2017 - Reece Warren&#xA;BUTTON_TYPE = 7;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -153,14 +153,16 @@ if instance_exists(obj_player){
     with(obj_player){
         
         //Simple compass
-        draw_circle(36,GUIH-36,32,1);
-        draw_circle(36,GUIH-36,31,1);
-        draw_circle(36,GUIH-36,30,1);
+        //draw_circle(36,GUIH-36,32,1);
+        //draw_circle(36,GUIH-36,31,1);
+        //draw_circle(36,GUIH-36,30,1);
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
         
+        draw_set_colour($D18214);
         draw_text(36-18*dcos(WalkDirection),GUIH-36-18*dsin(WalkDirection),"N");
         draw_text(36+18*dcos(WalkDirection),GUIH-36+18*dsin(WalkDirection),"S");
+        draw_set_colour($FFFFFF);
         draw_text(36-18*dsin(WalkDirection),GUIH-36+18*dcos(WalkDirection),"W");
         draw_text(36+18*dsin(WalkDirection),GUIH-36-18*dcos(WalkDirection),"E");
         

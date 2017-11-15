@@ -2,7 +2,7 @@
 <sound>
   <kind>0</kind>
   <extension>.wav</extension>
-  <origname>sound\audio\snd_gun.wav</origname>
+  <origname>sound\audio\snd_gun_smg.wav</origname>
   <effects>0</effects>
   <volume>
     <volume>0.56</volume>
@@ -15,13 +15,13 @@
     <sampleRate>44100</sampleRate>
   </sampleRates>
   <types>
-    <type>0</type>
+    <type>1</type>
   </types>
   <bitDepths>
     <bitDepth>16</bitDepth>
   </bitDepths>
   <preload>-1</preload>
-  <data>snd_gun.wav</data>
+  <data>snd_gun_smg.wav</data>
   <compressed>0</compressed>
   <streamed>0</streamed>
   <uncompressOnLoad>0</uncompressOnLoad>

@@ -37,8 +37,8 @@ Gauto[3] = 0;
 
 //Rate[gun], Rounds per second.
 Grate[0] = 3;
-Grate[1] = 25;
-Grate[2] = 10;
+Grate[1] = 30;
+Grate[2] = 16;
 Grate[3] = 5;
 
 //Capacity[gun], Gun magazine capacity.
