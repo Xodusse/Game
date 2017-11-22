@@ -285,7 +285,8 @@ else if(room != rm_game_0){
     draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
 }
 else if !(obj_initialize.SETTING_GAMEPAD_ENABLED){
-    draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
+    //draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
+    draw_sprite_ext(Cursor_Sprite,Cursor_Frame,window_mouse_get_x(),window_mouse_get_y(),Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
 }
 </string>
           </argument>

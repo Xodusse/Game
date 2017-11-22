@@ -406,7 +406,78 @@ if (obj_controller_wave.WaveDelay == true) &amp;&amp; instance_exists(obj_player
     
     draw_set_font(FNT_EXUDATION_LARGE);
     draw_set_alpha(TextSine);
-    draw_text_transformed(GUIW/2,(GUIH/2)+384,"New wave starting in: " + string(ceil(obj_controller_wave.WaveDelayTimer)),1,1,0);
+    draw_text_transformed(GUIW/2,(GUIH/2)+352,"New wave starting in: " + string(ceil(obj_controller_wave.WaveDelayTimer)),1,1,0);
+    
+    draw_set_alpha(1);
+    draw_set_colour(-1);     
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw reload notification:
+//© 2017 - Reece Warren.
+
+//Ammo check:
+if instance_exists(obj_player) &amp;&amp; instance_exists(obj_controller_inventory){
+
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_font(FNT_EXUDATION_LARGE);
+    draw_set_alpha(TextSine);
+     
+    //No ammo:
+    if ((Q[obj_player.P[obj_player.Current]]) == 0) &amp;&amp; !(obj_player.Reload&lt;Greload[obj_player.G[obj_player.Current]]){
+    
+        draw_set_colour($0000FF);            
+        draw_text_transformed(GUIW/2,(GUIH/2)+384,"No Ammo",1,1,0);            
+        draw_set_colour($FFFFFF);            
+        
+    }
+    
+    //Warning (3): 
+    else if ((Q[obj_player.P[obj_player.Current]]) &lt;= 3){
+        
+        draw_set_colour($64B3DE); 
+        
+        if !obj_player.Grenade {
+            //Low Ammo:
+            if (obj_player.Magazines == 0){
+                draw_text_transformed(GUIW/2,(GUIH/2)+384,"Low Ammo",1,1,0);            
+            }
+            //Reload:
+            else {
+                draw_text_transformed(GUIW/2,(GUIH/2)+384,"Reload",1,1,0);            
+            }
+        }
+        else {
+            draw_text_transformed(GUIW/2,(GUIH/2)+384,"Low Ammo",1,1,0);            
+        }
+        
+        draw_set_colour($FFFFFF);
+                                                                                            
+    }
+    
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);    
+  
+    draw_set_font(FNT_EXUDATION);
     
     draw_set_alpha(1);
     draw_set_colour(-1);           
