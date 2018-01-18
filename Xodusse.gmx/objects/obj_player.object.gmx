@@ -598,6 +598,7 @@ for(var i = instance_number(obj_collider);i&gt;=0;i--){
         }
     }
 }
+
 //Move smoothly and with delta timing.
 SpeedX = SpeedX*S90+(1-S90)*(SumX);
 SpeedY = SpeedY*S90+(1-S90)*(SumY);
