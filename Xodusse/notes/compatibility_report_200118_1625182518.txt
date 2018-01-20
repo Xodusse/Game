@@ -1,0 +1,502 @@
+macOS icon ${options_dir}\mac\icons\icon512.png written out as 32-bit
+Windows NSIS Installer Script has been set to default due to changes in GameMaker Studio 2
+Converting GML script: ${project_dir}\scripts\scr_inventory_drop\scr_inventory_drop.gml
+Converted description /// @description scr_inventory_drop(item,quantity,x,y,speedx,speedy)/// @function scr_inventory_drop
+/// @param item
+/// @param quantity
+/// @param x
+/// @param y
+/// @param speedx
+/// @param speedy
+
+Converting GML script: ${project_dir}\scripts\scr_inventory_pickup\scr_inventory_pickup.gml
+Converted description /// @description scr_inventory_pickup(item,quantity,weight)/// @function scr_inventory_pickup
+/// @param item
+/// @param quantity
+/// @param weight
+
+Converting GML script: ${project_dir}\scripts\scr_inventory_place\scr_inventory_place.gml
+Converted description /// @description scr_inventory_place(pos,item,quantity)/// @function scr_inventory_place
+/// @param pos
+/// @param item
+/// @param quantity
+
+Converting GML script: ${project_dir}\scripts\scr_inventory_remove\scr_inventory_remove.gml
+Converted description /// @description scr_inventory_remove(pos)/// @function scr_inventory_remove
+/// @param pos
+
+Converting GML script: ${project_dir}\scripts\scr_inventory_swap\scr_inventory_swap.gml
+Converted description /// @description scr_inventory_swap(new pos,old pos,item,quantity)/// @function scr_inventory_swap
+/// @param new pos
+/// @param old pos
+/// @param item
+/// @param quantity
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_init\scr_lighting_init.gml
+Converted description /// @description scr_lighting_init()/// @function scr_lighting_init
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_draw_level\scr_lighting_draw_level.gml
+Converted description /// @description scr_lighting_draw_level(level map,color sheet,normal sheet,property sheet,x,y)/// @function scr_lighting_draw_level
+/// @param level map
+/// @param color sheet
+/// @param normal sheet
+/// @param property sheet
+/// @param x
+/// @param y
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_draw_sprite\scr_lighting_draw_sprite.gml
+Converted builtin - line 33: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 33: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 33: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 33: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 33: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 33: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted description /// @description scr_lighting_draw_sprite(color sprite,normal sprite,property sprite,subimg,x,y,xscale,yscale,rot,color,alpha)/// @function scr_lighting_draw_sprite
+/// @param color sprite
+/// @param normal sprite
+/// @param property sprite
+/// @param subimg
+/// @param x
+/// @param y
+/// @param xscale
+/// @param yscale
+/// @param rot
+/// @param color
+/// @param alpha
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_draw_emissive\scr_lighting_draw_emissive.gml
+Converted description /// @description scr_lighting_draw_emissive(emissive sprite,subimg,x,y,xscale,yscale,rot,color,alpha)/// @function scr_lighting_draw_emissive
+/// @param emissive sprite
+/// @param subimg
+/// @param x
+/// @param y
+/// @param xscale
+/// @param yscale
+/// @param rot
+/// @param color
+/// @param alpha
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_draw_point\scr_lighting_draw_point.gml
+Converted description /// @description scr_lighting_draw_point(x,y,z,radius,color)/// @function scr_lighting_draw_point
+/// @param x
+/// @param y
+/// @param z
+/// @param radius
+/// @param color
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_draw_point_mask\scr_lighting_draw_point_mask.gml
+Converted description /// @description scr_lighting_draw_point_mask(color sprite,subimg,x,y,z,xscale,yscale,rot,color,alpha)/// @function scr_lighting_draw_point_mask
+/// @param color sprite
+/// @param subimg
+/// @param x
+/// @param y
+/// @param z
+/// @param xscale
+/// @param yscale
+/// @param rot
+/// @param color
+/// @param alpha
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_draw_direct\scr_lighting_draw_direct.gml
+Converted description /// @description scr_lighting_draw_direct(x,y,z,color)/// @function scr_lighting_draw_direct
+/// @param x
+/// @param y
+/// @param z
+/// @param color
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_draw_final\scr_lighting_draw_final.gml
+Converted description /// @description scr_lighting_draw_final(ambient color, lighting, post process)/// @function scr_lighting_draw_final
+/// @param ambient color
+/// @param  lighting
+/// @param  post process
+
+Converting GML script: ${project_dir}\scripts\scr_lighting_end\scr_lighting_end.gml
+Converted description /// @description scr_lighting_end()/// @function scr_lighting_end
+
+Unknown Shader Type 'HLSL9' for shader 'shdr_lighting_maps'
+Unknown Shader Type 'HLSL9' for shader 'shdr_lighting_maps_terrain'
+!!! Font fnt_Exudation_Large font family Exudation is installed but couldn't match style - Font has NOT been regenerated
+Font fnt_Exudation has been converted to font family Exudation (Medium) - Font has been regenerated, small inconsistencies may occur
+Converting GML script: ${project_dir}\objects\obj_initialize\Create_0.gml
+Converted builtin - line 290: view_wport[0] = GUIW -> __view_set( e__VW.WPort, 0, GUIW )
+Converted builtin - line 291: view_hport[0] = GUIH -> __view_set( e__VW.HPort, 0, GUIH )
+Converted description /// @description Initialize the game.
+
+Converting GML script: ${project_dir}\objects\obj_initialize\Step_1.gml
+Converted builtin - line 31: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted description /// @description Delta time variables.
+
+Converting GML script: ${project_dir}\objects\obj_initialize\Other_4.gml
+Converted builtin - line 9: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 18: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 27: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 36: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 45: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 54: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 63: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 72: view_wview[0] = 960 -> __view_set( e__VW.WView, 0, 960 )
+Converted builtin - line 10: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 19: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 28: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 37: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 46: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 55: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 64: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 73: view_hview[0] = 540 -> __view_set( e__VW.HView, 0, 540 )
+Converted builtin - line 7: view_wport[0] = 960 -> __view_set( e__VW.WPort, 0, 960 )
+Converted builtin - line 16: view_wport[0] = 1280 -> __view_set( e__VW.WPort, 0, 1280 )
+Converted builtin - line 25: view_wport[0] = 1366 -> __view_set( e__VW.WPort, 0, 1366 )
+Converted builtin - line 34: view_wport[0] = 1600 -> __view_set( e__VW.WPort, 0, 1600 )
+Converted builtin - line 43: view_wport[0] = 1920 -> __view_set( e__VW.WPort, 0, 1920 )
+Converted builtin - line 52: view_wport[0] = 2560 -> __view_set( e__VW.WPort, 0, 2560 )
+Converted builtin - line 61: view_wport[0] = 3840 -> __view_set( e__VW.WPort, 0, 3840 )
+Converted builtin - line 70: view_wport[0] = DISPLAY_HRESOLUTION -> __view_set( e__VW.WPort, 0, DISPLAY_HRESOLUTION )
+Converted builtin - line 83: view_wport[0] = 960 -> __view_set( e__VW.WPort, 0, 960 )
+Converted builtin - line 8: view_hport[0] = 540 -> __view_set( e__VW.HPort, 0, 540 )
+Converted builtin - line 17: view_hport[0] = 720 -> __view_set( e__VW.HPort, 0, 720 )
+Converted builtin - line 26: view_hport[0] = 768 -> __view_set( e__VW.HPort, 0, 768 )
+Converted builtin - line 35: view_hport[0] = 900 -> __view_set( e__VW.HPort, 0, 900 )
+Converted builtin - line 44: view_hport[0] = 1080 -> __view_set( e__VW.HPort, 0, 1080 )
+Converted builtin - line 53: view_hport[0] = 1440 -> __view_set( e__VW.HPort, 0, 1440 )
+Converted builtin - line 62: view_hport[0] = 2160 -> __view_set( e__VW.HPort, 0, 2160 )
+Converted builtin - line 71: view_hport[0] = DISPLAY_VRESOLUTION -> __view_set( e__VW.HPort, 0, DISPLAY_VRESOLUTION )
+Converted builtin - line 84: view_hport[0] = 540 -> __view_set( e__VW.HPort, 0, 540 )
+
+Converting GML script: ${project_dir}\objects\obj_init_display\Alarm_0.gml
+Converted description /// @description Center Window:
+
+Converting GML script: ${project_dir}\objects\obj_game_object\Create_0.gml
+Converted description /// @description Initialize variables
+
+Converting GML script: ${project_dir}\objects\obj_game_object\Step_0.gml
+Converted description /// @description Destroy when damaged
+
+Converting GML script: ${project_dir}\objects\obj_player\Create_0.gml
+Converted description /// @description Add GUI and inventory object
+
+Converting GML script: ${project_dir}\objects\obj_player\Step_0.gml
+Converted builtin - line 302: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted builtin - line 302: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted builtin - line 303: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted builtin - line 303: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted builtin - line 33: view_hport[0] -> __view_get( e__VW.HPort, 0 )
+Converted description /// @description Check for guns in hotbar
+
+Converting GML script: ${project_dir}\objects\obj_player\Draw_0.gml
+Converted description /// @description Draw player sprites
+
+Converting GML script: ${project_dir}\objects\obj_enemy\Create_0.gml
+Converted description /// @description AI variables
+
+Converting GML script: ${project_dir}\objects\obj_enemy\Step_0.gml
+Converted description /// @description AI control
+
+Converting GML script: ${project_dir}\objects\obj_enemy\Collision_edb2f0d9-9cd8-4e35-a4c5-4634c195682e.gml
+Converted description /// @description Damage player
+
+Converting GML script: ${project_dir}\objects\obj_enemy\Draw_0.gml
+Converted description /// @description Draw enemy sprite:
+
+Converting GML script: ${project_dir}\objects\obj_wall\Create_0.gml
+Converted description /// @description Initialize variables
+
+Converting GML script: ${project_dir}\objects\obj_table\Create_0.gml
+Converted description /// @description Initialize variables
+
+Converting GML script: ${project_dir}\objects\obj_chair\Create_0.gml
+Converted description /// @description Initialize variables
+
+Converting GML script: ${project_dir}\objects\obj_crate\Create_0.gml
+Converted description /// @description Initialize variables
+
+Converting GML script: ${project_dir}\objects\obj_crate\Destroy_0.gml
+Converted description /// @description Add magazines to the ground.
+
+Converting GML script: ${project_dir}\objects\obj_item\Create_0.gml
+Converted description /// @description Set item variables
+
+Converting GML script: ${project_dir}\objects\obj_item\Alarm_0.gml
+Converted description /// @description Add inventory to backpacks only.
+
+Converting GML script: ${project_dir}\objects\obj_item\Collision_aa586511-af5e-42b1-b31d-be6ec52a2022.gml
+Converted description /// @description Give item to player
+
+Converting GML script: ${project_dir}\objects\obj_item\Draw_0.gml
+Converted description /// @description Draw item
+
+Converting GML script: ${project_dir}\objects\obj_foliage_fern_1\Create_0.gml
+Converted description /// @description Define object required variables:
+
+Converting GML script: ${project_dir}\objects\obj_foliage_fern_1\Step_0.gml
+Converted description /// @description Set the image_speed to delta time:
+
+Converting GML script: ${project_dir}\objects\obj_foliage_fern_1\Draw_0.gml
+Converted description /// @description Draw the foliage sprites:
+
+Converting GML script: ${project_dir}\objects\obj_projectiles\Create_0.gml
+Converted description /// @description Projectile variables
+
+Converting GML script: ${project_dir}\objects\obj_projectiles\Step_0.gml
+Converted description /// @description Collision with game objects
+
+Converting GML script: ${project_dir}\objects\obj_projectiles\Draw_0.gml
+Converted description /// @description Draw projectile
+
+Converting GML script: ${project_dir}\objects\obj_grenade\Create_0.gml
+Converted description /// @description Grenade variables
+
+Converting GML script: ${project_dir}\objects\obj_grenade\Step_0.gml
+Converted description /// @description Move and explode
+
+Converting GML script: ${project_dir}\objects\obj_explosion\Create_0.gml
+Converted description /// @description Explosion variables
+
+Converting GML script: ${project_dir}\objects\obj_explosion\Step_0.gml
+Converted description /// @description Animate with delta timing
+
+Converting GML script: ${project_dir}\objects\obj_explosion\Draw_0.gml
+Converted description /// @description Animate explosion
+
+Converting GML script: ${project_dir}\objects\obj_controller_keys\Create_0.gml
+Converted description /// @description Set key defaults
+
+Converting GML script: ${project_dir}\objects\obj_controller_keys\Step_0.gml
+Converted builtin - line 99: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 105: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 100: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 106: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 99: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 105: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 100: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 106: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted description /// @description Update keypresses
+
+Converting GML script: ${project_dir}\objects\obj_controller_debugger\Step_0.gml
+Converted builtin - line 25: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+
+Converting GML script: ${project_dir}\objects\obj_controller_debugger\Draw_0.gml
+Converted description /// @description Draw enemy debug lines:
+
+Converting GML script: ${project_dir}\objects\obj_controller_console\Draw_64.gml
+Converted builtin - line 49: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 7: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 11: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 12: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 13: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 14: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 15: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 16: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 21: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 25: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 31: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 35: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 44: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 48: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 49: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: ${project_dir}\objects\obj_controller_console\KeyPress_1.gml
+Converted string - line 15: "\#" -> "\\#"
+
+Converting GML script: ${project_dir}\objects\obj_controller_wave\Create_0.gml
+Converted description /// @description Wave variables
+
+Converting GML script: ${project_dir}\objects\obj_controller_guns\Create_0.gml
+Converted description /// @description Gun variables
+
+Converting GML script: ${project_dir}\objects\obj_controller_inventory\Create_0.gml
+Converted description /// @description Inventory variables
+
+Converting GML script: ${project_dir}\objects\obj_controller_inventory\Step_0.gml
+Converted description /// @description Control inventory
+
+Converting GML script: ${project_dir}\objects\obj_controller_gui\Create_0.gml
+Converted description /// @description Screenshake variables
+
+Converting GML script: ${project_dir}\objects\obj_controller_gui\Step_0.gml
+Converted builtin - line 12: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 13: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 12: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 13: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 12: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted builtin - line 13: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted builtin - line 14: view_angle[0] -> __view_get( e__VW.Angle, 0 )
+Converted description /// @description View and screenshake controller
+Converted builtin - line 12: view_xview[0] = __view_get( e__VW.XView, 0 )*S90+(1-S90)*(obj_player.x-__view_get( e__VW.WView, 0 )/2+ShakeX+100*dsin(__view_get( e__VW.Angle, 0 ))) -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 )*S90+(1-S90)*(obj_player.x-__view_get( e__VW.WView, 0 )/2+ShakeX+100*dsin(__view_get( e__VW.Angle, 0 ))) )
+Converted builtin - line 13: view_yview[0] = __view_get( e__VW.YView, 0 )*S90+(1-S90)*(obj_player.y-__view_get( e__VW.HView, 0 )/2+ShakeY-100*dcos(__view_get( e__VW.Angle, 0 ))) -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 )*S90+(1-S90)*(obj_player.y-__view_get( e__VW.HView, 0 )/2+ShakeY-100*dcos(__view_get( e__VW.Angle, 0 ))) )
+Converted builtin - line 14: view_angle[0] = __view_get( e__VW.Angle, 0 )*S90+(1-S90)*(90-obj_player.WalkDirection+ShakeAngle) -> __view_set( e__VW.Angle, 0, __view_get( e__VW.Angle, 0 )*S90+(1-S90)*(90-obj_player.WalkDirection+ShakeAngle) )
+
+Converting GML script: ${project_dir}\objects\obj_controller_gui\Draw_0.gml
+Converted builtin - line 64: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 67: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 71: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 73: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 105: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 65: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 68: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 72: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 74: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 106: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 64: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 64: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 65: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 67: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 67: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 68: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 71: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 73: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 105: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 65: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 68: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 71: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 72: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 72: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 74: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 106: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: ${project_dir}\objects\obj_controller_normal\Create_0.gml
+Converted description /// @description Initialize lighting system.
+
+Converting GML script: ${project_dir}\objects\obj_controller_normal\Destroy_0.gml
+Converted description /// @description End lighting
+
+Converting GML script: ${project_dir}\objects\obj_controller_normal\Other_10.gml
+Converted description /// @description Temporary Lighting Control
+
+Converting GML script: ${project_dir}\objects\obj_controller_normal\Other_5.gml
+Converted description /// @description End lighting
+
+Converting GML script: ${project_dir}\objects\obj_controller_normal\Other_3.gml
+Converted description /// @description End lighting
+
+Converting GML script: ${project_dir}\objects\obj_controller_normal\Draw_0.gml
+Converted description /// @description Draw normal map lighting
+
+Converting GML script: ${project_dir}\objects\obj_controller_tiles\Create_0.gml
+Converted description /// @description Define the room number.
+
+Converting GML script: ${project_dir}\objects\obj_controller_cursor\Create_0.gml
+Converted builtin - line 26: view_wview[view_current] -> __view_get( e__VW.WView, view_current )
+Converted description /// @description Mouse cursor variables:
+
+Converting GML script: ${project_dir}\objects\obj_controller_cursor\Step_2.gml
+Converted description /// @description Cursor Targeting:
+
+Converting GML script: ${project_dir}\objects\obj_controller_cursor\Step_1.gml
+Converted builtin - line 7: view_xview[view_current] -> __view_get( e__VW.XView, view_current )
+Converted builtin - line 8: view_yview[view_current] -> __view_get( e__VW.YView, view_current )
+Converted builtin - line 7: view_wview[view_current] -> __view_get( e__VW.WView, view_current )
+Converted builtin - line 8: view_hview[view_current] -> __view_get( e__VW.HView, view_current )
+Converted description /// @description Update the cursor location:
+
+Converting GML script: ${project_dir}\objects\obj_controller_cursor\Other_10.gml
+Converted builtin - line 8: view_wview[view_current] -> __view_get( e__VW.WView, view_current )
+Converted description /// @description Determine the resolution scaling factor:
+
+Converting GML script: ${project_dir}\objects\obj_controller_cursor\Other_4.gml
+Converted builtin - line 5: view_wview[view_current] -> __view_get( e__VW.WView, view_current )
+Converted description /// @description Determine the resolution scaling factor:
+
+Converting GML script: ${project_dir}\objects\obj_controller_cursor\Draw_64.gml
+Converted description /// @description Draw the cursor:
+
+Converting GML script: ${project_dir}\objects\obj_button_large\Create_0.gml
+Converted description /// @description GUI Buttons:
+
+Converting GML script: ${project_dir}\objects\obj_button_large\Step_0.gml
+Converted description /// @description Hover highlighting
+
+Converting GML script: ${project_dir}\objects\obj_button_small\Create_0.gml
+Converted description /// @description GUI Buttons:
+
+Converting GML script: ${project_dir}\objects\obj_button_small\Step_0.gml
+Converted builtin - line 48: view_wport[0] = GUIW -> __view_set( e__VW.WPort, 0, GUIW )
+Converted builtin - line 96: view_wport[0] = GUIW -> __view_set( e__VW.WPort, 0, GUIW )
+Converted builtin - line 235: view_wport[0] = GUIW -> __view_set( e__VW.WPort, 0, GUIW )
+Converted builtin - line 49: view_hport[0] = GUIH -> __view_set( e__VW.HPort, 0, GUIH )
+Converted builtin - line 97: view_hport[0] = GUIH -> __view_set( e__VW.HPort, 0, GUIH )
+Converted builtin - line 236: view_hport[0] = GUIH -> __view_set( e__VW.HPort, 0, GUIH )
+Converted description /// @description Hover highlighting
+
+Converting GML script: ${project_dir}\objects\obj_button_pause\Create_0.gml
+Converted description /// @description GUI Buttons:
+
+Converting GML script: ${project_dir}\objects\obj_button_pause\Step_0.gml
+Converted description /// @description Hover highlighting
+
+Converting GML script: ${project_dir}\objects\obj_message\Create_0.gml
+Converted description /// @description Message variables
+
+Converting GML script: ${project_dir}\objects\obj_message\Step_0.gml
+Converted description /// @description Fade message
+
+Converting GML script: ${project_dir}\objects\obj_message\Draw_64.gml
+Converted description /// @description Draw message
+
+Converting GML script: instance inst_BAB03DAD creation code
+Converted description /// @description GUI Start Button
+
+Converting GML script: instance inst_01D23B89 creation code
+Converted description /// @description GUI Start Button
+
+Converting GML script: instance inst_03261CD5 creation code
+Converted description /// @description GUI Options Button
+
+Converting GML script: instance inst_4D1B3581 creation code
+Converted description /// @description GUI Start Button
+
+Converting GML script: instance inst_9771018C creation code
+Converted description /// @description GUI Back Button
+
+Converting GML script: instance inst_C7BBEC59 creation code
+Converted description /// @description GUI Play Button
+
+Converting GML script: instance inst_F64E662C creation code
+Converted description /// @description Vsync Button
+
+Converting GML script: instance inst_18410685 creation code
+Converted description /// @description Interpolation Button
+
+Converting GML script: instance inst_2707B8AE creation code
+Converted description /// @description FXAA Button
+
+Converting GML script: instance inst_BBE4BBDA creation code
+Converted description /// @description Fullscreen Button
+
+Converting GML script: instance inst_1B3A2E66 creation code
+Converted description /// @description GUI Back Button
+
+Converting GML script: instance inst_1E377E79 creation code
+Converted description /// @description Interpolation Button
+
+Converting GML script: instance inst_9D337494 creation code
+Converted description /// @description Surface Scale Button
+
+Converting GML script: instance inst_91ACEF9E creation code
+Converted description /// @description Control Mode Button
+
+Missing audiogroup for sound: 'snd_gun' - setting to default audio group
+Missing audiogroup for sound: 'snd_empty' - setting to default audio group
+Missing audiogroup for sound: 'snd_explosion' - setting to default audio group
+Missing audiogroup for sound: 'snd_enemy_death_0' - setting to default audio group
+Missing audiogroup for sound: 'snd_enemy_death_1' - setting to default audio group
+Missing audiogroup for sound: 'snd_enemy_death_2' - setting to default audio group
+Missing audiogroup for sound: 'snd_enemy_death_3' - setting to default audio group
+Missing audiogroup for sound: 'snd_enemy_death_4' - setting to default audio group
+Game speed set to 9999
+Added compatibility script 'action/action_if_variable.gml'
+Added compatibility script 'background/background_get_texture.gml'
+Added compatibility script 'background/background_get_uvs.gml'
+Added compatibility script 'draw/draw_set_blend_mode.gml'
+Added compatibility script 'draw/draw_set_blend_mode_ext.gml'
+Added compatibility script 'instance/instance_create.gml'
+Added compatibility script 'object/object_get_depth.gml'
+Added compatibility script 'texture/texture_set_interpolation.gml'
+Added compatibility script 'view/room_set_view.gml'
+Added compatibility script 'view/__view_get.gml'
+Added compatibility script 'view/__view_set.gml'
+Added compatibility script 'view/__view_set_internal.gml'
+Added compatibility script 'action/__init_action.gml'
+Added compatibility script 'background/__init_background.gml'
+Added compatibility script 'view/__init_view.gml'
+Added compatibility script '__init_global.gml'
+Added compatibility script '__global_object_depths.gml'
