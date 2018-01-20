@@ -36,6 +36,6 @@ if Aitem{
     
     if !Success{
         
-        scr_inventory_drop(Aitem,Aquan)
+        scr_inventory_drop(Aitem,Aquan,obj_player.x,obj_player.y,0,0);
     }
 }

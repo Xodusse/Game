@@ -54,7 +54,7 @@ float2 TileCoord(float2 Coord,float2 Tile)
 void main(in Fragment IN, out Render OUT)
 {
     float2 MC = IN.Texcoord;
-    MC += .003*cos(IN.Texcoord.yx*93.); //This is the tile warp and can be commented out.
+    //MC += .003*cos(IN.Texcoord.yx*93.); //This is the tile warp and can be commented out.
     float4 F = frac(MC*64.).xyxy; F.xy = 1.-F.xy;
     float2 U1 = TileCoord(MC,float2(0,0));
     float2 U2 = TileCoord(MC,float2(1,0));
