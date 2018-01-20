@@ -31,5 +31,6 @@ with(obj_projectiles){
     scr_lighting_draw_point(x,y,100,64,$447788);
 }
 
-scr_lighting_draw_final($080508,1,1);
+//scr_lighting_draw_final($080508,1,1);
+scr_lighting_draw_final(0,0,0);
 

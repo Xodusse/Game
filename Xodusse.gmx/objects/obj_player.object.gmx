@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-2</depth>
   <persistent>0</persistent>
-  <parentName>obj_game_object</parentName>
+  <parentName>obj_collider</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -65,8 +65,6 @@ Grenade = 0;
 Count = 1;
 //Gun in hand (between 0 and Count).
 Current = 0;
-//This is the gun in second hand.
-Secondary = 0;
 //Inventory position of the next and last magazine.
 MagazineNext = -1;
 //Number of extra magazines for the current gun.
@@ -119,7 +117,8 @@ WalkFrame = 0;
 Radius = 16;
 
 Melee = 0;
-Health = 10;
+MaxHealth = 10;
+Health = MaxHealth;
 </string>
           </argument>
         </arguments>
@@ -197,7 +196,13 @@ if Count{
         X = window_mouse_get_x();
         Y = window_mouse_get_y();
     
-        Swap = mouse_wheel_down()-mouse_wheel_up();
+        if (obj_initialize.SETTING_GAMEPAD_ENABLED){
+            Swap = (gamepad_button_check_released(0,gp_shoulderr)-gamepad_button_check_released(0,gp_shoulderl));
+        }
+        else {
+            Swap = mouse_wheel_down()-mouse_wheel_up();
+        }
+        
         if Swap != 0{
             
             if point_distance(0,H,X,Y)&lt;150 &amp;&amp; I[P[Current]]&gt;Idoubles*2{
@@ -232,9 +237,6 @@ if !Grenade &amp;&amp; (abs(Swap)==1){
 
     Reload = Greload[G[Current]]*((Q[P[Current]]&gt;0));
 }
-
-//Broken dual wield varaible:
-Secondary = Current;
 </string>
           </argument>
         </arguments>
@@ -345,21 +347,22 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                 Q[P[Current]]--;
                 //Handle grenade.
                 var ThrowSpeedX,ThrowSpeedY,Throw;
-                ThrowSpeedX = (mouse_x-x)/40+SpeedX;
-                ThrowSpeedY = (mouse_y-y)/40+SpeedY;
+                ThrowSpeedX = (mouse_x-x)/30+SpeedX;
+                ThrowSpeedY = (mouse_y-y)/30+SpeedY;
                 Throw = instance_create(x,y,obj_grenade);
                 
                 Throw.Z = 50;
                 Throw.SpeedA = random(20);
                 Throw.SpeedX = ThrowSpeedX;
                 Throw.SpeedY = ThrowSpeedY;
-                Throw.SpeedZ = sqrt(sqr(ThrowSpeedX)+sqr(ThrowSpeedY));
+                Throw.SpeedZ = power(sqr(ThrowSpeedX)+sqr(ThrowSpeedY),1/4);
                 Reload = 0;
             }
             else{
             
                 //Remove empty grenade slot.
                 I[P[Current]] = 0;
+                Current = (Current+Count-1) % Count;
                 }
             }
         }
@@ -377,13 +380,33 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
             else{
             
             //Shoot fully-automatic or semi-automatic with left click as long as the inventory is closed.
-            if !Ienable &amp;&amp; (mouse_check_button(mb_left)*Gauto[G[Current]] || mouse_check_button_pressed(mb_left)*!Gauto[G[Current]]){
+            if !Ienable &amp;&amp; (mouse_check_button(mb_left)*Gauto[G[Current]] || 
+                   mouse_check_button_pressed(mb_left)*!Gauto[G[Current]] || 
+        gamepad_button_check_pressed(0, gp_shoulderrb)*!Gauto[G[Current]] || 
+                 gamepad_button_check(0, gp_shoulderrb)*Gauto[G[Current]]){
                 
                 //Check gun timelines.
                 if (Rate&gt;1/Grate[G[Current]] &amp;&amp; Reload&gt;Greload[G[Current]] &amp;&amp; Q[P[Current]]){
                     
                     Shake = Shake*0.9+0.05*Grecoil[G[Current]];
-                    audio_play_sound(snd_gun,0,0);
+                    
+                    switch(G[Current]){
+
+                        default: break;
+                        
+                        case 0: audio_play_sound(snd_gun_gl,0,0); break;   
+                        
+                        case 1: audio_play_sound(snd_gun_lmg,0,0); break;                       
+                                        
+                        case 2: audio_play_sound(snd_gun_smg,0,0); break;
+                        
+                        case 3: audio_play_sound(snd_gun_hg,0,0); break;                   
+                    
+                    }
+                    /*if (G[Current] == 2){
+                        audio_play_sound(snd_gun_smg,0,0);
+                    }*/
+                    
                     Rate = 0;
                     
                     //Shoot all bullets.
@@ -474,7 +497,7 @@ if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
     if !Grenade &amp;&amp; (!Count || (Reload&gt;=Greload[G[Current]] &amp;&amp; Rate&gt;=1/Grate[G[Current]])){
         
         Melee = 1;
-        with(obj_game_object){
+        with(obj_collider){
     
             if object_index != obj_player{
             
@@ -512,13 +535,19 @@ if Kmelee &amp;&amp; (Melee&lt;0.1) &amp;&amp; (abs(Swap)&lt;0.1){
 
 //Set controls for movement.
 var Turn,Vert,Hor;
-Turn = Kturnleft-Kturnright;
-Vert = Kdown-Kup;
-Hor = Kleft-Kright;
-
 var MouseX,MouseY;
-MouseX = window_mouse_get_x();
-MouseY = window_mouse_get_y();
+if (obj_initialize.SETTING_GAMEPAD_ENABLED) &amp;&amp; !PAUSED {
+    Turn = -Controller_RJoy_x;
+    Vert = Controller_LJoy_y;
+    Hor = -Controller_LJoy_x;
+}
+else {
+    Turn = Kturnleft-Kturnright;
+    Vert = Kdown-Kup;
+    Hor = Kleft-Kright;
+    MouseX = window_mouse_get_x();
+    MouseY = window_mouse_get_y();
+}
 
 if obj_initialize.SETTING_CONTROL_MODE{
     
@@ -529,13 +558,20 @@ TurnSpeed = TurnSpeed*S90+(1-S90)*Turn;
 
 //Handle player turning gun and player direction.
 WalkDirection = (WalkDirection+2*TurnSpeed*FRAME_DELTA);
-Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
+
+if (obj_initialize.SETTING_GAMEPAD_ENABLED) &amp;&amp; !PAUSED {
+    Turn = angle_difference(point_direction(x,y,x-(dcos(WalkDirection-180)*256),y-(dsin(WalkDirection)*256)),GunDirection);
+}
+else {
+    Turn = angle_difference(point_direction(x,y,mouse_x,mouse_y),GunDirection);
+}
+
 GunDirection += 0.3*Turn*FRAME_DELTA;
-//GunDirection = (GunDirection+0.3*Turn*FRAME_DELTA+360)%360;
 
 //Smooth walk using controls defined above.
-var MoveSpeed,MoveSpeedX,MoveSpeedY;
-Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/(1-0.5*sqr(Iweight/Istrength));
+var MoveSlow,MoveSpeed,MoveSpeedX,MoveSpeedY;
+MoveSlow = 1+4*(instance_position(x,y,obj_barrel_puddle) != noone);
+Speed = max(sqrt(sqr(Hor)+sqr(Vert)),1)/(1-0.8*Iweight/Istrength)*MoveSlow;
 if !Grenade{Speed /= Gweight[G[Current]];}
 
 MoveSpeedX = RecoilSpeedX+4*(Vert*dsin(-view_angle[0])-Hor*dcos(view_angle[0]))/Speed;
@@ -547,9 +583,9 @@ SumX = (MoveSpeedX*(dcos(GunDirection)*sign(SpeedX)*0.3+0.7));
 SumY = (MoveSpeedY*(dsin(GunDirection)*sign(SpeedY)*-0.3+0.7));
 
 //Get pushed by enemies.
-for(var i = instance_number(obj_game_object);i&gt;=0;i--){
+for(var i = instance_number(obj_collider);i&gt;=0;i--){
 
-    var Inst = instance_find(obj_game_object,i);
+    var Inst = instance_find(obj_collider,i);
     if (Inst!=id) &amp;&amp; (Inst!=noone){
     
         var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
@@ -655,12 +691,9 @@ if Count{
 
     scr_lighting_draw_sprite(spr_player_holdables,spr_player_holdables_n,spr_player_holdables_she,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
     y+dsin(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)-dcos(-Face)*Switch*10,0.4*sqr(abs(abs(Swap)*2-1)),0.4,Face-4+Switch*40-Swing*30+Sway/3,$FFFFFF,1);
-    
-    //draw_sprite_ext(spr_player_holdables,G[(Current+Count+sign(Swap)*(abs(Swap)&gt;0.5))%Count],x-dcos(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)+dsin(-Face)*Switch*10,
-    //y+dsin(Face+Switch*10-Swing*20)*(Recoil*2+Switch*8-16)-dcos(-Face)*Switch*10,0.4*sqr(abs(abs(Swap)*2-1)),0.4,Face-4+Switch*40-Swing*30,$FFFFFF,1);
 }
 
-scr_lighting_draw_sprite(spr_player_head,spr_player_head_n,spr_player_head_she,0,x-dcos(Face)*Recoil*0.8,y+dsin(Face)*Recoil*0.8,1,1,Face+0.6*Turn+Switch*20-Swing*10,$FFFFFF,1);
+scr_lighting_draw_sprite(spr_player_head,spr_player_head_n,spr_player_head_she,0,x-dcos(Face)*Recoil*0.8,y+dsin(Face)*Recoil*0.8,1,1,Face+0.6*Turn*!PAUSED+Switch*20-Swing*10,$FFFFFF,1);
 </string>
           </argument>
         </arguments>

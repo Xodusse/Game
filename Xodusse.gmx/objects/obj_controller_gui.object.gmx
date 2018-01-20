@@ -33,6 +33,9 @@ Shake = 0;
 ShakeX = 0;
 ShakeY = 0;
 ShakeAngle = 0;
+
+TextOpacityValue = 0;
+TextSine = 0;
 </string>
           </argument>
         </arguments>
@@ -62,6 +65,9 @@ Shake = Shake*S90;
 ShakeX = ShakeX*(1-S90)+S90*50*Shake*(random(2)-1);
 ShakeY = ShakeY*(1-S90)+S90*50*Shake*(random(2)-1);
 ShakeAngle = ShakeAngle*(1-S90)+S90*Shake*(random(40)-20);
+
+TextOpacityValue = TextOpacityValue + F1;
+TextSine = (((dsin(TextOpacityValue * 360)*0.5)+0.5) * 0.75) + 0.25;
 
 if instance_exists(obj_player){
     
@@ -145,22 +151,25 @@ if instance_exists(obj_player){
 
     draw_set_font(FNT_EXUDATION);
     with(obj_player){
-    
-        //Inner circle.
-        draw_set_alpha(0.6);
-        //draw_circle_colour(0,GUIH,60,$222222,$333333,0);
         
-        draw_primitive_begin(pr_trianglestrip);
-        for(var i = 0;i&lt;=30;i++){            
-            var Angle = i*3;
-            draw_vertex_colour(dcos(Angle)*52,GUIH-dsin(Angle)*52,$999329,0.2);
-            draw_vertex_colour(dcos(Angle),GUIH-dsin(Angle),$999329,0.2);
-        }        
-        draw_primitive_end();
+        //Simple compass
+        //draw_circle(36,GUIH-36,32,1);
+        //draw_circle(36,GUIH-36,31,1);
+        //draw_circle(36,GUIH-36,30,1);
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
         
-        draw_set_alpha(1);
+        draw_set_colour($D18214);
+        draw_text(36-18*dcos(WalkDirection),GUIH-36-18*dsin(WalkDirection),"N");
+        draw_text(36+18*dcos(WalkDirection),GUIH-36+18*dsin(WalkDirection),"S");
+        draw_set_colour($FFFFFF);
+        draw_text(36-18*dsin(WalkDirection),GUIH-36+18*dcos(WalkDirection),"W");
+        draw_text(36+18*dsin(WalkDirection),GUIH-36-18*dcos(WalkDirection),"E");
         
-        //Outer reload circle.
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+        
+        //Reload arc.
         var Progress = min(Reload,1);
         if !Grenade{
         
@@ -171,87 +180,84 @@ if instance_exists(obj_player){
         for(var i = 0;i&lt;=30;i++){
             
             var Angle = i*3*Progress;
-            draw_vertex_colour(dcos(Angle)*150,GUIH-dsin(Angle)*150,$D18214,0.3);
-            draw_vertex_colour(dcos(Angle)*52,GUIH-dsin(Angle)*52,$999329,0.1);
+            draw_vertex_colour(dcos(Angle)*150+36,GUIH-dsin(Angle)*150-36,$D18214,0.3);
+            draw_vertex_colour(dcos(Angle)*32+36,GUIH-dsin(Angle)*32-36,$999329,0.1);
         }
         draw_primitive_end();
         
+        //Draw guns and info
         if Count{
-            draw_set_colour($FFFFFF);
+            
+            draw_set_colour($FFFFFF);           
+            draw_set_font(FNT_EXUDATION_LARGE);
+            draw_set_valign(fa_bottom);
+            
             if !Grenade{
             
                 //Gun info (magazine count, shots count in magazine, magazine capacity).
-                draw_text(2,GUIH-40,string(max(Magazines,0)));
-                draw_text(4,GUIH-24,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
+                draw_text(90,GUIH-8,string(max(Magazines,0)));
+                draw_text(120,GUIH-8,string(Q[P[Current]])+"/"+string(Gcap[G[Current]]));
             }
             else{
             
                 //Grenade info (grenade count).
-                draw_text(2,GUIH-40,string(max(Q[P[Current]],0)));
+                draw_text(90,GUIH-8,string(max(Q[P[Current]],0)));
             }
             
             draw_set_colour(0);
+            draw_set_font(FNT_EXUDATION);
+            draw_set_valign(fa_top);
             
-            if  Current == Secondary{
                 
-                //Center gun on outer circle.
-                var Item,Angle,Alpha;
-                Item = I[P[Current]];
-                Angle = 30*Swap-45;
-                Alpha = 1;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
-                if (Item&lt;=Idoubles*2){
-                    
-                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*70,GUIH+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
-                }
+            //Center gun on outer circle.
+            var Item,Angle,Alpha,Scale;
+            Item = I[P[Current]];
+            Angle = 30*Swap-45;
+            Alpha = 1;
+            Scale = 1-abs(Swap);
+            draw_sprite_ext(spr_items,Item-1,36+dcos(Angle)*120,GUIH-36+dsin(Angle)*120,10*(4+Scale)/S,10*(4+Scale)/S,-Angle,-1,1);
+            if (Item&lt;=Idoubles*2){
                 
-                //Top gun on outer circle.
-                Item = I[P[(Current+1)%Count]];
-                Angle = 30*Swap-75;
-                Alpha = 0.5+Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
-                if (Item&lt;=Idoubles*2){
-                    
-                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,GUIH+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
-                }
-                
-                //Bottom gun on outer circle.
-                Item = I[P[(Current-1+Count)%Count]];
-                Angle = 30*Swap-15;
-                Alpha = 0.5-Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
-                if (Item&lt;=Idoubles*2){
-                    
-                    draw_sprite_ext(spr_items,Item-2,dcos(Angle)*80,GUIH+dsin(Angle)*80,40/S,40/S,-Angle,-1,Alpha);
-                }
+                draw_sprite_ext(spr_items,Item-2,36+dcos(Angle)*10*(8-Scale),GUIH-36+dsin(Angle)*10*(8-Scale),10*(4+Scale)/S,10*(4+Scale)/S,-Angle,-1,1);
             }
-            else{
             
-                //Center gun on outer circle.
-                var Item,Angle,Alpha;
-                Item = I[P[Current]];
-                Angle = 30*Swap-45;
-                Alpha = 1;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,50/S,50/S,-Angle,-1,1);
+            //Top gun on outer circle.
+            Item = I[P[(Current+1)%Count]];
+            Angle = 30*Swap-75;
+            Alpha = 0.5+Swap;
+            Scale = max(-Swap,0);
+            draw_sprite_ext(spr_items,Item-1,36+dcos(Angle)*120,GUIH-36+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+            if (Item&lt;=Idoubles*2){
                 
-                Item = I[P[Secondary]];
-                Angle = -45;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*70,GUIH+dsin(Angle)*70,50/S,50/S,-Angle,-1,1);
+                draw_sprite_ext(spr_items,Item-2,36+dcos(Angle)*10*(8-Scale),GUIH-36+dsin(Angle)*10*(8-Scale),10*(4+Scale)/S,10*(4+Scale)/S,-Angle,-1,Alpha);
+            }
+            
+            //Bottom gun on outer circle.
+            Item = I[P[(Current-1+Count)%Count]];
+            Angle = 30*Swap-15;
+            Alpha = 0.5-Swap;
+            Scale = max(Swap,0);
+            draw_sprite_ext(spr_items,Item-1,36+dcos(Angle)*120,GUIH-36+dsin(Angle)*120,10*(4+Scale)/S,10*(4+Scale)/S,-Angle,-1,Alpha);
+            if (Item&lt;=Idoubles*2){
                 
-                //Top gun on outer circle.
-                Item = I[P[(Current+1)%Count]];
-                Angle = 30*Swap-75;
-                Alpha = 0.5+Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
-                
-                //Bottom gun on outer circle.
-                Item = I[P[(Current-1+Count)%Count]];
-                Angle = 30*Swap-15;
-                Alpha = 0.5-Swap;
-                draw_sprite_ext(spr_items,Item-1,dcos(Angle)*120,GUIH+dsin(Angle)*120,40/S,40/S,-Angle,-1,Alpha);
+                draw_sprite_ext(spr_items,Item-2,36+dcos(Angle)*10*(8-Scale),GUIH-36+dsin(Angle)*10*(8-Scale),10*(4+Scale)/S,10*(4+Scale)/S,-Angle,-1,Alpha);
+            }
+            
+            //Transition gun.
+            if (abs(Swap)&gt;.1)
+            {
+                Item = I[P[(Current-sign(Swap)*2+Count)%Count]];
+                Angle = 30*(-sign(Swap)*2+Swap)-45;
+                Alpha = abs(Swap)-.5;
+                Scale = 0;
+                draw_sprite_ext(spr_items,Item-1,36+dcos(Angle)*120,GUIH-36+dsin(Angle)*120,10*(4+Scale)/S,10*(4+Scale)/S,-Angle,-1,Alpha);
+                if (Item&lt;=Idoubles*2){
+                    
+                    draw_sprite_ext(spr_items,Item-2,36+dcos(Angle)*10*(8-Scale),GUIH-36+dsin(Angle)*10*(8-Scale),10*(4+Scale)/S,10*(4+Scale)/S,-Angle,-1,Alpha);
+                }
             }
         }
-
+        
         
         //ROUND NUMBER:
         draw_set_colour($FFFFFF);
@@ -265,7 +271,9 @@ if instance_exists(obj_player){
             draw_set_font(fnt_Exudation);
             draw_text(GUIW-60,GUIH-60,"WAVE:");
         }
+
         
+        draw_set_font(FNT_EXUDATION);
         draw_set_halign(fa_left);
         draw_set_valign(fa_top);        
         
@@ -285,27 +293,28 @@ if instance_exists(obj_player){
     //Inventory system.
     if Ienable{
           
-        draw_set_halign(fa_right);
-        draw_set_valign(fa_bottom);
-        
         //Inventory base.
         draw_set_alpha(0.4);
         draw_rectangle(GUIW/2-S*3.5,GUIH/2-S*1.5-S*Ibackpack,GUIW/2+S*3.5,GUIH/2+S*1.5,0);
         
-        //Weight and strength capacity
-        draw_rectangle(GUIW/2+S*2.5,GUIH/2-S*2-S*Ibackpack,GUIW/2+S*3.5,GUIH/2-S*1.5-S*Ibackpack-1,0);
-        draw_set_alpha(1);
-        draw_set_colour($FFFFFF);
-        draw_text(GUIW/2+S*3.5,GUIH/2-S*1.5-S*Ibackpack,string(ceil(Iweight))+"/"+string(Istrength)+" KG");
-        draw_set_alpha(0.4);
-        draw_set_colour(0);
-        
         //Backpack slot.
-        draw_rectangle(GUIW/2+S*4.5,GUIH/2-S*0.5,GUIW/2+S*6.5,GUIH/2+S*1.5,0);
+        draw_rectangle(GUIW/2+S*4.5,GUIH/2-S*1,GUIW/2+S*6.5,GUIH/2+S*1.5,0);
         draw_set_alpha(1);
         draw_set_colour($999329);
         draw_rectangle(GUIW/2+S*5,GUIH/2,GUIW/2+S*6,GUIH/2+S,1);
+        
+        //Weight and strength capacity
+        draw_set_alpha(1);
+        draw_set_colour($FFFFFF);
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+        
+        draw_text(GUIW/2+S*5.5,GUIH/2-S*0.5,string(ceil(Iweight))+"/"+string(Istrength)+" KG");
+        
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
         draw_set_colour(0);
+        
         if Ibackpack{
         
             draw_sprite(spr_items,Idoubles*2+Isingles+Igrenades+Iammo+Ibackpack-1,GUIW/2+S*5.5,GUIH/2+S*.5);
@@ -363,6 +372,115 @@ if instance_exists(obj_player){
         draw_set_valign(fa_top);
     }
     draw_set_font(-1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw wave delay
+//© 2017 - Reece Warren.
+
+//New wave timer:
+if (obj_controller_wave.WaveDelay == true) &amp;&amp; instance_exists(obj_player){
+
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    
+    draw_set_colour($FFFFFF);
+    
+    draw_set_font(FNT_EXUDATION_LARGE);
+    draw_set_alpha(TextSine);
+    draw_text_transformed(GUIW/2,(GUIH/2)+352,"New wave starting in: " + string(ceil(obj_controller_wave.WaveDelayTimer)),1,1,0);
+    
+    draw_set_alpha(1);
+    draw_set_colour(-1);     
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw reload notification:
+//© 2017 - Reece Warren.
+
+//Ammo check:
+if instance_exists(obj_player) &amp;&amp; instance_exists(obj_controller_inventory){
+
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_font(FNT_EXUDATION_LARGE);
+    draw_set_alpha(TextSine);
+     
+    //No ammo:
+    if ((Q[obj_player.P[obj_player.Current]]) == 0) &amp;&amp; !(obj_player.Reload&lt;Greload[obj_player.G[obj_player.Current]]){
+    
+        draw_set_colour($0000FF);            
+        draw_text_transformed(GUIW/2,(GUIH/2)+384,"No Ammo",1,1,0);            
+        draw_set_colour($FFFFFF);            
+        
+    }
+    
+    //Warning (3): 
+    else if ((Q[obj_player.P[obj_player.Current]]) &lt;= 3){
+        
+        draw_set_colour($64B3DE); 
+        
+        if !obj_player.Grenade {
+            //Low Ammo:
+            if (obj_player.Magazines == 0){
+                draw_text_transformed(GUIW/2,(GUIH/2)+384,"Low Ammo",1,1,0);            
+            }
+            //Reload:
+            else {
+                draw_text_transformed(GUIW/2,(GUIH/2)+384,"Reload",1,1,0);            
+            }
+        }
+        else {
+            draw_text_transformed(GUIW/2,(GUIH/2)+384,"Low Ammo",1,1,0);            
+        }
+        
+        draw_set_colour($FFFFFF);
+                                                                                            
+    }
+    
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);    
+  
+    draw_set_font(FNT_EXUDATION);
+    
+    draw_set_alpha(1);
+    draw_set_colour(-1);           
 }
 </string>
           </argument>

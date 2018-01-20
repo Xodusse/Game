@@ -54,6 +54,18 @@ KI4 = ord("4");
 KI5 = ord("5");
 KI6 = ord("6");
 
+//Set controller inputs.
+globalvar Controller_RJoy_x,Controller_RJoy_y,Controller_LJoy_x,Controller_LJoy_y;
+
+Controller_RJoy_x = gamepad_axis_value(0,gp_axisrh);
+Controller_RJoy_y = gamepad_axis_value(0,gp_axisrv);
+
+Controller_LJoy_x = gamepad_axis_value(0,gp_axislh);
+Controller_LJoy_y = gamepad_axis_value(0,gp_axislv);
+
+//Set controller deadzone:
+gamepad_set_axis_deadzone(0,0.1);
+
 //-
 
 //Keyboard press variables.
@@ -174,9 +186,9 @@ Kup = keyboard_check(KIup)*                       !CONSOLE_ENABLED;
 Kdown = keyboard_check(KIdown)*                   !CONSOLE_ENABLED;
 Kturnleft = keyboard_check(KIturnleft)*           !CONSOLE_ENABLED;
 Kturnright = keyboard_check(KIturnright)*         !CONSOLE_ENABLED;
-Kmelee = keyboard_check_pressed(KImelee)*         !CONSOLE_ENABLED;
-Kreload = keyboard_check_released(KIreload)*      !CONSOLE_ENABLED;
-Kinventory = keyboard_check_released(KIinventory)*!CONSOLE_ENABLED;
+Kmelee = (keyboard_check_pressed(KImelee) || gamepad_button_check_released(0,gp_stickr)) * !CONSOLE_ENABLED;
+Kreload = (keyboard_check_released(KIreload) || gamepad_button_check_released(0,gp_face3)) * !CONSOLE_ENABLED;
+Kinventory = (keyboard_check_released(KIinventory) || gamepad_button_check_released(0,gp_select)) *!CONSOLE_ENABLED;
 
 //© 2017 - Reece Warren
 //Function Keys:
@@ -184,7 +196,7 @@ Kreset = keyboard_check_released(KIreset)*!CONSOLE_ENABLED;
 Kdebug = keyboard_check_released(KIdebug)*!CONSOLE_ENABLED;
 
 Kconsole = keyboard_check_released(KIconsole);
-Kescape = keyboard_check_released(KIescape);
+Kescape = keyboard_check_released(KIescape) || gamepad_button_check_released(0,gp_start);
 
 //Number keys:
 K1 = keyboard_check_released(KI1)*!CONSOLE_ENABLED;
@@ -193,6 +205,13 @@ K3 = keyboard_check_released(KI3)*!CONSOLE_ENABLED;
 K4 = keyboard_check_released(KI4)*!CONSOLE_ENABLED;
 K5 = keyboard_check_released(KI5)*!CONSOLE_ENABLED;
 K6 = keyboard_check_released(KI6)*!CONSOLE_ENABLED;
+
+//Check controller:
+Controller_RJoy_x = gamepad_axis_value(0,gp_axisrh);
+Controller_RJoy_y = gamepad_axis_value(0,gp_axisrv);
+
+Controller_LJoy_x = gamepad_axis_value(0,gp_axislh);
+Controller_LJoy_y = gamepad_axis_value(0,gp_axislv);
 
 //Quit game
 if !(CONSOLE_ENABLED) &amp;&amp; (Kescape) {

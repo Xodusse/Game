@@ -1,20 +1,26 @@
-struct Attribute 
+struct Attribute
 {
-    float4 Position : POSITION;
-    float4 Color    : COLOR0;
-    float2 Texcoord : TEXCOORD0;
+    float4 vPosition : POSITION;
+    float4 vColor    : COLOR0;
+    float2 vTexcoord : TEXCOORD0;
 };
 
 struct Fragment
 {
-    float4 Position : POSITION;
-    float4 Color    : COLOR0;
-    float2 Texcoord : TEXCOORD0;
+    float4 vPosition : SV_POSITION;
+    float4 vColor    : COLOR0;
+    float2 vTexcoord : TEXCOORD0;
 };
-  
-void main(in Attribute IN, out Fragment OUT)
+
+Fragment main(Attribute INPUT)
 {
-    OUT.Position = mul(gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION],IN.Position);
-    OUT.Color = IN.Color;
-    OUT.Texcoord = IN.Texcoord;
+    Fragment OUTPUT;
+
+    float4 matrixWVP = mul(gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION], INPUT.vPosition);
+
+    OUTPUT.vPosition = matrixWVP;
+    OUTPUT.vColor    = INPUT.vColor;
+    OUTPUT.vTexcoord = INPUT.vTexcoord; 
+
+    return OUTPUT;
 }

@@ -3,45 +3,15 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="9" name="datafiles">
-    <datafile>
-      <name>GM_Memory_Usage_Physical.dll</name>
-      <exists>-1</exists>
-      <size>35840</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>GM_Memory_Usage_Physical.dll</filename>
-    </datafile>
-    <datafile>
-      <name>GM_Memory_Usage_Virtual.dll</name>
-      <exists>-1</exists>
-      <size>35840</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>GM_Memory_Usage_Virtual.dll</filename>
-    </datafile>
-  </datafiles>
-  <NewExtensions/>
+  <datafiles number="10" name="datafiles"/>
+  <NewExtensions>
+    <extension index="0">extensions\GM-Memory</extension>
+  </NewExtensions>
   <sounds name="sound">
-    <sound>sound\snd_gun</sound>
+    <sound>sound\snd_gun_smg</sound>
+    <sound>sound\snd_gun_lmg</sound>
+    <sound>sound\snd_gun_gl</sound>
+    <sound>sound\snd_gun_hg</sound>
     <sound>sound\snd_empty</sound>
     <sound>sound\snd_explosion</sound>
     <sounds name="Aliens">
@@ -81,12 +51,13 @@
       <sprite>sprites\spr_player_holdables</sprite>
       <sprite>sprites\spr_player_holdables_n</sprite>
       <sprite>sprites\spr_player_holdables_she</sprite>
+      <sprite>sprites\spr_light</sprite>
     </sprites>
     <sprites name="Aliens">
       <sprites name="Type_1">
-        <sprite>sprites\spr_Alien_0</sprite>
-        <sprite>sprites\spr_Alien_0_n</sprite>
-        <sprite>sprites\spr_Alien_0_she</sprite>
+        <sprite>sprites\spr_alien_0</sprite>
+        <sprite>sprites\spr_alien_0_n</sprite>
+        <sprite>sprites\spr_alien_0_she</sprite>
       </sprites>
     </sprites>
     <sprites name="Logistics">
@@ -97,12 +68,17 @@
         <sprite>sprites\spr_crate_she</sprite>
       </sprites>
       <sprites name="Barrels">
-        <sprite>sprites\spr_Barrel</sprite>
-        <sprite>sprites\spr_Barrel_n</sprite>
-        <sprite>sprites\spr_Barrel_she</sprite>
-        <sprite>sprites\spr_Barrel_Puddle</sprite>
-        <sprite>sprites\spr_Barrel_Puddle_n</sprite>
-        <sprite>sprites\spr_Barrel_Puddle_she</sprite>
+        <sprite>sprites\spr_barrel</sprite>
+        <sprite>sprites\spr_barrel_n</sprite>
+        <sprite>sprites\spr_barrel_she</sprite>
+        <sprite>sprites\spr_barrel_puddle</sprite>
+        <sprite>sprites\spr_barrel_puddle_n</sprite>
+        <sprite>sprites\spr_barrel_puddle_she</sprite>
+      </sprites>
+      <sprites name="Healthpack">
+        <sprite>sprites\spr_healthpack</sprite>
+        <sprite>sprites\spr_healthpack_n</sprite>
+        <sprite>sprites\spr_healthpack_she</sprite>
       </sprites>
       <sprite>sprites\spr_item</sprite>
     </sprites>
@@ -119,8 +95,14 @@
       </sprites>
       <sprites name="furnature">
         <sprite>sprites\spr_f_rug_large</sprite>
+        <sprite>sprites\spr_f_rug_large_n</sprite>
+        <sprite>sprites\spr_f_rug_large_she</sprite>
         <sprite>sprites\spr_f_rug_small</sprite>
+        <sprite>sprites\spr_f_rug_small_n</sprite>
+        <sprite>sprites\spr_f_rug_small_she</sprite>
         <sprite>sprites\spr_f_table</sprite>
+        <sprite>sprites\spr_f_table_n</sprite>
+        <sprite>sprites\spr_f_table_she</sprite>
         <sprite>sprites\spr_f_chair</sprite>
         <sprite>sprites\spr_f_chair_n</sprite>
         <sprite>sprites\spr_f_chair_she</sprite>
@@ -135,16 +117,14 @@
       <sprite>sprites\spr_projectiles</sprite>
       <sprite>sprites\spr_projectiles_n</sprite>
       <sprite>sprites\spr_projectiles_she</sprite>
+      <sprite>sprites\spr_grenade</sprite>
+      <sprite>sprites\spr_explosion</sprite>
+      <sprite>sprites\spr_explosion_she</sprite>
     </sprites>
     <sprites name="Cursor">
       <sprite>sprites\spr_Cursor_Free</sprite>
       <sprite>sprites\spr_Cursor_Target</sprite>
     </sprites>
-    <sprite>sprites\spr_t_wood_1</sprite>
-    <sprite>sprites\spr_t_wood_1_n</sprite>
-    <sprite>sprites\spr_grenade</sprite>
-    <sprite>sprites\spr_explosion</sprite>
-    <sprite>sprites\spr_light</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_level</background>
@@ -170,6 +150,7 @@
       <script>scripts\scr_cread_resolution.gml</script>
       <script>scripts\scr_cread_surfacescale.gml</script>
       <script>scripts\scr_cread_controlmode.gml</script>
+      <script>scripts\scr_cread_gamepad.gml</script>
       <script>scripts\scr_cwrite.gml</script>
     </scripts>
     <scripts name="Commands">
@@ -180,6 +161,7 @@
       <script>scripts\scr_command_god.gml</script>
       <script>scripts\scr_command_killall.gml</script>
       <script>scripts\scr_command_alienmax.gml</script>
+      <script>scripts\scr_command_wave.gml</script>
     </scripts>
     <scripts name="Inventory">
       <script>scripts\scr_inventory_drop.gml</script>
@@ -198,6 +180,12 @@
       <script>scripts\scr_lighting_draw_direct.gml</script>
       <script>scripts\scr_lighting_draw_final.gml</script>
       <script>scripts\scr_lighting_end.gml</script>
+    </scripts>
+    <scripts name="Models">
+      <script>scripts\scr_vertex_init.gml</script>
+      <script>scripts\scr_vertex_point.gml</script>
+      <script>scripts\scr_vertex_sprite.gml</script>
+      <script>scripts\scr_vertex_end.gml</script>
     </scripts>
   </scripts>
   <shaders name="shaders">
@@ -219,6 +207,7 @@
     </objects>
     <objects name="Game_Objects">
       <object>objects\obj_game_object</object>
+      <object>objects\obj_collider</object>
       <objects name="Player">
         <object>objects\obj_player</object>
       </objects>
@@ -237,11 +226,12 @@
         </objects>
       </objects>
       <objects name="Logistics">
+        <object>objects\obj_item</object>
+        <object>objects\obj_healthpack</object>
         <object>objects\obj_crate</object>
         <object>objects\obj_crate_spawner</object>
-        <object>objects\obj_item</object>
-        <object>objects\obj_Barrel</object>
-        <object>objects\obj_Barrel_Puddle</object>
+        <object>objects\obj_barrel</object>
+        <object>objects\obj_barrel_puddle</object>
       </objects>
       <objects name="Foliage">
         <object>objects\obj_foliage_fern_1</object>

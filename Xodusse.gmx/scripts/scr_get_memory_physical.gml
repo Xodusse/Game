@@ -1,1 +1,1 @@
-//return external_call(GM_MEMORY_USAGE_PHYSICAL);
+return dll_get_memory_physical();

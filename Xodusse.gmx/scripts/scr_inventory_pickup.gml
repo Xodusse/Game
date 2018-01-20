@@ -42,9 +42,14 @@ if (Iweight+Aweig<=Istrength){
                 
                 var Text;
                 Text = instance_create(8,8,obj_message);
+                if Aitem>Idoubles*2+Isingles+Igrenades{
+                
+                    Text.Message = "+"+string(Quantity)+" "+Gname[Id-(Idoubles*2+Isingles+Igrenades+1)]+" ammo";
+                }
+                else
                 if Aitem>Idoubles*2+Isingles{
                 
-                    Text.Message = "+"+string(Quantity)+" ammo";
+                    Text.Message = "+"+string(Quantity)+" grenades";
                 }
                 else{
                 

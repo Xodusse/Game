@@ -59,7 +59,7 @@ if abs(Axpos-__view_get( e__VW.XView, 0 )-__view_get( e__VW.WView, 0 )/2)<(Vwidt
     
     texture_set_stage(LUnorm,Vnorm);
     texture_set_stage(LUprop,Vprop);
-    shader_set_uniform_f(LUmatx,dcos(-Arotn)*Axscl,dsin(-Arotn)*Ayscl,dsin(-Arotn)*Axscl,-dcos(-Arotn)*Ayscl);
+    shader_set_uniform_f(LUmatx,dcos(Arotn)*Axscl,dsin(Arotn)*Ayscl,dsin(Arotn)*Axscl,dcos(Arotn)*Ayscl);
     shader_set_uniform_f(LUsuv1,Vsuv1[0],Vsuv1[1],Vsuv1[2],Vsuv1[3]);
     shader_set_uniform_f(LUsuv2,Vsuv2[0],Vsuv2[1],Vsuv2[2],Vsuv2[3]);
     shader_set_uniform_f(LUsuv3,Vsuv3[0],Vsuv3[1],Vsuv3[2],Vsuv3[3]);

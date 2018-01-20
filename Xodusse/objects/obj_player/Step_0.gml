@@ -281,10 +281,10 @@ var MouseX,MouseY;
 MouseX = window_mouse_get_x();
 MouseY = window_mouse_get_y();
 
-if obj_initialize.SETTING_CONTROL_MODE{
-    
+if obj_initialize.SETTING_CONTROL_MODE{    
     Turn = sign(GUIW/2-MouseX)*(1-MouseY/GUIH)*((abs(MouseX-GUIW/2)*2/GUIW)>.5+.7*MouseY/GUIH);
 }
+
 //Smooth turn speed for turning motion.
 TurnSpeed = TurnSpeed*S90+(1-S90)*Turn;
 

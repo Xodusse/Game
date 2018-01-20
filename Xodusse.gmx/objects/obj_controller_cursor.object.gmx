@@ -104,8 +104,6 @@ else {
     Cursor_Angle = 0;
     Cursor_Scale = 1;
 }
-
-
 </string>
           </argument>
         </arguments>
@@ -131,8 +129,8 @@ else {
             <string>///Update the cursor location:
 //© 2017 - Reece warren
 
-//Update the mouse position for drawing on the GUI:
-
+/*Update the mouse position for drawing on the GUI:
+*/
 //Get the centre of the screen for mouse location calculation:
 Screen_Centre_X = view_xview[view_current]+(view_wview[view_current]/2);
 Screen_Centre_Y = view_yview[view_current]+(view_hview[view_current]/2);
@@ -148,6 +146,38 @@ dir = point_direction(Screen_Centre_X,Screen_Centre_Y,Mouse_X_Room,Mouse_Y_Room)
 //Calculate the final mouse position (relative to draw GUI):
 Mouse_X_True = GUIW/2 + (((dcos(dir) * dist)));
 Mouse_Y_True = GUIH/2 - (((dsin(dir) * dist)));
+
+/* - CONTROLLER CODE - BROKEN:
+
+//Calculate the final mouse position (relative to draw GUI):
+/*if (obj_initialize.SETTING_GAMEPAD_ENABLED) &amp;&amp; !PAUSED {
+
+    //Get the position of the mouse in the room for location calculation:
+    Cursor_X_Room = Screen_Centre_X+(dcos(VIEW_ANGLE)*256);
+    Cursor_Y_Room = Screen_Centre_Y+(dsin(VIEW_ANGLE)*256);
+    
+    //Calculate the distance between the two points:
+    dist = point_distance(Screen_Centre_X,Screen_Centre_Y,Cursor_X_Room,Cursor_Y_Room) * resolution_scaling_factor;
+    dir = point_direction(Screen_Centre_X,Screen_Centre_Y,Cursor_X_Room,Cursor_Y_Room) + VIEW_ANGLE;
+
+    Mouse_X_True = Screen_Centre_X + (((dcos(dir) * dist)));
+    Mouse_Y_True = Screen_Centre_Y - (((dsin(dir) * dist)));
+}
+
+//Using mouse:
+else {
+    //Get the position of the mouse in the room for location calculation:
+    Mouse_X_Room = mouse_x;
+    Mouse_Y_Room = mouse_y;
+    
+    //Calculate the distance between the two points:
+    dist = point_distance(Screen_Centre_X,Screen_Centre_Y,Mouse_X_Room,Mouse_Y_Room) * resolution_scaling_factor;
+    dir = point_direction(Screen_Centre_X,Screen_Centre_Y,Mouse_X_Room,Mouse_Y_Room) + VIEW_ANGLE;
+
+    Mouse_X_True = Screen_Centre_X + (((dcos(dir) * dist)));
+    Mouse_Y_True = Screen_Centre_Y - (((dsin(dir) * dist)));
+}*/
+
 
 CURSOR_TARGETING = 0;
 
@@ -248,7 +278,16 @@ resolution_scaling_factor = GUIW / view_wview[view_current];
 //© 2017 - Reece Warren:
 
 //draw_sprite(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True);
-draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
+if (PAUSED){
+    draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
+}
+else if(room != rm_game_0){
+    draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
+}
+else if !(obj_initialize.SETTING_GAMEPAD_ENABLED){
+    //draw_sprite_ext(Cursor_Sprite,Cursor_Frame,Mouse_X_True,Mouse_Y_True,Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
+    draw_sprite_ext(Cursor_Sprite,Cursor_Frame,window_mouse_get_x(),window_mouse_get_y(),Cursor_Scale,Cursor_Scale,Cursor_Angle,-1,1);
+}
 </string>
           </argument>
         </arguments>

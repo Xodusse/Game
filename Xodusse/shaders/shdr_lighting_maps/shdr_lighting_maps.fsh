@@ -1,34 +1,38 @@
-
 uniform float4 Mat;
 uniform float4 UV1;
 uniform float4 UV2;
 uniform float4 UV3;
 
-uniform sampler2D Norm;
-uniform sampler2D Prop;
+Texture2D texture1 : register(t1);
+SamplerState Norm  : register(s1);
+Texture2D texture2 : register(t2);
+SamplerState Prop  : register(s2);
+
 
 struct Fragment
 {
-    float4 Position : POSITION;
-    float4 Color    : COLOR0;
-    float2 Texcoord : TEXCOORD0;
+    float4 vPosition : SV_POSITION;
+    float4 vColor    : COLOR0;
+    float2 vTexcoord : TEXCOORD0;
 };
 
 struct Render
 {
-    float4 Colr : COLOR0;
-    float4 Norm : COLOR1;
-    float4 Prop : COLOR2;
+    float4 Colr : SV_TARGET0;
+    float4 Norm : SV_TARGET1;
+    float4 Prop : SV_TARGET2;
 };
 
-void main(in Fragment IN, out Render OUT)
-{
-    float4 Color = IN.Color * tex2D(gm_BaseTexture,frac(IN.Texcoord)*(UV1.zw-UV1.xy)+UV1.xy);
-    OUT.Colr = Color;
+Render main(Fragment INPUT)
+{   
+    Render OUTPUT;
+    float4 Color = INPUT.vColor * gm_BaseTextureObject.Sample(gm_BaseTexture,frac(INPUT.vTexcoord)*(UV1.zw-UV1.xy)+UV1.xy);
+    OUTPUT.Colr = Color;
     
-    float3 Normal = tex2D(Norm,frac(IN.Texcoord)*(UV2.zw-UV2.xy)+UV2.xy).xyz*2.0-1.0;
+    float3 Normal = gm_BaseTextureObject.Sample(Norm,frac(INPUT.vTexcoord)*(UV2.zw-UV2.xy)+UV2.xy).xyz*2.0-1.0;
     Normal = normalize(float3(dot(Normal.xy,Mat.xy),dot(Normal.xy,Mat.zw),Normal.z));
-    OUT.Norm = float4(Normal*.5+.5,1.)*Color.a;
+    OUTPUT.Norm = float4(Normal*.5+.5,1.)*Color.a;
     
-    OUT.Prop = float4(tex2D(Prop,frac(IN.Texcoord)*(UV3.zw-UV3.xy)+UV3.xy).rgb,1.)*Color.a;
+    OUTPUT.Prop = float4(gm_BaseTextureObject.Sample(Prop,frac(INPUT.vTexcoord)*(UV3.zw-UV3.xy)+UV3.xy).rgb,1.)*Color.a;    
+    return OUTPUT;
 }

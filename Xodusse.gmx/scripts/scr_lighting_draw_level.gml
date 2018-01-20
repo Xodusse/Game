@@ -1,15 +1,13 @@
-///scr_lighting_draw_level(level map,color sheet,normal sheet,property sheet,x,y)
+///scr_lighting_draw_level(level map,color sheet,normal sheet,property sheet)
 // © 2017 - Jon Harvey
 
-var Alevl,Acolr,Anorm,Aprop,Axpos,Aypos;
+var Alevl,Acolr,Anorm,Aprop;
 Alevl = argument[0];
 Acolr = argument[1];
 Anorm = argument[2];
 Aprop = argument[3];
-Axpos = argument[4];
-Aypos = argument[5];
 
-var Vbuvm,Vbuv1,Vbuv2,Vbuv3,Vcolr,Vnorm,Vprop,Vxpos,Vypos;
+var Vbuvm,Vbuv1,Vbuv2,Vbuv3,Vcolr,Vnorm,Vprop;
 Vbuvm = background_get_uvs(Alevl);
 Vbuv1 = background_get_uvs(Acolr);
 Vbuv2 = background_get_uvs(Anorm);
@@ -17,8 +15,6 @@ Vbuv3 = background_get_uvs(Aprop);
 Vcolr = background_get_texture(Acolr);
 Vnorm = background_get_texture(Anorm);
 Vprop = background_get_texture(Aprop);
-Vxpos = Axpos - GUIW;
-Vypos = Aypos - GUIH;
 
 var Vscal,Vmatx;
 Vscal = obj_initialize.SETTING_SURFACE_SCALE;

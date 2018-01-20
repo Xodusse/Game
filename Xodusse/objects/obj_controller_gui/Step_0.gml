@@ -9,8 +9,13 @@ ShakeAngle = ShakeAngle*(1-S90)+S90*Shake*(random(40)-20);
 if instance_exists(obj_player){
     
     //Smoothly translate and rotate view with the player.
-    __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 )*S90+(1-S90)*(obj_player.x-__view_get( e__VW.WView, 0 )/2+ShakeX+100*dsin(__view_get( e__VW.Angle, 0 ))) );
-    __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 )*S90+(1-S90)*(obj_player.y-__view_get( e__VW.HView, 0 )/2+ShakeY-100*dcos(__view_get( e__VW.Angle, 0 ))) );
-    __view_set( e__VW.Angle, 0, __view_get( e__VW.Angle, 0 )*S90+(1-S90)*(90-obj_player.WalkDirection+ShakeAngle) );
+    //__view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 )*S90+(1-S90)*(obj_player.x-__view_get( e__VW.WView, 0 )/2+ShakeX+100*dsin(__view_get( e__VW.Angle, 0 ))) );
+    //__view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 )*S90+(1-S90)*(obj_player.y-__view_get( e__VW.HView, 0 )/2+ShakeY-100*dcos(__view_get( e__VW.Angle, 0 ))) );
+    //__view_set( e__VW.Angle, 0, __view_get( e__VW.Angle, 0 )*S90+(1-S90)*(90-obj_player.WalkDirection+ShakeAngle) );
+	
+	//camera_set_default(camera);
+	
+	camera_set_view_pos(camera,obj_player.x-480,obj_player.y-270);
+	camera_set_view_angle(camera,obj_player.WalkDirection);
 }
 

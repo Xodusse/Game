@@ -19,7 +19,13 @@ if (string_pos("0", str_controlmode)) || (string_pos("1", str_controlmode)){
     var real_controlmode = real(string_digits(str_controlmode));
  
     //Control mode - Real (Can return: [0 for Q&E rotation], [1 for mouse]);  
-    obj_initialize.SETTING_CONTROL_MODE = real_controlmode;
+    if (real_controlmode == 0) || (real_controlmode == 1){
+        obj_initialize.SETTING_CONTROL_MODE = real_controlmode;
+    }   
+    //Otherwise, define it:
+    else { 
+        obj_initialize.SETTING_CONTROL_MODE = 0;  
+    }     
            
     //Close the file:
     file_text_close(Config_File);        
@@ -28,7 +34,7 @@ if (string_pos("0", str_controlmode)) || (string_pos("1", str_controlmode)){
 //Otherwise, define it:
 else { 
 
-    obj_initialize.SETTING_CONTROL_MODE = 1; 
+    obj_initialize.SETTING_CONTROL_MODE = 0;
     
     //Close the file:
     file_text_close(Config_File);    

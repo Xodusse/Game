@@ -234,7 +234,9 @@ draw_set_font(-1);
                 
                 scr_command_killall();
                 
-                scr_command_alienmax();                                                                                  
+                scr_command_alienmax();
+                
+                scr_command_wave();                                                                                
                 
             break;
             

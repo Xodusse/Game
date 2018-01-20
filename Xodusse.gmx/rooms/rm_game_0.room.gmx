@@ -3,13 +3,13 @@
   <caption></caption>
   <width>2048</width>
   <height>2048</height>
-  <vsnap>8</vsnap>
-  <hsnap>8</hsnap>
+  <vsnap>4</vsnap>
+  <hsnap>4</hsnap>
   <isometric>0</isometric>
   <speed>9999</speed>
   <persistent>0</persistent>
   <colour>12632256</colour>
-  <showcolour>-1</showcolour>
+  <showcolour>0</showcolour>
   <code>instance_create(x,y,obj_controller_normal);
 
 var TileDrawer = instance_create(x,y,obj_controller_tiles);
@@ -58,15 +58,15 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_crate_spawner" x="768" y="864" name="inst_847F2D14" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_crate_spawner" x="896" y="1088" name="inst_24AFCF7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_crate_spawner" x="1568" y="928" name="inst_4E613D23" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="1504" y="1152" name="inst_1A74A6F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="1568" y="1120" name="inst_B0FB1A59" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="1552" y="1184" name="inst_D57EB25C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="1328" y="1056" name="inst_5DD8A6B0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="1280" y="1088" name="inst_2CD836DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="1216" y="1088" name="inst_A2552CA2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="816" y="1152" name="inst_F2409087" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="800" y="1216" name="inst_090CC919" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="736" y="1120" name="inst_91CC24EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="1504" y="1152" name="inst_1A74A6F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="1568" y="1120" name="inst_B0FB1A59" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="1552" y="1184" name="inst_D57EB25C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="1328" y="1056" name="inst_5DD8A6B0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="1280" y="1088" name="inst_2CD836DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="1216" y="1088" name="inst_A2552CA2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="816" y="1152" name="inst_F2409087" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="800" y="1216" name="inst_090CC919" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="736" y="1120" name="inst_91CC24EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1056" y="672" name="inst_9F87F55E" locked="0" code="image_index = 23;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1056" y="704" name="inst_D344C9E7" locked="0" code="image_index = 20;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1088" y="704" name="inst_63C04735" locked="0" code="image_index = 22;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -111,12 +111,12 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_foliage_fern_1" x="1744" y="848" name="inst_F7260727" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_foliage_fern_1" x="1664" y="896" name="inst_9F1620FD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_foliage_fern_1" x="1712" y="928" name="inst_B1353602" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="880" y="352" name="inst_010E65F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="832" y="384" name="inst_60EA622C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="816" y="320" name="inst_128D94E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Barrel" x="1520" y="320" name="inst_628A5DF0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="880" y="352" name="inst_010E65F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="832" y="384" name="inst_60EA622C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="816" y="320" name="inst_128D94E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_barrel" x="1520" y="320" name="inst_628A5DF0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_chair" x="1368" y="760" name="inst_9670DF86" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-135"/>
-    <instance objName="obj_chair" x="1288" y="760" name="inst_40D003E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="135"/>
+    <instance objName="obj_chair" x="1284" y="764" name="inst_40D003E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="135"/>
     <instance objName="obj_wall" x="1056" y="576" name="inst_25CAAA23" locked="0" code="image_index = 23;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1056" y="608" name="inst_5D6C7FB2" locked="0" code="image_index = 23;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1408" y="576" name="inst_31C22B68" locked="0" code="image_index = 23;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -172,7 +172,7 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_crate" x="1360" y="1456" name="inst_8C0280DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="35"/>
     <instance objName="obj_crate" x="1368" y="1416" name="inst_5A668A50" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-10"/>
     <instance objName="obj_crate" x="424" y="1064" name="inst_FCC9ED30" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="65"/>
-    <instance objName="obj_crate" x="1368" y="680" name="inst_240F6F51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="10"/>
+    <instance objName="obj_crate" x="1368" y="592" name="inst_240F6F51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="10"/>
     <instance objName="obj_wall" x="384" y="1216" name="inst_AC020C3D" locked="0" code="image_index = 20;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="384" y="1024" name="inst_E740988A" locked="0" code="image_index = 18;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="544" y="1024" name="inst_8A27E145" locked="0" code="image_index = 19;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -183,6 +183,15 @@ TileDrawer.RoomNumber = 0;</code>
     <instance objName="obj_wall" x="1248" y="1504" name="inst_30D7433C" locked="0" code="image_index = 20;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1248" y="1344" name="inst_25DED81B" locked="0" code="image_index = 18;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1408" y="1344" name="inst_F8C3A04A" locked="0" code="image_index = 19;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_rug_large" x="1312" y="720" name="inst_35D69A71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="obj_rug_small" x="544" y="1104" name="inst_15A8EBCA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="obj_rug_small" x="424" y="1184" name="inst_99AF1DBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_rug_small" x="1328" y="1344" name="inst_6FD0115B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_table" x="1328" y="688" name="inst_F9287C7B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-40"/>
+    <instance objName="obj_chair" x="1288" y="584" name="inst_C34530D6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="55"/>
+    <instance objName="obj_healthpack" x="504" y="1172" name="inst_01CBFF70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-35"/>
+    <instance objName="obj_healthpack" x="1308" y="1424" name="inst_F88EEAFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="45"/>
+    <instance objName="obj_healthpack" x="1208" y="668" name="inst_F5CA62D5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-10"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
