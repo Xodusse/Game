@@ -191,6 +191,22 @@ with(obj_enemy){
         scr_lighting_draw_point(AiTargetX,AiTargetY,100,32+AiTargetRadius,$3333FF);
     }
 }
+
+if instance_exists(obj_round_notification){
+
+    var A,W,H;
+    A = view_angle[0];
+    W = view_wview[0]/2;
+    H = view_hview[0]/2;
+    scr_lighting_draw_point(view_xview[view_current]+(view_wview[view_current]/2),view_yview[view_current]+(view_hview[view_current]/2),obj_round_notification.Alpha*100,256,merge_colour(0,$3333FF,obj_round_notification.Alpha));
+
+
+    /*scr_lighting_draw_point(view_xview[view_current]+(dcos(view_angle[view_current])*GUIW),
+                            view_yview[view_current]+(dsin(view_angle[view_current])*GUIH),
+                            100,256,$3333FF);*/
+
+}
+
 scr_lighting_draw_final($010403,1,1);
 </string>
           </argument>

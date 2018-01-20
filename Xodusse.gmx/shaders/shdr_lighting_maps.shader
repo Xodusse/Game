@@ -19,6 +19,7 @@ void main(in Attribute IN, out Fragment OUT)
     OUT.Texcoord = IN.Texcoord;
 }
 //######################_==_YOYO_SHADER_MARKER_==_######################@~
+
 uniform float4 Mat;
 uniform float4 UV1;
 uniform float4 UV2;

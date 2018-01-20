@@ -23,6 +23,7 @@
         <sound>sound\snd_enemy_death_4</sound>
       </sounds>
     </sounds>
+    <sound>sound\snd_new_round</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Menu">
@@ -199,6 +200,7 @@
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>
     <font>fonts\fnt_Exudation</font>
+    <font>fonts\fnt_Exudation_Extreme</font>
   </fonts>
   <objects name="objects">
     <objects name="Initialization">
@@ -263,6 +265,7 @@
         <object>objects\obj_button_pause</object>
       </objects>
       <object>objects\obj_message</object>
+      <object>objects\obj_round_notification</object>
     </objects>
   </objects>
   <rooms name="rooms">
