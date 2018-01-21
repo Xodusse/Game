@@ -134,15 +134,11 @@ if (room != rm_test1){
         //Draw clouds:
         texture_set_interpolation(true);
         draw_set_blend_mode(bm_add);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,16,16,-1,0.1);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,32,32,-1,0.2);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,backgroundY2,64,64,-1,0.1);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,16,16,-1,0.2);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,4,4,-1,0.4);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,backgroundY2,8,8,-1,1);
         draw_set_blend_mode(bm_normal);       
-        texture_set_interpolation(false);
-        
-        //Draw lighting:
-        draw_sprite_ext(spr_menu_gradient,0,128,540,1,0.5,0,-1,alpha);
-        draw_sprite_ext(spr_menu_gradient,0,128,540,1,0.5,0,-1,0.5);      
+        texture_set_interpolation(false);  
     
         //Draw game logo:
         draw_sprite(spr_logo_0,0,-36,160);
@@ -152,9 +148,9 @@ if (room != rm_test1){
         draw_set_font(fnt_Exudation);
         draw_set_colour($FFFFFF);
         draw_set_halign(fa_right);
-        draw_text(960-32,424,"© 2017 - Reece Warren, Jon Harvey. MIT License.");
+        draw_text(960-32,424,"© 2018 - Reece Warren, Jon Harvey. MIT License.");
         draw_text(960-32,448,"Version: " + string(GM_version));
-        draw_text(960-32,424,"© 2017 - Reece Warren, Jon Harvey. MIT License.");
+        draw_text(960-32,424,"© 2018 - Reece Warren, Jon Harvey. MIT License.");
         draw_text(960-32,448,"Version: " + string(GM_version));
         draw_set_halign(fa_left);        
         draw_set_colour(-1);
@@ -166,32 +162,28 @@ if (room != rm_test1){
         //Draw clouds:
         texture_set_interpolation(true);
         draw_set_blend_mode(bm_add);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,16,16,-1,0.1);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,32,32,-1,0.2);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,backgroundY2,64,64,-1,0.1);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,16,16,-1,0.2);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,4,4,-1,0.4);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,backgroundY2,8,8,-1,1);
         draw_set_blend_mode(bm_normal);       
         texture_set_interpolation(false);
-        
-        //Draw lighting:
-        draw_sprite_ext(spr_menu_gradient,0,128,540,1,0.5,0,-1,alpha);
-        draw_sprite_ext(spr_menu_gradient,0,128,540,1,0.5,0,-1,0.5);
           
     }
     
-    /*else if (room == rm_game_0){
+    else if (room == rm_game_0){
         
         
         //Draw clouds:
         
         texture_set_interpolation(true);
         draw_set_blend_mode(bm_add);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,16,16,-1,0.05);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,32,32,-1,0.1);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,backgroundY2,64,64,-1,0.05);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,8,8,-1,0.2);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,8,8,-1,0.4);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2*0.75,backgroundY2*0.75,8,8,-1,0.4);
         draw_set_blend_mode(bm_normal);       
         texture_set_interpolation(false);
           
-    }*/
+    }
 }
 </string>
           </argument>
