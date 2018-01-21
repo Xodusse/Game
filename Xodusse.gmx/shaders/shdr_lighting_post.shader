@@ -21,25 +21,55 @@ void main()
 {
     vec4 Tex = texture2D(gm_BaseTexture,v_vTexcoord);
     vec4 Color = texture2D(Colr,v_vTexcoord);
+    float Height = texture2D(Prop,v_vTexcoord).g-.01;
+    float Shadow = 0.;
     
     vec2 UV = clamp(v_vTexcoord+vec2(-1,-1)/Size,0.,1.);
-    vec3 Emission = texture2D(Colr,UV).rgb*texture2D(Prop,UV).b*2.;
+    
+    vec2 Properties = texture2D(Prop,UV).gb;
+    vec3 Emission = texture2D(Colr,UV).rgb*Properties.y*2.;
+    Shadow += max(Height-Properties.x,0.)*2.;
+    
     UV = clamp(v_vTexcoord+vec2(0,-2)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*Properties.y;
+    Shadow += pow(max(Height-Properties.x,0.),2.);
+    
     UV = clamp(v_vTexcoord+vec2(1,-1)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b*2.;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*Properties.y*2.;
+    Shadow += pow(max(Height-Properties.x,0.),2.)*2.;
+    
     UV = clamp(v_vTexcoord+vec2(-2,0)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*Properties.y;
+    Shadow += pow(max(Height-Properties.x,0.),2.);
+    
     UV = clamp(v_vTexcoord+vec2(0,0)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b*5.;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b*Properties.y*5.;
+    Shadow += pow(max(Height-Properties.x,0.),2.)*5.;
+    
     UV = clamp(v_vTexcoord+vec2(2,0)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*Properties.y;
+    Shadow += pow(max(Height-Properties.x,0.),2.);
+    
     UV = clamp(v_vTexcoord+vec2(-1,1)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b*2.;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*Properties.y*2.;
+    Shadow += pow(max(Height-Properties.x,0.),2.)*2.;
+    
     UV = clamp(v_vTexcoord+vec2(0,2)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*Properties.y;
+    Shadow += pow(max(Height-Properties.x,0.),2.);
+    
     UV = clamp(v_vTexcoord+vec2(1,1)/Size,0.,1.);
-    Emission += texture2D(Colr,UV).rgb*texture2D(Prop,UV).b*2.;
+    Properties = texture2D(Prop,UV).gb;
+    Emission += texture2D(Colr,UV).rgb*Properties.y*2.;
+    Shadow += pow(max(Height-Properties.x,0.),2.)*2.;
     
     gl_FragColor = vec4(Tex.rgb+Color.rgb*Emission/10.,Tex.a);
+    gl_FragColor.rgb *= vec3(exp(min(-Shadow,0.)*2.));
 }

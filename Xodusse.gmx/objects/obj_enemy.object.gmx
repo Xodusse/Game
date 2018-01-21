@@ -35,11 +35,10 @@ AiTargetSpeedX = 0;
 AiTargetSpeedY = 0;
 AiTargetRadius = 0;
 
-//Enemy sight range (radius).
+//Enemy behavior
 AiSight = 512;
-
-//Enemy focus variable.
 AiFocus = 1;
+AiVigor = 0;
 </string>
           </argument>
         </arguments>
@@ -63,6 +62,7 @@ AiFocus = 1;
             <string>///Enemy variables
 // © 2017 - Jon Harvey
 
+WalkTurn = 0;
 WalkDirection = 0;
 
 Speed = 1;
@@ -71,8 +71,8 @@ SpeedY = 0;
 
 Radius = 16;
 
+Time = random(10000);
 Health = 0.8+random(0.4);
-
 image_speed = 0;
 </string>
           </argument>
@@ -97,10 +97,14 @@ image_speed = 0;
           <argument>
             <kind>1</kind>
             <string>///AI control
-// © 2017 - Jon HarveY
+// © 2017 - Jon Harvey
 
+Time += DELTA;
+ 
 AiTargetSpeedX *= S98;
 AiTargetSpeedY *= S98;
+AiTargetSpeedX += (1-S98)*.001*cos(Time/2)*AiTargetRadius;
+AiTargetSpeedY += (1-S98)*.001*sin(Time/2)*AiTargetRadius;
 AiTargetX += FRAME_DELTA*AiTargetSpeedX;
 AiTargetY += FRAME_DELTA*AiTargetSpeedY;
 
@@ -111,6 +115,7 @@ if instance_exists(obj_player){
             
     if Visible{
         
+        AiVigor = AiVigor*S90+(1-S90);
         AiFocus = AiFocus*S90+(1-S90);
         AiTargetRadius = AiTargetRadius*S90;
         Speed = Speed*S90+(1-S90);
@@ -121,14 +126,15 @@ if instance_exists(obj_player){
     }
     else{
         
-        AiFocus *= 1-(1-S90)*(point_distance(x,y,AiTargetX,AiTargetY)&lt;32+AiFocus);
-        AiTargetRadius = AiTargetRadius*S98+(1-S98)*300;
+        AiVigor = AiVigor*S98;
+        AiFocus *= 1-(1-S90)*(point_distance(x,y,AiTargetX,AiTargetY)&lt;AiTargetRadius/(8+3*cos(Time/12)));
+        AiTargetRadius = AiTargetRadius*sqrt(S98)+(1-sqrt(S98))*300;
     }
-
-    WalkDirection += FRAME_DELTA*0.1*AiFocus*angle_difference(point_direction(x,y,AiTargetX,AiTargetY),WalkDirection);
     
-    //var Return = point_distance(x,y,AiTargetX,AiTargetY)/2000*angle_difference(point_direction(x,y,AiTargetX,AiTargetY),WalkDirection);
-    //WalkDirection += FRAME_DELTA*0.1*(1-AiFocus)*(random(60)-30+Return);
+    WalkTurn = WalkTurn*S90+(1-S90)*(0.1*AiFocus*angle_difference(point_direction(x,y,AiTargetX,AiTargetY),WalkDirection))+
+    //Look around randomly
+    (1-S90)*((1-AiFocus)*min(power(cos(Time/2.8),5)*power(cos(Time/3.7),4)*power(cos(Time/12.4),4),.5));
+    WalkDirection += FRAME_DELTA*WalkTurn;
 }
 </string>
           </argument>
@@ -160,10 +166,6 @@ var SumX,SumY;
 SumX =  Speed*dcos(WalkDirection);
 SumY = -Speed*dsin(WalkDirection);
 
-var MoveX,MoveY,MoveSlow,MoveAble;
-MoveX = (AiTargetX-x)*50*(1+AiFocus);
-MoveY = (AiTargetY-y)*50*(1+AiFocus);
-
 //Get pushed by enemies.
 for(var i = instance_number(obj_collider);i&gt;=0;i--){
 
@@ -171,41 +173,28 @@ for(var i = instance_number(obj_collider);i&gt;=0;i--){
     if (Inst!=id) &amp;&amp; (Inst!=noone){
     
         var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
-        MoveX += ((x+SpeedX)-(Inst.x+Inst.SpeedX))/power(Distance/128,3);
-        MoveY += ((y+SpeedY)-(Inst.y+Inst.SpeedY))/power(Distance/128,3);
+        var Over = Distance-(Radius+Inst.Radius);
 
-        if (Distance&lt;Radius+Inst.Radius){
+        if (Over&lt;0){
         
             var NormX = (x+SpeedX-(Inst.x+Inst.SpeedX))/Distance;
             var NormY = (y+SpeedY-(Inst.y+Inst.SpeedY))/Distance;
-            SumX += NormX*(Radius+Inst.Radius-Distance);
-            SumY += NormY*(Radius+Inst.Radius-Distance);
+            SumX -= NormX*Over;
+            SumY -= NormY*Over;
         }
     }
 }
-
-WalkDirection += angle_difference(point_direction(0,0,MoveX,MoveY),WalkDirection);
 //Move smoothly and with delta timing.
+var MoveSlow,MoveAble;
 MoveSlow = 1+4*(instance_position(x,y,obj_barrel_puddle) != noone);
-MoveAble = AiFocus;
+MoveAble = AiFocus*(AiVigor*.4+1);
 
 SpeedX = SpeedX*S90+(1-S90)*(SumX*MoveAble/MoveSlow);
 SpeedY = SpeedY*S90+(1-S90)*(SumY*MoveAble/MoveSlow);
 x += SpeedX*FRAME_DELTA;
 y += SpeedY*FRAME_DELTA;
 
-image_index += MoveAble/MoveSlow*DELTA*4;
-
-//Collide with obstacle
-var Inst = instance_place(x+SpeedX*10,y+SpeedY*10,obj_wall);
-if Inst != noone{
-
-    WalkDirection += FRAME_DELTA*0.2*angle_difference(point_direction(Inst.x,Inst.y,x,y),WalkDirection);
-}
-else{
-    
-    WalkDirection += FRAME_DELTA*0.1*angle_difference(point_direction(0,0,SpeedX,SpeedY),WalkDirection);
-}
+image_index += sqrt(sqr(SpeedX)+sqr(SpeedY))*DELTA*4;
 
 //Check health.
 if Health&lt;=0
@@ -254,9 +243,11 @@ if Health&lt;=0
             <kind>1</kind>
             <string>///Damage player
 // © 2017 - Jon Harvey
+if (AiFocus&gt;.5){
 
-obj_player.Health -= random(.02)*FRAME_DELTA;
-Shake = .2;
+    obj_player.Health -= random(.02)*FRAME_DELTA;
+    Shake = .2;
+}
 </string>
           </argument>
         </arguments>

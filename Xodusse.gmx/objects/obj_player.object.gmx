@@ -403,9 +403,21 @@ if Count &amp;&amp; (abs(Swap)&lt;0.1){
                         case 3: audio_play_sound(snd_gun_hg,0,0); break;                   
                     
                     }
-                    /*if (G[Current] == 2){
-                        audio_play_sound(snd_gun_smg,0,0);
-                    }*/
+                    //Attract aliens
+                    with(obj_enemy){
+                    
+                        var Distance = distance_to_object(obj_player);
+                        if  AiVigor&lt;min(20/Distance-.1,.9){
+                            
+                            AiTargetX = obj_player.x;
+                            AiTargetY = obj_player.y;
+                            AiTargetSpeedX = 0;
+                            AiTargetSpeedY = 0;
+                            AiTargetRadius = 50;
+                            AiFocus = 1;
+                            AiVigor = .5;
+                        }
+                    }
                     
                     Rate = 0;
                     

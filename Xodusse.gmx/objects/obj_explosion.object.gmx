@@ -71,7 +71,7 @@ Par[40] = 1;
 // © 2017 - Jon Harvey
 
 if (Timer==1/2){
-
+    
     for(var p = 0;p&lt;40;p++){
         
         var Speed = power(random(1),8);
@@ -92,6 +92,17 @@ if (Timer==1/2){
         if Distance&lt;1.5{
         
             Health -= min(1.5-Distance,1)*Explosion.Damage;
+        }
+        //Attract aliens
+        if (object_index == obj_enemy) &amp;&amp; AiVigor&lt;min(3/Distance-.1,.9){
+            
+            AiTargetX = Explosion.x;
+            AiTargetY = Explosion.y;
+            AiTargetSpeedX = 0;
+            AiTargetSpeedY = 0;
+            AiTargetRadius = 400;
+            AiFocus = 1;
+            AiVigor = 1;
         }
     }
 }

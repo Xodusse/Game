@@ -83,8 +83,10 @@ if (room == rm_test1) || (room == rm_game_0){
         //Deduct an alien from the wave count:
         AlienCountRemaining--;
         //Spawn the alien:
-        var A = random(360); 
-        instance_create(obj_player.x+dcos(A)*500,obj_player.y+dsin(A)*500,obj_enemy);
+        var S1,S2;
+        S1 = irandom(1);
+        S2 = irandom(1);
+        instance_create(irandom(3968)*S1+(3968)*!S1*S2-960,irandom(3968)*!S1+(3968)*S1*S2-960,obj_enemy);
     }
     
     //Starts the wave delay timer:

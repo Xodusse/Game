@@ -32,10 +32,7 @@
  * MIT License.
  */
  
-backgroundX = 0;
-backgroundX2 = 0;
-backgroundY = 0;
-backgroundY2 = 0;
+Time = random(100);
 
 sinrate = 0;
 alpha = 0.5;
@@ -68,34 +65,10 @@ alpha = 0.5;
  * MIT License.
  */
  
-backgroundX -= FRAME_DELTA;
-backgroundX2 += FRAME_DELTA;
-
-if (backgroundX &lt;= -1024){
-    backgroundX = 0;
-}
-
-if (backgroundX2 &gt;= 2048){
-    backgroundX2 = 0;
-}
-
-backgroundY -= FRAME_DELTA*0.5;
-backgroundY2 += FRAME_DELTA*0.25;
-
-if (backgroundY &lt;= -1024){
-    backgroundY = 0;
-}
-
-if (backgroundY2 &gt;= 2048){
-    backgroundY2 = 0;
-}
+Time += DELTA;
 
 
-sinrate += F1/90;
-if (sinrate &gt;= 1){
-    sinrate = 0;
-}
-
+sinrate = frac(sinrate+F1/90);
 var angle = sinrate * 90
 
 alpha = sin(angle);
@@ -130,58 +103,33 @@ alpha = sin(angle);
 
 if (room != rm_test1){
     
-    if (room == rm_main){
+    
         //Draw clouds:
         texture_set_interpolation(true);
         draw_set_blend_mode(bm_add);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,16,16,-1,0.2);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,4,4,-1,0.4);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,backgroundY2,8,8,-1,1);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,Time*7,Time*5,4,4,-1,0.2);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,Time*3,Time*6,8,8,-1,0.4);
+        draw_sprite_tiled_ext(spr_menu_clouds,0,Time*3,Time*3,16,16,-1,0.8);
         draw_set_blend_mode(bm_normal);       
         texture_set_interpolation(false);  
     
-        //Draw game logo:
-        draw_sprite(spr_logo_0,0,-36,160);
-        draw_sprite(spr_logo_1,0,-36,160); 
         
-        //Draw version:
-        draw_set_font(fnt_Exudation);
-        draw_set_colour($FFFFFF);
-        draw_set_halign(fa_right);
-        draw_text(960-32,424,"© 2018 - Reece Warren, Jon Harvey. MIT License.");
-        draw_text(960-32,448,"Version: " + string(GM_version));
-        draw_text(960-32,424,"© 2018 - Reece Warren, Jon Harvey. MIT License.");
-        draw_text(960-32,448,"Version: " + string(GM_version));
-        draw_set_halign(fa_left);        
-        draw_set_colour(-1);
-        draw_set_font(-1); 
-          
-    }
-    
-    else if (room == rm_game) || (room == rm_options){
-        //Draw clouds:
-        texture_set_interpolation(true);
-        draw_set_blend_mode(bm_add);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,16,16,-1,0.2);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,4,4,-1,0.4);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2,backgroundY2,8,8,-1,1);
-        draw_set_blend_mode(bm_normal);       
-        texture_set_interpolation(false);
-          
-    }
-    
-    else if (room == rm_game_0){
+        if (room == rm_main){
         
-        
-        //Draw clouds:
-        
-        texture_set_interpolation(true);
-        draw_set_blend_mode(bm_add);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,-backgroundX,-backgroundY,8,8,-1,0.2);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX,backgroundY,8,8,-1,0.4);
-        draw_sprite_tiled_ext(spr_menu_clouds,0,backgroundX2*0.75,backgroundY2*0.75,8,8,-1,0.4);
-        draw_set_blend_mode(bm_normal);       
-        texture_set_interpolation(false);
+            //Draw game logo:
+            draw_sprite(spr_logo_0,0,-36,160);
+            draw_sprite(spr_logo_1,0,-36,160); 
+            //Draw version:
+            draw_set_font(fnt_Exudation);
+            draw_set_colour($FFFFFF);
+            draw_set_halign(fa_right);
+            draw_text(960-32,424,"© 2018 - Reece Warren, Jon Harvey. MIT License.");
+            draw_text(960-32,448,"Version: " + string(GM_version));
+            draw_text(960-32,424,"© 2018 - Reece Warren, Jon Harvey. MIT License.");
+            draw_text(960-32,448,"Version: " + string(GM_version));
+            draw_set_halign(fa_left);        
+            draw_set_colour(-1);
+            draw_set_font(-1); 
           
     }
 }

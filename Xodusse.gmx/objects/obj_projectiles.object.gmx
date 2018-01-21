@@ -94,6 +94,16 @@ if instance_exists(Object) &amp;&amp; Object != Hit{
             
             Shake = Shake*0.9+Pdamage[Id];
         }
+        //Alert hit alien
+        if (Hit.object_index == obj_enemy){
+                           
+            with(Hit){
+                
+                AiTargetRadius = 500;
+                AiFocus = 1;
+                AiVigor = 1;
+            }
+        }
     }
 }
 else
