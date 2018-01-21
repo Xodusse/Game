@@ -32,5 +32,5 @@ with(obj_projectiles){
 }
 
 //scr_lighting_draw_final($080508,1,1);
-scr_lighting_draw_final(0,0,0);
+scr_lighting_draw_final($080508,1,1);
 

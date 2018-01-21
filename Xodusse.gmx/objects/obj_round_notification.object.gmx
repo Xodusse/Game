@@ -91,11 +91,11 @@ draw_set_alpha(Alpha);
 
 draw_set_color(c_black);
 
-draw_text((GUIW/2)+5,(GUIH/2)+5,"ROUND: " + string(Round_Number));
+draw_text((GUIW/2)+5,(GUIH/2)+5,"WAVE: " + string(Round_Number));
 
 draw_set_colour(c_red);
 
-draw_text(GUIW/2,GUIH/2,"ROUND: " + string(Round_Number));
+draw_text(GUIW/2,GUIH/2,"WAVE: " + string(Round_Number));
 
 draw_set_alpha(1);
 

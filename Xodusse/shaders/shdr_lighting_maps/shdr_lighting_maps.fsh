@@ -3,11 +3,18 @@ uniform float4 UV1;
 uniform float4 UV2;
 uniform float4 UV3;
 
-Texture2D texture1 : register(t1);
-SamplerState Norm  : register(s1);
-Texture2D texture2 : register(t2);
-SamplerState Prop  : register(s2);
+Texture2D texture1 : register(t[1]);
+SamplerState Norm  : register(s[1]);
+Texture2D texture2 : register(t[2]);
+SamplerState Prop  : register(s[2]);
 
+//https://msdn.microsoft.com/en-us/library/windows/desktop/bb509709%28v=vs.85%29.aspx?f=255&MSPPError=-2147217396
+//https://msdn.microsoft.com/en-us/library/windows/desktop/dd607359%28v=vs.85%29.aspx
+
+//Texture2D texture1 : register(t1);
+//SamplerState Norm  : register(s1);
+//Texture2D texture2 : register(t2);
+//SamplerState Prop  : register(s2);
 
 struct Fragment
 {

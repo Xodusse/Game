@@ -30,7 +30,6 @@
       <sprite>sprites\spr_logo_0</sprite>
       <sprite>sprites\spr_logo_1</sprite>
       <sprite>sprites\spr_menu_clouds</sprite>
-      <sprite>sprites\spr_menu_gradient</sprite>
     </sprites>
     <sprites name="Buttons">
       <sprite>sprites\spr_button_large</sprite>
@@ -200,6 +199,7 @@
   <fonts name="fonts">
     <font>fonts\fnt_Exudation_Large</font>
     <font>fonts\fnt_Exudation</font>
+    <font>fonts\fnt_Exudation_b</font>
     <font>fonts\fnt_Exudation_Extreme</font>
   </fonts>
   <objects name="objects">

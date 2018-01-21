@@ -7,18 +7,18 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>28</bbox_left>
-  <bbox_right>996</bbox_right>
-  <bbox_top>28</bbox_top>
-  <bbox_bottom>996</bbox_bottom>
+  <bbox_left>2</bbox_left>
+  <bbox_right>61</bbox_right>
+  <bbox_top>2</bbox_top>
+  <bbox_bottom>61</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>1024</width>
-  <height>1024</height>
+  <width>64</width>
+  <height>64</height>
   <frames>
     <frame index="0">images\spr_menu_gradient_0.png</frame>
   </frames>

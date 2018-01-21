@@ -13,7 +13,7 @@
 /// @param alpha
 // © 2017 - Jon Harvey
 
-var Acolr,Anorm,Asimg,Axpos,Aypos,Axscl,Ayscl,Arotn,Ablnd,Alpha
+var Acolr,Anorm,Aprop,Asimg,Axpos,Aypos,Axscl,Ayscl,Arotn,Ablnd,Alpha
 Acolr = argument[0];
 Anorm = argument[1];
 Aprop = argument[2];
@@ -47,6 +47,8 @@ if abs(Axpos-__view_get( e__VW.XView, 0 )-__view_get( e__VW.WView, 0 )/2)<(Vwidt
     var Vscal,Vmatx;
     Vscal = obj_initialize.SETTING_SURFACE_SCALE;
     Vmatx = matrix_get(matrix_view);
+	//Vmatx = matrix_build(obj_player.x,obj_player.y,0,obj_player.WalkDirection,0,0,1,1,1);
+	
     Vmatx[0] *= Vscal*GUIW/960;Vmatx[1] *= Vscal*GUIH/540;
     Vmatx[4] *= Vscal*GUIW/960;Vmatx[5] *= Vscal*GUIH/540;
     Vmatx[12] *= Vscal*GUIW/960;Vmatx[13] *= Vscal*GUIH/540;

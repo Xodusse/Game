@@ -351,7 +351,7 @@ if (DEBUG_VISIBLE == true){
 //Set draw settings:
 draw_set_colour($FFFFFF);
 //draw_set_font(FNT_DEBUGFONT);
-draw_set_font(FNT_EXUDATION);
+draw_set_font(FNT_EXUDATION_B);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
@@ -364,7 +364,7 @@ draw_rectangle(GUIW-240,16,GUIW-16,110,true);
 
 //Section 1:
 draw_text(32,32,"XODUSSE V." + string(GM_version));
-draw_text(32,64,"© 2017 - REECE WARREN,");
+draw_text(32,64,"© 2018 - REECE WARREN,");
 draw_text(32,80,"JON HARVEY. MIT LICENSE.");
 
 //Draw the graph:

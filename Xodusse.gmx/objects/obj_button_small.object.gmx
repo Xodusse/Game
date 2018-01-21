@@ -112,7 +112,7 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
     //VSYNC:
     if (BUTTON_TYPE == 0){
         //Only allow the user to disable Vsync if not in fullscreen:
-        if (obj_initialize.SETTING_FULLSCREEN == false){
+        //if (obj_initialize.SETTING_FULLSCREEN == false){
             obj_initialize.SETTING_VSYNC = !obj_initialize.SETTING_VSYNC;
             
             display_set_gui_size(GUIW,GUIH);              
@@ -123,7 +123,7 @@ if (Hover == true) &amp;&amp; (mouse_check_button_released(mb_left)){
             
             display_reset(obj_initialize.SETTING_FXAA, obj_initialize.SETTING_VSYNC);
             obj_initialize.SETTING_INTERPOLATION = false;
-        }
+        //}
     }
     
     //Interpolation:

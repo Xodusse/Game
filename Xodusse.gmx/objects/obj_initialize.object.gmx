@@ -100,10 +100,12 @@ CHEAT_GODMODE = false;
 //GM_MEMORY_USAGE_PHYSICAL = external_define("GM_Memory_Usage_Physical.dll", "dll_get_memory_physical", dll_cdecl, ty_real, 0); 
 
 //DEFINE FONTS:
-globalvar FNT_EXUDATION_LARGE, FNT_EXUDATION;
+globalvar FNT_EXUDATION_LARGE, FNT_EXUDATION, FNT_EXUDATION_B;
 
 FNT_EXUDATION_LARGE = fnt_Exudation_Large;
 FNT_EXUDATION = fnt_Exudation;
+FNT_EXUDATION_B = fnt_Exudation_b;
+
 //FNT_DEBUGFONT = font_add_sprite_ext(spr_debugfont, ":.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ ", true, 2);
 
 //DEFINE OTHER GAME VARIABLES:

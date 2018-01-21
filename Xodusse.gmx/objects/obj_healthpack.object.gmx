@@ -66,7 +66,7 @@ SumX = 0;
 SumY = 0;
 
 //Get pushed by enemies.
-for(var i = instance_number(obj_collider);i&gt;=0;i--){
+/*for(var i = instance_number(obj_collider);i&gt;=0;i--){
 
     var Inst = instance_find(obj_collider,i);
     if (Inst!=id) &amp;&amp; (Inst!=noone){
@@ -80,7 +80,7 @@ for(var i = instance_number(obj_collider);i&gt;=0;i--){
             SumY += NormY*(Radius+Inst.Radius-Distance);
         }
     }
-}
+}*/
 
 //Move smoothly and with delta timing.
 SpeedX = SpeedX*S90+(1-S90)*(SumX);

@@ -159,7 +159,8 @@ if instance_exists(obj_player){
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
         
-        draw_set_colour($D18214);
+        //draw_set_colour($D18214);
+        draw_set_colour($4F2AA6);
         draw_text(36-18*dcos(WalkDirection),GUIH-36-18*dsin(WalkDirection),"N");
         draw_text(36+18*dcos(WalkDirection),GUIH-36+18*dsin(WalkDirection),"S");
         draw_set_colour($FFFFFF);
@@ -180,8 +181,8 @@ if instance_exists(obj_player){
         for(var i = 0;i&lt;=30;i++){
             
             var Angle = i*3*Progress;
-            draw_vertex_colour(dcos(Angle)*150+36,GUIH-dsin(Angle)*150-36,$D18214,0.3);
-            draw_vertex_colour(dcos(Angle)*32+36,GUIH-dsin(Angle)*32-36,$999329,0.1);
+            draw_vertex_colour(dcos(Angle)*150+36,GUIH-dsin(Angle)*150-36,$4F2AA6,0.3);
+            draw_vertex_colour(dcos(Angle)*32+36,GUIH-dsin(Angle)*32-36,$321B68,0.1);
         }
         draw_primitive_end();
         
@@ -279,7 +280,7 @@ if instance_exists(obj_player){
         
         
         //Health bar:       
-        draw_set_colour($999329);
+        draw_set_colour($4F2AA6);
                
         draw_rectangle(GUIW-100,GUIH-40,GUIW-100+clamp(Health,0,10)*8,GUIH-20,0);
         
@@ -300,7 +301,7 @@ if instance_exists(obj_player){
         //Backpack slot.
         draw_rectangle(GUIW/2+S*4.5,GUIH/2-S*1,GUIW/2+S*6.5,GUIH/2+S*1.5,0);
         draw_set_alpha(1);
-        draw_set_colour($999329);
+        draw_set_colour($4F2AA6);
         draw_rectangle(GUIW/2+S*5,GUIH/2,GUIW/2+S*6,GUIH/2+S,1);
         
         //Weight and strength capacity
@@ -328,7 +329,7 @@ if instance_exists(obj_player){
             var Quantity = Q[X+Y*6];
             
             //Slot square.
-            draw_set_colour($999329);
+            draw_set_colour($4F2AA6);
             draw_rectangle(GUIW/2-S*3+1+X*S,GUIH/2+1-Y*S,GUIW/2-S*2-1+X*S,GUIH/2+S-1-Y*S,1);
             draw_set_colour(0);
             
@@ -406,7 +407,7 @@ if (obj_controller_wave.WaveDelay == true) &amp;&amp; instance_exists(obj_player
     
     draw_set_font(FNT_EXUDATION_LARGE);
     draw_set_alpha(TextSine);
-    draw_text_transformed(GUIW/2,(GUIH/2)+352,"New wave starting in: " + string(ceil(obj_controller_wave.WaveDelayTimer)),1,1,0);
+    draw_text_transformed(GUIW/2,GUIH-32,"New wave starting in: " + string(ceil(obj_controller_wave.WaveDelayTimer)),1,1,0);
     
     draw_set_alpha(1);
     draw_set_colour(-1);     
@@ -446,7 +447,7 @@ if instance_exists(obj_player) &amp;&amp; instance_exists(obj_controller_invento
     if ((Q[obj_player.P[obj_player.Current]]) == 0) &amp;&amp; !(obj_player.Reload&lt;Greload[obj_player.G[obj_player.Current]]){
     
         draw_set_colour($0000FF);            
-        draw_text_transformed(GUIW/2,(GUIH/2)+384,"No Ammo",1,1,0);            
+        draw_text_transformed(GUIW/2,GUIH-64,"No Ammo",1,1,0);            
         draw_set_colour($FFFFFF);            
         
     }
@@ -459,15 +460,15 @@ if instance_exists(obj_player) &amp;&amp; instance_exists(obj_controller_invento
         if !obj_player.Grenade {
             //Low Ammo:
             if (obj_player.Magazines == 0){
-                draw_text_transformed(GUIW/2,(GUIH/2)+384,"Low Ammo",1,1,0);            
+                draw_text_transformed(GUIW/2,GUIH-64,"Low Ammo",1,1,0);            
             }
             //Reload:
             else {
-                draw_text_transformed(GUIW/2,(GUIH/2)+384,"Reload",1,1,0);            
+                draw_text_transformed(GUIW/2,GUIH-64,"Reload",1,1,0);            
             }
         }
         else {
-            draw_text_transformed(GUIW/2,(GUIH/2)+384,"Low Ammo",1,1,0);            
+            draw_text_transformed(GUIW/2,GUIH-64,"Low Ammo",1,1,0);            
         }
         
         draw_set_colour($FFFFFF);
