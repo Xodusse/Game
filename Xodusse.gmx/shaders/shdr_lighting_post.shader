@@ -10,6 +10,7 @@ void main()
     v_vTexcoord = in_TextureCoord;
 }
 //######################_==_YOYO_SHADER_MARKER_==_######################@~
+
 varying vec2 v_vTexcoord;
 
 uniform sampler2D Colr;
@@ -70,6 +71,7 @@ void main()
     Emission += texture2D(Colr,UV).rgb*Properties.y*2.;
     Shadow += pow(max(Height-Properties.x,0.),2.)*2.;
     
-    gl_FragColor = vec4(Tex.rgb+Color.rgb*Emission/10.,Tex.a);
-    gl_FragColor.rgb *= vec3(exp(min(-Shadow,0.)*2.));
+    gl_FragColor = Tex;
+    gl_FragColor.rgb *= vec3(exp(min(-Shadow,0.)*2.));//Occulusion
+    gl_FragColor.rgb += Color.rgb*Emission/10.;       //Emissive
 }

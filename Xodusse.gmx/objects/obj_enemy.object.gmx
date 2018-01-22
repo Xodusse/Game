@@ -172,9 +172,15 @@ for(var i = instance_number(obj_collider);i&gt;=0;i--){
     var Inst = instance_find(obj_collider,i);
     if (Inst!=id) &amp;&amp; (Inst!=noone){
     
-        var Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
-        var Over = Distance-(Radius+Inst.Radius);
+        var Distance,Over;
+        Distance = point_distance(x+SpeedX,y+SpeedY,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
+        Over = Distance-(Radius+Inst.Radius);
 
+        var DistanceLeft,DistanceRight;
+        DistanceLeft  = point_distance(x+dcos(WalkDirection+60)*5+SpeedX*5,y-dsin(WalkDirection+60)*5+SpeedY*5,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
+        DistanceRight = point_distance(x+dcos(WalkDirection-60)*5+SpeedX*5,y-dsin(WalkDirection-60)*5+SpeedY*5,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
+        WalkTurn += (DistanceLeft-DistanceRight)/(Over+5)/2;
+        
         if (Over&lt;0){
         
             var NormX = (x+SpeedX-(Inst.x+Inst.SpeedX))/Distance;
