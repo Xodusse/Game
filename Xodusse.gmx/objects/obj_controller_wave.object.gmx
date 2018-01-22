@@ -86,7 +86,28 @@ if (room == rm_test1) || (room == rm_game_0){
         var S1,S2;
         S1 = irandom(1);
         S2 = irandom(1);
-        instance_create(irandom(3968)*S1+(3968)*!S1*S2-960,irandom(3968)*!S1+(3968)*S1*S2-960,obj_enemy);
+        
+        //Select an enemy:
+        
+        var chance = irandom(99) + 1;
+        
+        //Alien 1:
+        if (chance &gt;= 20){
+            instance_create(irandom(3968)*S1+(3968)*!S1*S2-960,irandom(3968)*!S1+(3968)*S1*S2-960,obj_alien_1);
+        }
+        //Alien 2:
+        else {
+            var chance2 = irandom(99) + 1;
+            //Regular:
+            if (chance2 &gt;= 40){
+                instance_create(irandom(3968)*S1+(3968)*!S1*S2-960,irandom(3968)*!S1+(3968)*S1*S2-960,obj_alien_2);
+            }
+            //Strong:
+            else {
+                instance_create(irandom(3968)*S1+(3968)*!S1*S2-960,irandom(3968)*!S1+(3968)*S1*S2-960,obj_alien_2_strong);
+            }
+        }
+    
     }
     
     //Starts the wave delay timer:

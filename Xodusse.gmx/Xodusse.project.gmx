@@ -59,6 +59,20 @@
         <sprite>sprites\spr_alien_0_n</sprite>
         <sprite>sprites\spr_alien_0_she</sprite>
       </sprites>
+      <sprites name="Type_2">
+        <sprite>sprites\spr_alien_1</sprite>
+        <sprite>sprites\spr_alien_1_n</sprite>
+        <sprite>sprites\spr_alien_1_she</sprite>
+        <sprite>sprites\spr_alien_1_t1</sprite>
+        <sprite>sprites\spr_alien_1_t1_n</sprite>
+        <sprite>sprites\spr_alien_1_t1_she</sprite>
+        <sprite>sprites\spr_alien_1_t2</sprite>
+        <sprite>sprites\spr_alien_1_t2_n</sprite>
+        <sprite>sprites\spr_alien_1_t2_she</sprite>
+        <sprite>sprites\spr_alien_1_t3</sprite>
+        <sprite>sprites\spr_alien_1_t3_n</sprite>
+        <sprite>sprites\spr_alien_1_t3_she</sprite>
+      </sprites>
     </sprites>
     <sprites name="Logistics">
       <sprites name="Crates">
@@ -215,6 +229,19 @@
       </objects>
       <objects name="Enemy">
         <object>objects\obj_enemy</object>
+        <objects name="Alien_1">
+          <object>objects\obj_alien_1</object>
+        </objects>
+        <objects name="Alien_2">
+          <object>objects\obj_alien_2</object>
+        </objects>
+        <objects name="Alien_2_Strong">
+          <object>objects\obj_alien_2_strong</object>
+          <object>objects\obj_alien_2_strong_t1</object>
+          <object>objects\obj_alien_2_strong_t2</object>
+          <object>objects\obj_alien_2_strong_t3</object>
+          <object>objects\obj_alien_2_strong_t4</object>
+        </objects>
       </objects>
       <objects name="Structures">
         <objects name="Walls">
