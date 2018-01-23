@@ -184,10 +184,10 @@ with(obj_projectiles){
     
     scr_lighting_draw_point(x,y,100,64+32*!Id,$447788);
 }
-with(obj_enemy){
+if DEBUG_VISIBLE
+{
+    with(obj_enemy){
     
-    if DEBUG_VISIBLE
-    {
         scr_lighting_draw_point(AiTargetX,AiTargetY,100,32+AiTargetRadius,$3333FF);
     }
 }

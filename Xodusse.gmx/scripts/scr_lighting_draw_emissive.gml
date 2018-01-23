@@ -46,7 +46,6 @@ surface_reset_target();
 
 surface_set_target(LSprop);
 matrix_set(matrix_view,Vmatx);
-draw_set_colour_write_enable(0,0,1,0);
 
 draw_primitive_begin_texture(pr_trianglestrip,Vemis);
 draw_vertex_texture(Axpos-Vxoff*Vxrot-Vyoff*Vyrot,Aypos-Vyoff*Vxrot+Vxoff*Vyrot,0,0);
@@ -57,6 +56,5 @@ draw_primitive_end();
 
 draw_set_alpha(1);
 draw_set_colour($FFFFFF);
-draw_set_colour_write_enable(1,1,1,1);
 draw_set_blend_mode(bm_normal);
 surface_reset_target();

@@ -65,7 +65,7 @@ AiVigor = 0;
 WalkTurn = 0;
 WalkDirection = 0;
 
-Speed = 1;
+Speed = 1.2;
 SpeedX = 0;
 SpeedY = 0;
 
@@ -73,6 +73,7 @@ Radius = 16;
 
 Time = random(10000);
 Health = 0.8+random(0.4);
+Damage = .02;
 image_speed = 0;
 </string>
           </argument>
@@ -115,10 +116,9 @@ if instance_exists(obj_player){
             
     if Visible{
         
-        AiVigor = AiVigor*S90+(1-S90);
+        AiVigor = AiVigor*S98+(1-S98);
         AiFocus = AiFocus*S90+(1-S90);
         AiTargetRadius = AiTargetRadius*S90;
-        Speed = Speed*S90+(1-S90);
         AiTargetSpeedX = obj_player.SpeedX;
         AiTargetSpeedY = obj_player.SpeedY;
         AiTargetX = obj_player.x;
@@ -177,9 +177,9 @@ for(var i = instance_number(obj_collider);i&gt;=0;i--){
         Over = Distance-(Radius+Inst.Radius);
 
         var DistanceLeft,DistanceRight;
-        DistanceLeft  = point_distance(x+dcos(WalkDirection+60)*5+SpeedX*5,y-dsin(WalkDirection+60)*5+SpeedY*5,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
-        DistanceRight = point_distance(x+dcos(WalkDirection-60)*5+SpeedX*5,y-dsin(WalkDirection-60)*5+SpeedY*5,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
-        WalkTurn += (DistanceLeft-DistanceRight)/(Over+5)/2;
+        DistanceLeft  = point_distance(x+dcos(WalkDirection+15)*5,y-dsin(WalkDirection+15)*5,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
+        DistanceRight = point_distance(x+dcos(WalkDirection-15)*5,y-dsin(WalkDirection-15)*5,Inst.x+Inst.SpeedX,Inst.y+Inst.SpeedY);
+        WalkTurn += (DistanceLeft-DistanceRight)/(Over+5);
         
         if (Over&lt;0){
         
@@ -251,7 +251,7 @@ if Health&lt;=0
 // © 2017 - Jon Harvey
 if (AiFocus&gt;.5){
 
-    obj_player.Health -= random(.02)*FRAME_DELTA;
+    obj_player.Health -= random(Damage)*FRAME_DELTA;
     Shake = .2;
 }
 </string>
@@ -278,6 +278,7 @@ if (AiFocus&gt;.5){
             <kind>1</kind>
             <string>///Draw enemy sprite:
 scr_lighting_draw_sprite(spr_alien_0,spr_alien_0_n,spr_alien_0_she,image_index,x,y,1,1,image_angle-90,-1,1);
+
 </string>
           </argument>
         </arguments>

@@ -138,7 +138,7 @@ Ppower[2]  = 0.8;
 Ppower[3]  = 0.5;
 
 //Damage[projectile], Damage per shot (1 is an instant kill).
-Pdamage[0] = 1;
+Pdamage[0] = 1.5;
 Pdamage[1] = 0.2;
 Pdamage[2] = 0.5;
 Pdamage[3] = 1;
