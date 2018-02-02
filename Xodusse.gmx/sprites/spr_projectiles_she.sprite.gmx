@@ -7,10 +7,10 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>4</bbox_left>
+  <bbox_left>0</bbox_left>
   <bbox_right>15</bbox_right>
-  <bbox_top>5</bbox_top>
-  <bbox_bottom>10</bbox_bottom>
+  <bbox_top>2</bbox_top>
+  <bbox_bottom>11</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -24,5 +24,6 @@
     <frame index="1">images\spr_projectiles_she_1.png</frame>
     <frame index="2">images\spr_projectiles_she_2.png</frame>
     <frame index="3">images\spr_projectiles_she_3.png</frame>
+    <frame index="4">images\spr_projectiles_she_4.png</frame>
   </frames>
 </sprite>

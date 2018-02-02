@@ -1,0 +1,282 @@
+{
+    "id": "c0deab0e-a245-4ae1-bfb3-92997075f7b2",
+    "modelName": "GMProject",
+    "mvc": "1.0",
+    "IsDnDProject": false,
+    "configs": [
+        
+    ],
+    "option_ecma": false,
+    "parentProject": {
+        "id": "9d794ab0-7494-4436-9419-e7ff51334446",
+        "modelName": "GMProjectParent",
+        "mvc": "1.0",
+        "alteredResources": [
+            {
+                "Key": "ed6a955d-5826-4f98-a450-10b414266c27",
+                "Value": {
+                    "configDeltas": [
+                        "inherited"
+                    ],
+                    "id": "d27b3bb1-4137-4234-8b22-1d038b042cb8",
+                    "resourcePath": "options\\main\\options_main.yy",
+                    "resourceType": "GMMainOptions"
+                }
+            }
+        ],
+        "hiddenResources": [
+            
+        ],
+        "projectPath": "${base_project}"
+    },
+    "resources": [
+        {
+            "Key": "0bfd1fbe-4f03-4160-aef1-a6f46a694d1d",
+            "Value": {
+                "id": "b6604082-e144-4a3c-9639-097dd4d5221d",
+                "resourcePath": "rooms\\rom_example\\rom_example.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "0dfab14c-c687-4a8c-ba8c-4663f9b554e2",
+            "Value": {
+                "id": "3d5ce3bd-6777-4d61-8b6d-c9cac3b1e3c5",
+                "resourcePath": "views\\0dfab14c-c687-4a8c-ba8c-4663f9b554e2.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "178e28bb-2760-4939-83ac-f569d865c072",
+            "Value": {
+                "id": "61b56b8e-9ee5-4356-a955-2feade858b91",
+                "resourcePath": "views\\178e28bb-2760-4939-83ac-f569d865c072.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "1fd6b6a9-ac87-4397-bb0b-0a672db96cba",
+            "Value": {
+                "id": "11b4107b-a0dc-4b64-a0ef-70cf529fe7d1",
+                "resourcePath": "views\\1fd6b6a9-ac87-4397-bb0b-0a672db96cba.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "2417653a-ebf8-4496-916a-1d2c15ec770b",
+            "Value": {
+                "id": "615d398a-3ae3-46ce-a259-9c8f85f4bd58",
+                "resourcePath": "views\\2417653a-ebf8-4496-916a-1d2c15ec770b.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "24b2df24-6652-4491-982f-ce7f46274977",
+            "Value": {
+                "id": "7f65b13d-7ee9-48f5-8dba-a563e94e5ddf",
+                "resourcePath": "views\\24b2df24-6652-4491-982f-ce7f46274977.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "24b8feef-3dc0-4ca8-a61d-5bf801d40343",
+            "Value": {
+                "id": "2906de4d-42f6-46e8-9f48-b93b8c125ff6",
+                "resourcePath": "views\\24b8feef-3dc0-4ca8-a61d-5bf801d40343.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "282d7dea-cf9b-4a40-b534-b5938191ffdb",
+            "Value": {
+                "id": "fc3bf162-1f8b-4fe8-ad07-3c1d5c4847e2",
+                "resourcePath": "objects\\obj_parent_physics\\obj_parent_physics.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "3925a167-6e5e-4d60-bc71-424d815810b9",
+            "Value": {
+                "id": "5cb50442-da68-43b2-aa57-c419ca592490",
+                "resourcePath": "views\\3925a167-6e5e-4d60-bc71-424d815810b9.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "45abc3e9-2701-432f-9c5b-401958abcd39",
+            "Value": {
+                "id": "ad0ec47c-55c8-4a3a-b962-0096520580f7",
+                "resourcePath": "views\\45abc3e9-2701-432f-9c5b-401958abcd39.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "4fc9b463-711c-4133-b5a6-25676147324f",
+            "Value": {
+                "id": "30617da3-21ab-416c-a6ca-35477e375351",
+                "resourcePath": "scripts\\scr_physics_force\\scr_physics_force.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5c42207c-eb68-4d01-8841-38d5a2fff773",
+            "Value": {
+                "id": "be0b1757-00b5-4289-add6-54218e0e2ca6",
+                "resourcePath": "scripts\\scr_physics_update\\scr_physics_update.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5c55ee25-ca57-4247-9842-47bc53e23c47",
+            "Value": {
+                "id": "2123639b-fdfb-4cb6-be52-37b966d297d9",
+                "resourcePath": "views\\5c55ee25-ca57-4247-9842-47bc53e23c47.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "680b703d-f307-4499-a97d-f712902774ee",
+            "Value": {
+                "id": "bb933417-8a95-48f7-a246-0809d5b35e09",
+                "resourcePath": "objects\\obj_controller_delta\\obj_controller_delta.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "6cbfdb46-3ab3-4d5f-abff-2deb6ce0f999",
+            "Value": {
+                "id": "cb19e3a5-d968-43fd-9fde-f32c79867b09",
+                "resourcePath": "views\\6cbfdb46-3ab3-4d5f-abff-2deb6ce0f999.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "79eb57fa-0f8d-47e0-b109-5c7903f40a1e",
+            "Value": {
+                "id": "c33fc8d4-ca9c-428d-869a-5133182f6460",
+                "resourcePath": "views\\79eb57fa-0f8d-47e0-b109-5c7903f40a1e.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "833d26b4-1974-4cff-a07d-00abbc4c17ed",
+            "Value": {
+                "id": "d2eef9d8-0ad1-4404-8c8d-677d3a488c80",
+                "resourcePath": "scripts\\scr_physics_control_init\\scr_physics_control_init.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8383a272-dce4-45f5-9124-face2fb44eeb",
+            "Value": {
+                "id": "a7b0a532-c9c6-4eb1-8e31-7c14e85de024",
+                "resourcePath": "views\\8383a272-dce4-45f5-9124-face2fb44eeb.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "83abc27b-8772-44e5-b0bb-c4ef5d0881f7",
+            "Value": {
+                "id": "993171cf-5828-4d91-8b05-ba121cb52ff2",
+                "resourcePath": "scripts\\scr_physics_control_update\\scr_physics_control_update.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
+            "Value": {
+                "id": "117dd133-dd99-439b-b63d-035670868908",
+                "resourcePath": "options\\linux\\options_linux.yy",
+                "resourceType": "GMLinuxOptions"
+            }
+        },
+        {
+            "Key": "b22e8240-0fdc-44e1-a48d-f941ea1b7483",
+            "Value": {
+                "id": "b724e256-2dc2-42a4-922d-21b47e959e39",
+                "resourcePath": "views\\b22e8240-0fdc-44e1-a48d-f941ea1b7483.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
+            "Value": {
+                "id": "49e1264e-b80a-415d-819e-dd69dcc64e43",
+                "resourcePath": "options\\windows\\options_windows.yy",
+                "resourceType": "GMWindowsOptions"
+            }
+        },
+        {
+            "Key": "d0054880-402c-4a3b-a942-81d6cd7bab76",
+            "Value": {
+                "id": "e1de0e41-46a5-4fee-9593-5ff5095ebe7e",
+                "resourcePath": "views\\d0054880-402c-4a3b-a942-81d6cd7bab76.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "de0a897b-92c5-42eb-951b-d80fddffc9ee",
+            "Value": {
+                "id": "f874025b-dadd-4ab3-8b4a-2ff7ef6a2407",
+                "resourcePath": "objects\\obj_controller_physics\\obj_controller_physics.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "e507924d-a93d-4208-8c7b-8a6d58ba725f",
+            "Value": {
+                "id": "a1cd3df7-7910-4c1c-b5f8-f9703d6289e2",
+                "resourcePath": "sprites\\spr_circle\\spr_circle.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "ec0f50e9-824f-4ad4-a17a-30a60447a805",
+            "Value": {
+                "id": "5102bc67-0e81-4681-86e2-8f01fd7a6cef",
+                "resourcePath": "scripts\\scr_physics_create\\scr_physics_create.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
+            "Value": {
+                "id": "7cbfe2cc-aab3-4467-9d38-f9b3da29e770",
+                "resourcePath": "options\\mac\\options_mac.yy",
+                "resourceType": "GMMacOptions"
+            }
+        },
+        {
+            "Key": "f5f6d0d0-4b6d-4dcb-a69e-59bdfdee1740",
+            "Value": {
+                "id": "2a6592d0-6f7a-4aae-9c9d-9aff5ef55475",
+                "resourcePath": "views\\f5f6d0d0-4b6d-4dcb-a69e-59bdfdee1740.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f9d675b3-9ffb-48f2-b321-a25796f43445",
+            "Value": {
+                "id": "d8843061-705b-4afd-890f-2d914d38d5df",
+                "resourcePath": "objects\\obj_circle\\obj_circle.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "fad5a093-55ba-4da6-b6d9-a51be21b0c7e",
+            "Value": {
+                "id": "96a255ca-c721-487e-8a78-502ac4a1efa0",
+                "resourcePath": "views\\fad5a093-55ba-4da6-b6d9-a51be21b0c7e.yy",
+                "resourceType": "GMFolder"
+            }
+        }
+    ],
+    "script_order": [
+        "833d26b4-1974-4cff-a07d-00abbc4c17ed",
+        "83abc27b-8772-44e5-b0bb-c4ef5d0881f7",
+        "ec0f50e9-824f-4ad4-a17a-30a60447a805",
+        "5c42207c-eb68-4d01-8841-38d5a2fff773",
+        "4fc9b463-711c-4133-b5a6-25676147324f"
+    ],
+    "tutorial": ""
+}

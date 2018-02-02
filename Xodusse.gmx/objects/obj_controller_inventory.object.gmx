@@ -29,7 +29,7 @@
 // © 2017 - Jon Harvey
 
 globalvar Idoubles,Isingles,Igrenades,Iammo;
-Idoubles = 2;//Number of two-handed weapons.
+Idoubles = 3;//Number of two-handed weapons.
 Isingles = 2;//Number of one-handed weapons.
 Igrenades = 1;
 Iammo = Idoubles+Isingles;//Number of ammo (magazines or rounds).
@@ -70,19 +70,19 @@ I[23] = 0;
 Q[23] = 0;
 
 //Add default items (ids correspond to spr_items image index+1).
-I[0] = 1;
+I[0] = 5;
 Q[0] = 0;
-I[1] = 2;
-Q[1] = Gcap[0];
+I[1] = 6;
+Q[1] = Gcap[2];
 I[2] = 3;
 Q[2] = 0;
 I[3] = 4;
 Q[3] = Gcap[1];
-I[4] = 5;
-Q[4] = Gcap[2];
-I[5] = 6;
-Q[5] = Gcap[3];
-I[6] = 7;
+I[4] = 7;
+Q[4] = Gcap[3];
+I[5] = 8;
+Q[5] = Gcap[4];
+I[6] = 9;
 Q[6] = 8;
 </string>
           </argument>

@@ -155,7 +155,7 @@ for(var X = 0;X&lt;6;X++){
     Item = I[X];
     Double = (Item&lt;=Idoubles*2);
     //Check if item is gun (or front part of heavy gun).
-    if Item&lt;=(Idoubles*2+Isingles+Igrenades) ^^ (Double &amp;&amp; ((Item+1)%2)){
+    if (Item&lt;=(Idoubles*2+Isingles+Igrenades)) ^^ (Double &amp;&amp; ((Item+1)%2)){
         
         P[Count] = X+Double;            
         G[Count++] = floor(Item/2-1/2)+!Double*floor(Item/2-Idoubles);

@@ -134,6 +134,8 @@
       <sprite>sprites\spr_grenade</sprite>
       <sprite>sprites\spr_explosion</sprite>
       <sprite>sprites\spr_explosion_she</sprite>
+      <sprite>sprites\spr_flame</sprite>
+      <sprite>sprites\spr_flame_she</sprite>
     </sprites>
     <sprites name="Cursor">
       <sprite>sprites\spr_Cursor_Free</sprite>
@@ -269,6 +271,7 @@
         <object>objects\obj_projectiles</object>
         <object>objects\obj_grenade</object>
         <object>objects\obj_explosion</object>
+        <object>objects\obj_flame</object>
       </objects>
     </objects>
     <objects name="Controllers">
